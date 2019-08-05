@@ -1,0 +1,29 @@
+- hosts: all
+  sudo: yes
+  handlers:
+    - name: restart mysql
+      service: name=mysql state=restarted
+  tasks:
+
+    - name: install mysql-server
+      apt: name={{item}} update_cache=yes state=latest
+      with_items:
+           - mysql-server
+           - python-mysqldb
+
+    - name: Create a new database with name
+      mysql_db:
+        name: '{{database_name}}'
+        state: present
+
+    - name: Create database user with name and password with all database privileges
+      mysql_user:
+        name: '{{database_user}}'
+        password: '{{database_password}}'
+        priv: '*.*:ALL'
+        host: '%'
+        state: present
+
+    - name: Opening binding address
+      command: sed -i -e 's/127.0.0.1/0.0.0.0/g' /etc/mysql/my.cnf
+      notify: restart mysql

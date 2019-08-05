@@ -1,0 +1,58 @@
+- hosts: all
+  sudo: yes
+  handlers:
+    - name: restart apache2
+      service: name=apache2 state=restarted
+  tasks:
+
+    - name: install wordpress
+      apt: name={{item}} update_cache=yes state=latest
+      with_items:
+           - wordpress
+
+    - name: install apache2
+      apt: name={{item}} update_cache=yes state=latest
+      with_items:
+           - php5
+           - php5-mysql
+           - apache2
+           - mysql-client
+
+    - name: execute a2dissite
+      command: a2dissite 000-default.conf
+
+    - name: Make sure the dir exists.
+      file:
+        path: "/usr/share/wordpress/{{item}}"
+        owner: root
+        group: root
+        mode: 0755
+        recurse: yes
+        state: directory
+      with_items: ["public_html", "logs"]
+
+    - name: Make sure the log file exists.
+      file:
+        path: "/usr/share/wordpress/logs/{{item}}"
+        owner: root
+        group: root
+        mode: 0775
+        state: touch
+      with_items: ["access.log", "error.log"]
+
+    - name: Make sure vhost
+      copy:
+        src: vhost
+        dest: /etc/apache2/sites-available/wordpress.conf
+
+    - name: Template a file to config-default.php
+      template:
+        src: config-default.php
+        dest: /etc/wordpress/config-default.php
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: a2dissite
+      command: a2ensite wordpress.conf
+      notify: restart apache2

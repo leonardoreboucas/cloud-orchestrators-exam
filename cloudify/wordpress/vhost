@@ -1,0 +1,8 @@
+<VirtualHost *:80>
+    ServerAdmin webmaster@wordpress
+    ServerName wordpress
+    ServerAlias www.wordpress
+    DocumentRoot /usr/share/wordpress
+    ErrorLog /usr/share/wordpress/logs/error.log
+    CustomLog /usr/share/wordpress/logs/access.log combined
+</VirtualHost>
