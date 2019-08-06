@@ -1,0 +1,46 @@
+#AWS
+export aws_access_key_id=AKIAT57VTI7W77LVRLXV
+export aws_secret_access_key=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
+export aws_region_name=us-east-1
+
+#GCP
+export gcp_client_x509_cert_url=https://www.googleapis.com/robot/v1/metadata/x509/822099891471-compute%40developer.gserviceaccount.com
+export gcp_client_email=822099891471-compute@developer.gserviceaccount.com
+export gcp_client_id=109785147454585247927
+export gcp_project_id=node2faas
+export gcp_private_key_id=611bdbcacc3c30d632a85a18f98823d150bbe383
+export gcp_zone=us-east1
+export gcp_private_key="-----BEGIN PRIVATE KEY-----\
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCJ1CxvT7ccW7HX\
+JCvL/TEiV6oB4m0pBkUdM25Wv5otsYmOdikMr4X6Q66eLv/zL7W8804nISN5cItw\
+pija+/mgHTdASs9TWs5Cz/6lXHzrr+cXygw5ucpwVVic3kLeHHsmjYHclzt2YTII\
+q5/Lmjl82Dh9wcL2UxbHE5E53g63lNspxeEt7CDP6Vde6LKSs8xMX4x66wKIjATM\
+43eXU3qSknDSfrDzavt1U0B6VEYMfLngTScOX3EcpEcUqEC09DpmFUOxM2Ws9QVh\
+5MmaXt5F7vj/8TfJqQZ4HJheKmH0ioSNPnqKKtx4Ooi6EFZFhWjUrQ10smhIFeq2\
+jmEAuAGTAgMBAAECggEAICCllPLLd6BGJaSoUt37kIpHtjW+BUSRYruk2jLCcSlD\
+q8IOUoctn0cckoHZJqo13kwGqSdX2gxqbIFG37jBmNmGkgV+K2tszfUm4gvbkKLJ\
+pulxjRkqP6IdTD+g7Z5M9JEitrVH5pHEdHHxByg1g0zxahr646k9k30Tqp4A5zjD\
+d5iR6q3vLFJ0vUdxziD5VpYiUmImsNXyW9ljWp9gywxOvVfnvRe2jVri8zPgUj0R\
+ln8KfyJQOwnTQWyWjpBQQfhRThSjU1MNh46iw94K/nMW1MY1fHjSRbW4jhw7Uv/I\
+7oLoCjMpN3/em5NvRBDi/djN4+GEpnzk2HWpGDDpMQKBgQDCfq66d0VUwqaQzmu5\
+F4a/ZXUWIgrYan/6HbNcmGDwmxISlbtoxIf+4bJ/KMCOAx5lyLxc9/W0j1988U31\
+wc5tQK0WvlAKJFe2ZOdaSdPy5t0yIpva47FZuypJZjPXEGKzXVHJ2XjhqB/KRM13\
+sDGKt+5XxdfyWwBD4gqIZeMfgwKBgQC1ahhGFpV41jnmwIve6zsAdVcwLp8TfHmI\
+oXew89u3XWU1E+erijvq69VeknDcwmJpcuBhamXTa5fRxF9P4eXQl+2hO4z9VsD4\
+tYPtX/aIH6X2BfH6AfkR53gui4+GeMDREsTOTKXj8bo79Tbj66+qa0Z4AMIrdFo+\
+dxlIVvZosQKBgGMVPJh76JMcstR0hIZ/yMK6wiJrZ1EHOHlIJjbW3hPVPCjBpP7j\
+mFCt1ExZi3cNea/qyqMmI0NAAypYmBnKCQq5dzRt8cKo7xJZZ08k61gEas1+uh2R\
+/6ix5AIOkfxPOakcsmz9YEq9ZqyZzn7aAPMlbsPCY5fw6jqq7ii8ly9XAoGAXOl6\
+hyL36MxnGTySJlh5fnGadu3ZwSQmJoj0ASfT5uSpefa4101UBKxGOkpsDVRtDK6u\
+JpZUkmRvfBrD6ei7SAsXxFT4j6OH75kfeUqFvA/hctB2ruGly7qt/cCygF+F+U5Q\
+h4wQBl9+T0j2lOLXtEN+8uUIjTLpKUbcJwWK6/ECgYEAqXb3/eJB2lFD0Id0Htyi\
+P5WpfFhK64oC3wjtL0FHe5LWhTQTiO/1OLN7178c5T+MnRCHMFuy26CKbdedH9fT\
+CE4lQL+05x8po9/R8ifbWmPOxHtPopVyM8p/HLnmA183H6ZvTr6idqXFMn+xjLJ/\
+7pQCRLNPF+tyORvfpClaBP8=\
+-----END PRIVATE KEY-----"
+
+#Azure
+azure_subscription_id=9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25
+azure_tenant_id=df7a7582-1857-4a55-85f3-b8c728226d1b
+azure_client_id=d40d1621-8c94-4704-9188-c5c65bf25bcf
+azure_client_secret=8hPfNkl6-V/Tb?6[cWdenSZvrrIrbOS7

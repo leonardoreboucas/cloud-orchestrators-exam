@@ -2,21 +2,19 @@
 # Credentials
 ###################
 
-variable "access_key" {
+variable "aws_access_key" {
   type    = string
-  default = "AKIAIJ72ET42FCFZA67Q"
 }
 
-variable "secret_key" {
+variable "aws_secret_key" {
   type    = string
-  default = "6u7eqBR3FGubuUVG/QQO9EzHE3moE26n74qZHjc8"
 }
 
 ###################
 # Variables
 ###################
 
-variable "region" {
+variable "aws_region_name" {
   type    = string
   default = "us-west-2"
 }

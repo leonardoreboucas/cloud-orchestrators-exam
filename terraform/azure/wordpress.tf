@@ -2,24 +2,20 @@
 # Credentials
 ###################
 
-variable "subscription_id" {
+variable "azure_subscription_id" {
     type    = string
-    default = "9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25"
 }
 
-variable "tenant_id" {
+variable "azure_tenant_id" {
     type    = string
-    default = "df7a7582-1857-4a55-85f3-b8c728226d1b"
 }
 
-variable "client_id" {
+variable "azure_client_id" {
     type    = string
-    default = "d40d1621-8c94-4704-9188-c5c65bf25bcf"
 }
 
-variable "client_secret" {
+variable "azure_client_secret" {
     type    = string
-    default = "8hPfNkl6-V/Tb?6[cWdenSZvrrIrbOS7"
 }
 
 ###################
