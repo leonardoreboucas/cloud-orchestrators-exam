@@ -2,3 +2,8 @@
 .DS_Store
 .*.sh
 account.json
+.terraform*
+*.tfstate
+plugins
+*.backup
+logs*

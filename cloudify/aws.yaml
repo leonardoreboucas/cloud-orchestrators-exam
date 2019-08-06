@@ -125,7 +125,7 @@ node_templates:
     properties:
       client_config: *client_config
       resource_config:
-        GroupName: CloudifyHelloWorldGroup
+        GroupName: WordpressGroup
         Description: Created for Wordpress.
         VpcId: { get_attribute: [ vpc, aws_resource_id ] }
     relationships:

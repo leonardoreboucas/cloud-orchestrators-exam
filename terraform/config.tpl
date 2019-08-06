@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo apt-get update
-sudo apt-get -y install apache2 mysql-client php7.0 libapache2-mod-php7.0 wordpress
+sudo apt-get -y install apache2 mysql-client php5 libapache2-mod-php5 wordpress
 sudo rm -rf /var/www/html
 sudo ln -s /usr/share/wordpress /var/www/html
 sudo service apache2 restart

@@ -43,7 +43,7 @@ variable "db_user" {
 
 variable "db_pass" {
   type    = string
-  default = "H!Sh1CoR3!"
+  default = "w@rdpr3sS"
 }
 
 variable "public_key" {
@@ -56,10 +56,10 @@ variable "public_key" {
 ###################
 
 provider "azurerm" {
-  subscription_id = "${var.subscription_id}"
-  tenant_id       = "${var.tenant_id}"
-  client_id       = "${var.client_id}"
-  client_secret   = "${var.client_secret}"
+  subscription_id = "${var.azure_subscription_id}"
+  tenant_id       = "${var.azure_tenant_id}"
+  client_id       = "${var.azure_client_id}"
+  client_secret   = "${var.azure_client_secret}"
 }
 
 resource "random_id" "bp_suffix" {
@@ -70,52 +70,89 @@ resource "random_id" "bp_suffix" {
 # Database layer
 ###################
 
-resource "azurerm_mysql_database" "wordpress-db" {
-  name                = "${var.db_name}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
-  server_name         = "${azurerm_mysql_server.wordpress-db-server.name}"
-  charset             = "utf8"
-  collation           = "utf8_unicode_ci"
+data "template_file" "config_database" {
+  template = "${file("${path.module}/../config_database.tpl")}"
+  vars = {
+    db_name     = "${var.db_name}"
+    db_user     = "${var.db_user}"
+    db_password = "${var.db_pass}"
+  }
 }
 
-resource "azurerm_mysql_server" "wordpress-db-server" {
-  name                = "wordpress-db-server-${random_id.bp_suffix.hex}"
-  location            = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
+resource "azurerm_virtual_machine" "wordpress-database" {
+  name                  = "wordpress-database-${random_id.bp_suffix.hex}"
+  location              = "${azurerm_resource_group.main.location}"
+  resource_group_name   = "${azurerm_resource_group.main.name}"
+  network_interface_ids = ["${azurerm_network_interface.database.id}"]
+  vm_size               = "Standard_B1ls"
+  delete_os_disk_on_termination = true
+  delete_data_disks_on_termination = true
+  availability_set_id = "${azurerm_availability_set.wordpress-availability.id}"
 
-  sku {
-    name     = "B_Gen5_2"
-    capacity = 2
-    tier     = "Basic"
-    family   = "Gen5"
+  os_profile_linux_config{
+    disable_password_authentication = true
+    ssh_keys{
+      key_data = "${var.public_key}"
+      path     = "/home/${var.admin_username}/.ssh/authorized_keys"
+    }
   }
 
-  storage_profile {
-    storage_mb            = 5120
-    backup_retention_days = 7
-    geo_redundant_backup  = "Disabled"
+  storage_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "14.04.5-LTS"
+    version   = "latest"
   }
 
-  administrator_login          = "${var.db_user}"
-  administrator_login_password = "${var.db_pass}"
-  version                      = "5.7"
-  ssl_enforcement              = "Disabled"
+  storage_os_disk {
+    name              = "wordpress-database-disc-${random_id.bp_suffix.hex}"
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "Standard_LRS"
+  }
+  os_profile {
+    computer_name  = "wordpress-database-${random_id.bp_suffix.hex}"
+    admin_username = "${var.admin_username}"
+  }
 }
 
-resource "azurerm_mysql_configuration" "wordpress-db-config" {
-  name                = "interactive_timeout"
-  resource_group_name = "${azurerm_resource_group.main.name}"
-  server_name         = "${azurerm_mysql_server.wordpress-db-server.name}"
-  value               = "600"
+resource "azurerm_virtual_machine_extension" "config-database" {
+  name                 = "wordpress-database-config-${random_id.bp_suffix.hex}"
+  location             = "${azurerm_resource_group.main.location}"
+  resource_group_name  = "${azurerm_resource_group.main.name}"
+  virtual_machine_name = "${azurerm_virtual_machine.wordpress-database.name}"
+  publisher            = "Microsoft.Azure.Extensions"
+  type                 = "CustomScript"
+  type_handler_version = "2.0"
+  settings = <<SETTINGS
+    {
+        "commandToExecute": "echo '${var.admin_username} ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/waagent "}
+SETTINGS
+
+  provisioner "file" {
+    connection {
+      host        = "${azurerm_public_ip.static-ip-database.ip_address}"
+      type        = "ssh"
+      user        = "${var.admin_username}"
+      private_key = file("${path.module}/../../common/wordpress.pem")
+    }
+    content     = "${data.template_file.config_database.rendered}"
+    destination = "/tmp/config.sh"
+  }
+  provisioner "remote-exec" {
+    connection {
+      host        = "${azurerm_public_ip.static-ip-database.ip_address}"
+      type        = "ssh"
+      user        = "${var.admin_username}"
+      private_key = file("${path.module}/../../common/wordpress.pem")
+    }
+    inline = [
+      "sudo chmod +x /tmp/config.sh",
+      "sudo /tmp/config.sh",
+    ]
+  }
 }
 
-resource "azurerm_mysql_firewall_rule" "wordpress-db-firewall" {
-  name                = "office"
-  resource_group_name = "${azurerm_resource_group.main.name}"
-  server_name         = "${azurerm_mysql_server.wordpress-db-server.name}"
-  start_ip_address    = "0.0.0.0"
-  end_ip_address      = "255.255.255.255"
-}
 
 ###################
 # Apps layer
@@ -136,9 +173,9 @@ resource "azurerm_resource_group" "main" {
 data "template_file" "config" {
   template = "${file("${path.module}/../config.tpl")}"
   vars = {
-    db_host     = "${azurerm_mysql_server.wordpress-db-server.fqdn}"
+    db_host     = "${azurerm_public_ip.static-ip-database.ip_address}"
     db_name     = "${var.db_name}"
-    db_user     = "${var.db_user}@${azurerm_mysql_server.wordpress-db-server.name}"
+    db_user     = "${var.db_user}"
     db_password = "${var.db_pass}"
   }
 }
@@ -162,9 +199,9 @@ resource "azurerm_virtual_machine" "wordpress-app1" {
   }
 
   storage_image_reference {
-    publisher = "credativ"
-    offer     = "Debian"
-    sku       = "9"
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "14.04.5-LTS"
     version   = "latest"
   }
 
@@ -199,9 +236,9 @@ resource "azurerm_virtual_machine" "wordpress-app2" {
   }
 
   storage_image_reference {
-    publisher = "credativ"
-    offer     = "Debian"
-    sku       = "9"
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "14.04.5-LTS"
     version   = "latest"
   }
 
@@ -235,7 +272,7 @@ SETTINGS
       host        = "${azurerm_public_ip.static-ip1.ip_address}"
       type        = "ssh"
       user        = "${var.admin_username}"
-      private_key = file("${path.module}/../wordpress.pem")
+      private_key = file("${path.module}/../../common/wordpress.pem")
     }
     content     = "${data.template_file.config.rendered}"
     destination = "/tmp/config.sh"
@@ -245,7 +282,7 @@ SETTINGS
       host        = "${azurerm_public_ip.static-ip1.ip_address}"
       type        = "ssh"
       user        = "${var.admin_username}"
-      private_key = file("${path.module}/../wordpress.pem")
+      private_key = file("${path.module}/../../common/wordpress.pem")
     }
     inline = [
       "sudo chmod +x /tmp/config.sh",
@@ -272,7 +309,7 @@ SETTINGS
       host        = "${azurerm_public_ip.static-ip2.ip_address}"
       type        = "ssh"
       user        = "${var.admin_username}"
-      private_key = file("${path.module}/../wordpress.pem")
+      private_key = file("${path.module}/../../common/wordpress.pem")
     }
     content     = "${data.template_file.config.rendered}"
     destination = "/tmp/config.sh"
@@ -282,7 +319,7 @@ SETTINGS
       host        = "${azurerm_public_ip.static-ip2.ip_address}"
       type        = "ssh"
       user        = "${var.admin_username}"
-      private_key = file("${path.module}/../wordpress.pem")
+      private_key = file("${path.module}/../../common/wordpress.pem")
     }
     inline = [
       "sudo chmod +x /tmp/config.sh",
@@ -304,6 +341,13 @@ resource "azurerm_public_ip" "static-ip1" {
 
 resource "azurerm_public_ip" "static-ip2" {
   name                = "wordpress-static-ip2-${random_id.bp_suffix.hex}"
+  location            = "${azurerm_resource_group.main.location}"
+  resource_group_name = "${azurerm_resource_group.main.name}"
+  allocation_method   = "Static"
+}
+
+resource "azurerm_public_ip" "static-ip-database" {
+  name                = "wordpress-static-ipdatabase-${random_id.bp_suffix.hex}"
   location            = "${azurerm_resource_group.main.location}"
   resource_group_name = "${azurerm_resource_group.main.name}"
   allocation_method   = "Static"
@@ -353,6 +397,19 @@ resource "azurerm_network_interface" "app2" {
     subnet_id                     = "${azurerm_subnet.internal.id}"
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = "${azurerm_public_ip.static-ip2.id}"
+  }
+}
+
+resource "azurerm_network_interface" "database" {
+  name                = "wordpress-database-nic-${random_id.bp_suffix.hex}"
+  location            = "${azurerm_resource_group.main.location}"
+  resource_group_name = "${azurerm_resource_group.main.name}"
+
+  ip_configuration {
+    name                          = "wordpress-database-config-${random_id.bp_suffix.hex}"
+    subnet_id                     = "${azurerm_subnet.internal.id}"
+    private_ip_address_allocation = "Dynamic"
+    public_ip_address_id          = "${azurerm_public_ip.static-ip-database.id}"
   }
 }
 
@@ -424,5 +481,5 @@ output "App2-addres" {
 }
 
 output "Database-addres" {
-  value = "${azurerm_mysql_server.wordpress-db-server.fqdn}"
+  value = "${azurerm_public_ip.static-ip-database.ip_address}"
 }

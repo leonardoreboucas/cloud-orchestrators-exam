@@ -4,7 +4,7 @@
 
 variable "json_file" {
   type    = string
-  default = "account.json"
+  default = "../../common/account.json"
 }
 
 variable "project" {
@@ -30,6 +30,10 @@ variable "admin_username" {
     default = "manager"
 }
 
+variable "vm_image" {
+    default = "ubuntu-1404-trusty-v20170517"
+}
+
 variable "db_name" {
   type    = string
   default = "wordpress"
@@ -42,13 +46,14 @@ variable "db_user" {
 
 variable "db_pass" {
   type    = string
-  default = "H!Sh1CoR3!"
+  default = "w@rdpr3sS"
 }
 
 variable "public_key" {
   type    = string
   default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0TiCJf98bz/0CDedyGS3Y8wC1Zn2L/xq3WguJL2A+rCl7wWOEDXzyyToHRrbjMARbmPfHxl0+JvmUgJv9H7Yml84bzyPhdXO0AfswcTS1HyVLAD5oH1cs38jUSqOupHnZtvOJ0RoG29SL0KJiDwDhUYSe0xnGNS1EP+oQZJU7X0RGc2c6ZqT70FEzizG9mSAxtw8W0HlrLA+EDEYSjIjEHrMs7G8i/bVJFRbF/jTG1oDzomL535VBzKbQgsgD4No4Mq0fnt5ZxpZF4Q3QYo2U7oO9vfLMTWBpsNAroQggz74/AH3E6qfzMOvawmKhM84astzcbSXFGhGXsKLYbTk1"
 }
+
 
 ###################
 # Provider
@@ -69,33 +74,54 @@ resource "random_id" "bp_suffix" {
 # Database layer
 ###################
 
-resource "google_sql_database_instance" "wordpress-db" {
-  name = "wordpress-db-${random_id.bp_suffix.hex}"
-  database_version = "MYSQL_5_7"
-  settings {
-    tier = "db-f1-micro"
-    ip_configuration {
-      ipv4_enabled = "true"
-      authorized_networks {
-        name = "all"
-        value = "0.0.0.0/0"
-      }
-    }
+data "template_file" "config_database" {
+  template = "${file("${path.module}/../config_database.tpl")}"
+  vars = {
+    db_name     = "${var.db_name}"
+    db_user     = "${var.db_user}"
+    db_password = "${var.db_pass}"
   }
 }
 
-resource "google_sql_user" "users" {
-  name     = "${var.db_user}"
-  instance = "${google_sql_database_instance.wordpress-db.name}"
-  host     = "%"
-  password = "${var.db_pass}"
-}
-
-resource "google_sql_database" "wordpress" {
-  name      = "${var.db_name}"
-  instance  = "${google_sql_database_instance.wordpress-db.name}"
-  charset   = "UTF8"
-  collation = "utf8_general_ci"
+resource "google_compute_instance" "wordpress-database" {
+    name = "wordpress-database-${random_id.bp_suffix.hex}"
+    machine_type = "f1-micro"
+    tags = ["wordpress"]
+    boot_disk {
+      initialize_params {
+        image = "${var.vm_image}"
+      }
+    }
+    allow_stopping_for_update = true
+    network_interface {
+      network = "default"
+      access_config {}
+    }
+    metadata = {
+      sshKeys = "${var.admin_username}:${var.public_key}"
+    }
+    provisioner "file" {
+      connection {
+        host        = "${google_compute_instance.wordpress-database.network_interface.0.access_config.0.nat_ip}"
+        type        = "ssh"
+        user        = "${var.admin_username}"
+        private_key = file("${path.module}/../../common/wordpress.pem")
+      }
+      content     = "${data.template_file.config_database.rendered}"
+      destination = "/tmp/config.sh"
+    }
+    provisioner "remote-exec" {
+      connection {
+        host        = "${google_compute_instance.wordpress-database.network_interface.0.access_config.0.nat_ip}"
+        type        = "ssh"
+        user        = "${var.admin_username}"
+        private_key = file("${path.module}/../../common/wordpress.pem")
+      }
+      inline = [
+        "sudo chmod +x /tmp/config.sh",
+        "sudo /tmp/config.sh",
+      ]
+    }
 }
 
 ###################
@@ -105,7 +131,7 @@ resource "google_sql_database" "wordpress" {
 data "template_file" "config" {
   template = "${file("${path.module}/../config.tpl")}"
   vars = {
-    db_host     = "${google_sql_database_instance.wordpress-db.public_ip_address}"
+    db_host     = "${google_compute_instance.wordpress-database.network_interface.0.access_config.0.nat_ip}"
     db_name     = "${var.db_name}"
     db_user     = "${var.db_user}"
     db_password = "${var.db_pass}"
@@ -118,7 +144,7 @@ resource "google_compute_instance" "wordpress-app1" {
     tags = ["wordpress"]
     boot_disk {
       initialize_params {
-        image = "debian-cloud/debian-9"
+        image = "${var.vm_image}"
       }
     }
     allow_stopping_for_update = true
@@ -134,7 +160,7 @@ resource "google_compute_instance" "wordpress-app1" {
         host        = "${google_compute_instance.wordpress-app1.network_interface.0.access_config.0.nat_ip}"
         type        = "ssh"
         user        = "${var.admin_username}"
-        private_key = file("${path.module}/../wordpress.pem")
+        private_key = file("${path.module}/../../common/wordpress.pem")
       }
       content     = "${data.template_file.config.rendered}"
       destination = "/tmp/config.sh"
@@ -144,7 +170,7 @@ resource "google_compute_instance" "wordpress-app1" {
         host        = "${google_compute_instance.wordpress-app1.network_interface.0.access_config.0.nat_ip}"
         type        = "ssh"
         user        = "${var.admin_username}"
-        private_key = file("${path.module}/../wordpress.pem")
+        private_key = file("${path.module}/../../common/wordpress.pem")
       }
       inline = [
         "sudo chmod +x /tmp/config.sh",
@@ -159,7 +185,7 @@ resource "google_compute_instance" "wordpress-app2" {
     tags = ["wordpress"]
     boot_disk {
       initialize_params {
-        image = "debian-cloud/debian-9"
+        image = "${var.vm_image}"
       }
     }
     allow_stopping_for_update = true
@@ -175,7 +201,7 @@ resource "google_compute_instance" "wordpress-app2" {
         host        = "${google_compute_instance.wordpress-app2.network_interface.0.access_config.0.nat_ip}"
         type        = "ssh"
         user        = "${var.admin_username}"
-        private_key = file("${path.module}/../wordpress.pem")
+        private_key = file("${path.module}/../../common/wordpress.pem")
       }
       content     = "${data.template_file.config.rendered}"
       destination = "/tmp/config.sh"
@@ -185,7 +211,7 @@ resource "google_compute_instance" "wordpress-app2" {
         host        = "${google_compute_instance.wordpress-app2.network_interface.0.access_config.0.nat_ip}"
         type        = "ssh"
         user        = "${var.admin_username}"
-        private_key = file("${path.module}/../wordpress.pem")
+        private_key = file("${path.module}/../../common/wordpress.pem")
       }
       inline = [
         "sudo chmod +x /tmp/config.sh",
@@ -203,7 +229,7 @@ resource "google_compute_firewall" "default-in" {
   network = "default"
   allow {
     protocol = "tcp"
-    ports    = ["80"]
+    ports    = ["80","3306"]
   }
   target_tags = ["wordpress"]
 }
@@ -265,5 +291,5 @@ output "App2-addres" {
 }
 
 output "Database-addres" {
-  value = "${google_sql_database_instance.wordpress-db.public_ip_address}"
+  value = "${google_compute_instance.wordpress-database.network_interface.0.access_config.0.nat_ip}"
 }
