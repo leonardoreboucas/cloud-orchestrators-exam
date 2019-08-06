@@ -1,14 +1,15 @@
 tosca_definitions_version: cloudify_dsl_1_3
 
 description: >
-  This blueprint installs an application using Cloudify on AWS.
+  This blueprint installs an wordpress application using Cloudify on AWS.
 
 imports:
   - http://cloudify.co/spec/cloudify/4.5.5/types.yaml
   - plugin:cloudify-aws-plugin
   - plugin:cloudify-ansible-plugin
   - plugin:cloudify-utilities-plugin
-  - includes/ansible.yaml
+  - includes/ansible_aws.yaml
+  - includes/ansible_db.yaml
 
 inputs:
 
@@ -37,6 +38,21 @@ inputs:
       The username of the agent running on the instance created from the image.
     default: 'manager'
 
+  db_name:
+    type: string
+    description: Database.
+    default: wordpress
+
+  db_user:
+    type: string
+    description: Database User.
+    default: wordpress
+
+  db_pass:
+    type: string
+    description: Database User password.
+    default: w@rdpr3sS
+
 dsl_definitions:
 
   client_config: &client_config
@@ -46,49 +62,9 @@ dsl_definitions:
 
 node_templates:
 
-  vm-app1:
-    type: cloudify.nodes.aws.ec2.Instances
-    properties:
-      client_config: *client_config
-      agent_config:
-        install_method: none
-        user: { get_input: agent_user }
-        key: { get_secret: agent_key_private }
-      resource_config:
-        ImageId: { get_attribute: [ ami, aws_resource_id ] }
-        InstanceType: t2.micro
-        kwargs:
-          UserData: { get_attribute: [ cloud_init, cloud_config ] }
-      use_public_ip: true
-    relationships:
-    - type: cloudify.relationships.depends_on
-      target: ami
-    - type: cloudify.relationships.depends_on
-      target: nic1
-    - type: cloudify.relationships.depends_on
-      target: cloud_init
-
-  vm-app2:
-    type: cloudify.nodes.aws.ec2.Instances
-    properties:
-      client_config: *client_config
-      agent_config:
-        install_method: none
-        user: { get_input: agent_user }
-        key: { get_secret: agent_key_private }
-      resource_config:
-        ImageId: { get_attribute: [ ami, aws_resource_id ] }
-        InstanceType: t2.micro
-        kwargs:
-          UserData: { get_attribute: [ cloud_init, cloud_config ] }
-      use_public_ip: true
-    relationships:
-    - type: cloudify.relationships.depends_on
-      target: ami
-    - type: cloudify.relationships.depends_on
-      target: nic2
-    - type: cloudify.relationships.depends_on
-      target: cloud_init
+  ##################
+  # General
+  #################
 
   ami:
     type: cloudify.nodes.aws.ec2.Image
@@ -104,53 +80,20 @@ node_templates:
             - { get_input: ami_owner_filter }
       client_config: *client_config
 
-  ip1:
-    type: cloudify.nodes.aws.ec2.ElasticIP
+  cloud_init:
+    type: cloudify.nodes.CloudInit.CloudConfig
     properties:
-      client_config: *client_config
-    relationships:
-    - type: cloudify.relationships.depends_on
-      target: nic1
-
-  nic1:
-    type: cloudify.nodes.aws.ec2.Interface
-    properties:
-      client_config: *client_config
       resource_config:
-        kwargs:
-          Description: Created for Wordpress.
-          SubnetId: { get_attribute: [ subnet, aws_resource_id ] }
-          Groups:
-          - { get_attribute: [ security_group, aws_resource_id ] }
-    relationships:
-    - type: cloudify.relationships.depends_on
-      target: security_group
-    - type: cloudify.relationships.depends_on
-      target: subnet
+        users:
+        - name: { get_input: agent_user }
+          shell: /bin/bash
+          sudo: ['ALL=(ALL) NOPASSWD:ALL']
+          ssh-authorized-keys:
+          - { get_secret: agent_key_public }
 
-  ip2:
-    type: cloudify.nodes.aws.ec2.ElasticIP
-    properties:
-      client_config: *client_config
-    relationships:
-    - type: cloudify.relationships.depends_on
-      target: nic2
-
-  nic2:
-    type: cloudify.nodes.aws.ec2.Interface
-    properties:
-      client_config: *client_config
-      resource_config:
-        kwargs:
-          Description: Created for Wordpress.
-          SubnetId: { get_attribute: [ subnet, aws_resource_id ] }
-          Groups:
-          - { get_attribute: [ security_group, aws_resource_id ] }
-    relationships:
-    - type: cloudify.relationships.depends_on
-      target: security_group
-    - type: cloudify.relationships.depends_on
-      target: subnet
+  ##################
+  # Network Layer
+  #################
 
   security_group_rules:
     type: cloudify.nodes.aws.ec2.SecurityGroupRuleIngress
@@ -166,6 +109,11 @@ node_templates:
         - IpProtocol: tcp
           FromPort: 80
           ToPort: 80
+          IpRanges:
+          - CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 3306
+          ToPort: 3306
           IpRanges:
           - CidrIp: 0.0.0.0/0
     relationships:
@@ -236,23 +184,162 @@ node_templates:
       resource_config:
         CidrBlock: 10.10.0.0/16
 
-  cloud_init:
-    type: cloudify.nodes.CloudInit.CloudConfig
+  ##################
+  # Database Layer
+  #################
+
+  vm-database:
+    type: cloudify.nodes.aws.ec2.Instances
     properties:
+      client_config: *client_config
+      agent_config:
+        install_method: none
+        user: { get_input: agent_user }
+        key: { get_secret: agent_key_private }
       resource_config:
-        users:
-        - name: { get_input: agent_user }
-          shell: /bin/bash
-          sudo: ['ALL=(ALL) NOPASSWD:ALL']
-          ssh-authorized-keys:
-          - { get_secret: agent_key_public }
+        ImageId: { get_attribute: [ ami, aws_resource_id ] }
+        InstanceType: t2.micro
+        kwargs:
+          UserData: { get_attribute: [ cloud_init, cloud_config ] }
+      use_public_ip: true
+    relationships:
+    - type: cloudify.relationships.depends_on
+      target: ami
+    - type: cloudify.relationships.depends_on
+      target: nicdb
+    - type: cloudify.relationships.depends_on
+      target: cloud_init
+
+  ipdb:
+    type: cloudify.nodes.aws.ec2.ElasticIP
+    properties:
+      client_config: *client_config
+    relationships:
+    - type: cloudify.relationships.depends_on
+      target: nicdb
+
+  nicdb:
+    type: cloudify.nodes.aws.ec2.Interface
+    properties:
+      client_config: *client_config
+      resource_config:
+        kwargs:
+          Description: Created for Wordpress.
+          SubnetId: { get_attribute: [ subnet, aws_resource_id ] }
+          Groups:
+          - { get_attribute: [ security_group, aws_resource_id ] }
+    relationships:
+    - type: cloudify.relationships.depends_on
+      target: security_group
+    - type: cloudify.relationships.depends_on
+      target: subnet
+
+  ##################
+  # App Layer
+  #################
+
+  vm-app1:
+    type: cloudify.nodes.aws.ec2.Instances
+    properties:
+      client_config: *client_config
+      agent_config:
+        install_method: none
+        user: { get_input: agent_user }
+        key: { get_secret: agent_key_private }
+      resource_config:
+        ImageId: { get_attribute: [ ami, aws_resource_id ] }
+        InstanceType: t2.micro
+        kwargs:
+          UserData: { get_attribute: [ cloud_init, cloud_config ] }
+      use_public_ip: true
+    relationships:
+    - type: cloudify.relationships.depends_on
+      target: ami
+    - type: cloudify.relationships.depends_on
+      target: nic1
+    - type: cloudify.relationships.depends_on
+      target: cloud_init
+
+  vm-app2:
+    type: cloudify.nodes.aws.ec2.Instances
+    properties:
+      client_config: *client_config
+      agent_config:
+        install_method: none
+        user: { get_input: agent_user }
+        key: { get_secret: agent_key_private }
+      resource_config:
+        ImageId: { get_attribute: [ ami, aws_resource_id ] }
+        InstanceType: t2.micro
+        kwargs:
+          UserData: { get_attribute: [ cloud_init, cloud_config ] }
+      use_public_ip: true
+    relationships:
+    - type: cloudify.relationships.depends_on
+      target: ami
+    - type: cloudify.relationships.depends_on
+      target: nic2
+    - type: cloudify.relationships.depends_on
+      target: cloud_init
+
+  ip1:
+    type: cloudify.nodes.aws.ec2.ElasticIP
+    properties:
+      client_config: *client_config
+    relationships:
+    - type: cloudify.relationships.depends_on
+      target: nic1
+
+  nic1:
+    type: cloudify.nodes.aws.ec2.Interface
+    properties:
+      client_config: *client_config
+      resource_config:
+        kwargs:
+          Description: Created for Wordpress.
+          SubnetId: { get_attribute: [ subnet, aws_resource_id ] }
+          Groups:
+          - { get_attribute: [ security_group, aws_resource_id ] }
+    relationships:
+    - type: cloudify.relationships.depends_on
+      target: security_group
+    - type: cloudify.relationships.depends_on
+      target: subnet
+
+  ip2:
+    type: cloudify.nodes.aws.ec2.ElasticIP
+    properties:
+      client_config: *client_config
+    relationships:
+    - type: cloudify.relationships.depends_on
+      target: nic2
+
+  nic2:
+    type: cloudify.nodes.aws.ec2.Interface
+    properties:
+      client_config: *client_config
+      resource_config:
+        kwargs:
+          Description: Created for Wordpress.
+          SubnetId: { get_attribute: [ subnet, aws_resource_id ] }
+          Groups:
+          - { get_attribute: [ security_group, aws_resource_id ] }
+    relationships:
+    - type: cloudify.relationships.depends_on
+      target: security_group
+    - type: cloudify.relationships.depends_on
+      target: subnet
 
 outputs:
 
   application_endpoint1:
-    description: The external endpoint of the application.
+    description: The external endpoint of the application 1.
     value: { concat: [ 'http://', { get_attribute: [ ip1, aws_resource_id ] }, ':80' ] }
 
   application_endpoint2:
-    description: The external endpoint of the application.
+    description: The external endpoint of the application 2.
     value: { concat: [ 'http://', { get_attribute: [ ip2, aws_resource_id ] }, ':80' ] }
+
+  database_endpoint:
+    description: The external endpoint of the database.
+    value: { concat: [ '', { get_attribute: [ ipdb, aws_resource_id ] }, '' ] }

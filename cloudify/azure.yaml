@@ -6,23 +6,24 @@ imports:
   - plugin:cloudify-ansible-plugin
   - plugin:cloudify-utilities-plugin
   - includes/ansible.yaml
+  - includes/ansible_db.yaml
 
 inputs:
 
   resource_group_name:
     type: string
     description: Your Azure Resource Group.
-    default: wordpress
+    default: 01wordpress
 
   network_name:
     type: string
     description: Your Azure Virtual Network.
-    default: wordpress
+    default: 02wordpress
 
   subnet_name:
     type: string
     description: Your Azure Virtual Network Subnet.
-    default: wordpress
+    default: 03wordpress
 
   location:
     type: string
@@ -40,10 +41,10 @@ inputs:
     default: Standard_A0
 
   resource_prefix:
-    default: cfyhw
+    default: wp
 
   resource_suffix:
-    default: '0'
+    default: ''
 
   retry_after:
     type: integer
@@ -63,7 +64,7 @@ inputs:
     description: Database User.
     default: wordpress
 
-  db_pasw:
+  db_pass:
     type: string
     description: Database User password.
     default: w@rdpr3sS
@@ -78,6 +79,10 @@ dsl_definitions:
 
 node_templates:
 
+  ##################
+  # Common
+  #################
+
   resource_group:
     type: cloudify.azure.nodes.ResourceGroup
     properties:
@@ -86,276 +91,38 @@ node_templates:
       azure_config: *azure_config
 
   ##################
-  # Database Layer
-  #################
-
-  vm-database:
-    type: cloudify.azure.nodes.compute.VirtualMachine
-    properties:
-      location: { get_input: location }
-      retry_after: { get_input: retry_after }
-      os_family: linux
-      azure_config: *azure_config
-      resource_config:
-        hardwareProfile:
-          vmSize: { get_input: size }
-        storageProfile:
-          imageReference: { get_input: image }
-        osProfile:
-          adminUsername: { get_input: agent_user }
-          adminPassword: ''
-          linuxConfiguration:
-            ssh:
-              publicKeys:
-              - keydata: { get_secret: agent_key_public }
-                path: { concat: [ '/home/', { get_input: agent_user }, '/.ssh/authorized_keys' ] }
-            disablePasswordAuthentication: true
-      agent_config:
-        install_method: none
-        key: { get_secret: agent_key_private }
-        user: { get_input: agent_user }
-      use_public_ip: true
-    relationships:
-    - type: cloudify.azure.relationships.contained_in_resource_group
-      target: resource_group
-    - type: cloudify.azure.relationships.connected_to_storage_account
-      target: storage_account
-    - type: cloudify.azure.relationships.connected_to_availability_set
-      target: availability_set
-    - type: cloudify.azure.relationships.connected_to_nic
-      target: nic-db
-
-  nic-db:
-    type: cloudify.azure.nodes.network.NetworkInterfaceCard
-    properties:
-      location: { get_input: location }
-      azure_config: *azure_config
-      retry_after: { get_input: retry_after }
-    relationships:
-    - type: cloudify.azure.relationships.contained_in_resource_group
-      target: resource_group
-    - type: cloudify.azure.relationships.nic_connected_to_network_security_group
-      target: network_security_group
-    - type: cloudify.azure.relationships.nic_connected_to_ip_configuration
-      target: ip_config-db
-
-  ip_config-db:
-    type: cloudify.azure.nodes.network.IPConfiguration
-    properties:
-      location: { get_input: location }
-      azure_config: *azure_config
-      retry_after: { get_input: retry_after }
-      resource_config:
-        privateIPAllocationMethod: Dynamic
-    relationships:
-    - type: cloudify.azure.relationships.ip_configuration_connected_to_subnet
-      target: subnet
-    - type: cloudify.azure.relationships.ip_configuration_connected_to_public_ip
-      target: ip-db
-
-  ip-db:
-    type: cloudify.azure.nodes.network.PublicIPAddress
-    properties:
-      location: { get_input: location }
-      azure_config: *azure_config
-      retry_after: { get_input: retry_after }
-      resource_config:
-        publicIPAllocationMethod: Static
-    relationships:
-    - type: cloudify.azure.relationships.contained_in_resource_group
-      target: resource_group
-
-  ##################
-  # App Layer
-  #################
-
-  availability_set:
-    type: cloudify.azure.nodes.compute.AvailabilitySet
-    properties:
-      name: {concat:[{get_input: resource_prefix},availset,{get_input: resource_suffix}]}
-      location: { get_input: location }
-      azure_config: *azure_config
-      retry_after: { get_input: retry_after }
-    relationships:
-    - type: cloudify.azure.relationships.contained_in_resource_group
-      target: resource_group
-
-  storage_account:
-    type: cloudify.azure.nodes.storage.StorageAccount
-    properties:
-      location: { get_input: location }
-      azure_config: *azure_config
-      retry_after: { get_input: retry_after }
-      resource_config:
-        accountType: Standard_LRS
-    relationships:
-    - type: cloudify.azure.relationships.contained_in_resource_group
-      target: resource_group
-
-  ######## App 1 ########
-
-  vm-app1:
-    type: cloudify.azure.nodes.compute.VirtualMachine
-    properties:
-      location: { get_input: location }
-      retry_after: { get_input: retry_after }
-      os_family: linux
-      azure_config: *azure_config
-      resource_config:
-        hardwareProfile:
-          vmSize: { get_input: size }
-        storageProfile:
-          imageReference: { get_input: image }
-        osProfile:
-          adminUsername: { get_input: agent_user }
-          adminPassword: ''
-          linuxConfiguration:
-            ssh:
-              publicKeys:
-              - keydata: { get_secret: agent_key_public }
-                path: { concat: [ '/home/', { get_input: agent_user }, '/.ssh/authorized_keys' ] }
-            disablePasswordAuthentication: true
-      agent_config:
-        install_method: none
-        key: { get_secret: agent_key_private }
-        user: { get_input: agent_user }
-      use_public_ip: true
-    relationships:
-    - type: cloudify.azure.relationships.contained_in_resource_group
-      target: resource_group
-    - type: cloudify.azure.relationships.connected_to_storage_account
-      target: storage_account
-    - type: cloudify.azure.relationships.connected_to_availability_set
-      target: availability_set
-    - type: cloudify.azure.relationships.connected_to_nic
-      target: nic1
-
-  nic1:
-    type: cloudify.azure.nodes.network.NetworkInterfaceCard
-    properties:
-      location: { get_input: location }
-      azure_config: *azure_config
-      retry_after: { get_input: retry_after }
-    relationships:
-    - type: cloudify.azure.relationships.contained_in_resource_group
-      target: resource_group
-    - type: cloudify.azure.relationships.nic_connected_to_network_security_group
-      target: network_security_group
-    - type: cloudify.azure.relationships.nic_connected_to_ip_configuration
-      target: ip_config1
-
-  ip_config1:
-    type: cloudify.azure.nodes.network.IPConfiguration
-    properties:
-      location: { get_input: location }
-      azure_config: *azure_config
-      retry_after: { get_input: retry_after }
-      resource_config:
-        privateIPAllocationMethod: Dynamic
-    relationships:
-    - type: cloudify.azure.relationships.ip_configuration_connected_to_subnet
-      target: subnet
-    - type: cloudify.azure.relationships.ip_configuration_connected_to_public_ip
-      target: ip1
-
-  ip1:
-    type: cloudify.azure.nodes.network.PublicIPAddress
-    properties:
-      location: { get_input: location }
-      azure_config: *azure_config
-      retry_after: { get_input: retry_after }
-      resource_config:
-        publicIPAllocationMethod: Static
-    relationships:
-    - type: cloudify.azure.relationships.contained_in_resource_group
-      target: resource_group
-
-  ######## App 2 ########
-
-  vm-app2:
-    type: cloudify.azure.nodes.compute.VirtualMachine
-    properties:
-      location: { get_input: location }
-      retry_after: { get_input: retry_after }
-      os_family: linux
-      azure_config: *azure_config
-      resource_config:
-        hardwareProfile:
-          vmSize: { get_input: size }
-        storageProfile:
-          imageReference: { get_input: image }
-        osProfile:
-          adminUsername: { get_input: agent_user }
-          adminPassword: ''
-          linuxConfiguration:
-            ssh:
-              publicKeys:
-              - keydata: { get_secret: agent_key_public }
-                path: { concat: [ '/home/', { get_input: agent_user }, '/.ssh/authorized_keys' ] }
-            disablePasswordAuthentication: true
-      agent_config:
-        install_method: none
-        key: { get_secret: agent_key_private }
-        user: { get_input: agent_user }
-      use_public_ip: true
-    relationships:
-    - type: cloudify.azure.relationships.contained_in_resource_group
-      target: resource_group
-    - type: cloudify.azure.relationships.connected_to_storage_account
-      target: storage_account
-    - type: cloudify.azure.relationships.connected_to_availability_set
-      target: availability_set
-    - type: cloudify.azure.relationships.connected_to_nic
-      target: nic2
-
-  nic2:
-    type: cloudify.azure.nodes.network.NetworkInterfaceCard
-    properties:
-      location: { get_input: location }
-      azure_config: *azure_config
-      retry_after: { get_input: retry_after }
-    relationships:
-    - type: cloudify.azure.relationships.contained_in_resource_group
-      target: resource_group
-    - type: cloudify.azure.relationships.nic_connected_to_network_security_group
-      target: network_security_group
-    - type: cloudify.azure.relationships.nic_connected_to_ip_configuration
-      target: ip_config2
-
-  ip_config2:
-    type: cloudify.azure.nodes.network.IPConfiguration
-    properties:
-      location: { get_input: location }
-      azure_config: *azure_config
-      retry_after: { get_input: retry_after }
-      resource_config:
-        privateIPAllocationMethod: Dynamic
-    relationships:
-    - type: cloudify.azure.relationships.ip_configuration_connected_to_subnet
-      target: subnet
-    - type: cloudify.azure.relationships.ip_configuration_connected_to_public_ip
-      target: ip2
-
-  ip2:
-    type: cloudify.azure.nodes.network.PublicIPAddress
-    properties:
-      location: { get_input: location }
-      azure_config: *azure_config
-      retry_after: { get_input: retry_after }
-      resource_config:
-        publicIPAllocationMethod: Static
-    relationships:
-    - type: cloudify.azure.relationships.contained_in_resource_group
-      target: resource_group
-
-  ##################
   # Network Layer
   #################
+
+  network:
+    type: cloudify.azure.nodes.network.VirtualNetwork
+    properties:
+      name: { get_input: network_name }
+      resource_group_name: { get_input: resource_group_name }
+      azure_config: *azure_config
+      location: { get_input: location }
+    relationships:
+    - type: cloudify.azure.relationships.contained_in_resource_group
+      target: resource_group
+
+  subnet:
+    type: cloudify.azure.nodes.network.Subnet
+    properties:
+      name: { get_input: subnet_name }
+      resource_group_name: { get_input: resource_group_name }
+      azure_config: *azure_config
+      location: { get_input: location }
+      resource_config:
+        addressPrefix: 10.10.0.0/24
+    relationships:
+    - type: cloudify.azure.relationships.contained_in_virtual_network
+      target: network
+
 
   network_security_group:
     type: cloudify.azure.nodes.network.NetworkSecurityGroup
     properties:
-      name: {concat:[{get_input: resource_prefix},nsg,{get_input: resource_suffix}]}
+      name: {concat:['04',{get_input: resource_prefix},nsg,{get_input: resource_suffix}]}
       location: { get_input: location }
       azure_config: *azure_config
       retry_after: { get_input: retry_after }
@@ -409,26 +176,281 @@ node_templates:
     - type: cloudify.azure.relationships.contained_in_resource_group
       target: resource_group
 
-  subnet:
-    type: cloudify.azure.nodes.network.Subnet
-    properties:
-      resource_group_name: { get_input: resource_group_name }
-      name: { get_input: subnet_name }
-      azure_config: *azure_config
-      location: { get_input: location }
-      resource_config:
-        addressPrefix: 10.10.0.0/24
-    relationships:
-    - type: cloudify.azure.relationships.contained_in_virtual_network
-      target: network
 
-  network:
-    type: cloudify.azure.nodes.network.VirtualNetwork
+
+
+  ##################
+  # Database Layer
+  #################
+
+  vm-database:
+    type: cloudify.azure.nodes.compute.VirtualMachine
     properties:
-      resource_group_name: { get_input: resource_group_name }
-      name: { get_input: network_name }
-      azure_config: *azure_config
+      name: {concat:['05',{get_input: resource_prefix},database,{get_input: resource_suffix}]}
       location: { get_input: location }
+      retry_after: { get_input: retry_after }
+      os_family: linux
+      azure_config: *azure_config
+      resource_config:
+        hardwareProfile:
+          vmSize: { get_input: size }
+        storageProfile:
+          imageReference: { get_input: image }
+        osProfile:
+          adminUsername: { get_input: agent_user }
+          adminPassword: ''
+          linuxConfiguration:
+            ssh:
+              publicKeys:
+              - keydata: { get_secret: agent_key_public }
+                path: { concat: [ '/home/', { get_input: agent_user }, '/.ssh/authorized_keys' ] }
+            disablePasswordAuthentication: true
+      agent_config:
+        install_method: none
+        key: { get_secret: agent_key_private }
+        user: { get_input: agent_user }
+      use_public_ip: true
+    relationships:
+    - type: cloudify.azure.relationships.contained_in_resource_group
+      target: resource_group
+    - type: cloudify.azure.relationships.connected_to_storage_account
+      target: storage_account
+    - type: cloudify.azure.relationships.connected_to_availability_set
+      target: availability_set
+    - type: cloudify.azure.relationships.connected_to_nic
+      target: nic-db
+
+  nic-db:
+    type: cloudify.azure.nodes.network.NetworkInterfaceCard
+    properties:
+      name: {concat:['06',{get_input: resource_prefix},nicdb,{get_input: resource_suffix}]}
+      location: { get_input: location }
+      azure_config: *azure_config
+      retry_after: { get_input: retry_after }
+    relationships:
+    - type: cloudify.azure.relationships.contained_in_resource_group
+      target: resource_group
+    - type: cloudify.azure.relationships.nic_connected_to_network_security_group
+      target: network_security_group
+    - type: cloudify.azure.relationships.nic_connected_to_ip_configuration
+      target: ip_config-db
+
+  ip_config-db:
+    type: cloudify.azure.nodes.network.IPConfiguration
+    properties:
+      name: {concat:['07',{get_input: resource_prefix},ipconfigdatabase,{get_input: resource_suffix}]}
+      location: { get_input: location }
+      azure_config: *azure_config
+      retry_after: { get_input: retry_after }
+      resource_config:
+        privateIPAllocationMethod: Dynamic
+    relationships:
+    - type: cloudify.azure.relationships.ip_configuration_connected_to_subnet
+      target: subnet
+    - type: cloudify.azure.relationships.ip_configuration_connected_to_public_ip
+      target: ip-db
+
+  ip-db:
+    type: cloudify.azure.nodes.network.PublicIPAddress
+    properties:
+      name: {concat:['08',{get_input: resource_prefix},ipdatabase,{get_input: resource_suffix}]}
+      location: { get_input: location }
+      azure_config: *azure_config
+      retry_after: { get_input: retry_after }
+      resource_config:
+        publicIPAllocationMethod: Static
+    relationships:
+    - type: cloudify.azure.relationships.contained_in_resource_group
+      target: resource_group
+
+  ##################
+  # App Layer
+  #################
+
+  availability_set:
+    type: cloudify.azure.nodes.compute.AvailabilitySet
+    properties:
+      name: {concat:['09',{get_input: resource_prefix},availabilityset,{get_input: resource_suffix}]}
+      location: { get_input: location }
+      azure_config: *azure_config
+      retry_after: { get_input: retry_after }
+    relationships:
+    - type: cloudify.azure.relationships.contained_in_resource_group
+      target: resource_group
+
+  storage_account:
+    type: cloudify.azure.nodes.storage.StorageAccount
+    properties:
+      name: {concat:['10',{get_input: resource_prefix},storageaccount,{get_input: resource_suffix}]}
+      location: { get_input: location }
+      azure_config: *azure_config
+      retry_after: { get_input: retry_after }
+      resource_config:
+        accountType: Standard_LRS
+    relationships:
+    - type: cloudify.azure.relationships.contained_in_resource_group
+      target: resource_group
+
+  ######## App 1 ########
+
+  vm-app1:
+    type: cloudify.azure.nodes.compute.VirtualMachine
+    properties:
+      name: {concat:['11',{get_input: resource_prefix},app1,{get_input: resource_suffix}]}
+      location: { get_input: location }
+      retry_after: { get_input: retry_after }
+      os_family: linux
+      azure_config: *azure_config
+      resource_config:
+        hardwareProfile:
+          vmSize: { get_input: size }
+        storageProfile:
+          imageReference: { get_input: image }
+        osProfile:
+          adminUsername: { get_input: agent_user }
+          adminPassword: ''
+          linuxConfiguration:
+            ssh:
+              publicKeys:
+              - keydata: { get_secret: agent_key_public }
+                path: { concat: [ '/home/', { get_input: agent_user }, '/.ssh/authorized_keys' ] }
+            disablePasswordAuthentication: true
+      agent_config:
+        install_method: none
+        key: { get_secret: agent_key_private }
+        user: { get_input: agent_user }
+      use_public_ip: true
+    relationships:
+    - type: cloudify.azure.relationships.contained_in_resource_group
+      target: resource_group
+    - type: cloudify.azure.relationships.connected_to_storage_account
+      target: storage_account
+    - type: cloudify.azure.relationships.connected_to_availability_set
+      target: availability_set
+    - type: cloudify.azure.relationships.connected_to_nic
+      target: nic1
+
+  nic1:
+    type: cloudify.azure.nodes.network.NetworkInterfaceCard
+    properties:
+      name: {concat:['12',{get_input: resource_prefix},app1nic,{get_input: resource_suffix}]}
+      location: { get_input: location }
+      azure_config: *azure_config
+      retry_after: { get_input: retry_after }
+    relationships:
+    - type: cloudify.azure.relationships.contained_in_resource_group
+      target: resource_group
+    - type: cloudify.azure.relationships.nic_connected_to_network_security_group
+      target: network_security_group
+    - type: cloudify.azure.relationships.nic_connected_to_ip_configuration
+      target: ip_config1
+
+  ip_config1:
+    type: cloudify.azure.nodes.network.IPConfiguration
+    properties:
+      name: {concat:['13',{get_input: resource_prefix},app1ipconfig,{get_input: resource_suffix}]}
+      location: { get_input: location }
+      azure_config: *azure_config
+      retry_after: { get_input: retry_after }
+      resource_config:
+        privateIPAllocationMethod: Dynamic
+    relationships:
+    - type: cloudify.azure.relationships.ip_configuration_connected_to_subnet
+      target: subnet
+    - type: cloudify.azure.relationships.ip_configuration_connected_to_public_ip
+      target: ip1
+
+  ip1:
+    type: cloudify.azure.nodes.network.PublicIPAddress
+    properties:
+      name: {concat:['14',{get_input: resource_prefix},app1ip,{get_input: resource_suffix}]}
+      location: { get_input: location }
+      azure_config: *azure_config
+      retry_after: { get_input: retry_after }
+      resource_config:
+        publicIPAllocationMethod: Static
+    relationships:
+    - type: cloudify.azure.relationships.contained_in_resource_group
+      target: resource_group
+
+  ######## App 2 ########
+
+  vm-app2:
+    type: cloudify.azure.nodes.compute.VirtualMachine
+    properties:
+      name: {concat:['15',{get_input: resource_prefix},app2,{get_input: resource_suffix}]}
+      location: { get_input: location }
+      retry_after: { get_input: retry_after }
+      os_family: linux
+      azure_config: *azure_config
+      resource_config:
+        hardwareProfile:
+          vmSize: { get_input: size }
+        storageProfile:
+          imageReference: { get_input: image }
+        osProfile:
+          adminUsername: { get_input: agent_user }
+          adminPassword: ''
+          linuxConfiguration:
+            ssh:
+              publicKeys:
+              - keydata: { get_secret: agent_key_public }
+                path: { concat: [ '/home/', { get_input: agent_user }, '/.ssh/authorized_keys' ] }
+            disablePasswordAuthentication: true
+      agent_config:
+        install_method: none
+        key: { get_secret: agent_key_private }
+        user: { get_input: agent_user }
+      use_public_ip: true
+    relationships:
+    - type: cloudify.azure.relationships.contained_in_resource_group
+      target: resource_group
+    - type: cloudify.azure.relationships.connected_to_storage_account
+      target: storage_account
+    - type: cloudify.azure.relationships.connected_to_availability_set
+      target: availability_set
+    - type: cloudify.azure.relationships.connected_to_nic
+      target: nic2
+
+  nic2:
+    type: cloudify.azure.nodes.network.NetworkInterfaceCard
+    properties:
+      name: {concat:['16',{get_input: resource_prefix},app2nic,{get_input: resource_suffix}]}
+      location: { get_input: location }
+      azure_config: *azure_config
+      retry_after: { get_input: retry_after }
+    relationships:
+    - type: cloudify.azure.relationships.contained_in_resource_group
+      target: resource_group
+    - type: cloudify.azure.relationships.nic_connected_to_network_security_group
+      target: network_security_group
+    - type: cloudify.azure.relationships.nic_connected_to_ip_configuration
+      target: ip_config2
+
+  ip_config2:
+    type: cloudify.azure.nodes.network.IPConfiguration
+    properties:
+      name: {concat:['17',{get_input: resource_prefix},app2ipconfig,{get_input: resource_suffix}]}
+      location: { get_input: location }
+      azure_config: *azure_config
+      retry_after: { get_input: retry_after }
+      resource_config:
+        privateIPAllocationMethod: Dynamic
+    relationships:
+    - type: cloudify.azure.relationships.ip_configuration_connected_to_subnet
+      target: subnet
+    - type: cloudify.azure.relationships.ip_configuration_connected_to_public_ip
+      target: ip2
+
+  ip2:
+    type: cloudify.azure.nodes.network.PublicIPAddress
+    properties:
+      name: {concat:['18',{get_input: resource_prefix},app2ip,{get_input: resource_suffix}]}
+      location: { get_input: location }
+      azure_config: *azure_config
+      retry_after: { get_input: retry_after }
+      resource_config:
+        publicIPAllocationMethod: Static
     relationships:
     - type: cloudify.azure.relationships.contained_in_resource_group
       target: resource_group
@@ -436,11 +458,11 @@ node_templates:
 outputs:
 
   application1_endpoint:
-    description: The external endpoint of the application.
+    description: The external endpoint of the application 1.
     value: { concat: [ 'http://', { get_attribute: [ vm-app1, public_ip ] }, ':80' ] }
 
   application2_endpoint:
-    description: The external endpoint of the application.
+    description: The external endpoint of the application 2.
     value: { concat: [ 'http://', { get_attribute: [ vm-app2, public_ip ] }, ':80' ] }
 
   database_endpoint:

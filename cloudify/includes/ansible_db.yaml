@@ -16,7 +16,7 @@ node_templates:
               run_data:
                 database_name: { get_input: db_name }
                 database_user: { get_input: db_user }
-                database_password: { get_input: db_pasw }
+                database_password: { get_input: db_pass }
       relationships:
         - type: cloudify.ansible.relationships.connected_to_host
           target: vm-database
