@@ -26,4 +26,4 @@ MEM=$(bc -l <<<"`cat ${PREFIX}mem_amount`/`cat ${PREFIX}count`/1024")
 IO=$(cat ${PREFIX}io_amount)
 NET=$(cat ${PREFIX}net_amount)
 
-echo "$(date +%s),$(printf '%.*f\n' 2 ${CPU}),$(printf '%.*f\n' 2 ${MEM}),$(printf '%.*f\n' 2 ${IO}),$(printf '%.*f\n' 2 ${NET})" >> results
+echo "$1,$2,$3,$4,$5,$(date +%s),$(printf '%.*f\n' 2 ${CPU}),$(printf '%.*f\n' 2 ${MEM}),$(printf '%.*f\n' 2 ${IO}),$(printf '%.*f\n' 2 ${NET})" >> results

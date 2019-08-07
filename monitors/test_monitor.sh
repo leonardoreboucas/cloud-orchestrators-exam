@@ -7,6 +7,6 @@ echo 0 > temp_cpu_amount
 echo 0 > temp_io_amount
 echo 0 > temp_net_amount
 while [ true ]; do
-  test_monitor_agent.sh
+  test_monitor_agent.sh $1 $2 $3 $4 $5
   sleep 5
 done
