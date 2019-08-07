@@ -1,4 +1,4 @@
-- hosts: {{config_host}}
+- hosts: all
   sudo: yes
   handlers:
     - name: restart mysql
