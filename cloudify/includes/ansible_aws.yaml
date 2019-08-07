@@ -4,7 +4,7 @@ description: Install Wordpress on infrastructure.
 
 node_templates:
 
-    config-wordpress:
+    config-wordpress1:
       type: cloudify.nodes.Root
       interfaces:
         cloudify.interfaces.lifecycle:
@@ -14,6 +14,7 @@ node_templates:
               site_yaml_path: wordpress/playbook.yaml
               sources: { get_attribute: [ SELF, sources ] }
               run_data:
+                config_host: { get_attribute: [ ip1, aws_resource_id ] }
                 database_host: { get_attribute: [ ipdb, aws_resource_id ] }
                 database_name: { get_input: db_name }
                 database_user: { get_input: db_user }
@@ -21,5 +22,3 @@ node_templates:
       relationships:
         - type: cloudify.ansible.relationships.connected_to_host
           target: vm-app1
-        - type: cloudify.ansible.relationships.connected_to_host
-          target: vm-app2

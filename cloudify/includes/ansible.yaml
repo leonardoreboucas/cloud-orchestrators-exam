@@ -14,6 +14,7 @@ node_templates:
               site_yaml_path: wordpress/playbook.yaml
               sources: { get_attribute: [ SELF, sources ] }
               run_data:
+                config_host: all
                 database_host: { get_attribute: [ vm-database, ip ] }
                 database_name: { get_input: db_name }
                 database_user: { get_input: db_user }

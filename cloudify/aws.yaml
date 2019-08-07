@@ -9,6 +9,7 @@ imports:
   - plugin:cloudify-ansible-plugin
   - plugin:cloudify-utilities-plugin
   - includes/ansible_aws.yaml
+  - includes/ansible_aws2.yaml
   - includes/ansible_db.yaml
 
 inputs:
@@ -81,6 +82,28 @@ node_templates:
       client_config: *client_config
 
   cloud_init:
+    type: cloudify.nodes.CloudInit.CloudConfig
+    properties:
+      resource_config:
+        users:
+        - name: { get_input: agent_user }
+          shell: /bin/bash
+          sudo: ['ALL=(ALL) NOPASSWD:ALL']
+          ssh-authorized-keys:
+          - { get_secret: agent_key_public }
+
+  cloud_init2:
+    type: cloudify.nodes.CloudInit.CloudConfig
+    properties:
+      resource_config:
+        users:
+        - name: { get_input: agent_user }
+          shell: /bin/bash
+          sudo: ['ALL=(ALL) NOPASSWD:ALL']
+          ssh-authorized-keys:
+          - { get_secret: agent_key_public }
+
+  cloud_initdb:
     type: cloudify.nodes.CloudInit.CloudConfig
     properties:
       resource_config:
@@ -200,7 +223,7 @@ node_templates:
         ImageId: { get_attribute: [ ami, aws_resource_id ] }
         InstanceType: t2.micro
         kwargs:
-          UserData: { get_attribute: [ cloud_init, cloud_config ] }
+          UserData: { get_attribute: [ cloud_initdb, cloud_config ] }
       use_public_ip: true
     relationships:
     - type: cloudify.relationships.depends_on
@@ -208,7 +231,7 @@ node_templates:
     - type: cloudify.relationships.depends_on
       target: nicdb
     - type: cloudify.relationships.depends_on
-      target: cloud_init
+      target: cloud_initdb
 
   ipdb:
     type: cloudify.nodes.aws.ec2.ElasticIP
@@ -272,7 +295,7 @@ node_templates:
         ImageId: { get_attribute: [ ami, aws_resource_id ] }
         InstanceType: t2.micro
         kwargs:
-          UserData: { get_attribute: [ cloud_init, cloud_config ] }
+          UserData: { get_attribute: [ cloud_init2, cloud_config ] }
       use_public_ip: true
     relationships:
     - type: cloudify.relationships.depends_on
@@ -280,7 +303,7 @@ node_templates:
     - type: cloudify.relationships.depends_on
       target: nic2
     - type: cloudify.relationships.depends_on
-      target: cloud_init
+      target: cloud_init2
 
   ip1:
     type: cloudify.nodes.aws.ec2.ElasticIP

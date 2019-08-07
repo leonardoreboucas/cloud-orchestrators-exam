@@ -1,9 +1,15 @@
-- hosts: all
+- hosts: {{config_host}}
   sudo: yes
   handlers:
     - name: restart mysql
       service: name=mysql state=restarted
   tasks:
+
+    - name: set password for database
+      command: sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password {{database_password}}';
+
+    - name: set password for database for repeat
+      command: sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password {{database_password}}'
 
     - name: install mysql-server
       apt: name={{item}} update_cache=yes state=latest
