@@ -2,7 +2,9 @@ PREFIX=temp_
 
 #Memory
 echo $((`cat ${PREFIX}count` + 1)) > ${PREFIX}count
-echo $((`cat ${PREFIX}mem_amount` + `free -b | grep Mem | awk -F' ' '{print $3}'`)) > ${PREFIX}mem_amount
+MEM_USED=$(bc -l <<<"`free -b | grep Mem | awk -F' ' '{print $3}'`-`cat ${PREFIX}mem_initial`")
+MEM_USED_PERCENT=$(bc -l <<<"$MEM_USED*100/`cat ${PREFIX}mem_total`")
+echo $(bc -l <<<"${MEM_USED_PERCENT}+`cat ${PREFIX}mem_amount`") > ${PREFIX}mem_amount
 
 #CPU
 CPU=$(bc -l <<<"100-`mpstat | grep all | awk -F' ' '{print $13}'`")
