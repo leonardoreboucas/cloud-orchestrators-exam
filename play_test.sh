@@ -19,19 +19,6 @@ echo "process,orchestrator,provider,region,execution,date,cpu,mem,io,net">result
 execution=1
 while [ $execution -lt $test_executions ]; do
   for orchestrator in $list_orchestrators; do
-    case $orchestrator in
-      cloudify)
-        cmd_provision="cfy install -b cloudify-wordpress-blueprint-$provider -d $provider ${provider}.yaml"
-        cmd_unprovision="cfy uninstall -f -v -p ignore_failure=true cloudify-wordpress-blueprint-$provider ; cfy deployment delete ${provider}; cfy blueprints delete ${provider}"
-        cmd_provision='sleep 5'
-        cmd_unprovision='sleep 5'
-        ;;
-      terraform)
-        cmd_provision='sleep 5'
-        cmd_unprovision='sleep 5'
-        ;;
-      *)
-    esac
     for provider in $list_providers; do
       case  $provider  in
         aws)
@@ -46,16 +33,30 @@ while [ $execution -lt $test_executions ]; do
         *)
       esac
       for region in $list_region; do
+        case $orchestrator in
+          cloudify)
+            INPUTS="${provider}_region_name=${region}"
+            cmd_provision="cfy install -b cloudify-wordpress-blueprint-$provider -d $provider -i '${INPUTS}' ${provider}.yaml"
+            cmd_unprovision="cfy uninstall -f -v -p ignore_failure=true cloudify-wordpress-blueprint-$provider ; cfy deployment delete ${provider}; cfy blueprints delete ${provider}"
+            cmd_provision='sleep 5'
+            cmd_unprovision='sleep 5'
+            ;;
+          terraform)
+            cmd_provision='sleep 5'
+            cmd_unprovision='sleep 5'
+            ;;
+          *)
+        esac
         echo -e "\n${orchestrator} - ${provider} - ${region} - ${execution}"
         mkdir -p logs/${orchestrator}/${provider}/${region}/${execution}
         test_monitor.sh provision ${orchestrator} ${provider} ${region} ${execution} &
         monitor_pid=$!
         $cmd_provision >> logs/${orchestrator}/${provider}/${region}/${execution}/outputs.log 
-        kill -9 $monitor_pid
+        kill -9 $monitor_pid > /dev/null
         test_monitor.sh unprovision ${orchestrator} ${provider} ${region} ${execution} &  
         monitor_pid=$!
         $cmd_unprovision >> logs/${orchestrator}/${provider}/${region}/${execution}/outputs.log 
-        kill -9 $monitor_pid
+        kill -9 $monitor_pid > /dev/null
       done
     done
   done
