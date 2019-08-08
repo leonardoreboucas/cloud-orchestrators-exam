@@ -1,0 +1,954 @@
+Uploading blueprint cloudify/azure.yaml...
+ azure.yaml |##########################################################| 100.0%
+Blueprint uploaded. The blueprint's id is cloudify-wordpress-blueprint-azure
+Creating new deployment from blueprint cloudify-wordpress-blueprint-azure...
+Deployment created. The deployment's id is azure
+Executing workflow `install` on deployment `azure` [timeout=900 seconds]
+Deployment environment creation is pending...
+2019-08-08 08:19:54.948  CFY <azure> Starting 'create_deployment_environment' workflow execution
+2019-08-08 08:19:54.952  CFY <azure> Installing deployment and workflow plugins
+2019-08-08 08:19:55.054  CFY <azure> Sending task 'cloudify_agent.operations.install_plugins'
+2019-08-08 08:19:55.073  CFY <azure> Task started 'cloudify_agent.operations.install_plugins'
+2019-08-08 08:19:55.429  LOG <azure> INFO: Installing plugin: azure
+2019-08-08 08:19:56.281  LOG <azure> INFO: Using existing installation of managed plugin: 804280e1-7edd-4fa8-9bc0-0d1a17de9a92 [package_name: cloudify-azure-plugin, package_version: 2.1.7, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-08 08:19:56.281  LOG <azure> INFO: Installing plugin: ansible
+2019-08-08 08:19:57.140  LOG <azure> INFO: Using existing installation of managed plugin: 7142c593-6e52-429a-8a71-55266c022e02 [package_name: cloudify-ansible-plugin, package_version: 2.4.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-08 08:19:57.141  LOG <azure> INFO: Installing plugin: suspend
+2019-08-08 08:19:58.532  LOG <azure> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-08 08:19:58.532  LOG <azure> INFO: Installing plugin: configuration
+2019-08-08 08:19:59.396  LOG <azure> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-08 08:19:59.397  LOG <azure> INFO: Installing plugin: scalelist
+2019-08-08 08:20:00.590  LOG <azure> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-08 08:20:00.591  CFY <azure> Task succeeded 'cloudify_agent.operations.install_plugins'
+2019-08-08 08:20:00.600  CFY <azure> Creating deployment work directory
+2019-08-08 08:20:00.896  CFY <azure> 'create_deployment_environment' workflow execution succeeded
+2019-08-08 08:20:06.912  CFY <azure> Starting 'install' workflow execution
+2019-08-08 08:20:10.580  CFY <azure> [resource_group_nw6hrj] Validating node instance before creation: nothing to do
+2019-08-08 08:20:10.668  CFY <azure> [resource_group_nw6hrj] Precreating node instance: nothing to do
+2019-08-08 08:20:10.793  CFY <azure> [resource_group_nw6hrj] Creating node instance
+2019-08-08 08:20:11.138  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create'
+2019-08-08 08:20:14.194  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:20:14.196  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:20:16.422  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:20:16.956  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:20:32.060  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 1/60]
+2019-08-08 08:20:34.688  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:20:34.689  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:20:35.194  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:20:35.801  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 1/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:20:50.915  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 2/60]
+2019-08-08 08:20:53.507  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:20:53.509  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:20:53.961  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:20:54.615  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 2/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:21:09.699  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 3/60]
+2019-08-08 08:21:12.778  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:21:12.780  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:21:13.381  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:21:14.176  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 3/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:21:29.358  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 4/60]
+2019-08-08 08:21:32.368  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:21:32.369  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:21:32.885  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:21:33.494  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 4/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:21:48.739  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 5/60]
+2019-08-08 08:21:51.699  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:21:51.700  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:21:52.143  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:21:52.983  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 5/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:22:08.073  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 6/60]
+2019-08-08 08:22:10.801  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:22:10.802  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:22:11.506  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:22:12.036  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 6/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:22:32.198  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 7/60]
+2019-08-08 08:22:35.015  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:22:35.016  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:22:35.288  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:22:35.786  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 7/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:22:50.905  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 8/60]
+2019-08-08 08:22:54.603  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:22:54.604  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:22:54.911  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:22:55.584  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 8/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:23:10.746  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 9/60]
+2019-08-08 08:23:13.611  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:23:13.613  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:23:13.872  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:23:14.689  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 9/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:23:29.754  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 10/60]
+2019-08-08 08:23:32.461  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:23:32.463  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:23:32.921  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:23:33.540  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 10/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:23:48.656  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 11/60]
+2019-08-08 08:23:51.295  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:23:51.297  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:23:51.585  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:23:52.302  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 11/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:24:07.399  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 12/60]
+2019-08-08 08:24:09.958  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:24:09.959  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:24:10.395  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:24:11.024  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 12/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:24:26.158  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 13/60]
+2019-08-08 08:24:28.994  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:24:28.995  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:24:29.327  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:24:29.938  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 13/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:24:45.080  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 14/60]
+2019-08-08 08:24:48.242  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:24:48.243  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:24:48.693  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:24:49.454  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 14/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:25:04.559  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 15/60]
+2019-08-08 08:25:07.386  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:25:07.387  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:25:07.664  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:25:08.497  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 15/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:25:23.628  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 16/60]
+2019-08-08 08:25:26.441  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:25:26.442  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:25:26.719  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:25:27.347  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 16/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:25:42.466  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 17/60]
+2019-08-08 08:25:45.114  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:25:45.115  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:25:45.554  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:25:46.084  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 17/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:26:01.154  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 18/60]
+2019-08-08 08:26:03.735  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:26:03.737  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:26:04.020  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:26:04.705  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 18/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:26:19.918  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 19/60]
+2019-08-08 08:26:22.656  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:26:22.657  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:26:23.200  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:26:23.656  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 19/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:26:38.723  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 20/60]
+2019-08-08 08:26:41.649  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:26:41.650  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:26:41.934  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:26:42.487  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 20/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:26:57.596  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 21/60]
+2019-08-08 08:27:00.250  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:27:00.251  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:27:00.528  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:27:01.338  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 21/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:27:16.482  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 22/60]
+2019-08-08 08:27:19.048  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:27:19.049  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:27:19.498  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:27:20.118  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 22/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:27:35.226  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 23/60]
+2019-08-08 08:27:38.125  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:27:38.126  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:27:38.668  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:27:39.405  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 23/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:27:54.562  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 24/60]
+2019-08-08 08:27:57.270  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:27:57.272  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:27:57.535  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:27:58.513  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 24/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:28:13.665  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 25/60]
+2019-08-08 08:28:16.312  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:28:16.313  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:28:16.598  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:28:17.394  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 25/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:28:32.493  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 26/60]
+2019-08-08 08:28:35.370  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:28:35.372  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:28:35.662  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:28:36.280  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 26/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:28:51.409  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 27/60]
+2019-08-08 08:28:54.214  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:28:54.216  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:28:54.683  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:28:55.364  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 27/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:29:10.475  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 28/60]
+2019-08-08 08:29:13.357  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:29:13.358  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:29:13.644  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:29:14.243  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 28/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:29:29.386  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 29/60]
+2019-08-08 08:29:32.323  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:29:32.324  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:29:32.865  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:29:33.576  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 29/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:29:48.718  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 30/60]
+2019-08-08 08:29:51.523  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:29:51.524  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:29:51.790  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:29:52.265  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 30/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:30:07.385  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 31/60]
+2019-08-08 08:30:10.102  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:30:10.103  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:30:10.384  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:30:11.180  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 31/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:30:26.472  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 32/60]
+2019-08-08 08:30:29.040  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:30:29.042  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:30:29.309  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:30:29.780  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 32/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:30:44.886  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 33/60]
+2019-08-08 08:30:47.560  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:30:47.561  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:30:47.852  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:30:48.437  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 33/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:31:03.582  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 34/60]
+2019-08-08 08:31:06.183  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:31:06.185  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:31:06.599  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:31:07.122  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 34/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:31:22.294  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 35/60]
+2019-08-08 08:31:25.262  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:31:25.264  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:31:25.610  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:31:26.467  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 35/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:31:41.625  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 36/60]
+2019-08-08 08:31:44.476  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:31:44.477  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:31:44.757  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:31:45.410  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 36/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:32:00.516  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 37/60]
+2019-08-08 08:32:03.246  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:32:03.248  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:32:03.532  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:32:04.423  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 37/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:32:19.694  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 38/60]
+2019-08-08 08:32:22.498  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:32:22.499  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:32:22.776  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:32:23.410  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 38/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:32:38.523  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 39/60]
+2019-08-08 08:32:41.431  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:32:41.432  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:32:43.289  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:32:44.033  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 39/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:32:59.154  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 40/60]
+2019-08-08 08:33:02.142  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:33:02.143  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:33:02.407  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:33:02.984  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 40/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:33:18.123  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 41/60]
+2019-08-08 08:33:21.085  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:33:21.087  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:33:21.517  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:33:22.063  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 41/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:33:37.203  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 42/60]
+2019-08-08 08:33:39.789  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:33:39.790  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:33:40.095  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:33:40.791  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 42/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:33:55.911  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 43/60]
+2019-08-08 08:33:59.009  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:33:59.010  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:33:59.303  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:33:59.921  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 43/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:34:15.033  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 44/60]
+2019-08-08 08:34:17.653  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:34:17.654  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:34:17.918  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:34:18.710  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 44/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 08:34:33.844  CFY <azure> [resource_group_nw6hrj.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 45/60]
+2019-08-08 08:34:39.817  LOG <azure> [resource_group_nw6hrj.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 08:34:39.818  LOG <azure> [resource_group_nw6hrj.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'East-US', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 08:34:40.099  LOG <azure> [resource_group_nw6hrj.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'East-US' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 08:34:40.888  CFY <azure> [resource_group_nw6hrj.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 45/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+Timed out waiting for workflow 'install' of deployment 'azure' to end. The execution may still be running properly; however, the command-line utility was instructed to wait up to 900 seconds for its completion.
+
+* Run 'cfy executions list' to determine the execution's status.
+* Run 'cfy executions cancel 0f03bdf9-02c4-4ebb-9d1d-3fc37fa2e5c3' to cancel the running workflow.
+* Run 'cfy events list --tail 0f03bdf9-02c4-4ebb-9d1d-3fc37fa2e5c3' to retrieve the execution's events/logs
+'Executing workflow `uninstall` on deployment `azure` [timeout=900 seconds] 2019-08-08 08:19:02.899 CFY <azure> Starting 'uninstall' workflow execution 2019-08-08 08:19:04.313 CFY <azure> [config-wordpress_02tbkj] Validating node instance after deletion: nothing to do 2019-08-08 08:19:04.554 CFY <azure> [config-wordpress_02tbkj->vm-app2_r2tk6g|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host' 2019-08-08 08:19:05.594 CFY <azure> [config-database_pq7a0b->vm-database_z9tx5j|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host' 2019-08-08 08:19:06.457 CFY <azure> [config-database_pq7a0b] Validating node instance after deletion: nothing to do 2019-08-08 08:19:06.815 CFY <azure> [config-wordpress_02tbkj] Stop: instance already deleted 2019-08-08 08:19:06.979 CFY <azure> [config-database_pq7a0b] Stop: instance already deleted 2019-08-08 08:19:07.126 CFY <azure> [config-wordpress_02tbkj] Delete: instance already deleted 2019-08-08 08:19:07.258 CFY <azure> [config-database_pq7a0b] Delete: instance already deleted 2019-08-08 08:19:08.333 CFY <azure> [config-wordpress_02tbkj->vm-app2_r2tk6g|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host' 2019-08-08 08:19:08.501 CFY <azure> [config-wordpress_02tbkj->vm-app1_rppuvm|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host' 2019-08-08 08:19:09.759 CFY <azure> [config-database_pq7a0b->vm-database_z9tx5j|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host' 2019-08-08 08:19:11.034 CFY <azure> [vm-database_z9tx5j] Validating node instance after deletion: nothing to do 2019-08-08 08:19:11.273 CFY <azure> [vm-database_z9tx5j] Stop: instance already deleted 2019-08-08 08:19:11.429 CFY <azure> [vm-database_z9tx5j] Delete: instance already deleted 2019-08-08 08:19:11.656 CFY <azure> [config-wordpress_02tbkj->vm-app1_rppuvm|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host' 2019-08-08 08:19:12.083 CFY <azure> [nic-db_8abgih] Validating node instance after deletion: nothing to do 2019-08-08 08:19:12.417 CFY <azure> [vm-app2_r2tk6g] Validating node instance after deletion: nothing to do 2019-08-08 08:19:12.715 CFY <azure> [nic-db_8abgih] Stop: instance already deleted 2019-08-08 08:19:12.790 CFY <azure> [vm-app1_rppuvm] Validating node instance after deletion: nothing to do 2019-08-08 08:19:12.853 CFY <azure> [vm-app2_r2tk6g] Stop: instance already deleted 2019-08-08 08:19:12.907 CFY <azure> [nic-db_8abgih] Delete: instance already deleted 2019-08-08 08:19:12.959 CFY <azure> [vm-app1_rppuvm] Stop: instance already deleted 2019-08-08 08:19:13.127 CFY <azure> [vm-app2_r2tk6g] Delete: instance already deleted 2019-08-08 08:19:13.463 CFY <azure> [nic2_rubt7z] Validating node instance after deletion: nothing to do 2019-08-08 08:19:13.551 CFY <azure> [ip_config-db_6cz3jf] Validating node instance after deletion: nothing to do 2019-08-08 08:19:13.600 CFY <azure> [vm-app1_rppuvm] Delete: instance already deleted 2019-08-08 08:19:13.656 CFY <azure> [nic2_rubt7z] Stop: instance already deleted 2019-08-08 08:19:13.718 CFY <azure> [ip_config-db_6cz3jf] Stop: instance already deleted 2019-08-08 08:19:13.825 CFY <azure> [nic2_rubt7z] Delete: instance already deleted 2019-08-08 08:19:14.211 CFY <azure> [availability_set_qbhoqr] Validating node instance after deletion: nothing to do 2019-08-08 08:19:14.342 CFY <azure> [ip_config-db_6cz3jf] Delete: instance already deleted 2019-08-08 08:19:14.423 CFY <azure> [storage_account_gkwb81] Validating node instance after deletion: nothing to do 2019-08-08 08:19:14.477 CFY <azure> [nic1_68h1ho] Validating node instance after deletion: nothing to do 2019-08-08 08:19:14.602 CFY <azure> [storage_account_gkwb81] Stop: instance already deleted 2019-08-08 08:19:14.698 CFY <azure> [ip-db_u2xuoa] Validating node instance after deletion: nothing to do 2019-08-08 08:19:14.814 CFY <azure> [availability_set_qbhoqr] Stop: instance already deleted 2019-08-08 08:19:14.968 CFY <azure> [ip_config2_r5hnh4] Validating node instance after deletion: nothing to do 2019-08-08 08:19:15.089 CFY <azure> [nic1_68h1ho] Stop: instance already deleted 2019-08-08 08:19:15.267 CFY <azure> [ip-db_u2xuoa] Stop: instance already deleted 2019-08-08 08:19:15.360 CFY <azure> [ip_config2_r5hnh4] Stop: instance already deleted 2019-08-08 08:19:15.468 CFY <azure> [nic1_68h1ho] Delete: instance already deleted 2019-08-08 08:19:15.578 CFY <azure> [availability_set_qbhoqr] Delete: instance already deleted 2019-08-08 08:19:15.686 CFY <azure> [storage_account_gkwb81] Delete: instance already deleted 2019-08-08 08:19:15.850 CFY <azure> [ip-db_u2xuoa] Delete: instance already deleted 2019-08-08 08:19:15.982 CFY <azure> [ip_config2_r5hnh4] Delete: instance already deleted 2019-08-08 08:19:16.136 CFY <azure> [network_security_group_do1z4c] Validating node instance after deletion: nothing to do 2019-08-08 08:19:16.308 CFY <azure> [ip_config1_12otgv] Validating node instance after deletion: nothing to do 2019-08-08 08:19:16.630 CFY <azure> [ip2_lfpc7x] Validating node instance after deletion: nothing to do 2019-08-08 08:19:16.722 CFY <azure> [network_security_group_do1z4c] Stop: instance already deleted 2019-08-08 08:19:16.842 CFY <azure> [ip_config1_12otgv] Stop: instance already deleted 2019-08-08 08:19:16.960 CFY <azure> [network_security_group_do1z4c] Delete: instance already deleted 2019-08-08 08:19:17.027 CFY <azure> [ip2_lfpc7x] Stop: instance already deleted 2019-08-08 08:19:17.150 CFY <azure> [ip_config1_12otgv] Delete: instance already deleted 2019-08-08 08:19:17.333 CFY <azure> [ip2_lfpc7x] Delete: instance already deleted 2019-08-08 08:19:17.676 CFY <azure> [ip1_m4i9s8] Validating node instance after deletion: nothing to do 2019-08-08 08:19:17.728 CFY <azure> [subnet_5ij9ek] Validating node instance after deletion: nothing to do 2019-08-08 08:19:17.783 CFY <azure> [ip1_m4i9s8] Stop: instance already deleted 2019-08-08 08:19:17.879 CFY <azure> [subnet_5ij9ek] Stop: instance already deleted 2019-08-08 08:19:17.929 CFY <azure> [ip1_m4i9s8] Delete: instance already deleted 2019-08-08 08:19:17.987 CFY <azure> [subnet_5ij9ek] Delete: instance already deleted 2019-08-08 08:19:18.563 CFY <azure> [network_2pqe36] Validating node instance after deletion: nothing to do Execution ended, waiting 3 seconds for additional log messages 2019-08-08 08:19:18.851 CFY <azure> [network_2pqe36] Stop: instance already deleted 2019-08-08 08:19:19.037 CFY <azure> [network_2pqe36] Delete: instance already deleted 2019-08-08 08:19:19.481 CFY <azure> [resource_group_jbl92z] Validating node instance after deletion: nothing to do 2019-08-08 08:19:19.685 CFY <azure> [resource_group_jbl92z] Stop: instance already deleted 2019-08-08 08:19:19.793 CFY <azure> [resource_group_jbl92z] Delete: instance already deleted 2019-08-08 08:19:20.401 CFY <azure> 'uninstall' workflow execution succeeded Finished executing workflow uninstall on deployment azure cloudify common logs monitors play_test.sh README.md reset_test.sh results stop_test.sh temp_count temp_cpu_amount temp_io_amount temp_mem_amount temp_mem_initial temp_mem_total temp_monitor_pid temp_net_amount terraform Run 'cfy events list bbb0fd16-566e-4b46-a7ba-4581b0158dd7' to retrieve the execution's events/logs Trying to delete deployment azure... Deployment deleted Deleting blueprint cloudify-wordpress-blueprint-azure... Blueprint deleted Trying to delete deployment azure... An error occurred on the server: 404: Requested `Deployment` with ID `azure` was not found Deleting blueprint cloudify-wordpress-blueprint-azure... An error occurred on the server: 404: Requested `Blueprint` with ID `cloudify-wordpress-blueprint-azure` was not found'
