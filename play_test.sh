@@ -23,7 +23,9 @@ for i in $list_providers; do
   cfy blueprints delete cloudify-wordpress-blueprint-$i
 done
 
-echo "process,orchestrator,provider,region,execution,date,cpu,mem,io,net">results
+echo "Starting tests..."
+EXEC_DATE=$(date +%Y-%m-%d-%H-%i-%s)
+echo "date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net">results
 execution=0
 while [ $execution -lt $test_executions ]; do
   for orchestrator in $list_orchestrators; do
@@ -54,20 +56,20 @@ while [ $execution -lt $test_executions ]; do
           *)
         esac
         echo -e "\n${orchestrator} - ${provider} - ${region} - ${execution}"
-        EXEC_DATE=$(date +%Y-%m-%d-%s)
         LOCAL=executions/${EXEC_DATE}/${orchestrator}/${provider}/${region}/${execution}
         mkdir -p $LOCAL
-        test_monitor.sh provision ${orchestrator} ${provider} ${region} ${execution} &
+        test_monitor.sh ${EXEC_DATE} provision ${orchestrator} ${provider} ${region} ${execution} &
         monitor_pid=$!
         $cmd_provision >> $LOCAL/provision.log
-        kill -9 $monitor_pid > /dev/null
+        kill -9 $monitor_pid &> /dev/null
         sleep 30
-        test_monitor.sh unprovision ${orchestrator} ${provider} ${region} ${execution} &
+        test_monitor.sh ${EXEC_DATE} unprovision ${orchestrator} ${provider} ${region} ${execution} &
         monitor_pid=$!
         $cmd_unprovision >> $LOCAL/unprovision.log
-        kill -9 $monitor_pid > /dev/null
+        kill -9 $monitor_pid &> /dev/null
       done
     done
   done
 execution=$((execution + 1))
 done
+rm -rf /tmp/temp*
