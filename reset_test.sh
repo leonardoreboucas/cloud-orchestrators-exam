@@ -1,3 +1,1 @@
-rm -rf temp*
-rm -rf logs
-rm -rf results
+rm -rf temp* logs results
