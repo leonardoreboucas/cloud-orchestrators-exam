@@ -10,7 +10,7 @@ imports:
 
 inputs:
 
-  region:
+  gcp_region_name:
     type: string
     description: The GCP region to deploy the application in, such as europe-west1.
     default: us-east4
@@ -89,7 +89,7 @@ node_templates:
   subnet:
     type: cloudify.gcp.nodes.SubNetwork
     properties:
-      region: { get_input: region }
+      region: { get_input: gcp_region_name }
       subnet: 10.11.12.0/22
       gcp_config: *gcp_config
     relationships:
