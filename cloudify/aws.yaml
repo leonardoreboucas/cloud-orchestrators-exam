@@ -22,7 +22,7 @@ inputs:
   availability_zone:
     type: string
     description: The availability zone in the AWS Region.
-    default: { concat: [ { get_input: aws_region_name }, 'b' ] }
+    default: { concat: [ { get_input: aws_region_name }, 'c' ] }
 
   ami_owner_filter:
     type: string
