@@ -1,0 +1,131 @@
+Executing workflow `uninstall` on deployment `azure` [timeout=900 seconds]
+2019-08-08 13:11:07.828  CFY <azure> Starting 'uninstall' workflow execution
+2019-08-08 13:11:10.207  CFY <azure> [config-wordpress_24wwiq->vm-app2_ec2v8n|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-08 13:11:11.026  CFY <azure> [config-database_tpx8jc] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:11.164  CFY <azure> [config-wordpress_24wwiq] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:11.346  CFY <azure> [config-database_tpx8jc->vm-database_26zsom|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-08 13:11:12.648  CFY <azure> [config-database_tpx8jc] Stop: instance already uninitialized
+2019-08-08 13:11:12.798  CFY <azure> [config-wordpress_24wwiq] Stop: instance already uninitialized
+2019-08-08 13:11:14.317  CFY <azure> [config-database_tpx8jc] Delete: instance already uninitialized
+2019-08-08 13:11:14.477  CFY <azure> [config-wordpress_24wwiq] Delete: instance already uninitialized
+2019-08-08 13:11:14.608  CFY <azure> [config-database_tpx8jc] Deleted node instance
+2019-08-08 13:11:15.186  CFY <azure> [config-wordpress_24wwiq->vm-app2_ec2v8n|unlink] Task failed 'cloudify_ansible.tasks.ansible_remove_host' -> 409: Node instance update conflict [current version=2, update version=1]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 524, in _run_operation_func
+    ctx.source.instance.update()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/context.py", line 414, in update
+    self._endpoint.update_node_instance(self._node_instance)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/endpoint.py", line 177, in update_node_instance
+    return manager.update_node_instance(node_instance)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/manager.py", line 389, in update_node_instance
+    version=node_instance.version)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify_rest_client/node_instances.py", line 141, in update
+    response = self.api.patch(uri, data=data)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify_rest_client/client.py", line 311, in patch
+    timeout=timeout)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/cluster.py", line 57, in do_request
+    **kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify_rest_client/client.py", line 257, in do_request
+    verify=self.get_request_verify(), timeout=timeout)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify_rest_client/client.py", line 191, in _do_request
+    self._raise_client_error(response, request_url)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify_rest_client/client.py", line 144, in _raise_client_error
+    response=response)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify_rest_client/client.py", line 156, in _prepare_and_raise_exception
+    status_code, error_code=error_code, response=response)
+CloudifyClientError: 409: Node instance update conflict [current version=2, update version=1]
+
+2019-08-08 13:11:15.386  CFY <azure> [config-wordpress_24wwiq->vm-app1_71pklz|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-08 13:11:15.668  CFY <azure> [config-wordpress_24wwiq] Deleted node instance
+2019-08-08 13:11:16.429  CFY <azure> [config-database_tpx8jc->vm-database_26zsom|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-08 13:11:16.743  CFY <azure> [vm-database_26zsom] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:17.180  CFY <azure> [vm-database_26zsom] Stop: instance already uninitialized
+2019-08-08 13:11:17.757  CFY <azure> [vm-database_26zsom] Delete: instance already uninitialized
+2019-08-08 13:11:17.857  CFY <azure> [vm-database_26zsom] Deleted node instance
+2019-08-08 13:11:18.902  CFY <azure> [nic-db_7dnkfj] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:19.321  CFY <azure> [config-wordpress_24wwiq->vm-app1_71pklz|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-08 13:11:19.433  CFY <azure> [nic-db_7dnkfj] Stop: instance already uninitialized
+2019-08-08 13:11:19.729  CFY <azure> [vm-app1_71pklz] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:20.023  CFY <azure> [vm-app2_ec2v8n] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:20.079  CFY <azure> [vm-app1_71pklz] Stop: instance already uninitialized
+2019-08-08 13:11:20.133  CFY <azure> [nic-db_7dnkfj] Delete: instance already uninitialized
+2019-08-08 13:11:20.196  CFY <azure> [vm-app2_ec2v8n] Stop: instance already uninitialized
+2019-08-08 13:11:20.751  CFY <azure> [nic-db_7dnkfj] Deleted node instance
+2019-08-08 13:11:20.907  CFY <azure> [vm-app1_71pklz] Delete: instance already uninitialized
+2019-08-08 13:11:21.132  CFY <azure> [vm-app2_ec2v8n] Delete: instance already uninitialized
+2019-08-08 13:11:21.877  CFY <azure> [ip_config-db_ztar3l] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:22.048  CFY <azure> [vm-app1_71pklz] Deleted node instance
+2019-08-08 13:11:22.815  CFY <azure> [vm-app2_ec2v8n] Deleted node instance
+2019-08-08 13:11:22.919  CFY <azure> [ip_config-db_ztar3l] Stop: instance already uninitialized
+2019-08-08 13:11:23.117  CFY <azure> [nic1_5f6qcx] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:23.862  CFY <azure> [nic1_5f6qcx] Stop: instance already uninitialized
+2019-08-08 13:11:24.020  CFY <azure> [storage_account_mzxda3] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:24.241  CFY <azure> [availability_set_jkjk9i] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:24.452  CFY <azure> [nic2_hekxp0] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:24.610  CFY <azure> [storage_account_mzxda3] Stop: instance already uninitialized
+2019-08-08 13:11:24.729  CFY <azure> [ip_config-db_ztar3l] Delete: instance already uninitialized
+2019-08-08 13:11:24.831  CFY <azure> [nic2_hekxp0] Stop: instance already uninitialized
+2019-08-08 13:11:25.559  CFY <azure> [availability_set_jkjk9i] Stop: instance already uninitialized
+2019-08-08 13:11:25.830  CFY <azure> [ip_config-db_ztar3l] Deleted node instance
+2019-08-08 13:11:26.446  CFY <azure> [nic1_5f6qcx] Delete: instance already uninitialized
+2019-08-08 13:11:26.740  CFY <azure> [storage_account_mzxda3] Delete: instance already uninitialized
+2019-08-08 13:11:26.805  CFY <azure> [ip-db_ca8fmx] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:26.910  CFY <azure> [nic1_5f6qcx] Deleted node instance
+2019-08-08 13:11:27.291  CFY <azure> [nic2_hekxp0] Delete: instance already uninitialized
+2019-08-08 13:11:27.405  CFY <azure> [availability_set_jkjk9i] Delete: instance already uninitialized
+2019-08-08 13:11:27.507  CFY <azure> [storage_account_mzxda3] Deleted node instance
+2019-08-08 13:11:28.010  CFY <azure> [ip-db_ca8fmx] Stop: instance already uninitialized
+2019-08-08 13:11:28.067  CFY <azure> [ip_config1_eoap4a] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:28.759  CFY <azure> [availability_set_jkjk9i] Deleted node instance
+2019-08-08 13:11:28.864  CFY <azure> [nic2_hekxp0] Deleted node instance
+2019-08-08 13:11:29.412  CFY <azure> [ip_config1_eoap4a] Stop: instance already uninitialized
+2019-08-08 13:11:29.831  CFY <azure> [network_security_group_yy3ar8] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:29.936  CFY <azure> [ip-db_ca8fmx] Delete: instance already uninitialized
+2019-08-08 13:11:30.036  CFY <azure> [ip_config2_9tsidc] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:30.102  CFY <azure> [network_security_group_yy3ar8] Stop: instance already uninitialized
+2019-08-08 13:11:30.374  CFY <azure> [ip-db_ca8fmx] Deleted node instance
+2019-08-08 13:11:30.731  CFY <azure> [ip_config2_9tsidc] Stop: instance already uninitialized
+2019-08-08 13:11:30.999  CFY <azure> [ip_config1_eoap4a] Delete: instance already uninitialized
+2019-08-08 13:11:31.048  CFY <azure> [network_security_group_yy3ar8] Delete: instance already uninitialized
+2019-08-08 13:11:31.425  CFY <azure> [ip_config1_eoap4a] Deleted node instance
+2019-08-08 13:11:31.472  CFY <azure> [network_security_group_yy3ar8] Deleted node instance
+2019-08-08 13:11:31.753  CFY <azure> [ip_config2_9tsidc] Delete: instance already uninitialized
+2019-08-08 13:11:31.917  CFY <azure> [ip1_81nleo] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:32.230  CFY <azure> [ip1_81nleo] Stop: instance already uninitialized
+2019-08-08 13:11:32.426  CFY <azure> [ip_config2_9tsidc] Deleted node instance
+2019-08-08 13:11:32.858  CFY <azure> [ip2_qyr78l] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:33.016  CFY <azure> [subnet_ovjfr8] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:33.332  CFY <azure> [subnet_ovjfr8] Stop: instance already uninitialized
+2019-08-08 13:11:33.391  CFY <azure> [ip1_81nleo] Delete: instance already uninitialized
+2019-08-08 13:11:33.445  CFY <azure> [ip2_qyr78l] Stop: instance already uninitialized
+2019-08-08 13:11:33.771  CFY <azure> [ip1_81nleo] Deleted node instance
+2019-08-08 13:11:34.233  CFY <azure> [subnet_ovjfr8] Delete: instance already uninitialized
+2019-08-08 13:11:34.291  CFY <azure> [ip2_qyr78l] Delete: instance already uninitialized
+2019-08-08 13:11:34.569  CFY <azure> [subnet_ovjfr8] Deleted node instance
+2019-08-08 13:11:34.994  CFY <azure> [ip2_qyr78l] Deleted node instance
+2019-08-08 13:11:35.076  CFY <azure> [network_kezr3z] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:35.255  CFY <azure> [network_kezr3z] Stop: instance already uninitialized
+2019-08-08 13:11:35.731  CFY <azure> [network_kezr3z] Delete: instance already uninitialized
+2019-08-08 13:11:35.976  CFY <azure> [network_kezr3z] Deleted node instance
+2019-08-08 13:11:36.467  CFY <azure> [resource_group_pflaaj] Stopping node instance
+2019-08-08 13:11:36.811  CFY <azure> [resource_group_pflaaj] Validating node instance after deletion: nothing to do
+2019-08-08 13:11:36.870  CFY <azure> [resource_group_pflaaj] Stopped node instance: nothing to do
+2019-08-08 13:11:37.184  CFY <azure> [resource_group_pflaaj] Unlinking relationships
+2019-08-08 13:11:37.459  CFY <azure> [resource_group_pflaaj] Relationships unlinked
+2019-08-08 13:11:37.686  CFY <azure> [resource_group_pflaaj] Deleting node instance
+2019-08-08 13:11:37.880  CFY <azure> [resource_group_pflaaj.delete] Sending task 'cloudify_azure.resources.resourcegroup.delete'
+2019-08-08 13:11:42.231  LOG <azure> [resource_group_pflaaj.delete] INFO: Deleting Resource Group "01wordpress"
+2019-08-08 13:11:42.231  LOG <azure> [resource_group_pflaaj.delete] INFO: Checking Resource Group "01wordpress"
+2019-08-08 13:11:42.231  LOG <azure> [resource_group_pflaaj.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'params': {'api-version': u'2017-05-10'}, 'method': 'get'})
+2019-08-08 13:11:42.543  LOG <azure> [resource_group_pflaaj.delete] INFO: Resource 01wordpress does not exist anymore
+2019-08-08 13:11:43.310  CFY <azure> [resource_group_pflaaj.delete] Task succeeded 'cloudify_azure.resources.resourcegroup.delete'
+2019-08-08 13:11:43.844  CFY <azure> [resource_group_pflaaj] Deleted node instance
+2019-08-08 13:11:44.477  CFY <azure> 'uninstall' workflow execution succeeded
+Finished executing workflow uninstall on deployment azure
+* Run 'cfy events list f72f5b31-82db-4920-b8d0-af11cd08bf08' to retrieve the execution's events/logs
+Trying to delete deployment azure...
+An error occurred on the server: 400: Can't delete deployment azure - There are running or queued executions for this deployment. Running executions ids: 842bd5f5-2051-447a-a825-4845f0d3dcdc

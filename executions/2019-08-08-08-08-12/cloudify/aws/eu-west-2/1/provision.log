@@ -1,0 +1,14 @@
+Uploading blueprint cloudify/aws.yaml...
+ aws.yaml |############################################################| 100.0%
+Blueprint uploaded. The blueprint's id is cloudify-wordpress-blueprint-aws
+Creating new deployment from blueprint cloudify-wordpress-blueprint-aws...
+Deployment created. The deployment's id is aws
+Executing workflow `install` on deployment `aws` [timeout=900 seconds]
+Deployment environment creation is pending...
+2019-08-08 13:36:25.202  CFY <aws> Starting 'create_deployment_environment' workflow execution
+2019-08-08 13:36:25.207  CFY <aws> Installing deployment and workflow plugins
+2019-08-08 13:36:25.308  CFY <aws> Sending task 'cloudify_agent.operations.install_plugins'
+2019-08-08 13:36:25.330  CFY <aws> Task started 'cloudify_agent.operations.install_plugins'
+2019-08-08 13:36:25.690  LOG <aws> INFO: Installing plugin: cloudinit
+2019-08-08 13:36:26.874  LOG <aws> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-08 13:36:26.875  LOG <aws> INFO: Installing plugin: ansible
