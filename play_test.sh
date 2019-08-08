@@ -24,7 +24,7 @@ for i in $list_providers; do
 done
 
 echo "Starting tests..."
-EXEC_DATE=$(date +%Y-%m-%d-%H-%i-%s)
+EXEC_DATE=$(date +%Y-%m-%d-%H-%I-%S)
 echo "date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net">results
 execution=0
 while [ $execution -lt $test_executions ]; do
