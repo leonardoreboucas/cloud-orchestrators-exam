@@ -54,15 +54,17 @@ while [ $execution -lt $test_executions ]; do
           *)
         esac
         echo -e "\n${orchestrator} - ${provider} - ${region} - ${execution}"
-        mkdir -p logs/${orchestrator}/${provider}/${region}/${execution}
+        EXEC_DATE=$(date +%Y-%m-%d-%s)
+        LOCAL=executions/${EXEC_DATE}/${orchestrator}/${provider}/${region}/${execution}
+        mkdir -p $LOCAL
         test_monitor.sh provision ${orchestrator} ${provider} ${region} ${execution} &
         monitor_pid=$!
-        $cmd_provision >> logs/${orchestrator}/${provider}/${region}/${execution}/output_provision.log
+        $cmd_provision >> $LOCAL/provision.log
         kill -9 $monitor_pid > /dev/null
         sleep 30
         test_monitor.sh unprovision ${orchestrator} ${provider} ${region} ${execution} &
         monitor_pid=$!
-        $cmd_unprovision >> logs/${orchestrator}/${provider}/${region}/${execution}/output_unprovision.log
+        $cmd_unprovision >> $LOCAL/unprovision.log
         kill -9 $monitor_pid > /dev/null
       done
     done
