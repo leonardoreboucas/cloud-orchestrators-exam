@@ -1,0 +1,4 @@
+[0m[1mdata.template_file.config_database: Refreshing state...[0m
+[0m[1mdata.aws_ami.ubuntu: Refreshing state...[0m
+[0m[1maws_key_pair.wordpress: Creating...[0m[0m
+[0m[1maws_vpc.default: Creating...[0m[0m

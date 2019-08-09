@@ -1,0 +1,8 @@
+[0m[1mdata.template_file.config_database: Refreshing state...[0m
+[0m[1mdata.aws_ami.ubuntu: Refreshing state...[0m
+[0m[1maws_vpc.default: Refreshing state... [id=vpc-0e143d33a39c5d343][0m
+[0m[1maws_security_group.wordpress-security-group: Refreshing state... [id=sg-08d2e0b0a7e15a99b][0m
+[0m[1maws_internet_gateway.internet_gateway: Refreshing state... [id=igw-07cbb538c66cfaeab][0m
+[0m[1maws_route_table.internet_route: Refreshing state... [id=rtb-00b99ea05658f8d78][0m
+[0m[1m[32m
+Destroy complete! Resources: 0 destroyed.[0m
