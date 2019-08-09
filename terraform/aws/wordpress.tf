@@ -78,6 +78,132 @@ data "aws_ami" "ubuntu" {
 }
 
 ###################
+# Network layer
+###################
+
+resource "aws_vpc" "default" {
+  cidr_block       = "10.0.0.0/16"
+  #instance_tenancy = "dedicated"
+
+  tags = {
+    Name = "wordpress"
+  }
+}
+
+resource "aws_subnet" "default" {
+  vpc_id     = "${aws_vpc.default.id}"
+  cidr_block = "10.0.1.0/24"
+
+  tags = {
+    Name = "wordpress"
+  }
+}
+
+resource "aws_internet_gateway" "gw" {
+  vpc_id = "${aws_vpc.default.id}"
+
+  tags = {
+    Name = "wordpress"
+  }
+}
+
+resource "aws_eip" "public-ip-database" {
+  vpc                       = true
+  network_interface         = "${aws_network_interface.wordpress-database-network_interface.id}"
+  tags = {
+    name = "wordpress-database"
+  }
+}
+
+resource "aws_eip" "public-ip-app1" {
+  vpc                       = true
+  network_interface         = "${aws_network_interface.wordpress-1-network_interface.id}"
+  tags = {
+    name = "wordpress-1"
+  }
+}
+
+resource "aws_eip" "public-ip-app2" {
+  vpc                       = true
+  network_interface         = "${aws_network_interface.wordpress-2-network_interface.id}"
+  tags = {
+    name = "wordpress-2"
+  }
+}
+
+resource "aws_network_interface" "wordpress-database-network_interface" {
+  subnet_id   = "${aws_subnet.default.id}"
+  security_groups = ["${aws_security_group.wordpress-security-group.id}"]
+  tags = {
+    Name = "wordpress-database"
+  }
+}
+
+resource "aws_network_interface" "wordpress-1-network_interface" {
+  subnet_id   = "${aws_subnet.default.id}"
+  security_groups = ["${aws_security_group.wordpress-security-group.id}"]
+  tags = {
+    Name = "wordpress-1"
+  }
+}
+
+resource "aws_network_interface" "wordpress-2-network_interface" {
+  subnet_id   = "${aws_subnet.default.id}"
+  security_groups = ["${aws_security_group.wordpress-security-group.id}"]
+  tags = {
+    Name = "wordpress-2"
+  }
+}
+
+resource "aws_security_group" "wordpress-security-group" {
+  name        = "wordpress-security-group"
+  description = "wordpress-security-group"
+  vpc_id      = "${aws_vpc.default.id}"
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+# resource "aws_security_group" "wordpress-db-security-group" {
+#   name        = "wordpress-db-security-group-"
+#   description = "wordpress-db-security-group"
+#   vpc_id      = "${data.aws_vpc.default.id}"
+#
+#   ingress {
+#     from_port   = 3306
+#     to_port     = 3306
+#     protocol    = "tcp"
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
+# }
+
+
+###################
 # Database layer
 ###################
 
@@ -241,123 +367,6 @@ resource "aws_instance" "wordpress-app2" {
     ]
   }
 }
-
-###################
-# Network layer
-###################
-
-resource "aws_vpc" "default" {
-  cidr_block       = "10.0.0.0/16"
-  #instance_tenancy = "dedicated"
-
-  tags = {
-    Name = "wordpress"
-  }
-}
-
-resource "aws_subnet" "default" {
-  vpc_id     = "${aws_vpc.default.id}"
-  cidr_block = "10.0.1.0/24"
-
-  tags = {
-    Name = "wordpress"
-  }
-}
-
-resource "aws_eip" "public-ip-database" {
-  vpc                       = true
-  network_interface         = "${aws_network_interface.wordpress-database-network_interface.id}"
-  tags = {
-    name = "wordpress-database"
-  }
-}
-
-resource "aws_eip" "public-ip-app1" {
-  vpc                       = true
-  network_interface         = "${aws_network_interface.wordpress-1-network_interface.id}"
-  tags = {
-    name = "wordpress-1"
-  }
-}
-
-resource "aws_eip" "public-ip-app2" {
-  vpc                       = true
-  network_interface         = "${aws_network_interface.wordpress-2-network_interface.id}"
-  tags = {
-    name = "wordpress-2"
-  }
-}
-
-resource "aws_network_interface" "wordpress-database-network_interface" {
-  subnet_id   = "${aws_subnet.default.id}"
-  security_groups = ["${aws_security_group.wordpress-security-group.id}"]
-  tags = {
-    Name = "wordpress-database"
-  }
-}
-
-resource "aws_network_interface" "wordpress-1-network_interface" {
-  subnet_id   = "${aws_subnet.default.id}"
-  security_groups = ["${aws_security_group.wordpress-security-group.id}"]
-  tags = {
-    Name = "wordpress-1"
-  }
-}
-
-resource "aws_network_interface" "wordpress-2-network_interface" {
-  subnet_id   = "${aws_subnet.default.id}"
-  security_groups = ["${aws_security_group.wordpress-security-group.id}"]
-  tags = {
-    Name = "wordpress-2"
-  }
-}
-
-resource "aws_security_group" "wordpress-security-group" {
-  name        = "wordpress-security-group"
-  description = "wordpress-security-group"
-  vpc_id      = "${aws_vpc.default.id}"
-
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
-# resource "aws_security_group" "wordpress-db-security-group" {
-#   name        = "wordpress-db-security-group-"
-#   description = "wordpress-db-security-group"
-#   vpc_id      = "${data.aws_vpc.default.id}"
-#
-#   ingress {
-#     from_port   = 3306
-#     to_port     = 3306
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-# }
 
 ###################
 # Outputs
