@@ -97,13 +97,22 @@ data "aws_ami" "ubuntu" {
 #   apply_immediately         = true
 # }
 
+data "template_file" "config_database" {
+  template = "${file("${path.module}/../config_database.tpl")}"
+  vars = {
+    db_name     = "${var.db_name}"
+    db_user     = "${var.db_user}"
+    db_password = "${var.db_pass}"
+  }
+}
+
 resource "aws_instance" "wordpress-database" {
   ami                    = "${data.aws_ami.ubuntu.id}"
   instance_type          = "${var.instance_type}"
   key_name               = "wordpress"
   availability_zone      = "${var.availability_zone}"
   network_interface {
-    network_interface_id = "${aws_network_interface.wordpress-1-network_interface.id}"
+    network_interface_id = "${aws_network_interface.wordpress-database-network_interface.id}"
     device_index         = 0
   }
   credit_specification {
@@ -114,13 +123,13 @@ resource "aws_instance" "wordpress-database" {
   }
   provisioner "file" {
     connection {
-      host        = "${aws_eip.public-ip-app1.public_ip}"
+      host        = "${aws_eip.public-ip-database.public_ip}"
       type        = "ssh"
       user        = "admin"
       private_key = file("${path.module}/../../common/wordpress.pem")
     }
-    content     = "${data.template_file.config.rendered}"
-    destination = "/tmp/config_database.sh"
+    content     = "${data.template_file.config_database.rendered}"
+    destination = "/tmp/config.sh"
   }
   provisioner "remote-exec" {
     connection {
@@ -143,7 +152,7 @@ resource "aws_instance" "wordpress-database" {
 data "template_file" "config" {
   template = "${file("${path.module}/../config.tpl")}"
   vars = {
-    db_host     = "${aws_db_instance.wordpress-db.address}"
+    db_host     = "${aws_network_interface.wordpress-database-network_interface.public_ips.*}"
     db_name     = "${var.db_name}"
     db_user     = "${var.db_user}"
     db_password = "${var.db_pass}"
@@ -355,13 +364,13 @@ resource "aws_security_group" "wordpress-security-group" {
 ###################
 
 output "App1-address" {
-  value = "${aws_network_interface.wordpress-1-network_interface.private_ips.*}"
+  value = "${aws_network_interface.wordpress-1-network_interface.public_ips.*}"
 }
 
 output "App2-address" {
-  value = "${aws_network_interface.wordpress-2-network_interface.private_ips.*}"
+  value = "${aws_network_interface.wordpress-2-network_interface.public_ips.*}"
 }
 
 output "Database-address" {
-  value = "${aws_db_instance.wordpress-db.address}"
+  value = "${aws_network_interface.wordpress-database-network_interface.public_ips.*}"
 }
