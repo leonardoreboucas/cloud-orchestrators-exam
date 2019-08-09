@@ -99,13 +99,27 @@ resource "aws_subnet" "default" {
   }
 }
 
-resource "aws_internet_gateway" "gw" {
+resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = "${aws_vpc.default.id}"
 
   tags = {
     Name = "wordpress"
   }
 }
+
+resource "aws_route_table" "internet_route" {
+  vpc_id = "${aws_vpc.default.id}"
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${aws_internet_gateway.internet_gateway.id}"
+  }
+
+  tags = {
+    Name = "wordpress"
+  }
+}
+
 
 resource "aws_eip" "public-ip-database" {
   vpc                       = true

@@ -1,21 +1,29 @@
 #!/bin/bash
 
 ############# Orchestrator ############
-list_orchestrators='cloudify'
+#list_orchestrators='terraform cloudify'
+list_orchestrators='terraform'
 
 ######### Providers ##########
 #list_providers='aws gcp azure'
-list_providers='gcp azure'
-
+list_providers='aws'
 
 ############ Regions ############
-# Virginia / London / São Pauol
+# Virginia / London / São Paulo
 list_aws_region='us-east-1 eu-west-2 sa-east-1'
 list_gcp_region='us-east-4 europe-west-2 southamerica-east-1'
 list_azure_region='East_US UK_South Brazil_South'
 
 ########## Executions ##########
 test_executions=3
+
+########## Terraform Init ##########
+echo "Terraform Init..."
+for i in $list_providers; do
+  echo "($i)..."
+  cd terraform/$i
+  terraform init
+done
 
 echo "Starting tests..."
 EXEC_DATE=$(date +%Y-%m-%d-%H-%I-%S)
@@ -37,7 +45,7 @@ while [ $execution -lt $test_executions ]; do
         *)
       esac
       for region in $list_region; do
-        echo "Cleaning Cloudify Manager..."
+        echo "Cleaning Cloudify Managers..."
         for i in $list_providers; do
           echo "Cleaning Cloudify Manager ($i)..."
           cfy uninstall -f -v -p ignore_failure=true $i
@@ -51,8 +59,8 @@ while [ $execution -lt $test_executions ]; do
             cmd_unprovision="cfy uninstall -f -v -p ignore_failure=true ${provider}"
             ;;
           terraform)
-            cmd_provision='sleep 5'
-            cmd_unprovision='sleep 5'
+            cmd_provision="cd terraform/${provider}; terraform apply --var 'aws_region_name=${region}' --var 'availability_zone={$region}b' --auto-approve"
+            cmd_unprovision='terraform destroy --auto-approve ; cd ../..'
             ;;
           *)
         esac
