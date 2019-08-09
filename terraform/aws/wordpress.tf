@@ -44,6 +44,12 @@ variable "public_key" {
   default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0TiCJf98bz/0CDedyGS3Y8wC1Zn2L/xq3WguJL2A+rCl7wWOEDXzyyToHRrbjMARbmPfHxl0+JvmUgJv9H7Yml84bzyPhdXO0AfswcTS1HyVLAD5oH1cs38jUSqOupHnZtvOJ0RoG29SL0KJiDwDhUYSe0xnGNS1EP+oQZJU7X0RGc2c6ZqT70FEzizG9mSAxtw8W0HlrLA+EDEYSjIjEHrMs7G8i/bVJFRbF/jTG1oDzomL535VBzKbQgsgD4No4Mq0fnt5ZxpZF4Q3QYo2U7oO9vfLMTWBpsNAroQggz74/AH3E6qfzMOvawmKhM84astzcbSXFGhGXsKLYbTk1"
 }
 
+variable "instance_type" {
+  type    = string
+  default = "t2.micro"
+}
+
+
 ###################
 # Provider
 ###################
@@ -55,24 +61,79 @@ provider "aws" {
   #secret_key = "${var.secret_key}"
 }
 
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-trusty-14.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"] # Canonical
+}
+
 ###################
 # Database layer
 ###################
 
-resource "aws_db_instance" "wordpress-db" {
-  allocated_storage         = 20
-  storage_type              = "gp2"
-  engine                    = "mysql"
-  engine_version            = "5.7"
-  instance_class            = "db.t2.micro"
-  name                      = "${var.db_name}"
-  username                  = "${var.db_user}"
-  password                  = "${var.db_pass}"
-  parameter_group_name      = "default.mysql5.7"
-  vpc_security_group_ids    = ["${aws_security_group.wordpress-db-security-group.id}"]
-  availability_zone         = "${var.availability_zone}"
-  skip_final_snapshot       = true
-  apply_immediately         = true
+# resource "aws_db_instance" "wordpress-db" {
+#   allocated_storage         = 20
+#   storage_type              = "gp2"
+#   engine                    = "mysql"
+#   engine_version            = "5.7"
+#   instance_class            = "db.t2.micro"
+#   name                      = "${var.db_name}"
+#   username                  = "${var.db_user}"
+#   password                  = "${var.db_pass}"
+#   parameter_group_name      = "default.mysql5.7"
+#   vpc_security_group_ids    = ["${aws_security_group.wordpress-db-security-group.id}"]
+#   availability_zone         = "${var.availability_zone}"
+#   skip_final_snapshot       = true
+#   apply_immediately         = true
+# }
+
+resource "aws_instance" "wordpress-database" {
+  ami                    = "${data.aws_ami.ubuntu.id}"
+  instance_type          = "${var.instance_type}"
+  key_name               = "wordpress"
+  availability_zone      = "${var.availability_zone}"
+  network_interface {
+    network_interface_id = "${aws_network_interface.wordpress-1-network_interface.id}"
+    device_index         = 0
+  }
+  credit_specification {
+    cpu_credits = "unlimited"
+  }
+  tags = {
+    Name = "wordpress-database"
+  }
+  provisioner "file" {
+    connection {
+      host        = "${aws_eip.public-ip-app1.public_ip}"
+      type        = "ssh"
+      user        = "admin"
+      private_key = file("${path.module}/../../common/wordpress.pem")
+    }
+    content     = "${data.template_file.config.rendered}"
+    destination = "/tmp/config_database.sh"
+  }
+  provisioner "remote-exec" {
+    connection {
+      host        = "${aws_eip.public-ip-database.public_ip}"
+      type        = "ssh"
+      user        = "admin"
+      private_key = file("${path.module}/../../common/wordpress.pem")
+    }
+    inline = [
+      "sudo chmod +x /tmp/config.sh",
+      "sudo /tmp/config.sh",
+    ]
+  }
 }
 
 ###################
@@ -95,8 +156,8 @@ resource "aws_key_pair" "wordpress" {
 }
 
 resource "aws_instance" "wordpress-app1" {
-  ami                    = "ami-09d31fc66dcb58522"
-  instance_type          = "t2.micro"
+  ami                    = "${data.aws_ami.ubuntu.id}"
+  instance_type          = "${var.instance_type}"
   key_name               = "wordpress"
   availability_zone      = "${var.availability_zone}"
   network_interface {
@@ -134,8 +195,8 @@ resource "aws_instance" "wordpress-app1" {
 }
 
 resource "aws_instance" "wordpress-app2" {
-  ami                    = "ami-09d31fc66dcb58522"
-  instance_type          = "t2.micro"
+  ami                    = "${data.aws_ami.ubuntu.id}"
+  instance_type          = "${var.instance_type}"
   key_name               = "wordpress"
   availability_zone      = "${var.availability_zone}"
   network_interface {
@@ -178,11 +239,20 @@ resource "aws_instance" "wordpress-app2" {
 
 data "aws_vpc" "default" {
   default = false
+  availability_zone = "${var.availability_zone}"
 }
 
 data "aws_subnet" "default" {
   vpc_id = "${data.aws_vpc.default.id}"
   availability_zone = "${var.availability_zone}"
+}
+
+resource "aws_eip" "public-ip-database" {
+  vpc                       = true
+  network_interface         = "${aws_network_interface.wordpress-database-network_interface.id}"
+  tags = {
+    name = "wordpress-database"
+  }
 }
 
 resource "aws_eip" "public-ip-app1" {
@@ -198,6 +268,14 @@ resource "aws_eip" "public-ip-app2" {
   network_interface         = "${aws_network_interface.wordpress-2-network_interface.id}"
   tags = {
     name = "wordpress-2"
+  }
+}
+
+resource "aws_network_interface" "wordpress-database-network_interface" {
+  subnet_id   = "${data.aws_subnet.default.id}"
+  security_groups = ["${aws_security_group.wordpress-security-group.id}"]
+  tags = {
+    Name = "wordpress-database"
   }
 }
 
@@ -236,6 +314,13 @@ resource "aws_security_group" "wordpress-security-group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -244,31 +329,31 @@ resource "aws_security_group" "wordpress-security-group" {
   }
 }
 
-resource "aws_security_group" "wordpress-db-security-group" {
-  name        = "wordpress-db-security-group-"
-  description = "wordpress-db-security-group"
-  vpc_id      = "${data.aws_vpc.default.id}"
-
-  ingress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
+# resource "aws_security_group" "wordpress-db-security-group" {
+#   name        = "wordpress-db-security-group-"
+#   description = "wordpress-db-security-group"
+#   vpc_id      = "${data.aws_vpc.default.id}"
+#
+#   ingress {
+#     from_port   = 3306
+#     to_port     = 3306
+#     protocol    = "tcp"
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
+# }
 
 ###################
 # Outputs
 ###################
 
-output "App1-addres" {
+output "App1-address" {
   value = "${aws_network_interface.wordpress-1-network_interface.private_ips.*}"
 }
 
-output "App2-addres" {
+output "App2-address" {
   value = "${aws_network_interface.wordpress-2-network_interface.private_ips.*}"
 }
 
-output "Database-addres" {
+output "Database-address" {
   value = "${aws_db_instance.wordpress-db.address}"
 }
