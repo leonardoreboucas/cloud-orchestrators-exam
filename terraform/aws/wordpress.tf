@@ -152,7 +152,7 @@ resource "aws_instance" "wordpress-database" {
 data "template_file" "config" {
   template = "${file("${path.module}/../config.tpl")}"
   vars = {
-    db_host     = "${aws_network_interface.wordpress-database-network_interface.public_ips.*}"
+    db_host     = "${aws_eip.public-ip-database.public_ip}"
     db_name     = "${var.db_name}"
     db_user     = "${var.db_user}"
     db_password = "${var.db_pass}"
@@ -364,13 +364,13 @@ resource "aws_security_group" "wordpress-security-group" {
 ###################
 
 output "App1-address" {
-  value = "${aws_network_interface.wordpress-1-network_interface.public_ips.*}"
+  value = "${aws_eip.public-ip-app1.public_ip}"
 }
 
 output "App2-address" {
-  value = "${aws_network_interface.wordpress-2-network_interface.public_ips.*}"
+  value = "${aws_eip.public-ip-app2.public_ip}"
 }
 
 output "Database-address" {
-  value = "${aws_network_interface.wordpress-database-network_interface.public_ips.*}"
+  value = "${aws_eip.public-ip-database.public_ip}"
 }
