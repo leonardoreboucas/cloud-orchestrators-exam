@@ -49,7 +49,7 @@ variable "public_key" {
 ###################
 
 provider "aws" {
-  region     = "${var.region}"
+  region     = "${var.aws_region_name}"
   shared_credentials_file = "/root/.aws/credentiais"
   #access_key = "${var.access_key}"
   #secret_key = "${var.secret_key}"
