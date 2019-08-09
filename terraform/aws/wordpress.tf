@@ -2,13 +2,13 @@
 # Credentials
 ###################
 
-variable "aws_access_key" {
-  type    = string
-}
-
-variable "aws_secret_key" {
-  type    = string
-}
+# variable "aws_access_key" {
+#   type    = string
+# }
+#
+# variable "aws_secret_key" {
+#   type    = string
+# }
 
 ###################
 # Variables
@@ -50,8 +50,9 @@ variable "public_key" {
 
 provider "aws" {
   region     = "${var.region}"
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
+  shared_credentials_file = "/root/.aws/credentiais"
+  #access_key = "${var.access_key}"
+  #secret_key = "${var.secret_key}"
 }
 
 ###################
@@ -257,46 +258,8 @@ resource "aws_security_group" "wordpress-db-security-group" {
 }
 
 ###################
-# LoadBalance layer
-###################
-
-resource "aws_elb" "wordpress-lb" {
-  name               = "wordpress-lb"
-  availability_zones = ["${var.availability_zone}"]
-
-  listener {
-    instance_port     = 80
-    instance_protocol = "http"
-    lb_port           = 80
-    lb_protocol       = "http"
-  }
-
-  health_check {
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    timeout             = 3
-    target              = "TCP:80"
-    interval            = 30
-  }
-
-  instances                   = ["${aws_instance.wordpress-app1.id}","${aws_instance.wordpress-app2.id}"]
-  cross_zone_load_balancing   = false
-  idle_timeout                = 400
-  connection_draining         = true
-  connection_draining_timeout = 400
-
-  tags = {
-    Name = "wordpress-lb"
-  }
-}
-
-###################
 # Outputs
 ###################
-
-output "URL" {
-  value = "http://${aws_elb.wordpress-lb.dns_name}"
-}
 
 output "App1-addres" {
   value = "${aws_network_interface.wordpress-1-network_interface.private_ips.*}"

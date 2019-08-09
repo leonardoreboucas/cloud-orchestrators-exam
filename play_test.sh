@@ -19,7 +19,7 @@ test_executions=3
 
 echo "Starting tests..."
 EXEC_DATE=$(date +%Y-%m-%d-%H-%I-%S)
-echo "date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net">results
+echo "date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net">executions/${EXEC_DATE}/results
 execution=0
 while [ $execution -lt $test_executions ]; do
   for orchestrator in $list_orchestrators; do
