@@ -1,0 +1,82 @@
+Uploading blueprint cloudify/gcp.yaml...
+ gcp.yaml |############################################################| 100.0%
+Blueprint uploaded. The blueprint's id is cloudify-wordpress-blueprint-gcp
+Creating new deployment from blueprint cloudify-wordpress-blueprint-gcp...
+Deployment created. The deployment's id is gcp
+Executing workflow `install` on deployment `gcp` [timeout=900 seconds]
+Deployment environment creation is pending...
+2019-08-09 04:30:15.904  CFY <gcp> Starting 'create_deployment_environment' workflow execution
+2019-08-09 04:30:15.908  CFY <gcp> Installing deployment and workflow plugins
+2019-08-09 04:30:16.009  CFY <gcp> Sending task 'cloudify_agent.operations.install_plugins'
+2019-08-09 04:30:16.026  CFY <gcp> Task started 'cloudify_agent.operations.install_plugins'
+2019-08-09 04:30:16.395  LOG <gcp> INFO: Installing plugin: gcp_plugin
+2019-08-09 04:30:17.350  LOG <gcp> INFO: Using existing installation of managed plugin: e0a99ba4-54d6-4741-a773-4ec378dc8634 [package_name: cloudify-gcp-plugin, package_version: 1.4.4, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-09 04:30:17.350  LOG <gcp> INFO: Installing plugin: ansible
+2019-08-09 04:30:18.127  LOG <gcp> INFO: Using existing installation of managed plugin: 7142c593-6e52-429a-8a71-55266c022e02 [package_name: cloudify-ansible-plugin, package_version: 2.4.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-09 04:30:18.127  LOG <gcp> INFO: Installing plugin: suspend
+2019-08-09 04:30:19.349  LOG <gcp> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-09 04:30:19.349  LOG <gcp> INFO: Installing plugin: scalelist
+2019-08-09 04:30:20.728  LOG <gcp> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-09 04:30:20.728  LOG <gcp> INFO: Installing plugin: configuration
+2019-08-09 04:30:22.011  LOG <gcp> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-09 04:30:22.012  CFY <gcp> Task succeeded 'cloudify_agent.operations.install_plugins'
+2019-08-09 04:30:22.104  CFY <gcp> Creating deployment work directory
+2019-08-09 04:30:22.428  CFY <gcp> 'create_deployment_environment' workflow execution succeeded
+2019-08-09 04:30:27.244  CFY <gcp> Starting 'install' workflow execution
+2019-08-09 04:30:28.998  CFY <gcp> [network_wzarpk] Validating node instance before creation: nothing to do
+2019-08-09 04:30:29.234  CFY <gcp> [network_wzarpk] Precreating node instance: nothing to do
+2019-08-09 04:30:29.404  CFY <gcp> [network_wzarpk] Creating node instance
+2019-08-09 04:30:30.094  CFY <gcp> [network_wzarpk.create] Sending task 'cloudify_gcp.compute.network.create'
+2019-08-09 04:30:32.006  LOG <gcp> [network_wzarpk.create] INFO: Create network network-wzarpk
+2019-08-09 04:30:35.132  LOG <gcp> [network_wzarpk.create] ERROR: Error traceback Traceback (most recent call last):
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/utils.py", line 262, in _decorator
+    return func(*args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/compute/network.py", line 196, in create
+    utils.create(network)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/utils.py", line 163, in _decorator
+    return func(resource, *args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/utils.py", line 170, in create
+    return resource.create()
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/utils.py", line 233, in wrapper
+    response = func(self, *args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/gcp.py", line 34, in _decorator
+    response = func(self, *args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/compute/network.py", line 64, in create
+    body=self.to_dict()).execute()
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/oauth2client/util.py", line 137, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/googleapiclient/http.py", line 832, in execute
+    raise HttpError(resp, content, uri=self.uri)
+HttpError: <HttpError 403 when requesting https://www.googleapis.com/compute/v1/projects/node2faas-248113/global/networks?alt=json returned "Quota 'NETWORKS' exceeded. Limit: 5.0 globally.">
+ with message <HttpError 403 when requesting https://www.googleapis.com/compute/v1/projects/node2faas-248113/global/networks?alt=json returned "Quota 'NETWORKS' exceeded. Limit: 5.0 globally.">
+2019-08-09 04:30:35.132  LOG <gcp> [network_wzarpk.create] ERROR: Error Message 
+Execution ended, waiting 3 seconds for additional log messages
+2019-08-09 04:30:35.837  CFY <gcp> [network_wzarpk.create] Task failed 'cloudify_gcp.compute.network.create'
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/utils.py", line 277, in _decorator
+    raise NonRecoverableError(error.message)
+NonRecoverableError
+
+2019-08-09 04:30:36.125  CFY <gcp> 'install' workflow execution failed: RuntimeError: Workflow failed: Task failed 'cloudify_gcp.compute.network.create'
+Execution of workflow install for deployment gcp failed. [error=Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 664, in _remote_workflow_child_thread
+    workflow_result = self._execute_workflow_function()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 693, in _execute_workflow_function
+    result = self.func(*self.args, **self.kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/plugins/workflows.py", line 31, in install
+    node_instances=set(ctx.node_instances))
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/plugins/lifecycle.py", line 29, in install_node_instances
+    processor.install()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/plugins/lifecycle.py", line 102, in install
+    graph.execute()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/workflows/tasks_graph.py", line 237, in execute
+    raise self._error
+RuntimeError: Workflow failed: Task failed 'cloudify_gcp.compute.network.create'
+]
+* Run 'cfy events list 71d2b00c-ef34-4f45-8870-3a385b2c83cd' to retrieve the execution's events/logs
