@@ -114,7 +114,7 @@ resource "aws_instance" "wordpress-app1" {
       host        = "${aws_eip.public-ip-app1.public_ip}"
       type        = "ssh"
       user        = "admin"
-      private_key = file("${path.module}/../wordpress.pem")
+      private_key = file("${path.module}/../../common/wordpress.pem")
     }
     content     = "${data.template_file.config.rendered}"
     destination = "/tmp/config.sh"
@@ -124,7 +124,7 @@ resource "aws_instance" "wordpress-app1" {
       host        = "${aws_eip.public-ip-app1.public_ip}"
       type        = "ssh"
       user        = "admin"
-      private_key = file("${path.module}/../wordpress.pem")
+      private_key = file("${path.module}/../../common/wordpress.pem")
     }
     inline = [
       "sudo chmod +x /tmp/config.sh",
@@ -153,7 +153,7 @@ resource "aws_instance" "wordpress-app2" {
       host        = "${aws_eip.public-ip-app2.public_ip}"
       type        = "ssh"
       user        = "admin"
-      private_key = file("${path.module}/../wordpress.pem")
+      private_key = file("${path.module}/../../common/wordpress.pem")
     }
     content     = "${data.template_file.config.rendered}"
     destination = "/tmp/config.sh"
@@ -163,7 +163,7 @@ resource "aws_instance" "wordpress-app2" {
       host        = "${aws_eip.public-ip-app2.public_ip}"
       type        = "ssh"
       user        = "admin"
-      private_key = file("${path.module}/../wordpress.pem")
+      private_key = file("${path.module}/../../common/wordpress.pem")
     }
     inline = [
       "sudo chmod +x /tmp/config.sh",
