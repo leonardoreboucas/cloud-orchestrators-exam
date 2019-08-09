@@ -64,7 +64,7 @@ dsl_definitions:
       private_key_id: { get_secret: gcp_private_key_id }
       private_key: { get_secret: gcp_private_key }
     project: { get_secret: gcp_project_id }
-    zone: { get_secret: gcp_zone }
+    zone: { get_input: gcp_zone_name }
 
 node_templates:
 
@@ -123,7 +123,7 @@ node_templates:
       use_public_ip: true
       image_id: { get_input: image }
       instance_type: { get_input: instance_type }
-      zone: { get_secret: gcp_zone }
+      zone: { get_input: gcp_zone_name }
       external_ip: true
     relationships:
     - type: cloudify.relationships.depends_on
@@ -155,7 +155,7 @@ node_templates:
       use_public_ip: true
       image_id: { get_input: image }
       instance_type: { get_input: instance_type }
-      zone: { get_secret: gcp_zone }
+      zone: { get_input: gcp_zone_name }
       external_ip: true
     relationships:
     - type: cloudify.relationships.depends_on
@@ -184,7 +184,7 @@ node_templates:
       use_public_ip: true
       image_id: { get_input: image }
       instance_type: { get_input: instance_type }
-      zone: { get_secret: gcp_zone }
+      zone: { get_input: gcp_zone_name }
       external_ip: true
     relationships:
     - type: cloudify.relationships.depends_on

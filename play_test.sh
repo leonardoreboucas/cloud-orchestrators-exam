@@ -17,14 +17,6 @@ list_azure_region='East+US UK+South Brazil+South'
 ########## Executions ##########
 test_executions=3
 
-echo "Cleaning Cloudify Manager..."
-for i in $list_providers; do
-  echo "Cleaning Cloudify Manager ($i)..."
-  cfy uninstall -f -v -p ignore_failure=true $i
-  cfy deployment delete $i
-  cfy blueprints delete cloudify-wordpress-blueprint-$i
-done
-
 echo "Starting tests..."
 EXEC_DATE=$(date +%Y-%m-%d-%H-%I-%S)
 echo "date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net">results
@@ -45,6 +37,13 @@ while [ $execution -lt $test_executions ]; do
         *)
       esac
       for region in $list_region; do
+        echo "Cleaning Cloudify Manager..."
+        for i in $list_providers; do
+          echo "Cleaning Cloudify Manager ($i)..."
+          cfy uninstall -f -v -p ignore_failure=true $i
+          cfy deployment delete $i
+          cfy blueprints delete cloudify-wordpress-blueprint-$i
+        done
         region=$(echo $region | sed -e 's/+/ /g')
         case $orchestrator in
           cloudify)
@@ -74,5 +73,12 @@ while [ $execution -lt $test_executions ]; do
     done
   done
 execution=$((execution + 1))
+done
+echo "Cleaning Cloudify Manager..."
+for i in $list_providers; do
+  echo "Cleaning Cloudify Manager ($i)..."
+  cfy uninstall -f -v -p ignore_failure=true $i
+  cfy deployment delete $i
+  cfy blueprints delete cloudify-wordpress-blueprint-$i
 done
 rm -rf /tmp/temp*
