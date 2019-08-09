@@ -14,7 +14,7 @@
 # Variables
 ###################
 
-variable "aws_region_name" {
+variable "region_name" {
   type    = string
   default = "us-west-2"
 }
@@ -55,7 +55,7 @@ variable "instance_type" {
 ###################
 
 provider "aws" {
-  region     = "${var.aws_region_name}"
+  region     = "${var.region_name}"
   shared_credentials_file = "/root/.aws/credentiais"
   #access_key = "${var.access_key}"
   #secret_key = "${var.secret_key}"

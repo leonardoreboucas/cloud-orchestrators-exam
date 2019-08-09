@@ -23,15 +23,19 @@ for i in $list_providers; do
   echo "($i)..."
   cd terraform/$i
   terraform init
+  cd ../../
 done
 
 echo "Starting tests..."
 EXEC_DATE=$(date +%Y-%m-%d-%H-%I-%S)
-echo "date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net">executions/${EXEC_DATE}/results
-execution=0
-while [ $execution -lt $test_executions ]; do
+mkdir -p executions/${EXEC_DATE}
+echo "date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net" > executions/${EXEC_DATE}/results
+execution=1
+while [ $execution -le $test_executions ]; do
   for orchestrator in $list_orchestrators; do
     for provider in $list_providers; do
+      cd ${orchestrator}/${provider}
+      pwd
       case  $provider  in
         aws)
            list_region=$list_aws_region
@@ -56,17 +60,21 @@ while [ $execution -lt $test_executions ]; do
           cloudify)
             INPUTS="${provider}_region_name='$(echo $region | sed -e 's/_/ /g')'"
             cmd_provision="cfy install -b cloudify-wordpress-blueprint-${provider} -d $provider -i ${INPUTS} cloudify/${provider}.yaml"
+            cmd_provision2="sleep 0"
             cmd_unprovision="cfy uninstall -f -v -p ignore_failure=true ${provider}"
-            ;;
+            cmd_unprovision2="sleep 0"
+	    ;;
           terraform)
-            cmd_provision="cd terraform/${provider}; terraform apply --var 'aws_region_name=${region}' --var 'availability_zone={$region}b' --auto-approve"
-            cmd_unprovision='terraform destroy --auto-approve ; cd ../..'
+            cmd_provision="terraform apply --var region_name=${region} --var availability_zone={$region}b --auto-approve"
+            cmd_unprovision='terraform destroy --auto-approve'
             ;;
           *)
         esac
         echo -e "\n${orchestrator} - ${provider} - ${region} - ${execution}"
-        LOCAL=executions/${EXEC_DATE}/${orchestrator}/${provider}/${region}/${execution}
+        LOCAL=../../executions/${EXEC_DATE}/${orchestrator}/${provider}/${region}/${execution}
         mkdir -p $LOCAL
+        touch $LOCAL/provision.log
+        touch $LOCAL/unprovision.log
         test_monitor.sh ${EXEC_DATE} provision ${orchestrator} ${provider} ${region} ${execution} &
         monitor_pid=$!
         $cmd_provision >> $LOCAL/provision.log
@@ -77,6 +85,7 @@ while [ $execution -lt $test_executions ]; do
         $cmd_unprovision >> $LOCAL/unprovision.log
         kill -9 $monitor_pid &> /dev/null
       done
+      cd ../..
     done
   done
 execution=$((execution + 1))
