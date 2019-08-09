@@ -289,7 +289,7 @@ resource "aws_eip" "public-ip-app2" {
 }
 
 resource "aws_network_interface" "wordpress-database-network_interface" {
-  subnet_id   = "${data.aws_subnet.default.id}"
+  subnet_id   = "${aws_subnet.default.id}"
   security_groups = ["${aws_security_group.wordpress-security-group.id}"]
   tags = {
     Name = "wordpress-database"
