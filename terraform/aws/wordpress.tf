@@ -237,14 +237,22 @@ resource "aws_instance" "wordpress-app2" {
 # Network layer
 ###################
 
-data "aws_vpc" "default" {
-  default = false
-  availability_zone = "${var.availability_zone}"
+resource "aws_vpc" "default" {
+  cidr_block       = "10.0.0.0/16"
+  #instance_tenancy = "dedicated"
+
+  tags = {
+    Name = "wordpress"
+  }
 }
 
-data "aws_subnet" "default" {
-  vpc_id = "${data.aws_vpc.default.id}"
-  availability_zone = "${var.availability_zone}"
+resource "aws_subnet" "default" {
+  vpc_id     = "${aws_vpc.default.id}"
+  cidr_block = "10.0.1.0/24"
+
+  tags = {
+    Name = "wordpress"
+  }
 }
 
 resource "aws_eip" "public-ip-database" {
@@ -280,7 +288,7 @@ resource "aws_network_interface" "wordpress-database-network_interface" {
 }
 
 resource "aws_network_interface" "wordpress-1-network_interface" {
-  subnet_id   = "${data.aws_subnet.default.id}"
+  subnet_id   = "${aws_subnet.default.id}"
   security_groups = ["${aws_security_group.wordpress-security-group.id}"]
   tags = {
     Name = "wordpress-1"
@@ -288,7 +296,7 @@ resource "aws_network_interface" "wordpress-1-network_interface" {
 }
 
 resource "aws_network_interface" "wordpress-2-network_interface" {
-  subnet_id   = "${data.aws_subnet.default.id}"
+  subnet_id   = "${aws_subnet.default.id}"
   security_groups = ["${aws_security_group.wordpress-security-group.id}"]
   tags = {
     Name = "wordpress-2"
@@ -298,7 +306,7 @@ resource "aws_network_interface" "wordpress-2-network_interface" {
 resource "aws_security_group" "wordpress-security-group" {
   name        = "wordpress-security-group"
   description = "wordpress-security-group"
-  vpc_id      = "${data.aws_vpc.default.id}"
+  vpc_id      = "${aws_vpc.default.id}"
 
   ingress {
     from_port   = 80
