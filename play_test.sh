@@ -23,6 +23,7 @@ for i in $list_providers; do
   echo "($i)..."
   cd terraform/$i
   terraform init
+  terraform destroy --auto-aprove
   cd ../../
 done
 
@@ -49,23 +50,23 @@ while [ $execution -le $test_executions ]; do
         *)
       esac
       for region in $list_region; do
-        echo "Cleaning Cloudify Managers..."
-        for i in $list_providers; do
-          echo "Cleaning Cloudify Manager ($i)..."
-          cfy uninstall -f -v -p ignore_failure=true $i
-          cfy deployment delete $i
-          cfy blueprints delete cloudify-wordpress-blueprint-$i
-        done
         case $orchestrator in
           cloudify)
+            echo "Cleaning Cloudify Managers..."
+            for i in $list_providers; do
+              echo "Cleaning Cloudify Manager ($i)..."
+              cfy uninstall -f -v -p ignore_failure=true $i
+              cfy deployment delete $i
+              cfy blueprints delete cloudify-wordpress-blueprint-$i
+            done
             INPUTS="${provider}_region_name='$(echo $region | sed -e 's/_/ /g')'"
             cmd_provision="cfy install -b cloudify-wordpress-blueprint-${provider} -d $provider -i ${INPUTS} cloudify/${provider}.yaml"
             cmd_provision2="sleep 0"
             cmd_unprovision="cfy uninstall -f -v -p ignore_failure=true ${provider}"
             cmd_unprovision2="sleep 0"
-	    ;;
+	          ;;
           terraform)
-            cmd_provision="terraform apply --var region_name=${region} --var availability_zone={$region}b --auto-approve"
+            cmd_provision="terraform apply --var region_name=${region} --var availability_zone=${region}b --auto-approve"
             cmd_unprovision='terraform destroy --auto-approve'
             ;;
           *)
