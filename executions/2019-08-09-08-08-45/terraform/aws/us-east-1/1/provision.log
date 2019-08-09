@@ -1,0 +1,17 @@
+[0m[1mdata.template_file.config_database: Refreshing state...[0m
+[0m[1maws_key_pair.wordpress: Refreshing state... [id=wordpress][0m
+[0m[1maws_vpc.default: Refreshing state... [id=vpc-0a7f9e43ee519f356][0m
+[0m[1mdata.aws_ami.ubuntu: Refreshing state...[0m
+[0m[1maws_internet_gateway.internet_gateway: Refreshing state... [id=igw-09ecfce62b2f36be5][0m
+[0m[1maws_security_group.wordpress-security-group: Refreshing state... [id=sg-03db0adf3420860db][0m
+[0m[1maws_route_table.internet_route: Refreshing state... [id=rtb-0dc9ce1b43ea5f838][0m
+[0m[1maws_vpc.default: Creating...[0m[0m
+[0m[1maws_vpc.default: Still creating... [10s elapsed][0m[0m
+[0m[1maws_vpc.default: Creation complete after 11s [id=vpc-040c4455777a026d7][0m[0m
+[0m[1maws_subnet.default: Creating...[0m[0m
+[0m[1maws_security_group.wordpress-security-group: Creating...[0m[0m
+[0m[1maws_internet_gateway.internet_gateway: Creating...[0m[0m
+[0m[1maws_internet_gateway.internet_gateway: Creation complete after 5s [id=igw-05a7189d0ca6f7a73][0m[0m
+[0m[1maws_route_table.internet_route: Creating...[0m[0m
+[0m[1maws_security_group.wordpress-security-group: Creation complete after 6s [id=sg-0191a497514b7991e][0m[0m
+[0m[1maws_route_table.internet_route: Creation complete after 4s [id=rtb-0e4b5ac055aab7ca1][0m[0m
