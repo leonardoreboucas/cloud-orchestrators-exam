@@ -11,7 +11,7 @@ list_providers='gcp azure'
 ############ Regions ############
 # Virginia / London / São Pauol
 list_aws_region='us-east-1 eu-west-2 sa-east-1'
-list_gcp_region='us-east4 europe-west2 southamerica-east1'
+list_gcp_region='us-east-4 europe-west-2 southamerica-east-1'
 list_azure_region='East+US UK+South Brazil+South'
 
 ########## Executions ##########
