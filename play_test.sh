@@ -1,7 +1,7 @@
 #!/bin/bash
 source common/.set_credentials.sh
 ############# Orchestrator ############
-list_orchestrators='terraform'
+list_orchestrators='cloudify'
 
 ######### Providers ##########
 list_providers='gcp'
