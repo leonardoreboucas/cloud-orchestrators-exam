@@ -12,7 +12,7 @@ list_providers='azure'
 # Virginia / London / São Paulo
 list_aws_region='us-east-1 eu-west-2 sa-east-1'
 list_gcp_region='us-east-4 europe-west-2 southamerica-east-1'
-list_azure_region='East_US UK_South Brazil_South'
+list_azure_region='EastUS UK_South Brazil_South'
 
 ########## Executions ##########
 test_executions=3
@@ -66,6 +66,7 @@ while [ $execution -le $test_executions ]; do
             cmd_unprovision2="sleep 0"
 	          ;;
           terraform)
+            region='$(echo $region | sed -e 's/_/ /g')'
             cmd_provision="terraform apply --var region_name=${region} --var availability_zone=${region}b --auto-approve"
             cmd_unprovision='terraform destroy --auto-approve'
             ;;

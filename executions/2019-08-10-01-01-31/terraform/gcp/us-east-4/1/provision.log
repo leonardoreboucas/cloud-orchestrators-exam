@@ -1,0 +1,16 @@
+[31m
+[1m[31mError: [0m[0m[1mInvalid character[0m
+
+[0m  on wordpress.tf line 58, in provider "google":
+  58:   credentials = "${file([4m'[0mcommon/account.json'})}"
+[0m
+Single quotes are not valid. Use double quotes (") to enclose strings.
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mInvalid expression[0m
+
+[0m  on wordpress.tf line 58, in provider "google":
+  58:   credentials = "${file([4m'[0mcommon/account.json'})}"
+[0m
+Expected the start of an expression, but found an invalid expression token.
+[0m[0m

@@ -1,0 +1,29 @@
+[0m[1mdata.template_file.config_database: Refreshing state...[0m
+[0m[1mrandom_id.bp_suffix: Creating...[0m[0m
+[0m[1mrandom_id.bp_suffix: Creation complete after 0s [id=msjGrQ][0m[0m
+[0m[1mazurerm_resource_group.main: Creating...[0m[0m
+[0m[1mazurerm_resource_group.main: Creation complete after 4s [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-9ac8c6ad][0m[0m
+[0m[1mazurerm_virtual_network.main: Creating...[0m[0m
+[0m[1mazurerm_public_ip.static-ip-database: Creating...[0m[0m
+[0m[1mazurerm_public_ip.static-ip1: Creating...[0m[0m
+[0m[1mazurerm_availability_set.wordpress-availability: Creating...[0m[0m
+[0m[1mazurerm_public_ip.static-ip2: Creating...[0m[0m
+[0m[1mazurerm_availability_set.wordpress-availability: Creation complete after 4s [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-9ac8c6ad/providers/Microsoft.Compute/availabilitySets/wordpress-availability-9ac8c6ad][0m[0m
+[0m[1mazurerm_public_ip.static-ip1: Creation complete after 7s [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-9ac8c6ad/providers/Microsoft.Network/publicIPAddresses/wordpress-static-ip1-9ac8c6ad][0m[0m
+[0m[1mazurerm_public_ip.static-ip-database: Creation complete after 7s [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-9ac8c6ad/providers/Microsoft.Network/publicIPAddresses/wordpress-static-ipdatabase-9ac8c6ad][0m[0m
+[0m[1mazurerm_public_ip.static-ip2: Creation complete after 7s [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-9ac8c6ad/providers/Microsoft.Network/publicIPAddresses/wordpress-static-ip2-9ac8c6ad][0m[0m
+[0m[1mdata.template_file.config: Refreshing state...[0m
+[0m[1mazurerm_virtual_network.main: Still creating... [10s elapsed][0m[0m
+[0m[1mazurerm_virtual_network.main: Creation complete after 15s [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-9ac8c6ad/providers/Microsoft.Network/virtualNetworks/wordpress-network-9ac8c6ad][0m[0m
+[0m[1mazurerm_subnet.internal: Creating...[0m[0m
+[0m[1mazurerm_subnet.internal: Creation complete after 2s [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-9ac8c6ad/providers/Microsoft.Network/virtualNetworks/wordpress-network-9ac8c6ad/subnets/wordpress-subnet-9ac8c6ad][0m[0m
+[0m[1mazurerm_network_interface.app2: Creating...[0m[0m
+[0m[1mazurerm_network_interface.database: Creating...[0m[0m
+[0m[1mazurerm_network_interface.app1: Creating...[0m[0m
+[0m[1mazurerm_network_interface.app1: Creation complete after 2s [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-9ac8c6ad/providers/Microsoft.Network/networkInterfaces/wordpress-app1-nic-9ac8c6ad][0m[0m
+[0m[1mazurerm_virtual_machine.wordpress-app1: Creating...[0m[0m
+[0m[1mazurerm_network_interface.app2: Creation complete after 4s [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-9ac8c6ad/providers/Microsoft.Network/networkInterfaces/wordpress-app2-nic-9ac8c6ad][0m[0m
+[0m[1mazurerm_virtual_machine.wordpress-app2: Creating...[0m[0m
+[0m[1mazurerm_network_interface.database: Creation complete after 6s [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-9ac8c6ad/providers/Microsoft.Network/networkInterfaces/wordpress-database-nic-9ac8c6ad][0m[0m
+[0m[1mazurerm_virtual_machine.wordpress-database: Creating...[0m[0m
+[0m[1mazurerm_virtual_machine.wordpress-app1: Still creating... [10s elapsed][0m[0m

@@ -1,0 +1,8 @@
+[31m
+[1m[31mError: [0m[0m[1mMissing argument separator[0m
+
+[0m  on wordpress.tf line 58, in provider "google":
+  58:   credentials = file("common/account.json"[4m}[0m)
+[0m
+A comma is required to separate each function argument from the next.
+[0m[0m

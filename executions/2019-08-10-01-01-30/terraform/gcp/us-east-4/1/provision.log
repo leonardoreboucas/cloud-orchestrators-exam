@@ -1,0 +1,5 @@
+[0m[1mdata.template_file.config_database: Refreshing state...[0m
+[0m[1mrandom_id.bp_suffix: Creating...[0m[0m
+[0m[1mrandom_id.bp_suffix: Creation complete after 0s [id=HysGVg][0m[0m
+[0m[1mgoogle_compute_network.wordpress-network: Creating...[0m[0m
+[0m[1mgoogle_compute_network.wordpress-network: Still creating... [10s elapsed][0m[0m
