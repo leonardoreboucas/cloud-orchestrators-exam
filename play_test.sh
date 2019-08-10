@@ -70,13 +70,13 @@ while [ $execution -le $test_executions ]; do
           zone=-a
           ;;
           ##Azure
-          us-east4)
+          'East US')
           zone=-a
           ;;
-          europe-west2)
+          'UK South')
           zone=-a
           ;;
-          southamerica-east1)
+          'Brazil South')
           zone=-a
           ;;
 	*)
