@@ -1,6 +1,6 @@
-echo -e "------------------------- TEST BEGIN ----------------------"
+echo -e "------------------------- TEST BEGIN -------------------------"
 echo -e "   ${orchestrator} - ${provider} - ${region} - ${execution}"
-echo -e "-----------------------------------------------------------"
+echo -e "--------------------------------------------------------------"
 LOCAL=$DIR/executions/${EXEC_DATE}/${orchestrator}/${provider}/${region}/${execution}
 mkdir -p $LOCAL
 ### provision - begin
@@ -19,6 +19,6 @@ monitor_pid=$!
 $cmd_unprovision  2>&1 | tee -a $LOCAL/unprovision.log
 kill -9 $monitor_pid &> /dev/null
 ### unprovision - end
-echo -e "------------------------- TEST END ------------------------"
+echo -e "--------------------------- TEST END --------------------------"
 echo -e "   ${orchestrator} - ${provider} - ${region} - ${execution}"
-echo -e "-----------------------------------------------------------"
+echo -e "---------------------------------------------------------------"
