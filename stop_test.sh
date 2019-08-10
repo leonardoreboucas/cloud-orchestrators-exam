@@ -1,7 +1,6 @@
-#kill -9 $(ps -aux | grep play | awk -F' ' '{print $2}')
-pgrep play
+pgrep play_test
 pgrep cfy
 pgrep terraform
-pkill play
+pkill play_test
 pkill cfy
 pkill terraform

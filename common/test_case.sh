@@ -5,7 +5,7 @@ LOCAL=$DIR/executions/${EXEC_DATE}/${orchestrator}/${provider}/${region}/${execu
 mkdir -p $LOCAL
 ### provision - begin
 touch $LOCAL/provision.log
-test_monitor.sh $RESULTS ${EXEC_DATE} provision ${orchestrator} ${provider} ${region} ${execution} &
+test_monitor.sh ${RESULTS} ${EXEC_DATE} provision ${orchestrator} ${provider} ${region} ${execution} &
 monitor_pid=$!
 cd ${DIR}/${orchestrator}/${provider}
 $cmd_provision  2>&1 | tee -a $LOCAL/provision.log
