@@ -1,2 +1,0 @@
-date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net
-2019-08-10-00-12-15,provision,terraform,gcp,us-east-4,1,1565412498,18.05,977009.78,0.00,69.00

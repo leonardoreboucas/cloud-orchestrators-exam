@@ -1,8 +1,0 @@
-[31m
-[1m[31mError: [0m[0m[1mError in function call[0m
-
-[0m  on wordpress.tf line 58, in provider "google":
-  58:   credentials = [4mfile([0m"common/account.json")
-[0m
-Call to function "file" failed: no file exists at common/account.json.
-[0m[0m

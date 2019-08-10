@@ -1,3 +1,0 @@
-date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net
-2019-08-10-01-01-40,provision,terraform,azure,East_US,1,1565415104,17.80,879072.18,0.00,9.34
-2019-08-10-01-01-40,provision,terraform,azure,East_US,1,1565415111,17.80,912396.18,0.00,372.34
