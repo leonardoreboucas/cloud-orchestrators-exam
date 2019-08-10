@@ -7,13 +7,12 @@ mkdir -p $LOCAL
 PROVISION_RUN=true
 CONT=0
 RETRY=2
+cd ${DIR}/${orchestrator}/${provider}
 while [ $PROVISION_RUN ] && [ $CONT -le $RETRY ]; do
   echo "Starting provisioning process" > $LOCAL/provision.log
   test_monitor.sh ${RESULTS} ${EXEC_DATE} provision ${orchestrator} ${provider} ${region} ${execution} &
   monitor_pid=$!
-  cd ${DIR}/${orchestrator}/${provider}
   $cmd_provision  2>&1 > $LOCAL/provision.log
-  cd -
   kill -9 $monitor_pid &> /dev/null
   echo "validating provisioning process..."
   if [ "$(cat $LOCAL/provision.log | grep apply-finished-wp)" == "" ]; then
@@ -48,3 +47,4 @@ kill -9 $monitor_pid &> /dev/null
 echo -e "--------------------------- TEST END --------------------------"
 echo -e "   ${orchestrator} - ${provider} - ${region} - ${execution}"
 echo -e "---------------------------------------------------------------"
+cd -
