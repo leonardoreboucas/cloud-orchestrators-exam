@@ -5,6 +5,6 @@ for provider in $list_providers; do
   cd $DIR_BASE
   terraform init
   terraform refresh
-  terraform destroy --auto-approve
+  terraform destroy --auto-approve --refresh
   cd -
 done
