@@ -12,7 +12,7 @@ while [ !$PROVISION_SUCCESS ] && [ $CONT -le $RETRY ]; do
   test_monitor.sh ${RESULTS} ${EXEC_DATE} provision ${orchestrator} ${provider} ${region} ${execution} &
   monitor_pid=$!
   cd ${DIR}/${orchestrator}/${provider}
-  $cmd_provision  2>&1 | tee -a $LOCAL/provision.log
+  $cmd_provision  2>&1 > $LOCAL/provision.log
   cd -
   kill -9 $monitor_pid &> /dev/null
   echo "validating provisioning process..."
@@ -39,7 +39,7 @@ sleep 10
 touch $LOCAL/unprovision.log
 test_monitor.sh $RESULTS ${EXEC_DATE} unprovision ${orchestrator} ${provider} ${region} ${execution} &
 monitor_pid=$!
-$cmd_unprovision  2>&1 | tee -a $LOCAL/unprovision.log
+$cmd_unprovision  2>&1 > $LOCAL/unprovision.log
 kill -9 $monitor_pid &> /dev/null
 ### unprovision - end
 echo -e "--------------------------- TEST END --------------------------"
