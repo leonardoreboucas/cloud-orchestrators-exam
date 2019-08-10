@@ -73,3 +73,62 @@ OperationRetry: Operation started
 
 2019-08-10 17:24:50.895  CFY <gcp> [subnet_qa5819.create] Sending task 'cloudify_gcp.compute.subnetwork.create' [retry 1/60]
 2019-08-10 17:24:54.429  LOG <gcp> [subnet_qa5819.create] INFO: Get subnetwork subnet-qa5819 details
+2019-08-10 17:24:56.416  CFY <gcp> [subnet_qa5819.create] Task succeeded 'cloudify_gcp.compute.subnetwork.create' [retry 1/60]
+2019-08-10 17:24:56.503  CFY <gcp> [subnet_qa5819] Node instance created
+2019-08-10 17:24:56.818  CFY <gcp> [subnet_qa5819] Configuring node instance: nothing to do
+2019-08-10 17:24:56.924  CFY <gcp> [subnet_qa5819] Starting node instance: nothing to do
+2019-08-10 17:24:57.041  CFY <gcp> [subnet_qa5819] Poststarting node instance: nothing to do
+2019-08-10 17:24:57.276  CFY <gcp> [subnet_qa5819] Node instance started
+2019-08-10 17:24:57.767  CFY <gcp> [vm-database_vh3s18] Validating node instance before creation: nothing to do
+2019-08-10 17:24:57.954  CFY <gcp> [vm-database_vh3s18] Precreating node instance: nothing to do
+2019-08-10 17:24:58.366  CFY <gcp> [vm-database_vh3s18] Creating node instance
+2019-08-10 17:24:58.622  CFY <gcp> [vm-database_vh3s18.create] Sending task 'script_runner.tasks.run'
+2019-08-10 17:25:00.290  LOG <gcp> [vm-database_vh3s18.create] INFO: Downloaded scripts/gcp/key.py to /tmp/QQA87/key.py
+2019-08-10 17:25:00.846  CFY <gcp> [vm-database_vh3s18.create] Task succeeded 'script_runner.tasks.run'
+2019-08-10 17:25:01.054  CFY <gcp> [vm-database_vh3s18] Node instance created
+2019-08-10 17:25:01.548  CFY <gcp> [vm-database_vh3s18] Configuring node instance
+2019-08-10 17:25:01.804  CFY <gcp> [vm-database_vh3s18.configure] Sending task 'cloudify_gcp.compute.instance.create'
+2019-08-10 17:25:04.226  LOG <gcp> [vm-database_vh3s18.configure] INFO: The script is 
+2019-08-10 17:25:04.608  LOG <gcp> [vm-database_vh3s18.configure] INFO: Adding bucket to metadata
+2019-08-10 17:25:04.610  LOG <gcp> [vm-database_vh3s18.configure] INFO: Adding sshKeys to metadata
+2019-08-10 17:25:07.792  CFY <gcp> [vm-database_vh3s18.configure] Task rescheduled 'cloudify_gcp.compute.instance.create' -> Operation started
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation started
+
+2019-08-10 17:25:22.906  CFY <gcp> [vm-database_vh3s18.configure] Sending task 'cloudify_gcp.compute.instance.create' [retry 1/60]
+2019-08-10 17:25:26.964  LOG <gcp> [vm-database_vh3s18.configure] INFO: The script is 
+2019-08-10 17:25:28.516  LOG <gcp> [vm-database_vh3s18.configure] ERROR: Response with error {u'errors': [{u'message': u"The resource '482761649285-compute@developer.gserviceaccount.com' of type 'serviceAccount' was not found.", u'code': u'EXTERNAL_RESOURCE_NOT_FOUND'}]}
+2019-08-10 17:25:28.516  LOG <gcp> [vm-database_vh3s18.configure] ERROR: Error Message {u'errors': [{u'message': u"The resource '482761649285-compute@developer.gserviceaccount.com' of type 'serviceAccount' was not found.", u'code': u'EXTERNAL_RESOURCE_NOT_FOUND'}]}
+2019-08-10 17:25:29.899  CFY <gcp> [vm-database_vh3s18.configure] Task failed 'cloudify_gcp.compute.instance.create' -> {u'errors': [{u'message': u"The resource '482761649285-compute@developer.gserviceaccount.com' of type 'serviceAccount' was not found.", u'code': u'EXTERNAL_RESOURCE_NOT_FOUND'}]} [retry 1/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/utils.py", line 267, in _decorator
+    raise NonRecoverableError(e.message)
+NonRecoverableError: {u'errors': [{u'message': u"The resource '482761649285-compute@developer.gserviceaccount.com' of type 'serviceAccount' was not found.", u'code': u'EXTERNAL_RESOURCE_NOT_FOUND'}]}
+
+2019-08-10 17:25:30.388  CFY <gcp> 'install' workflow execution failed: RuntimeError: Workflow failed: Task failed 'cloudify_gcp.compute.instance.create' -> {u'errors': [{u'message': u"The resource '482761649285-compute@developer.gserviceaccount.com' of type 'serviceAccount' was not found.", u'code': u'EXTERNAL_RESOURCE_NOT_FOUND'}]}
+Execution of workflow install for deployment gcp failed. [error=Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 664, in _remote_workflow_child_thread
+    workflow_result = self._execute_workflow_function()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 693, in _execute_workflow_function
+    result = self.func(*self.args, **self.kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/plugins/workflows.py", line 31, in install
+    node_instances=set(ctx.node_instances))
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/plugins/lifecycle.py", line 29, in install_node_instances
+    processor.install()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/plugins/lifecycle.py", line 102, in install
+    graph.execute()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/workflows/tasks_graph.py", line 237, in execute
+    raise self._error
+RuntimeError: Workflow failed: Task failed 'cloudify_gcp.compute.instance.create' -> {u'errors': [{u'message': u"The resource '482761649285-compute@developer.gserviceaccount.com' of type 'serviceAccount' was not found.", u'code': u'EXTERNAL_RESOURCE_NOT_FOUND'}]}
+]
+* Run 'cfy events list abaab16a-70eb-4aab-ab4c-048fd358d639' to retrieve the execution's events/logs

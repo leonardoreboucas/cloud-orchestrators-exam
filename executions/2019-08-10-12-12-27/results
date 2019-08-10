@@ -266,3 +266,25 @@ BEGIN PROVISION,cloudify,gcp,europe-west2,3,1565457801
 2019-08-10-12-12-27,provision,cloudify,gcp,europe-west2,3,1565457880,15.75,1054219.93,313.55,291.50,1.32
 2019-08-10-12-12-27,provision,cloudify,gcp,europe-west2,3,1565457887,15.75,1054420.93,313.55,297.89,1.43
 2019-08-10-12-12-27,provision,cloudify,gcp,europe-west2,3,1565457895,15.75,1057806.40,313.55,380.39,1.57
+2019-08-10-12-12-27,provision,cloudify,gcp,europe-west2,3,1565457903,15.75,1060527.93,313.55,398.79,1.70
+2019-08-10-12-12-27,provision,cloudify,gcp,europe-west2,3,1565457912,15.75,1060321.53,313.55,398.79,1.85
+2019-08-10-12-12-27,provision,cloudify,gcp,europe-west2,3,1565457920,15.75,1060107.93,313.55,450.99,1.98
+2019-08-10-12-12-27,provision,cloudify,gcp,europe-west2,3,1565457929,15.75,1062212.40,313.55,504.09,2.13
+END PROVISION,cloudify,gcp,europe-west2,3,1565457932
+BEGIN UNPROVISION,cloudify,gcp,europe-west2,3,1565457942
+2019-08-10-12-12-27,unprovision,cloudify,gcp,europe-west2,3,1565457947,15.76,982528.26,0.00,3.93,0.07
+2019-08-10-12-12-27,unprovision,cloudify,gcp,europe-west2,3,1565457958,15.77,1051000.26,119.47,11.11,0.25
+2019-08-10-12-12-27,unprovision,cloudify,gcp,europe-west2,3,1565457968,15.77,1062702.93,197.38,13.17,0.42
+2019-08-10-12-12-27,unprovision,cloudify,gcp,europe-west2,3,1565457976,15.77,1054308.26,423.50,15.85,0.55
+2019-08-10-12-12-27,unprovision,cloudify,gcp,europe-west2,3,1565457984,15.77,1049321.06,665.05,29.05,0.68
+2019-08-10-12-12-27,unprovision,cloudify,gcp,europe-west2,3,1565457991,15.77,1046183.60,665.05,75.65,0.80
+2019-08-10-12-12-27,unprovision,cloudify,gcp,europe-west2,3,1565458000,15.77,1043809.40,665.05,78.33,0.95
+2019-08-10-12-12-27,unprovision,cloudify,gcp,europe-west2,3,1565458008,15.77,1047095.76,665.05,133.03,1.08
+2019-08-10-12-12-27,unprovision,cloudify,gcp,europe-west2,3,1565458016,15.78,1048966.48,772.06,187.43,1.22
+2019-08-10-12-12-27,unprovision,cloudify,gcp,europe-west2,3,1565458025,15.78,1047295.86,772.06,196.52,1.37
+2019-08-10-12-12-27,unprovision,cloudify,gcp,europe-west2,3,1565458033,15.78,1045907.17,772.06,212.22,1.48
+2019-08-10-12-12-27,unprovision,cloudify,gcp,europe-west2,3,1565458040,15.78,1045103.60,772.06,217.54,1.62
+END UNPROVISION,cloudify,gcp,europe-west2,3,1565458040
+BEGIN PROVISION,cloudify,gcp,southamerica-east1,3,1565458040
+END PROVISION,cloudify,gcp,southamerica-east1,3,1565458041
+2019-08-10-12-12-27,provision,cloudify,gcp,southamerica-east1,3,1565458041,15.79,998622.06,0.00,0.00,0.02

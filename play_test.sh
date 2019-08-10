@@ -2,7 +2,7 @@
 source common/.set_credentials.sh
 DIR=$(pwd)
 ############# Orchestrator ############
-list_orchestrators='cloudify'
+list_orchestrators='terraform'
 
 ######### Providers ##########
 list_providers='gcp'
@@ -14,7 +14,7 @@ list_gcp_region='us-east4 europe-west2 southamerica-east1'
 list_azure_region='EastUS UKSouth BrazilSouth'
 
 ########## Executions ##########
-test_executions=3
+test_executions=1
 
 echo "Starting tests..."
 EXEC_DATE=$(date +%Y-%m-%d-%H-%I-%S)
