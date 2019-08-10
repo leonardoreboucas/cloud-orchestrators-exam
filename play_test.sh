@@ -10,7 +10,7 @@ list_providers='aws gcp azure'
 # Virginia / London / São Paulo
 list_aws_region='us-east-1 eu-west-2 sa-east-1'
 list_gcp_region='us-east-4 europe-west-2 southamerica-east-1'
-list_azure_region='EastUS UKSouth BrazilSouth'
+list_azure_region="'East US' 'UK South' 'Brazil South'"
 
 ########## Executions ##########
 test_executions=3
@@ -48,6 +48,37 @@ while [ $execution -le $test_executions ]; do
         *)
       esac
       for region in $list_region; do
+        case $region in
+          ##AWS
+          us-east-1)
+          zone=b
+          ;;
+          eu-west-2)
+          zone=b
+          ;;
+          sa-east-1)
+          zone=a
+          ;;
+          ##GCP
+          us-east4)
+          zone=-a
+          ;;
+          europe-west2)
+          zone=-a
+          ;;
+          southamerica-east1)
+          zone=-a
+          ;;
+          ##Azure
+          us-east4)
+          zone=-a
+          ;;
+          europe-west2)
+          zone=-a
+          ;;
+          southamerica-east1)
+          zone=-a
+          ;;
         case $orchestrator in
           cloudify)
             echo "Cleaning Cloudify Managers..."
@@ -65,7 +96,7 @@ while [ $execution -le $test_executions ]; do
 	          ;;
           terraform)
             region='$(echo $region | sed -e 's/_/ /g')'
-            cmd_provision="terraform apply --var region_name=${region} --var availability_zone=${region}b --auto-approve"
+            cmd_provision="terraform apply --var region_name='${region}' --var availability_zone=${region}${zone} --auto-approve"
             cmd_unprovision='terraform destroy --auto-approve'
             ;;
           *)
