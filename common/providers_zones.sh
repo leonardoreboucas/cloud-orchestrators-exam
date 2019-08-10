@@ -1,0 +1,33 @@
+case $region in
+  ##AWS
+  us-east-1)
+  zone=b
+  ;;
+  eu-west-2)
+  zone=b
+  ;;
+  sa-east-1)
+  zone=a
+  ;;
+  ##GCP
+  us-east4)
+  zone=-a
+  ;;
+  europe-west2)
+  zone=-a
+  ;;
+  southamerica-east1)
+  zone=-a
+  ;;
+  ##Azure
+  'EastUS')
+  zone=
+  ;;
+  'UKSouth')
+  zone=
+  ;;
+  'BrazilSouth')
+  zone=
+  ;;
+  *)
+esac
