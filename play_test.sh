@@ -6,7 +6,7 @@ list_orchestrators='terraform'
 
 ######### Providers ##########
 #list_providers='aws gcp azure'
-list_providers='gcp'
+list_providers='azure'
 
 ############ Regions ############
 # Virginia / London / São Paulo

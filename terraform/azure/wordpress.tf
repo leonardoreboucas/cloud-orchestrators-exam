@@ -27,6 +27,11 @@ variable "region_name" {
     default = "East US"
 }
 
+variable "availability_zone" {
+    type    = string
+    default = ""
+}
+
 variable "admin_username" {
     default = "manager"
 }
