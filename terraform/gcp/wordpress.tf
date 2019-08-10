@@ -65,18 +65,6 @@ resource "random_id" "bp_suffix" {
   byte_length = 4
 }
 
-output "App1-addres" {
-  value = "${google_compute_instance.wordpress-app1.network_interface.0.access_config.0.nat_ip}"
-}
-
-output "App2-addres" {
-  value = "${google_compute_instance.wordpress-app2.network_interface.0.access_config.0.nat_ip}"
-}
-
-output "Database-addres" {
-  value = "${google_compute_instance.wordpress-database.network_interface.0.access_config.0.nat_ip}"
-}
-
 output "apply-finished-wp" {
   value = "true"
 }
