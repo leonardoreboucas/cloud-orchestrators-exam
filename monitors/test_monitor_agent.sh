@@ -28,6 +28,4 @@ NET=$(cat ${PREFIX}net_amount)
 #Duration
 SPENT=$(bc -l <<<"(`date +%s`-`cat ${PREFIX}time_init`)/60")
 
-echo "DURATION=$SPENT"
-
 echo "$2,$3,$4,$5,$6,$7,$(date +%s),$(printf '%.*f\n' 2 ${CPU}),$(printf '%.*f\n' 2 ${MEM}),$(printf '%.*f\n' 2 ${IO}),$(printf '%.*f\n' 2 ${NET}),$(printf '%.*f\n' 2 ${SPENT})" >> $1
