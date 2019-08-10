@@ -63,7 +63,7 @@ provider "google" {
   credentials = "${file("${var.json_file}")}"
   project     = "${var.project}"
   region      = "${var.region_name}"
-  zone        = "${var.zone}"
+  zone        = "${var.availability_zone}"
 }
 
 resource "random_id" "bp_suffix" {
