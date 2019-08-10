@@ -2,11 +2,6 @@
 # Credentials
 ###################
 
-variable "json_file" {
-  type    = string
-  default = "/root/cloud-orchestrators-exam/common/account.json"
-}
-
 variable "project" {
   type    = string
   default = "node2faas-248113"
@@ -60,7 +55,7 @@ variable "public_key" {
 ###################
 
 provider "google" {
-  credentials = "${file(${var.json_file})}"
+  credentials = "${file('common/account.json'})}"
   project     = "${var.project}"
   region      = "${var.region_name}"
   zone        = "${var.availability_zone}"
