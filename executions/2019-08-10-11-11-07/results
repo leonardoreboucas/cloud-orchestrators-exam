@@ -1,2 +1,0 @@
-date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net,duration
-2019-08-10-11-11-07,provision,cloudify,gcp,us-east4,1,1565451789,15.07,1020697.15,0.00,7.66,0.03

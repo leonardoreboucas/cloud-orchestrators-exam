@@ -1,9 +1,0 @@
-date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net,duration
-2019-08-10-11-11-17,provision,cloudify,gcp,us-east4,1,1565451383,15.08,955587.81,0.00,18.30,0.05
-2019-08-10-11-11-17,provision,cloudify,gcp,us-east4,1,1565451391,15.08,999925.81,0.00,32.30,0.18
-2019-08-10-11-11-17,provision,cloudify,gcp,us-east4,1,1565451398,15.08,1014730.48,0.00,35.90,0.30
-2019-08-10-11-11-17,provision,cloudify,gcp,us-east4,1,1565451407,15.08,1031507.81,0.00,42.01,0.45
-2019-08-10-11-11-17,provision,cloudify,gcp,us-east4,1,1565451415,15.08,1038987.01,0.00,44.07,0.58
-2019-08-10-11-11-17,provision,cloudify,gcp,us-east4,1,1565451422,15.08,1048763.81,172.94,62.37,0.70
-2019-08-10-11-11-17,provision,cloudify,gcp,us-east4,1,1565451430,15.08,1055858.67,172.94,65.05,0.83
-2019-08-10-11-11-17,provision,cloudify,gcp,us-east4,1,1565451437,15.09,1061260.81,172.94,75.75,0.95
