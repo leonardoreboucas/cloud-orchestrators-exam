@@ -60,7 +60,7 @@ variable "public_key" {
 ###################
 
 provider "google" {
-  credentials = "${file("common/account.json")}"
+  credentials = "${file(${var.json_file})}"
   project     = "${var.project}"
   region      = "${var.region_name}"
   zone        = "${var.availability_zone}"
