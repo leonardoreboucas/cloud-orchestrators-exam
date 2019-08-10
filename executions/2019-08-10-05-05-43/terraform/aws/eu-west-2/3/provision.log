@@ -1,0 +1,559 @@
+[0m[1mdata.template_file.config_database: Refreshing state...[0m
+[0m[1mdata.aws_ami.ubuntu: Refreshing state...[0m
+[0m[1maws_key_pair.wordpress: Creating...[0m[0m
+[0m[1maws_vpc.default: Creating...[0m[0m
+[0m[1maws_vpc.default: Still creating... [10s elapsed][0m[0m
+[0m[1maws_vpc.default: Creation complete after 18s [id=vpc-095f4ba9aec936a3c][0m[0m
+[0m[1maws_internet_gateway.internet_gateway: Creating...[0m[0m
+[0m[1maws_security_group.wordpress-security-group: Creating...[0m[0m
+[0m[1maws_subnet.default: Creating...[0m[0m
+[0m[1maws_subnet.default: Creation complete after 7s [id=subnet-0558bbb0d2f8f2a52][0m[0m
+[0m[1maws_internet_gateway.internet_gateway: Creation complete after 8s [id=igw-0287a8497d8f5c29e][0m[0m
+[0m[1maws_route_table.internet_route: Creating...[0m[0m
+[0m[1maws_security_group.wordpress-security-group: Still creating... [10s elapsed][0m[0m
+[0m[1maws_security_group.wordpress-security-group: Creation complete after 11s [id=sg-0c6f11a24c08c8a49][0m[0m
+[0m[1maws_network_interface.wordpress-2-network_interface: Creating...[0m[0m
+[0m[1maws_network_interface.wordpress-database-network_interface: Creating...[0m[0m
+[0m[1maws_network_interface.wordpress-1-network_interface: Creating...[0m[0m
+[0m[1maws_route_table.internet_route: Creation complete after 7s [id=rtb-02e91ae95568c6141][0m[0m
+[0m[1maws_main_route_table_association.a: Creating...[0m[0m
+[0m[1maws_network_interface.wordpress-1-network_interface: Creation complete after 6s [id=eni-0b8dcab7a82eae177][0m[0m
+[0m[1maws_network_interface.wordpress-database-network_interface: Creation complete after 6s [id=eni-0ea18af8a9fe7c4f2][0m[0m
+[0m[1maws_instance.wordpress-database: Creating...[0m[0m
+[0m[1maws_network_interface.wordpress-2-network_interface: Creation complete after 7s [id=eni-0e9e6d02a1b7a25db][0m[0m
+[0m[1maws_main_route_table_association.a: Creation complete after 2s [id=rtbassoc-0793c19b5091b7b83][0m[0m
+[0m[1maws_instance.wordpress-database: Still creating... [10s elapsed][0m[0m
+[0m[1maws_instance.wordpress-database: Still creating... [20s elapsed][0m[0m
+[0m[1maws_instance.wordpress-database: Still creating... [30s elapsed][0m[0m
+[0m[1maws_instance.wordpress-database: Provisioning with 'file'...[0m[0m
+[0m[1maws_instance.wordpress-database: Still creating... [40s elapsed][0m[0m
+[0m[1maws_instance.wordpress-database: Provisioning with 'remote-exec'...[0m[0m
+[0m[0maws_instance.wordpress-database (remote-exec): Connecting to remote host via SSH...
+aws_instance.wordpress-database (remote-exec):   Host: 18.130.138.77
+aws_instance.wordpress-database (remote-exec):   User: ubuntu
+aws_instance.wordpress-database (remote-exec):   Password: false
+aws_instance.wordpress-database (remote-exec):   Private key: true
+aws_instance.wordpress-database (remote-exec):   Certificate: false
+aws_instance.wordpress-database (remote-exec):   SSH Agent: false
+aws_instance.wordpress-database (remote-exec):   Checking Host Key: false
+[0m[0maws_instance.wordpress-database (remote-exec): Connected!
+[0m[0maws_instance.wordpress-database (remote-exec): sudo: unable to resolve host ip-10-0-1-197
+[0m[0maws_instance.wordpress-database (remote-exec): sudo: unable to resolve host ip-10-0-1-197
+[0m[0maws_instance.wordpress-database (remote-exec): sudo: unable to resolve host ip-10-0-1-197
+[0m[0maws_instance.wordpress-database (remote-exec): 0% [Working]
+aws_instance.wordpress-database (remote-exec): Get:1 http://security.ubuntu.com trusty-security InRelease [65.9 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 4% [Connecting to eu-west-2.ec2.archive.ubuntu.com (34.241.117.189)] [1 InRelea
+aws_instance.wordpress-database (remote-exec): 100% [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Ign http://eu-west-2.ec2.archive.ubuntu.com trusty InRelease
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [1 InRelease gpgv 65.9 kB] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:2 http://eu-west-2.ec2.archive.ubuntu.com trusty-updates InRelease [65.9 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 61% [2 InRelease 14.2 kB/65.9 kB 22%] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:3 http://security.ubuntu.com trusty-security/main Sources [172 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 37% [2 InRelease 14.2 kB/65.9 kB 22%] [3 Sources 31.5 kB/172 kB 18%]
+aws_instance.wordpress-database (remote-exec): 83% [2 InRelease 14.2 kB/65.9 kB 22%]
+aws_instance.wordpress-database (remote-exec): 83% [3 Sources bzip2 0 B] [2 InRelease 14.2 kB/65.9 kB 22%] [Waiting for header
+aws_instance.wordpress-database (remote-exec): Get:4 http://security.ubuntu.com trusty-security/universe Sources [102 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 94% [3 Sources bzip2 0 B] [2 InRelease 43.1 kB/65.9 kB 66%] [Waiting for header
+aws_instance.wordpress-database (remote-exec): Get:5 http://security.ubuntu.com trusty-security/main amd64 Packages [835 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 32% [3 Sources bzip2 0 B] [2 InRelease 43.1 kB/65.9 kB 66%] [5 Packages 20.5 kB
+aws_instance.wordpress-database (remote-exec): 47% [3 Sources bzip2 0 B] [Waiting for headers] [5 Packages 183 kB/835 kB 22%]
+aws_instance.wordpress-database (remote-exec): 47% [3 Sources bzip2 0 B] [2 InRelease gpgv 65.9 kB] [Waiting for headers] [5 P
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty-backports InRelease
+[0m[0maws_instance.wordpress-database (remote-exec): 79% [3 Sources bzip2 0 B] [2 InRelease gpgv 65.9 kB] [Waiting for headers] [5 P
+aws_instance.wordpress-database (remote-exec): 91% [3 Sources bzip2 0 B] [Waiting for headers] [5 Packages 720 kB/835 kB 86%]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty Release.gpg
+[0m[0maws_instance.wordpress-database (remote-exec): 91% [3 Sources bzip2 0 B] [5 Packages 720 kB/835 kB 86%]
+aws_instance.wordpress-database (remote-exec): 91% [3 Sources bzip2 0 B] [InRelease gpgv 65.9 kB] [5 Packages 720 kB/835 kB 86
+aws_instance.wordpress-database (remote-exec): 100% [3 Sources bzip2 0 B] [InRelease gpgv 65.9 kB] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:6 http://security.ubuntu.com trusty-security/universe amd64 Packages [294 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 81% [3 Sources bzip2 0 B] [InRelease gpgv 65.9 kB] [Waiting for headers] [6 Pac
+aws_instance.wordpress-database (remote-exec): Get:7 http://eu-west-2.ec2.archive.ubuntu.com trusty-updates/main Sources [431 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 74% [3 Sources bzip2 0 B] [InRelease gpgv 65.9 kB] [7 Sources 72.9 kB/431 kB 17
+aws_instance.wordpress-database (remote-exec): 82% [3 Sources bzip2 0 B] [7 Sources 72.9 kB/431 kB 17%] [6 Packages 294 kB/294
+aws_instance.wordpress-database (remote-exec): 86% [3 Sources bzip2 0 B] [7 Sources 156 kB/431 kB 36%]
+aws_instance.wordpress-database (remote-exec): Get:8 http://security.ubuntu.com trusty-security/main Translation-en [448 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 77% [3 Sources bzip2 0 B] [7 Sources 156 kB/431 kB 36%] [8 Translation-en 160 k
+aws_instance.wordpress-database (remote-exec): 100% [3 Sources bzip2 0 B] [8 Translation-en 448 kB/448 kB 100%]
+aws_instance.wordpress-database (remote-exec): 100% [3 Sources bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:9 http://security.ubuntu.com trusty-security/universe Translation-en [162 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 96% [3 Sources bzip2 0 B] [Waiting for headers] [9 Translation-en 47.1 kB/162 k
+aws_instance.wordpress-database (remote-exec): 100% [3 Sources bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:10 http://eu-west-2.ec2.archive.ubuntu.com trusty-updates/restricted Sources [6,313 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [3 Sources bzip2 0 B] [10 Sources 6,313 B/6,313 B 100%]
+aws_instance.wordpress-database (remote-exec): 100% [3 Sources bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [4 Sources bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:11 http://eu-west-2.ec2.archive.ubuntu.com trusty-updates/universe Sources [231 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 97% [4 Sources bzip2 0 B] [11 Sources 145 kB/231 kB 63%]
+aws_instance.wordpress-database (remote-exec): 100% [4 Sources bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Get:12 http://eu-west-2.ec2.archive.ubuntu.com trusty-updates/multiverse Sources [7,535 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [4 Sources bzip2 0 B] [12 Sources 7,535 B/7,535 B 100%]
+aws_instance.wordpress-database (remote-exec): 100% [4 Sources bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:13 http://eu-west-2.ec2.archive.ubuntu.com trusty-updates/main amd64 Packages [1,177 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 75% [5 Packages bzip2 0 B] [13 Packages 173 kB/1,177 kB 15%]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Get:14 http://eu-west-2.ec2.archive.ubuntu.com trusty-updates/restricted amd64 Packages [17.2 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [14 Packages 17.2 kB/17.2 kB 100%]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Waiting for headers]
+[0m[0maws_instance.wordpress-database (remote-exec): Get:15 http://eu-west-2.ec2.archive.ubuntu.com trusty-updates/universe amd64 Packages [526 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 89% [5 Packages bzip2 0 B] [15 Packages 29.4 kB/526 kB 6%]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Get:16 http://eu-west-2.ec2.archive.ubuntu.com trusty-updates/multiverse amd64 Packages [14.6 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [16 Packages 14.6 kB/14.6 kB 100%]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:17 http://eu-west-2.ec2.archive.ubuntu.com trusty-updates/main Translation-en [582 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 91% [5 Packages bzip2 0 B] [17 Translation-en 140 kB/582 kB 24%]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Get:18 http://eu-west-2.ec2.archive.ubuntu.com trusty-updates/multiverse Translation-en [7,616 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [18 Translation-en 7,616 B/7,616 B 100%]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:19 http://eu-west-2.ec2.archive.ubuntu.com trusty-updates/restricted Translation-en [4,028 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [19 Translation-en 4,028 B/4,028 B 100%]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:20 http://eu-west-2.ec2.archive.ubuntu.com trusty-updates/universe Translation-en [281 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [20 Translation-en 281 kB/281 kB 100%]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty Release
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Release gpgv 58.5 kB] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:21 http://eu-west-2.ec2.archive.ubuntu.com trusty-backports/main Sources [9,709 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:22 http://eu-west-2.ec2.archive.ubuntu.com trusty-backports/restricted Sources [28 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [22 Sources 28 B/28 B 100%]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:23 http://eu-west-2.ec2.archive.ubuntu.com trusty-backports/universe Sources [35.4 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [23 Sources 35.4 kB/35.4 kB 100%]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:24 http://eu-west-2.ec2.archive.ubuntu.com trusty-backports/multiverse Sources [1,896 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [24 Sources 1,896 B/1,896 B 100%]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty-backports/main amd64 Packages
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty-backports/restricted amd64 Packages
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [Packages 59.1 kB] [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [Packages 0 B] [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty-backports/universe amd64 Packages
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Packages 220 kB] [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty-backports/multiverse amd64 Packages
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [5 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [6 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty-backports/main Translation-en
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [6 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [6 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty-backports/multiverse Translation-en
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [6 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [6 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty-backports/restricted Translation-en
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [6 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [6 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty-backports/universe Translation-en
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [6 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Translation-en 155 kB] [6 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [6 Packages bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:25 http://eu-west-2.ec2.archive.ubuntu.com trusty/main Sources [1,064 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 88% [6 Packages bzip2 0 B] [25 Sources 195 kB/1,064 kB 18%]
+aws_instance.wordpress-database (remote-exec): 100% [6 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [7 Sources bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:26 http://eu-west-2.ec2.archive.ubuntu.com trusty/restricted Sources [5,433 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [7 Sources bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:27 http://eu-west-2.ec2.archive.ubuntu.com trusty/universe Sources [6,399 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 52% [7 Sources bzip2 0 B] [27 Sources 26.5 kB/6,399 kB 0%]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [7 Sources bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [8 Translation-en bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Get:28 http://eu-west-2.ec2.archive.ubuntu.com trusty/multiverse Sources [174 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [8 Translation-en bzip2 0 B] [28 Sources 125 kB/174 kB 72%]
+aws_instance.wordpress-database (remote-exec): 100% [8 Translation-en bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty/main amd64 Packages
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [8 Translation-en bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Packages 8,235 kB] [8 Translation-en bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty/restricted amd64 Packages
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Packages 8,235 kB] [8 Translation-en bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty/universe amd64 Packages
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Packages 8,235 kB] [8 Translation-en bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty/multiverse amd64 Packages
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Packages 8,235 kB] [8 Translation-en bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty/main Translation-en
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Packages 8,235 kB] [8 Translation-en bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty/multiverse Translation-en
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Packages 8,235 kB] [8 Translation-en bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty/restricted Translation-en
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Packages 8,235 kB] [8 Translation-en bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Hit http://eu-west-2.ec2.archive.ubuntu.com trusty/universe Translation-en
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Packages 8,235 kB] [8 Translation-en bzip2 0 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [8 Translation-en bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [Packages 184 kB] [8 Translation-en bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [8 Translation-en bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB] [8 Translation-en bzip2 0 B] [Waiting for headers]
+aws_instance.wordpress-database (remote-exec): Ign http://eu-west-2.ec2.archive.ubuntu.com trusty/main Translation-en_US
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB] [8 Translation-en bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Ign http://eu-west-2.ec2.archive.ubuntu.com trusty/multiverse Translation-en_US
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB] [8 Translation-en bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Ign http://eu-west-2.ec2.archive.ubuntu.com trusty/restricted Translation-en_US
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB] [8 Translation-en bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): Ign http://eu-west-2.ec2.archive.ubuntu.com trusty/universe Translation-en_US
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB] [8 Translation-en bzip2 0 B]
+[0m[1maws_instance.wordpress-database: Still creating... [50s elapsed][0m[0m
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB]
+aws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB] [9 Translation-en bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB]
+aws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB] [10 Sources bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB]
+aws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB] [11 Sources bzip2 0 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB]
+aws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB] [12 Sources bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB]
+aws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB] [13 Packages bzip2 0 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Packages 31.7 MB] [13 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [13 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Packages 664 kB] [13 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [13 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Translation-en 4,149 kB] [13 Packages bzip2 0 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [13 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Translation-en 409 kB] [13 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [13 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Translation-en 21.2 kB] [13 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [13 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Translation-en 18.6 MB] [13 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Translation-en 18.6 MB]
+aws_instance.wordpress-database (remote-exec): 100% [Translation-en 18.6 MB] [14 Packages bzip2 0 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Translation-en 18.6 MB]
+aws_instance.wordpress-database (remote-exec): 100% [Translation-en 18.6 MB] [15 Packages bzip2 0 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Translation-en 18.6 MB]
+aws_instance.wordpress-database (remote-exec): 100% [Translation-en 18.6 MB] [16 Packages bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Translation-en 18.6 MB]
+aws_instance.wordpress-database (remote-exec): 100% [Translation-en 18.6 MB] [17 Translation-en bzip2 0 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [17 Translation-en bzip2 0 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Working]
+aws_instance.wordpress-database (remote-exec): 100% [18 Translation-en bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Working]
+aws_instance.wordpress-database (remote-exec): 100% [19 Translation-en bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Working]
+aws_instance.wordpress-database (remote-exec): 100% [20 Translation-en bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Working]
+aws_instance.wordpress-database (remote-exec): 100% [21 Sources bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Working]
+aws_instance.wordpress-database (remote-exec): 100% [22 Sources bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Working]
+aws_instance.wordpress-database (remote-exec): 100% [23 Sources bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Working]
+aws_instance.wordpress-database (remote-exec): 100% [24 Sources bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Working]
+aws_instance.wordpress-database (remote-exec): 100% [25 Sources bzip2 0 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Working]
+aws_instance.wordpress-database (remote-exec): 100% [26 Sources bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Working]
+aws_instance.wordpress-database (remote-exec): 100% [27 Sources bzip2 0 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [27 Sources bzip2 0 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [27 Sources bzip2 0 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [Working]
+aws_instance.wordpress-database (remote-exec): 100% [28 Sources bzip2 0 B]
+aws_instance.wordpress-database (remote-exec): 100% [Working]
+aws_instance.wordpress-database (remote-exec): Fetched 13.1 MB in 5s (2,515 kB/s)
+[0m[0maws_instance.wordpress-database (remote-exec): Reading package lists... 0%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 0%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 1%
+[0m[0maws_instance.wordpress-database (remote-exec): Reading package lists... 7%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 7%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 8%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 8%
+[0m[0maws_instance.wordpress-database (remote-exec): Reading package lists... 38%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 38%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 39%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 39%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 39%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 43%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 43%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 43%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 43%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 44%
+[0m[0maws_instance.wordpress-database (remote-exec): Reading package lists... 44%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 62%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 62%
+[0m[0maws_instance.wordpress-database (remote-exec): Reading package lists... 70%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 70%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 70%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 70%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 73%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 73%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 73%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 73%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 81%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 81%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 81%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 81%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 81%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 81%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 83%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 89%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 89%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 91%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 91%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 98%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 98%
+[0m[0maws_instance.wordpress-database (remote-exec): Reading package lists... 99%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 99%
+aws_instance.wordpress-database (remote-exec): Reading package lists... Done
+[0m[0maws_instance.wordpress-database (remote-exec): sudo: unable to resolve host ip-10-0-1-197
+[0m[0maws_instance.wordpress-database (remote-exec): sudo: unable to resolve host ip-10-0-1-197
+[0m[0maws_instance.wordpress-database (remote-exec): sudo: unable to resolve host ip-10-0-1-197
+[0m[0maws_instance.wordpress-database (remote-exec): Reading package lists... 0%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 100%
+aws_instance.wordpress-database (remote-exec): Reading package lists... Done
+[0m[0maws_instance.wordpress-database (remote-exec): Building dependency tree... 0%
+aws_instance.wordpress-database (remote-exec): Building dependency tree... 0%
+aws_instance.wordpress-database (remote-exec): Building dependency tree... 50%
+aws_instance.wordpress-database (remote-exec): Building dependency tree... 50%
+[0m[0maws_instance.wordpress-database (remote-exec): Building dependency tree
+[0m[0maws_instance.wordpress-database (remote-exec): Reading state information... 0%
+aws_instance.wordpress-database (remote-exec): Reading state information... 7%
+aws_instance.wordpress-database (remote-exec): Reading state information... Done
+[0m[0maws_instance.wordpress-database (remote-exec): The following extra packages will be installed:
+[0m[0maws_instance.wordpress-database (remote-exec):   libaio1 libdbd-mysql-perl libdbi-perl libhtml-template-perl libmysqlclient18
+[0m[0maws_instance.wordpress-database (remote-exec):   libterm-readkey-perl mysql-client-5.5 mysql-client-core-5.5 mysql-common
+[0m[0maws_instance.wordpress-database (remote-exec):   mysql-server-5.5 mysql-server-core-5.5
+[0m[0maws_instance.wordpress-database (remote-exec): Suggested packages:
+[0m[0maws_instance.wordpress-database (remote-exec):   libclone-perl libmldbm-perl libnet-daemon-perl libplrpc-perl
+[0m[0maws_instance.wordpress-database (remote-exec):   libsql-statement-perl libipc-sharedcache-perl tinyca mailx
+[0m[0maws_instance.wordpress-database (remote-exec): The following NEW packages will be installed:
+[0m[0maws_instance.wordpress-database (remote-exec):   libaio1 libdbd-mysql-perl libdbi-perl libhtml-template-perl libmysqlclient18
+[0m[0maws_instance.wordpress-database (remote-exec):   libterm-readkey-perl mysql-client-5.5 mysql-client-core-5.5 mysql-common
+[0m[0maws_instance.wordpress-database (remote-exec):   mysql-server mysql-server-5.5 mysql-server-core-5.5
+[0m[0maws_instance.wordpress-database (remote-exec): 0 upgraded, 12 newly installed, 0 to remove and 0 not upgraded.
+[0m[0maws_instance.wordpress-database (remote-exec): Need to get 9,586 kB of archives.
+[0m[0maws_instance.wordpress-database (remote-exec): After this operation, 97.1 MB of additional disk space will be used.
+[0m[0m
+[0m[0maws_instance.wordpress-database (remote-exec): 0% [Working]
+aws_instance.wordpress-database (remote-exec): Get:1 http://eu-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty/main libaio1 amd64 0.3.109-4 [6,364 B]
+[0m[0maws_instance.wordpress-database (remote-exec): 0% [1 libaio1 0 B/6,364 B 0%]
+aws_instance.wordpress-database (remote-exec): 0% [Working]
+aws_instance.wordpress-database (remote-exec): Get:2 http://eu-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty-updates/main mysql-common all 5.5.62-0ubuntu0.14.04.1 [12.6 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 0% [2 mysql-common 0 B/12.6 kB 0%]
+aws_instance.wordpress-database (remote-exec): 0% [Working]
+aws_instance.wordpress-database (remote-exec): Get:3 http://eu-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty-updates/main libmysqlclient18 amd64 5.5.62-0ubuntu0.14.04.1 [598 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 0% [3 libmysqlclient18 0 B/598 kB 0%]
+aws_instance.wordpress-database (remote-exec): 6% [Working]
+aws_instance.wordpress-database (remote-exec): Get:4 http://eu-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty/main libdbi-perl amd64 1.630-1 [879 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 6% [4 libdbi-perl 0 B/879 kB 0%]
+aws_instance.wordpress-database (remote-exec): 16% [Working]
+aws_instance.wordpress-database (remote-exec): Get:5 http://eu-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty-updates/main libdbd-mysql-perl amd64 4.025-1ubuntu0.1 [87.6 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 16% [5 libdbd-mysql-perl 0 B/87.6 kB 0%]
+aws_instance.wordpress-database (remote-exec): 17% [Working]
+aws_instance.wordpress-database (remote-exec): Get:6 http://eu-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty/main libterm-readkey-perl amd64 2.31-1 [27.4 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 17% [6 libterm-readkey-perl 0 B/27.4 kB 0%]
+aws_instance.wordpress-database (remote-exec): 17% [Working]
+aws_instance.wordpress-database (remote-exec): Get:7 http://eu-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty-updates/main mysql-client-core-5.5 amd64 5.5.62-0ubuntu0.14.04.1 [707 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 17% [7 mysql-client-core-5.5 0 B/707 kB 0%]
+aws_instance.wordpress-database (remote-exec): 24% [Working]
+aws_instance.wordpress-database (remote-exec): Get:8 http://eu-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty-updates/main mysql-client-5.5 amd64 5.5.62-0ubuntu0.14.04.1 [1,459 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 24% [8 mysql-client-5.5 0 B/1,459 kB 0%]
+aws_instance.wordpress-database (remote-exec): 39% [Working]
+aws_instance.wordpress-database (remote-exec): Get:9 http://eu-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty-updates/main mysql-server-core-5.5 amd64 5.5.62-0ubuntu0.14.04.1 [3,754 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 39% [9 mysql-server-core-5.5 0 B/3,754 kB 0%]
+aws_instance.wordpress-database (remote-exec): 79% [Working]
+aws_instance.wordpress-database (remote-exec): Get:10 http://eu-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty-updates/main mysql-server-5.5 amd64 5.5.62-0ubuntu0.14.04.1 [1,979 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 79% [10 mysql-server-5.5 0 B/1,979 kB 0%]
+aws_instance.wordpress-database (remote-exec): 99% [Working]
+aws_instance.wordpress-database (remote-exec): Get:11 http://eu-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty/main libhtml-template-perl all 2.95-1 [65.5 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 99% [11 libhtml-template-perl 0 B/65.5 kB 0%]
+aws_instance.wordpress-database (remote-exec): 100% [Working]
+aws_instance.wordpress-database (remote-exec): Get:12 http://eu-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty-updates/main mysql-server all 5.5.62-0ubuntu0.14.04.1 [11.0 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 100% [12 mysql-server 0 B/11.0 kB 0%]
+aws_instance.wordpress-database (remote-exec): 100% [Working]
+aws_instance.wordpress-database (remote-exec): Fetched 9,586 kB in 0s (24.2 MB/s)
+[0m[0maws_instance.wordpress-database (remote-exec): Preconfiguring packages ...
+[0m[0maws_instance.wordpress-database (remote-exec): Selecting previously unselected package libaio1:amd64.
+[0m[0maws_instance.wordpress-database (remote-exec): (Reading database ...
+aws_instance.wordpress-database (remote-exec): (Reading database ... 5%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 10%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 15%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 20%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 25%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 30%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 35%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 40%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 45%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 50%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 55%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 60%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 65%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 70%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 75%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 80%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 85%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 90%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 95%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 100%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 51354 files and directories currently installed.)
+[0m[0maws_instance.wordpress-database (remote-exec): Preparing to unpack .../libaio1_0.3.109-4_amd64.deb ...
+[0m[0maws_instance.wordpress-database (remote-exec): Unpacking libaio1:amd64 (0.3.109-4) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Selecting previously unselected package mysql-common.
+[0m[0maws_instance.wordpress-database (remote-exec): Preparing to unpack .../mysql-common_5.5.62-0ubuntu0.14.04.1_all.deb ...
+[0m[0maws_instance.wordpress-database (remote-exec): Unpacking mysql-common (5.5.62-0ubuntu0.14.04.1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Selecting previously unselected package libmysqlclient18:amd64.
+[0m[0maws_instance.wordpress-database (remote-exec): Preparing to unpack .../libmysqlclient18_5.5.62-0ubuntu0.14.04.1_amd64.deb ...
+[0m[0maws_instance.wordpress-database (remote-exec): Unpacking libmysqlclient18:amd64 (5.5.62-0ubuntu0.14.04.1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Selecting previously unselected package libdbi-perl.
+[0m[0maws_instance.wordpress-database (remote-exec): Preparing to unpack .../libdbi-perl_1.630-1_amd64.deb ...
+[0m[0maws_instance.wordpress-database (remote-exec): Unpacking libdbi-perl (1.630-1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Selecting previously unselected package libdbd-mysql-perl.
+[0m[0maws_instance.wordpress-database (remote-exec): Preparing to unpack .../libdbd-mysql-perl_4.025-1ubuntu0.1_amd64.deb ...
+[0m[0maws_instance.wordpress-database (remote-exec): Unpacking libdbd-mysql-perl (4.025-1ubuntu0.1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Selecting previously unselected package libterm-readkey-perl.
+[0m[0maws_instance.wordpress-database (remote-exec): Preparing to unpack .../libterm-readkey-perl_2.31-1_amd64.deb ...
+[0m[0maws_instance.wordpress-database (remote-exec): Unpacking libterm-readkey-perl (2.31-1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Selecting previously unselected package mysql-client-core-5.5.
+[0m[0maws_instance.wordpress-database (remote-exec): Preparing to unpack .../mysql-client-core-5.5_5.5.62-0ubuntu0.14.04.1_amd64.deb ...
+[0m[0maws_instance.wordpress-database (remote-exec): Unpacking mysql-client-core-5.5 (5.5.62-0ubuntu0.14.04.1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Selecting previously unselected package mysql-client-5.5.
+[0m[0maws_instance.wordpress-database (remote-exec): Preparing to unpack .../mysql-client-5.5_5.5.62-0ubuntu0.14.04.1_amd64.deb ...
+[0m[0maws_instance.wordpress-database (remote-exec): Unpacking mysql-client-5.5 (5.5.62-0ubuntu0.14.04.1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Selecting previously unselected package mysql-server-core-5.5.
+[0m[0maws_instance.wordpress-database (remote-exec): Preparing to unpack .../mysql-server-core-5.5_5.5.62-0ubuntu0.14.04.1_amd64.deb ...
+[0m[0maws_instance.wordpress-database (remote-exec): Unpacking mysql-server-core-5.5 (5.5.62-0ubuntu0.14.04.1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Setting up mysql-common (5.5.62-0ubuntu0.14.04.1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Selecting previously unselected package mysql-server-5.5.
+[0m[0maws_instance.wordpress-database (remote-exec): (Reading database ...
+aws_instance.wordpress-database (remote-exec): (Reading database ... 5%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 10%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 15%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 20%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 25%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 30%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 35%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 40%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 45%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 50%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 55%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 60%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 65%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 70%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 75%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 80%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 85%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 90%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 95%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 100%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 51715 files and directories currently installed.)
+[0m[0maws_instance.wordpress-database (remote-exec): Preparing to unpack .../mysql-server-5.5_5.5.62-0ubuntu0.14.04.1_amd64.deb ...
+[0m[0maws_instance.wordpress-database (remote-exec): Unpacking mysql-server-5.5 (5.5.62-0ubuntu0.14.04.1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Selecting previously unselected package libhtml-template-perl.
+[0m[0maws_instance.wordpress-database (remote-exec): Preparing to unpack .../libhtml-template-perl_2.95-1_all.deb ...
+[0m[0maws_instance.wordpress-database (remote-exec): Unpacking libhtml-template-perl (2.95-1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Selecting previously unselected package mysql-server.
+[0m[0maws_instance.wordpress-database (remote-exec): Preparing to unpack .../mysql-server_5.5.62-0ubuntu0.14.04.1_all.deb ...
+[0m[0maws_instance.wordpress-database (remote-exec): Unpacking mysql-server (5.5.62-0ubuntu0.14.04.1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Processing triggers for ureadahead (0.100.0-16) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Setting up libaio1:amd64 (0.3.109-4) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Setting up libmysqlclient18:amd64 (5.5.62-0ubuntu0.14.04.1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Setting up libdbi-perl (1.630-1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Setting up libdbd-mysql-perl (4.025-1ubuntu0.1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Setting up libterm-readkey-perl (2.31-1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Setting up mysql-client-core-5.5 (5.5.62-0ubuntu0.14.04.1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Setting up mysql-client-5.5 (5.5.62-0ubuntu0.14.04.1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Setting up mysql-server-core-5.5 (5.5.62-0ubuntu0.14.04.1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Setting up mysql-server-5.5 (5.5.62-0ubuntu0.14.04.1) ...
+[0m[1maws_instance.wordpress-database: Still creating... [1m0s elapsed][0m[0m
+[0m[0maws_instance.wordpress-database (remote-exec): 190810 10:02:33 [Warning] Using unique option prefix key_buffer instead of key_buffer_size is deprecated and will be removed in a future release. Please use the full name instead.
+[0m[0maws_instance.wordpress-database (remote-exec): 190810 10:02:33 [Note] Ignoring --secure-file-priv value as server is running with --bootstrap.
+[0m[0maws_instance.wordpress-database (remote-exec): 190810 10:02:33 [Note] /usr/sbin/mysqld (mysqld 5.5.62-0ubuntu0.14.04.1) starting as process 2750 ...
+[0m[1maws_instance.wordpress-database: Still creating... [1m10s elapsed][0m[0m
+[0m[0maws_instance.wordpress-database (remote-exec): mysql start/running, process 2883
+[0m[0maws_instance.wordpress-database (remote-exec): Setting up libhtml-template-perl (2.95-1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Processing triggers for ureadahead (0.100.0-16) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Setting up mysql-server (5.5.62-0ubuntu0.14.04.1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Processing triggers for libc-bin (2.19-0ubuntu6.15) ...
+[0m[0maws_instance.wordpress-database (remote-exec): sudo: unable to resolve host ip-10-0-1-197
+[0m[0maws_instance.wordpress-database (remote-exec): Reading package lists... 0%
+aws_instance.wordpress-database (remote-exec): Reading package lists... 100%
+aws_instance.wordpress-database (remote-exec): Reading package lists... Done
+[0m[0maws_instance.wordpress-database (remote-exec): Building dependency tree... 0%
+aws_instance.wordpress-database (remote-exec): Building dependency tree... 0%
+[0m[0maws_instance.wordpress-database (remote-exec): Building dependency tree... 50%
+aws_instance.wordpress-database (remote-exec): Building dependency tree... 50%
+aws_instance.wordpress-database (remote-exec): Building dependency tree
+[0m[0maws_instance.wordpress-database (remote-exec): Reading state information... 0%
+aws_instance.wordpress-database (remote-exec): Reading state information... 4%
+aws_instance.wordpress-database (remote-exec): Reading state information... Done
+[0m[0maws_instance.wordpress-database (remote-exec): mysql-server is already the newest version.
+[0m[0maws_instance.wordpress-database (remote-exec): Suggested packages:
+[0m[0maws_instance.wordpress-database (remote-exec):   python-egenix-mxdatetime python-mysqldb-dbg
+[0m[0maws_instance.wordpress-database (remote-exec): The following NEW packages will be installed:
+[0m[0maws_instance.wordpress-database (remote-exec):   python-mysqldb
+[0m[0m
+[0m[0maws_instance.wordpress-database (remote-exec): 0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+[0m[0maws_instance.wordpress-database (remote-exec): Need to get 55.4 kB of archives.
+[0m[0maws_instance.wordpress-database (remote-exec): After this operation, 196 kB of additional disk space will be used.
+[0m[0maws_instance.wordpress-database (remote-exec): 0% [Working]
+aws_instance.wordpress-database (remote-exec): Get:1 http://eu-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty/main python-mysqldb amd64 1.2.3-2ubuntu1 [55.4 kB]
+[0m[0maws_instance.wordpress-database (remote-exec): 0% [1 python-mysqldb 0 B/55.4 kB 0%]
+aws_instance.wordpress-database (remote-exec): 100% [Working]
+aws_instance.wordpress-database (remote-exec): Fetched 55.4 kB in 0s (1,037 kB/s)
+[0m[0maws_instance.wordpress-database (remote-exec): Selecting previously unselected package python-mysqldb.
+[0m[0maws_instance.wordpress-database (remote-exec): (Reading database ...
+aws_instance.wordpress-database (remote-exec): (Reading database ... 5%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 10%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 15%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 20%
+[0m[0maws_instance.wordpress-database (remote-exec): (Reading database ... 25%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 30%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 35%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 40%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 45%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 50%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 55%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 60%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 65%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 70%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 75%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 80%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 85%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 90%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 95%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 100%
+aws_instance.wordpress-database (remote-exec): (Reading database ... 51815 files and directories currently installed.)
+[0m[0maws_instance.wordpress-database (remote-exec): Preparing to unpack .../python-mysqldb_1.2.3-2ubuntu1_amd64.deb ...
+[0m[0maws_instance.wordpress-database (remote-exec): Unpacking python-mysqldb (1.2.3-2ubuntu1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): Setting up python-mysqldb (1.2.3-2ubuntu1) ...
+[0m[0maws_instance.wordpress-database (remote-exec): sudo: unable to resolve host ip-10-0-1-197
+[0m[0maws_instance.wordpress-database (remote-exec): sudo: unable to resolve host ip-10-0-1-197
+[0m[0maws_instance.wordpress-database (remote-exec): mysql stop/waiting
+[0m[0maws_instance.wordpress-database (remote-exec): mysql start/running, process 3124
+[0m[1maws_instance.wordpress-database: Creation complete after 1m17s [id=i-0d0278881a0f4fbf6][0m[0m
+[0m[1mdata.template_file.config: Refreshing state...[0m
+[0m[1maws_instance.wordpress-app1: Creating...[0m[0m
+[0m[1maws_instance.wordpress-app2: Creating...[0m[0m
+[0m[1maws_instance.wordpress-app1: Still creating... [10s elapsed][0m[0m
+[0m[1maws_instance.wordpress-app2: Still creating... [10s elapsed][0m[0m
