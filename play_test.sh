@@ -10,11 +10,7 @@ list_providers='aws'
 # Virginia / London / São Paulo
 list_aws_region='us-east-1 eu-west-2 sa-east-1'
 list_gcp_region='us-east4 europe-west2 southamerica-east1'
-<<<<<<< HEAD
-list_azure_region="'East US' 'UK South' 'Brazil South'"
-=======
 list_azure_region='EastUS UKSouth BrazilSouth'
->>>>>>> ced2ecf95ec1931566abfa8b0f8a3fe062e7c6dd
 
 ########## Executions ##########
 test_executions=3
