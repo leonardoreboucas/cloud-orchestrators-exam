@@ -1,5 +1,6 @@
 #!/bin/bash
 source common/.set_credentials.sh
+DIR=$(pwd)
 ############# Orchestrator ############
 list_orchestrators='cloudify'
 
@@ -17,8 +18,9 @@ test_executions=3
 
 echo "Starting tests..."
 EXEC_DATE=$(date +%Y-%m-%d-%H-%I-%S)
-mkdir -p executions/${EXEC_DATE}
-echo "date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net,duration" > executions/${EXEC_DATE}/results
+mkdir -p ${DIR}/executions/${EXEC_DATE}
+RESULTS=${DIR}/executions/${EXEC_DATE}/results
+echo "date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net,duration" > ${RESULTS}
 execution=1
 while [ $execution -le $test_executions ]; do
   for orchestrator in $list_orchestrators; do
