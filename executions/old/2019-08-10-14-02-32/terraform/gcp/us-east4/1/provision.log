@@ -1,0 +1,18 @@
+[31m
+[1m[31mError: [0m[0m[1mError locking state: Error acquiring the state lock: open /root/cloud-orchestrators-exam/terraform/gcp: is a directory
+
+Terraform acquires a state lock to protect the state from being written
+by multiple users at the same time. Please resolve the issue above and try
+again. For most commands, you can disable locking with the "-lock=false"
+flag, but this is not recommended.[0m
+
+[0m[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mError locking state: Error acquiring the state lock: open /root/cloud-orchestrators-exam/terraform/gcp: is a directory
+
+Terraform acquires a state lock to protect the state from being written
+by multiple users at the same time. Please resolve the issue above and try
+again. For most commands, you can disable locking with the "-lock=false"
+flag, but this is not recommended.[0m
+
+[0m[0m[0m

@@ -1,0 +1,3 @@
+Uploading blueprint cloudify/azure.yaml...
+ azure.yaml |##########################################################| 100.0%
+An error occurred on the server: 409: <Blueprint id=`cloudify-wordpress-blueprint-azure` tenant=`default_tenant`> already exists on <Tenant name=`default_tenant`> or with global visibility

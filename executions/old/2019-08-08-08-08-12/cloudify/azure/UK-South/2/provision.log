@@ -1,0 +1,68 @@
+Uploading blueprint cloudify/azure.yaml...
+ azure.yaml |##########################################################| 100.0%
+Blueprint uploaded. The blueprint's id is cloudify-wordpress-blueprint-azure
+Creating new deployment from blueprint cloudify-wordpress-blueprint-azure...
+Deployment created. The deployment's id is azure
+Executing workflow `install` on deployment `azure` [timeout=900 seconds]
+Deployment environment creation is pending...
+2019-08-08 15:19:19.740  CFY <azure> Starting 'create_deployment_environment' workflow execution
+2019-08-08 15:19:19.747  CFY <azure> Installing deployment and workflow plugins
+2019-08-08 15:19:19.848  CFY <azure> Sending task 'cloudify_agent.operations.install_plugins'
+2019-08-08 15:19:19.864  CFY <azure> Task started 'cloudify_agent.operations.install_plugins'
+2019-08-08 15:19:20.345  LOG <azure> INFO: Installing plugin: azure
+2019-08-08 15:19:21.275  LOG <azure> INFO: Using existing installation of managed plugin: 804280e1-7edd-4fa8-9bc0-0d1a17de9a92 [package_name: cloudify-azure-plugin, package_version: 2.1.7, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-08 15:19:21.275  LOG <azure> INFO: Installing plugin: ansible
+2019-08-08 15:19:24.122  LOG <azure> INFO: Using existing installation of managed plugin: 7142c593-6e52-429a-8a71-55266c022e02 [package_name: cloudify-ansible-plugin, package_version: 2.4.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-08 15:19:24.123  LOG <azure> INFO: Installing plugin: suspend
+2019-08-08 15:19:25.238  LOG <azure> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-08 15:19:25.238  LOG <azure> INFO: Installing plugin: scalelist
+2019-08-08 15:19:26.603  LOG <azure> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-08 15:19:26.604  LOG <azure> INFO: Installing plugin: configuration
+2019-08-08 15:19:27.913  LOG <azure> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-08 15:19:27.914  CFY <azure> Task succeeded 'cloudify_agent.operations.install_plugins'
+2019-08-08 15:19:28.001  CFY <azure> Creating deployment work directory
+2019-08-08 15:19:28.308  CFY <azure> 'create_deployment_environment' workflow execution succeeded
+2019-08-08 15:19:32.829  CFY <azure> Starting 'install' workflow execution
+2019-08-08 15:19:39.428  CFY <azure> [resource_group_3pwc81] Validating node instance before creation: nothing to do
+2019-08-08 15:19:39.624  CFY <azure> [resource_group_3pwc81] Precreating node instance: nothing to do
+2019-08-08 15:19:39.833  CFY <azure> [resource_group_3pwc81] Creating node instance
+2019-08-08 15:19:40.885  CFY <azure> [resource_group_3pwc81.create] Sending task 'cloudify_azure.resources.resourcegroup.create'
+2019-08-08 15:19:46.440  LOG <azure> [resource_group_3pwc81.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 15:19:46.442  LOG <azure> [resource_group_3pwc81.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'UK-South', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 15:19:47.942  LOG <azure> [resource_group_3pwc81.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'UK-South' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 15:19:48.740  CFY <azure> [resource_group_3pwc81.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+
+2019-08-08 15:20:03.904  CFY <azure> [resource_group_3pwc81.create] Sending task 'cloudify_azure.resources.resourcegroup.create' [retry 1/60]
+2019-08-08 15:20:08.591  LOG <azure> [resource_group_3pwc81.create] INFO: Creating Resource Group "01wordpress"
+2019-08-08 15:20:08.593  LOG <azure> [resource_group_3pwc81.create] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'json': {'location': 'UK-South', 'tags': None}, 'params': {'api-version': u'2017-05-10'}, 'method': 'put'})
+2019-08-08 15:20:10.278  LOG <azure> [resource_group_3pwc81.create] INFO: BAD REQUEST: response: {"error":{"code":"InvalidResourceLocation","message":"The specified location 'UK-South' is invalid. A location must consist of characters, whitespace, digit, or following symbols '(,)'."}}
+2019-08-08 15:20:11.023  CFY <azure> [resource_group_3pwc81.create] Task failed 'cloudify_azure.resources.resourcegroup.create' -> 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST' [retry 1/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/resourcegroup.py", line 65, in create
+    'tags': ctx.node.properties.get('tags')
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/utils.py", line 103, in task_resource_create
+    resource.create(name, params)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-azure-plugin-2.1.7/lib/python2.7/site-packages/cloudify_azure/resources/base.py", line 210, in create
+    'Recieved HTTP 400 BAD REQUEST', res.json())
+UnexpectedResponse: 'Unexpected response recieved. Recieved HTTP 400 BAD REQUEST'
+

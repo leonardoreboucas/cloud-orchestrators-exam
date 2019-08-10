@@ -1,0 +1,7 @@
+date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net,duration
+2019-08-10-15-03-34,provision,terraform,gcp,us-east4,1,1565465029,15.50,919793.36,0.00,3.16,0.07
+2019-08-10-15-03-34,provision,terraform,gcp,us-east4,1,1565465036,15.50,926013.36,102.34,5.84,0.18
+2019-08-10-15-03-34,provision,terraform,gcp,us-east4,1,1565465044,15.50,928173.36,102.34,38.74,0.32
+2019-08-10-15-03-34,provision,terraform,gcp,us-east4,1,1565465051,15.50,929491.36,102.34,44.06,0.43
+2019-08-10-15-03-34,provision,terraform,gcp,us-east4,1,1565465062,15.50,930132.56,102.34,59.46,0.62
+2019-08-10-15-03-34,provision,terraform,gcp,us-east4,1,1565465070,15.50,930784.70,102.34,112.36,0.75

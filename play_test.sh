@@ -2,7 +2,7 @@
 source common/.set_credentials.sh
 DIR=$(pwd)
 ############# Orchestrator ############
-list_orchestrators='terraform'
+list_orchestrators='cloudify'
 
 ######### Providers ##########
 list_providers='gcp'

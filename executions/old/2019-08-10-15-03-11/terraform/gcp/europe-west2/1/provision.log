@@ -1,0 +1,7 @@
+[0m[1mdata.template_file.config_database: Refreshing state...[0m
+[0m[1mgoogle_compute_network.wordpress-network: Refreshing state... [id=wordpress-network][0m
+[0m[1mrandom_id.bp_suffix: Refreshing state... [id=1uA3aw][0m
+[0m[1mgoogle_compute_firewall.default-out: Refreshing state... [id=wordpress-app-out][0m
+[0m[1mgoogle_compute_subnetwork.wordpress-subnetwork: Refreshing state... [id=us-east4/wordpress-subnetwork][0m
+[0m[1mgoogle_compute_firewall.default-in: Refreshing state... [id=wordpress-app-in][0m
+[0m[1mgoogle_compute_subnetwork.wordpress-subnetwork: Destroying... [id=us-east4/wordpress-subnetwork][0m[0m
