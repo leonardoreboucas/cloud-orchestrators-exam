@@ -1,0 +1,9 @@
+[31m
+[1m[31mError: [0m[0m[1mReference to undeclared input variable[0m
+
+[0m  on wordpress.tf line 66, in provider "google":
+  66:   zone        = "${[4mvar.zone[0m}"
+[0m
+An input variable with the name "zone" has not been declared. This variable
+can be declared with a variable "zone" {} block.
+[0m[0m

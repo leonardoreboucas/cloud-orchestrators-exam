@@ -4,7 +4,7 @@
 
 variable "json_file" {
   type    = string
-  default = "../../common/account.json"
+  default = "/root/cloud-orchestrators-exam/common/account.json"
 }
 
 variable "project" {
