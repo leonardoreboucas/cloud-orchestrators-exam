@@ -1,0 +1,17 @@
+[0m[1mdata.template_file.config_database: Refreshing state...[0m
+[0m[1maws_key_pair.wordpress: Refreshing state... [id=wordpress][0m
+[0m[1mdata.aws_ami.ubuntu: Refreshing state...[0m
+[0m[1maws_vpc.default: Refreshing state... [id=vpc-026670cd49fb189d9][0m
+[0m[1maws_subnet.default: Refreshing state... [id=subnet-008d4aeebce470a82][0m
+[0m[1maws_internet_gateway.internet_gateway: Refreshing state... [id=igw-0a170adb04c7d1076][0m
+[0m[1maws_security_group.wordpress-security-group: Refreshing state... [id=sg-0c3f7097f63b278ad][0m
+[0m[1maws_route_table.internet_route: Refreshing state... [id=rtb-0da2eb3d0541d5d51][0m
+[0m[1maws_network_interface.wordpress-database-network_interface: Refreshing state... [id=eni-074b7a1123608addf][0m
+[0m[1maws_network_interface.wordpress-1-network_interface: Refreshing state... [id=eni-05d2c09d950b06b20][0m
+[0m[1maws_network_interface.wordpress-2-network_interface: Refreshing state... [id=eni-05790c8859dcd2421][0m
+[0m[1maws_instance.wordpress-database: Refreshing state... [id=i-02133ae7350d3f7c6][0m
+[0m[1maws_main_route_table_association.a: Refreshing state... [id=rtbassoc-0b39796f9a0dd9de8][0m
+[0m[1maws_instance.wordpress-app2: Refreshing state... [id=i-0fa6f3ad76de234c9][0m
+[0m[1maws_instance.wordpress-app1: Refreshing state... [id=i-0258644dbef96ceec][0m
+[0m[1m[32m
+Destroy complete! Resources: 0 destroyed.[0m
