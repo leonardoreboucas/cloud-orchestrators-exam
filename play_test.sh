@@ -17,7 +17,7 @@ list_azure_region='EastUS UKSouth BrazilSouth'
 test_executions=1
 
 echo "Starting tests..."
-EXEC_DATE=$(date +%Y-%m-%d-%H-%i-%s)
+EXEC_DATE=$(date +%Y-%m-%d-%H-%M-%S)
 mkdir -p ${DIR}/executions/${EXEC_DATE}
 RESULTS=${DIR}/executions/${EXEC_DATE}/results
 echo "date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net,duration" > ${RESULTS}
