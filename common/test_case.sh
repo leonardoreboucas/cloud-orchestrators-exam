@@ -20,6 +20,7 @@ while [ $PROVISION_RUN ] && [ $CONT -le $RETRY ]; do
     echo "Provision failed"
     if [ $CONT -eq $RETRY ]; then
       echo "No more retrys... skipping"
+      break
     else
       echo "Retrying..."
     fi
@@ -30,6 +31,7 @@ while [ $PROVISION_RUN ] && [ $CONT -le $RETRY ]; do
     echo "Provision successfully"
     echo "success" >> $RESULTS
     PROVISION_RUN=false
+    break
   fi
 done
 
