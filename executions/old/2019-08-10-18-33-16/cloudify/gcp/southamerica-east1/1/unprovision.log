@@ -1,0 +1,19 @@
+Executing workflow `uninstall` on deployment `gcp` [timeout=900 seconds]
+2019-08-10 22:40:12.172  CFY <gcp> Starting 'uninstall' workflow execution
+2019-08-10 22:40:14.829  CFY <gcp> [firewall_qz4jf1] Validating node instance after deletion: nothing to do
+2019-08-10 22:40:15.215  CFY <gcp> [config-database_d13gpd->vm-database_3dz1mk|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 22:40:16.081  CFY <gcp> [config-wordpress_zsusux] Validating node instance after deletion: nothing to do
+2019-08-10 22:40:16.277  CFY <gcp> [config-database_d13gpd] Validating node instance after deletion: nothing to do
+2019-08-10 22:40:16.665  CFY <gcp> [config-wordpress_zsusux->vm-app2_uycoo8|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 22:40:17.940  CFY <gcp> [config-database_d13gpd] Stop: instance already uninitialized
+2019-08-10 22:40:18.114  CFY <gcp> [firewall_qz4jf1] Stop: instance already uninitialized
+2019-08-10 22:40:18.289  CFY <gcp> [config-wordpress_zsusux] Stop: instance already uninitialized
+2019-08-10 22:40:19.989  CFY <gcp> [config-database_d13gpd] Delete: instance already uninitialized
+2019-08-10 22:40:20.203  CFY <gcp> [firewall_qz4jf1] Delete: instance already uninitialized
+2019-08-10 22:40:20.391  CFY <gcp> [config-wordpress_zsusux] Delete: instance already uninitialized
+2019-08-10 22:40:20.611  CFY <gcp> [config-database_d13gpd] Deleted node instance
+2019-08-10 22:40:21.618  CFY <gcp> [config-database_d13gpd->vm-database_3dz1mk|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 22:40:21.771  CFY <gcp> [firewall_qz4jf1] Deleted node instance
+2019-08-10 22:40:22.714  CFY <gcp> [config-wordpress_zsusux] Deleted node instance
+2019-08-10 22:40:23.276  CFY <gcp> [config-wordpress_zsusux->vm-app2_uycoo8|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 22:40:23.396  CFY <gcp> [config-wordpress_zsusux->vm-app1_pn2sbd|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
