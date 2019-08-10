@@ -1,0 +1,164 @@
+Executing workflow `uninstall` on deployment `gcp` [timeout=900 seconds]
+2019-08-10 15:46:46.418  CFY <gcp> Starting 'uninstall' workflow execution
+2019-08-10 15:46:47.420  CFY <gcp> [config-wordpress_x2xh6u] Validating node instance after deletion: nothing to do
+2019-08-10 15:46:47.470  CFY <gcp> [config-database_kyojog->vm-database_rr78tm|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 15:46:48.281  CFY <gcp> [firewall_7wsn0c] Stopping node instance
+2019-08-10 15:46:48.432  CFY <gcp> [config-database_kyojog] Validating node instance after deletion: nothing to do
+2019-08-10 15:46:49.063  CFY <gcp> [config-wordpress_x2xh6u->vm-app2_g2iin6|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 15:46:50.766  CFY <gcp> [config-database_kyojog->vm-database_rr78tm|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 15:46:50.986  CFY <gcp> [config-wordpress_x2xh6u] Stop: instance already uninitialized
+2019-08-10 15:46:51.081  CFY <gcp> [config-database_kyojog] Stop: instance already uninitialized
+2019-08-10 15:46:51.178  CFY <gcp> [firewall_7wsn0c] Validating node instance after deletion: nothing to do
+2019-08-10 15:46:51.800  CFY <gcp> [firewall_7wsn0c] Stopped node instance: nothing to do
+2019-08-10 15:46:51.921  CFY <gcp> [config-wordpress_x2xh6u] Delete: instance already uninitialized
+2019-08-10 15:46:52.038  CFY <gcp> [config-database_kyojog] Delete: instance already uninitialized
+2019-08-10 15:46:53.169  CFY <gcp> [config-wordpress_x2xh6u] Deleted node instance
+2019-08-10 15:46:53.194  CFY <gcp> Task failed '_SetNodeInstanceStateTask' -> 409: Node instance update conflict [current version=3, update version=2]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/workflows/tasks.py", line 709, in local_task_wrapper
+    result = self.local_task(**self.kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/workflows/tasks.py", line 1019, in __call__
+    return self.remote()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/workflows/tasks.py", line 1055, in remote
+    update_node_instance(node_instance)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/manager.py", line 389, in update_node_instance
+    version=node_instance.version)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify_rest_client/node_instances.py", line 141, in update
+    response = self.api.patch(uri, data=data)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify_rest_client/client.py", line 311, in patch
+    timeout=timeout)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/cluster.py", line 57, in do_request
+    **kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify_rest_client/client.py", line 257, in do_request
+    verify=self.get_request_verify(), timeout=timeout)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify_rest_client/client.py", line 191, in _do_request
+    self._raise_client_error(response, request_url)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify_rest_client/client.py", line 144, in _raise_client_error
+    response=response)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify_rest_client/client.py", line 156, in _prepare_and_raise_exception
+    status_code, error_code=error_code, response=response)
+CloudifyClientError: 409: Node instance update conflict [current version=3, update version=2]
+
+2019-08-10 15:46:53.247  CFY <gcp> [config-database_kyojog] Deleted node instance
+2019-08-10 15:46:53.592  CFY <gcp> [firewall_7wsn0c] Unlinking relationships
+2019-08-10 15:46:53.638  CFY <gcp> [config-wordpress_x2xh6u->vm-app2_g2iin6|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 15:46:53.818  CFY <gcp> [config-wordpress_x2xh6u->vm-app1_vig1ke|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 15:46:54.753  CFY <gcp> [firewall_7wsn0c] Relationships unlinked
+2019-08-10 15:46:54.983  CFY <gcp> [firewall_7wsn0c] Deleting node instance
+2019-08-10 15:46:55.624  CFY <gcp> [firewall_7wsn0c.delete] Sending task 'cloudify_gcp.compute.firewall.delete'
+2019-08-10 15:46:56.878  CFY <gcp> [config-wordpress_x2xh6u->vm-app1_vig1ke|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 15:46:57.401  CFY <gcp> [vm-app2_g2iin6] Validating node instance after deletion: nothing to do
+2019-08-10 15:46:57.527  CFY <gcp> [vm-app1_vig1ke] Validating node instance after deletion: nothing to do
+2019-08-10 15:46:57.945  CFY <gcp> [vm-app2_g2iin6] Stop: instance already uninitialized
+2019-08-10 15:46:58.047  CFY <gcp> [vm-app1_vig1ke] Stop: instance already uninitialized
+2019-08-10 15:46:58.399  LOG <gcp> [firewall_7wsn0c.delete] INFO: Delete firewall rule firewall-7wsn0c from network https://www.googleapis.com/compute/v1/projects/node2faas-248113/global/networks/network-b0tp45
+2019-08-10 15:46:58.767  CFY <gcp> [vm-app2_g2iin6] Delete: instance already uninitialized
+2019-08-10 15:46:58.859  CFY <gcp> [vm-app1_vig1ke] Delete: instance already uninitialized
+2019-08-10 15:46:58.918  CFY <gcp> [vm-app2_g2iin6] Deleted node instance
+2019-08-10 15:46:59.486  CFY <gcp> [vm-app1_vig1ke] Deleted node instance
+2019-08-10 15:47:00.029  CFY <gcp> [vm-database_rr78tm] Stopping node instance
+2019-08-10 15:47:00.150  CFY <gcp> [vm-database_rr78tm] Validating node instance after deletion: nothing to do
+2019-08-10 15:47:00.432  CFY <gcp> [vm-database_rr78tm] Stopped node instance: nothing to do
+2019-08-10 15:47:01.092  CFY <gcp> [vm-database_rr78tm] Unlinking relationships
+2019-08-10 15:47:01.147  CFY <gcp> [firewall_7wsn0c.delete] Task succeeded 'cloudify_gcp.compute.firewall.delete'
+2019-08-10 15:47:01.400  CFY <gcp> [firewall_7wsn0c] Deleted node instance
+2019-08-10 15:47:01.453  CFY <gcp> [vm-database_rr78tm] Relationships unlinked
+2019-08-10 15:47:01.707  CFY <gcp> [vm-database_rr78tm] Deleting node instance
+2019-08-10 15:47:02.034  CFY <gcp> [vm-database_rr78tm.delete] Sending task 'cloudify_gcp.compute.instance.delete'
+2019-08-10 15:47:04.066  LOG <gcp> [vm-database_rr78tm.delete] INFO: Delete instance wordpressdatabase
+2019-08-10 15:47:06.050  LOG <gcp> [vm-database_rr78tm.delete] ERROR: Error traceback Traceback (most recent call last):
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/utils.py", line 262, in _decorator
+    return func(*args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/compute/instance.py", line 457, in delete
+    utils.delete_if_not_external(instance)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/utils.py", line 175, in delete_if_not_external
+    return resource.delete()
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/utils.py", line 233, in wrapper
+    response = func(self, *args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/gcp.py", line 34, in _decorator
+    response = func(self, *args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/compute/instance.py", line 133, in delete
+    instance=self.name).execute()
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/oauth2client/util.py", line 137, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/googleapiclient/http.py", line 832, in execute
+    raise HttpError(resp, content, uri=self.uri)
+HttpError: <HttpError 404 when requesting https://www.googleapis.com/compute/v1/projects/node2faas-248113/zones/us-east4-c/instances/wordpressdatabase?alt=json returned "The resource 'projects/node2faas-248113/zones/us-east4-c/instances/wordpressdatabase' was not found">
+ with message <HttpError 404 when requesting https://www.googleapis.com/compute/v1/projects/node2faas-248113/zones/us-east4-c/instances/wordpressdatabase?alt=json returned "The resource 'projects/node2faas-248113/zones/us-east4-c/instances/wordpressdatabase' was not found">
+2019-08-10 15:47:06.050  LOG <gcp> [vm-database_rr78tm.delete] ERROR: Error Message 
+2019-08-10 15:47:06.693  CFY <gcp> [vm-database_rr78tm.delete] Task failed 'cloudify_gcp.compute.instance.delete'
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/utils.py", line 277, in _decorator
+    raise NonRecoverableError(error.message)
+NonRecoverableError
+
+2019-08-10 15:47:06.695  CFY <gcp> [vm-database_rr78tm] Deleted node instance
+2019-08-10 15:47:07.132  CFY <gcp> [subnet_hhybp6] Stopping node instance
+2019-08-10 15:47:07.444  CFY <gcp> [subnet_hhybp6] Validating node instance after deletion: nothing to do
+2019-08-10 15:47:07.518  CFY <gcp> [subnet_hhybp6] Stopped node instance: nothing to do
+2019-08-10 15:47:07.842  CFY <gcp> [subnet_hhybp6] Unlinking relationships
+2019-08-10 15:47:08.114  CFY <gcp> [subnet_hhybp6] Relationships unlinked
+2019-08-10 15:47:08.181  CFY <gcp> [subnet_hhybp6] Deleting node instance
+2019-08-10 15:47:08.548  CFY <gcp> [subnet_hhybp6.delete] Sending task 'cloudify_gcp.compute.subnetwork.delete'
+2019-08-10 15:47:10.872  LOG <gcp> [subnet_hhybp6.delete] INFO: Delete subnetwork subnet-hhybp6
+2019-08-10 15:47:13.436  CFY <gcp> [subnet_hhybp6.delete] Task rescheduled 'cloudify_gcp.compute.subnetwork.delete' -> Operation started
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation started
+
+2019-08-10 15:47:28.567  CFY <gcp> [subnet_hhybp6.delete] Sending task 'cloudify_gcp.compute.subnetwork.delete' [retry 1/60]
+2019-08-10 15:47:32.725  CFY <gcp> [subnet_hhybp6.delete] Task rescheduled 'cloudify_gcp.compute.subnetwork.delete' -> Operation not completed yet: RUNNING [retry_after=30] [retry 1/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation not completed yet: RUNNING [retry_after=30]
+
+2019-08-10 15:48:02.869  CFY <gcp> [subnet_hhybp6.delete] Sending task 'cloudify_gcp.compute.subnetwork.delete' [retry 2/60]
+2019-08-10 15:48:06.727  CFY <gcp> [subnet_hhybp6.delete] Task succeeded 'cloudify_gcp.compute.subnetwork.delete' [retry 2/60]
+2019-08-10 15:48:07.000  CFY <gcp> [subnet_hhybp6] Deleted node instance
+2019-08-10 15:48:07.298  CFY <gcp> [network_b0tp45] Stopping node instance
+2019-08-10 15:48:07.606  CFY <gcp> [network_b0tp45] Validating node instance after deletion: nothing to do
+2019-08-10 15:48:07.687  CFY <gcp> [network_b0tp45] Stopped node instance: nothing to do
+2019-08-10 15:48:08.018  CFY <gcp> [network_b0tp45] Unlinking relationships
+2019-08-10 15:48:08.292  CFY <gcp> [network_b0tp45] Relationships unlinked
+2019-08-10 15:48:08.475  CFY <gcp> [network_b0tp45] Deleting node instance
+2019-08-10 15:48:09.161  CFY <gcp> [network_b0tp45.delete] Sending task 'cloudify_gcp.compute.network.delete'
+2019-08-10 15:48:11.039  LOG <gcp> [network_b0tp45.delete] INFO: Delete network network-b0tp45
+2019-08-10 15:48:13.083  CFY <gcp> [network_b0tp45.delete] Task rescheduled 'cloudify_gcp.compute.network.delete' -> Operation started
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation started
+
+2019-08-10 15:48:28.190  CFY <gcp> [network_b0tp45.delete] Sending task 'cloudify_gcp.compute.network.delete' [retry 1/60]
+2019-08-10 15:48:32.123  CFY <gcp> [network_b0tp45.delete] Task rescheduled 'cloudify_gcp.compute.network.delete' -> Operation not completed yet: RUNNING [retry_after=30] [retry 1/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation not completed yet: RUNNING [retry_after=30]
+
+2019-08-10 15:49:02.215  CFY <gcp> [network_b0tp45.delete] Sending task 'cloudify_gcp.compute.network.delete' [retry 2/60]
+2019-08-10 15:49:06.502  CFY <gcp> [network_b0tp45.delete] Task succeeded 'cloudify_gcp.compute.network.delete' [retry 2/60]
+2019-08-10 15:49:06.748  CFY <gcp> [network_b0tp45] Deleted node instance
+2019-08-10 15:49:07.025  CFY <gcp> 'uninstall' workflow execution succeeded
+Finished executing workflow uninstall on deployment gcp
+* Run 'cfy events list 5ffa4509-ca40-408b-84e9-b9e2cf06a453' to retrieve the execution's events/logs
+Trying to delete deployment gcp...
+Deployment deleted
+Deleting blueprint cloudify-wordpress-blueprint-gcp...
+Blueprint deleted

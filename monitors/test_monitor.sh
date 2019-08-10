@@ -1,5 +1,6 @@
 free | grep Mem | awk -F' ' '{print $2}' > /tmp/temp_mem_total
 free | grep Mem | awk -F' ' '{print $3}' > /tmp/temp_mem_initial
+date +%s > /tmp/temp_time_init
 echo $$ > /tmp/temp_monitor_pid
 echo 0 > /tmp/temp_count
 echo 0 > /tmp/temp_mem_amount

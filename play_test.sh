@@ -15,26 +15,15 @@ list_azure_region='EastUS UKSouth BrazilSouth'
 ########## Executions ##########
 test_executions=3
 
-########## Terraform Init ##########
-echo "Terraform Init..."
-for i in $list_providers; do
-  echo "($i)..."
-  cd terraform/$i
-  terraform init
-  terraform destroy --auto-approve
-  cd ../../
-done
-
 echo "Starting tests..."
 EXEC_DATE=$(date +%Y-%m-%d-%H-%I-%S)
 mkdir -p executions/${EXEC_DATE}
-echo "date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net" > executions/${EXEC_DATE}/results
+echo "date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net,duration" > executions/${EXEC_DATE}/results
 execution=1
 while [ $execution -le $test_executions ]; do
   for orchestrator in $list_orchestrators; do
+    source $orchestrator/cleanup.sh
     for provider in $list_providers; do
-      cd ${orchestrator}/${provider}
-      pwd
       case  $provider  in
         aws)
            list_region=$list_aws_region
@@ -70,41 +59,50 @@ while [ $execution -le $test_executions ]; do
           zone=-a
           ;;
           ##Azure
-          'East US')
-          zone=-a
+          'EastUS')
+          zone=
           ;;
-          'UK South')
-          zone=-a
+          'UKSouth')
+          zone=
           ;;
-          'Brazil South')
-          zone=-a
+          'BrazilSouth')
+          zone=
           ;;
 	*)
 	esac
         case $orchestrator in
           cloudify)
-            echo "Cleaning Cloudify Managers..."
-            for i in $list_providers; do
-              echo "Cleaning Cloudify Manager ($i)..."
-              cfy uninstall -f -v -p ignore_failure=true $i
-              cfy deployment delete $i
-              cfy blueprints delete cloudify-wordpress-blueprint-$i
-            done
-            INPUTS="${provider}_region_name='$(echo $region | sed -e 's/_/ /g')'"
+            #echo "Cleaning Cloudify Managers..."
+            #for i in $list_providers; do
+            #  echo "Cleaning Cloudify Manager ($i)..."
+            #  cfy uninstall -f -v -p ignore_failure=true $i
+            #  cfy deployment delete $i
+            #  cfy blueprints delete cloudify-wordpress-blueprint-$i
+            #done
+            INPUTS="${provider}_region_name=$region"
             cmd_provision="cfy install -b cloudify-wordpress-blueprint-${provider} -d $provider -i ${INPUTS} cloudify/${provider}.yaml"
-            cmd_provision2="sleep 0"
             cmd_unprovision="cfy uninstall -f -v -p ignore_failure=true ${provider}"
-            cmd_unprovision2="sleep 0"
 	          ;;
           terraform)
-            region=$(echo $region | sed -e 's/_/ /g')
+	    ########## Terraform Init ##########
+	    cd ${orchestrator}/${provider}
+            echo "Terraform Init..."
+            for i in $list_providers; do
+              echo "($i)..."
+              cd terraform/$i
+              terraform init
+              terraform destroy --auto-approve
+              cd ../../
+            done
             cmd_provision="terraform apply --var region_name=${region} --var availability_zone=${region}${zone} --auto-approve"
             cmd_unprovision='terraform destroy --auto-approve'
             ;;
           *)
         esac
         echo -e "\n${orchestrator} - ${provider} - ${region} - ${execution}"
-        LOCAL=../../executions/${EXEC_DATE}/${orchestrator}/${provider}/${region}/${execution}
+        LOCAL=executions/${EXEC_DATE}/${orchestrator}/${provider}/${region}/${execution}
+        pwd
+        echo $LOCAL
         mkdir -p $LOCAL
         touch $LOCAL/provision.log
         touch $LOCAL/unprovision.log
@@ -118,7 +116,6 @@ while [ $execution -le $test_executions ]; do
         $cmd_unprovision  2>&1 | tee -a $LOCAL/unprovision.log
         kill -9 $monitor_pid &> /dev/null
       done
-      cd ../..
     done
   done
 execution=$((execution + 1))

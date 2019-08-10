@@ -1,0 +1,42 @@
+Executing workflow `uninstall` on deployment `gcp` [timeout=900 seconds]
+2019-08-10 16:02:15.004  CFY <gcp> Starting 'uninstall' workflow execution
+2019-08-10 16:02:16.084  CFY <gcp> [firewall_lfrop9] Stopping node instance
+2019-08-10 16:02:16.224  CFY <gcp> [config-database_rotse4] Validating node instance after deletion: nothing to do
+2019-08-10 16:02:16.336  CFY <gcp> [config-database_rotse4->vm-database_b64o3p|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 16:02:17.212  CFY <gcp> [config-wordpress_vc789j] Validating node instance after deletion: nothing to do
+2019-08-10 16:02:17.265  CFY <gcp> [config-wordpress_vc789j->vm-app2_gydv5k|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 16:02:18.493  CFY <gcp> [firewall_lfrop9] Validating node instance after deletion: nothing to do
+2019-08-10 16:02:18.698  CFY <gcp> [config-wordpress_vc789j] Stop: instance already uninitialized
+2019-08-10 16:02:18.977  CFY <gcp> [config-database_rotse4] Stop: instance already uninitialized
+2019-08-10 16:02:19.195  CFY <gcp> [firewall_lfrop9] Stopped node instance: nothing to do
+2019-08-10 16:02:21.600  CFY <gcp> [config-wordpress_vc789j] Delete: instance already uninitialized
+2019-08-10 16:02:22.015  CFY <gcp> [config-database_rotse4] Delete: instance already uninitialized
+2019-08-10 16:02:22.388  CFY <gcp> [firewall_lfrop9] Unlinking relationships
+2019-08-10 16:02:23.036  CFY <gcp> [config-database_rotse4->vm-database_b64o3p|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 16:02:23.705  CFY <gcp> [config-wordpress_vc789j] Deleted node instance
+2019-08-10 16:02:24.343  CFY <gcp> [config-database_rotse4] Deleted node instance
+2019-08-10 16:02:24.403  CFY <gcp> [firewall_lfrop9] Relationships unlinked
+2019-08-10 16:02:24.667  CFY <gcp> [config-wordpress_vc789j->vm-app2_gydv5k|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 16:02:24.791  CFY <gcp> [firewall_lfrop9] Deleting node instance
+2019-08-10 16:02:24.954  CFY <gcp> [config-wordpress_vc789j->vm-app1_06x7zs|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 16:02:26.503  CFY <gcp> [firewall_lfrop9.delete] Sending task 'cloudify_gcp.compute.firewall.delete'
+2019-08-10 16:02:27.589  CFY <gcp> [config-wordpress_vc789j->vm-app1_06x7zs|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-10 16:02:28.314  CFY <gcp> [vm-app2_gydv5k] Validating node instance after deletion: nothing to do
+2019-08-10 16:02:28.474  CFY <gcp> [vm-app1_06x7zs] Validating node instance after deletion: nothing to do
+2019-08-10 16:02:28.575  CFY <gcp> [vm-app2_gydv5k] Stop: instance already uninitialized
+2019-08-10 16:02:29.199  CFY <gcp> [vm-app1_06x7zs] Stop: instance already uninitialized
+2019-08-10 16:02:29.398  CFY <gcp> [vm-app2_gydv5k] Delete: instance already uninitialized
+2019-08-10 16:02:30.087  CFY <gcp> [vm-app2_gydv5k] Deleted node instance
+2019-08-10 16:02:30.087  CFY <gcp> [vm-app2_gydv5k] Deleted node instance
+2019-08-10 16:02:30.722  CFY <gcp> [vm-app1_06x7zs] Delete: instance already uninitialized
+2019-08-10 16:02:31.408  CFY <gcp> [vm-app1_06x7zs] Deleted node instance
+2019-08-10 16:02:31.690  CFY <gcp> [vm-database_b64o3p] Stopping node instance
+2019-08-10 16:02:32.010  CFY <gcp> [vm-database_b64o3p] Validating node instance after deletion: nothing to do
+2019-08-10 16:02:32.326  CFY <gcp> [vm-database_b64o3p] Stopped node instance: nothing to do
+2019-08-10 16:02:32.615  CFY <gcp> [vm-database_b64o3p] Unlinking relationships
+2019-08-10 16:02:33.071  CFY <gcp> [vm-database_b64o3p] Relationships unlinked
+2019-08-10 16:02:33.266  CFY <gcp> [vm-database_b64o3p] Deleting node instance
+2019-08-10 16:02:33.289  CFY <gcp> [firewall_lfrop9.delete] Task succeeded 'cloudify_gcp.compute.firewall.delete'
+2019-08-10 16:02:33.488  CFY <gcp> [firewall_lfrop9] Deleted node instance
+2019-08-10 16:02:33.811  CFY <gcp> [vm-database_b64o3p.delete] Sending task 'cloudify_gcp.compute.instance.delete'
+2019-08-10 16:02:35.722  LOG <gcp> [vm-database_b64o3p.delete] INFO: Delete instance wordpressdatabase

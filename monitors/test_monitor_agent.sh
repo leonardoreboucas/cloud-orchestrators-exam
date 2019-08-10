@@ -25,4 +25,9 @@ MEM=$(bc -l <<<"`cat ${PREFIX}mem_amount`/`cat ${PREFIX}count`/1024")
 IO=$(cat ${PREFIX}io_amount)
 NET=$(cat ${PREFIX}net_amount)
 
-echo "$1,$2,$3,$4,$5,$6,$(date +%s),$(printf '%.*f\n' 2 ${CPU}),$(printf '%.*f\n' 2 ${MEM}),$(printf '%.*f\n' 2 ${IO}),$(printf '%.*f\n' 2 ${NET})" >> ../../executions/$1/results
+#Duration
+SPENT=$(bc -l <<<"(`date +%s`-`cat ${PREFIX}time_init`)/60")
+
+echo "DURATION=$SPENT"
+
+echo "$1,$2,$3,$4,$5,$6,$(date +%s),$(printf '%.*f\n' 2 ${CPU}),$(printf '%.*f\n' 2 ${MEM}),$(printf '%.*f\n' 2 ${IO}),$(printf '%.*f\n' 2 ${NET}),$(printf '%.*f\n' 2 ${SPENT})" >> executions/$1/results
