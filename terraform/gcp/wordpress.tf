@@ -65,6 +65,11 @@ resource "random_id" "bp_suffix" {
   byte_length = 4
 }
 
+resource "google_compute_network" "wordpress-network" {
+  name = "wordpress-network"
+  auto_create_subnetworks = false
+}
+
 output "apply-finished-wp" {
   value = "true"
 }
