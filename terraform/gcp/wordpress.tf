@@ -13,12 +13,10 @@ variable "project" {
 
 variable "region_name" {
   type    = string
-  default = "us-central1"
 }
 
 variable "availability_zone" {
   type    = string
-  default = "us-central1-a"
 }
 
 variable "admin_username" {

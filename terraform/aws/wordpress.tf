@@ -16,12 +16,10 @@ variable "aws_secret_key" {
 
 variable "region_name" {
   type    = string
-  default = "us-east-1"
 }
 
 variable "availability_zone" {
   type    = string
-  default = "us-east-1a"
 }
 
 variable "db_name" {
