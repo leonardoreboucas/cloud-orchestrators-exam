@@ -7,10 +7,12 @@ mkdir -p $LOCAL
 touch $LOCAL/provision.log
 test_monitor.sh $RESULTS ${EXEC_DATE} provision ${orchestrator} ${provider} ${region} ${execution} &
 monitor_pid=$!
+cd ${DIR}/${orchestrator}/${provider}
 $cmd_provision  2>&1 | tee -a $LOCAL/provision.log
+cd -
 kill -9 $monitor_pid &> /dev/null
 ### provision - end
-echo "waiting to unprovision..."
+echo "waiting for unprovision..."
 sleep 10
 ### unprovision - begin
 touch $LOCAL/unprovision.log
