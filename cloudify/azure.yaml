@@ -468,3 +468,7 @@ outputs:
   database_endpoint:
     description: The external endpoint of the database.
     value: { concat: [ '', { get_attribute: [ vm-database, public_ip ] }, '' ] }
+
+  check_finish:
+    description: apply-finished-wp
+    value: true

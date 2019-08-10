@@ -366,3 +366,7 @@ outputs:
   database_endpoint:
     description: The external endpoint of the database.
     value: { concat: [ '', { get_attribute: [ ipdb, aws_resource_id ] }, '' ] }
+
+  check_finish:
+    description: apply-finished-wp
+    value: true
