@@ -426,3 +426,7 @@ output "App2-addres" {
 output "Database-addres" {
   value = "${azurerm_public_ip.static-ip-database.ip_address}"
 }
+
+output "apply-finished-wp" {
+  value = "true"
+}

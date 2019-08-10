@@ -344,3 +344,7 @@ output "App2-address" {
 output "Database-address" {
   value = "${aws_instance.wordpress-database.public_ip}"
 }
+
+output "apply-finished-wp" {
+  value = "true"
+}

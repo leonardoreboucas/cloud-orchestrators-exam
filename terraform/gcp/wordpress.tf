@@ -303,3 +303,7 @@ output "App2-addres" {
 output "Database-addres" {
   value = "${google_compute_instance.wordpress-database.network_interface.0.access_config.0.nat_ip}"
 }
+
+output "apply-finished-wp" {
+  value = "true"
+}
