@@ -1,0 +1,73 @@
+Uploading blueprint cloudify/gcp.yaml...
+ gcp.yaml |############################################################| 100.0%
+Blueprint uploaded. The blueprint's id is cloudify-wordpress-blueprint-gcp
+Creating new deployment from blueprint cloudify-wordpress-blueprint-gcp...
+Deployment created. The deployment's id is gcp
+Executing workflow `install` on deployment `gcp` [timeout=900 seconds]
+Deployment environment creation is pending...
+2019-08-10 17:23:45.412  CFY <gcp> Starting 'create_deployment_environment' workflow execution
+2019-08-10 17:23:45.415  CFY <gcp> Installing deployment and workflow plugins
+2019-08-10 17:23:45.516  CFY <gcp> Sending task 'cloudify_agent.operations.install_plugins'
+2019-08-10 17:23:45.532  CFY <gcp> Task started 'cloudify_agent.operations.install_plugins'
+2019-08-10 17:23:45.862  LOG <gcp> INFO: Installing plugin: gcp_plugin
+2019-08-10 17:23:46.903  LOG <gcp> INFO: Using existing installation of managed plugin: e0a99ba4-54d6-4741-a773-4ec378dc8634 [package_name: cloudify-gcp-plugin, package_version: 1.4.4, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-10 17:23:46.904  LOG <gcp> INFO: Installing plugin: ansible
+2019-08-10 17:23:48.146  LOG <gcp> INFO: Using existing installation of managed plugin: 7142c593-6e52-429a-8a71-55266c022e02 [package_name: cloudify-ansible-plugin, package_version: 2.4.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-10 17:23:48.146  LOG <gcp> INFO: Installing plugin: suspend
+2019-08-10 17:23:48.978  LOG <gcp> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-10 17:23:48.978  LOG <gcp> INFO: Installing plugin: scalelist
+2019-08-10 17:23:49.805  LOG <gcp> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-10 17:23:49.806  LOG <gcp> INFO: Installing plugin: configuration
+2019-08-10 17:23:50.616  LOG <gcp> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-10 17:23:50.617  CFY <gcp> Task succeeded 'cloudify_agent.operations.install_plugins'
+2019-08-10 17:23:50.732  CFY <gcp> Creating deployment work directory
+2019-08-10 17:23:51.029  CFY <gcp> 'create_deployment_environment' workflow execution succeeded
+2019-08-10 17:23:56.202  CFY <gcp> Starting 'install' workflow execution
+2019-08-10 17:23:58.012  CFY <gcp> [network_qfzdti] Validating node instance before creation: nothing to do
+2019-08-10 17:23:58.077  CFY <gcp> [network_qfzdti] Precreating node instance: nothing to do
+2019-08-10 17:23:58.352  CFY <gcp> [network_qfzdti] Creating node instance
+2019-08-10 17:23:58.661  CFY <gcp> [network_qfzdti.create] Sending task 'cloudify_gcp.compute.network.create'
+2019-08-10 17:24:00.671  LOG <gcp> [network_qfzdti.create] INFO: Create network network-qfzdti
+2019-08-10 17:24:03.354  CFY <gcp> [network_qfzdti.create] Task rescheduled 'cloudify_gcp.compute.network.create' -> Operation started
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation started
+
+2019-08-10 17:24:18.464  CFY <gcp> [network_qfzdti.create] Sending task 'cloudify_gcp.compute.network.create' [retry 1/60]
+2019-08-10 17:24:21.744  LOG <gcp> [network_qfzdti.create] INFO: Get network network-qfzdti details
+2019-08-10 17:24:23.525  CFY <gcp> [network_qfzdti.create] Task succeeded 'cloudify_gcp.compute.network.create' [retry 1/60]
+2019-08-10 17:24:23.745  CFY <gcp> [network_qfzdti] Node instance created
+2019-08-10 17:24:23.869  CFY <gcp> [network_qfzdti] Configuring node instance: nothing to do
+2019-08-10 17:24:23.959  CFY <gcp> [network_qfzdti] Starting node instance: nothing to do
+2019-08-10 17:24:24.051  CFY <gcp> [network_qfzdti] Poststarting node instance: nothing to do
+2019-08-10 17:24:24.153  CFY <gcp> [network_qfzdti] Node instance started
+2019-08-10 17:24:25.109  CFY <gcp> [subnet_qa5819] Validating node instance before creation
+2019-08-10 17:24:25.224  CFY <gcp> [subnet_qa5819.create] Sending task 'cloudify_gcp.compute.subnetwork.creation_validation'
+2019-08-10 17:24:26.060  CFY <gcp> [firewall_3e6r5s] Validating node instance before creation: nothing to do
+2019-08-10 17:24:26.246  CFY <gcp> [firewall_3e6r5s] Precreating node instance: nothing to do
+2019-08-10 17:24:26.654  CFY <gcp> [firewall_3e6r5s] Creating node instance
+2019-08-10 17:24:26.991  CFY <gcp> [firewall_3e6r5s.create] Sending task 'cloudify_gcp.compute.firewall.create'
+2019-08-10 17:24:29.155  CFY <gcp> [subnet_qa5819.create] Task succeeded 'cloudify_gcp.compute.subnetwork.creation_validation'
+2019-08-10 17:24:29.215  CFY <gcp> [subnet_qa5819] Node instance validated before creation
+2019-08-10 17:24:29.421  CFY <gcp> [subnet_qa5819] Precreating node instance: nothing to do
+2019-08-10 17:24:29.621  CFY <gcp> [subnet_qa5819] Creating node instance
+2019-08-10 17:24:30.693  CFY <gcp> [subnet_qa5819.create] Sending task 'cloudify_gcp.compute.subnetwork.create'
+2019-08-10 17:24:31.057  LOG <gcp> [firewall_3e6r5s.create] INFO: Create firewall rule firewall-3e6r5s in network https://www.googleapis.com/compute/v1/projects/node2faas-248113/global/networks/network-qfzdti
+2019-08-10 17:24:32.875  LOG <gcp> [subnet_qa5819.create] INFO: Create subnetwork subnet-qa5819
+2019-08-10 17:24:33.559  CFY <gcp> [firewall_3e6r5s.create] Task succeeded 'cloudify_gcp.compute.firewall.create'
+2019-08-10 17:24:33.784  CFY <gcp> [firewall_3e6r5s] Node instance created
+2019-08-10 17:24:33.970  CFY <gcp> [firewall_3e6r5s] Configuring node instance: nothing to do
+2019-08-10 17:24:34.032  CFY <gcp> [firewall_3e6r5s] Starting node instance: nothing to do
+2019-08-10 17:24:34.146  CFY <gcp> [firewall_3e6r5s] Poststarting node instance: nothing to do
+2019-08-10 17:24:34.410  CFY <gcp> [firewall_3e6r5s] Node instance started
+2019-08-10 17:24:35.833  CFY <gcp> [subnet_qa5819.create] Task rescheduled 'cloudify_gcp.compute.subnetwork.create' -> Operation started
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation started
+

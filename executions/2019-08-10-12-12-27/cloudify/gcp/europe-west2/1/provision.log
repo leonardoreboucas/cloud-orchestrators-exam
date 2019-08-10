@@ -1,0 +1,134 @@
+Uploading blueprint cloudify/gcp.yaml...
+ gcp.yaml |############################################################| 100.0%
+Blueprint uploaded. The blueprint's id is cloudify-wordpress-blueprint-gcp
+Creating new deployment from blueprint cloudify-wordpress-blueprint-gcp...
+Deployment created. The deployment's id is gcp
+Executing workflow `install` on deployment `gcp` [timeout=900 seconds]
+Deployment environment creation is pending...
+2019-08-10 16:54:50.170  CFY <gcp> Starting 'create_deployment_environment' workflow execution
+2019-08-10 16:54:50.182  CFY <gcp> Installing deployment and workflow plugins
+2019-08-10 16:54:50.276  CFY <gcp> Sending task 'cloudify_agent.operations.install_plugins'
+2019-08-10 16:54:50.298  CFY <gcp> Task started 'cloudify_agent.operations.install_plugins'
+2019-08-10 16:54:50.780  LOG <gcp> INFO: Installing plugin: gcp_plugin
+2019-08-10 16:54:53.318  LOG <gcp> INFO: Using existing installation of managed plugin: e0a99ba4-54d6-4741-a773-4ec378dc8634 [package_name: cloudify-gcp-plugin, package_version: 1.4.4, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-10 16:54:53.319  LOG <gcp> INFO: Installing plugin: ansible
+2019-08-10 16:54:54.900  LOG <gcp> INFO: Using existing installation of managed plugin: 7142c593-6e52-429a-8a71-55266c022e02 [package_name: cloudify-ansible-plugin, package_version: 2.4.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-10 16:54:54.900  LOG <gcp> INFO: Installing plugin: suspend
+2019-08-10 16:54:56.019  LOG <gcp> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-10 16:54:56.019  LOG <gcp> INFO: Installing plugin: scalelist
+2019-08-10 16:54:57.511  LOG <gcp> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-10 16:54:57.511  LOG <gcp> INFO: Installing plugin: configuration
+2019-08-10 16:54:58.908  LOG <gcp> INFO: Using existing installation of managed plugin: 62c3cd35-5a18-49fd-a670-48f9ad207b05 [package_name: cloudify-utilities-plugin, package_version: 1.14.0, supported_platform: linux_x86_64, distribution: centos, distribution_release: core]
+2019-08-10 16:54:58.909  CFY <gcp> Task succeeded 'cloudify_agent.operations.install_plugins'
+2019-08-10 16:54:58.942  CFY <gcp> Creating deployment work directory
+2019-08-10 16:54:59.390  CFY <gcp> 'create_deployment_environment' workflow execution succeeded
+2019-08-10 16:55:03.395  CFY <gcp> Starting 'install' workflow execution
+2019-08-10 16:55:06.943  CFY <gcp> [network_qixneu] Validating node instance before creation: nothing to do
+2019-08-10 16:55:07.143  CFY <gcp> [network_qixneu] Precreating node instance: nothing to do
+2019-08-10 16:55:07.228  CFY <gcp> [network_qixneu] Creating node instance
+2019-08-10 16:55:07.613  CFY <gcp> [network_qixneu.create] Sending task 'cloudify_gcp.compute.network.create'
+2019-08-10 16:55:10.121  LOG <gcp> [network_qixneu.create] INFO: Create network network-qixneu
+2019-08-10 16:55:13.028  CFY <gcp> [network_qixneu.create] Task rescheduled 'cloudify_gcp.compute.network.create' -> Operation started
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation started
+
+2019-08-10 16:55:28.181  CFY <gcp> [network_qixneu.create] Sending task 'cloudify_gcp.compute.network.create' [retry 1/60]
+2019-08-10 16:55:32.737  LOG <gcp> [network_qixneu.create] INFO: Get network network-qixneu details
+2019-08-10 16:55:34.511  CFY <gcp> [network_qixneu.create] Task succeeded 'cloudify_gcp.compute.network.create' [retry 1/60]
+2019-08-10 16:55:34.805  CFY <gcp> [network_qixneu] Node instance created
+2019-08-10 16:55:34.939  CFY <gcp> [network_qixneu] Configuring node instance: nothing to do
+2019-08-10 16:55:35.039  CFY <gcp> [network_qixneu] Starting node instance: nothing to do
+2019-08-10 16:55:35.143  CFY <gcp> [network_qixneu] Poststarting node instance: nothing to do
+2019-08-10 16:55:35.662  CFY <gcp> [network_qixneu] Node instance started
+2019-08-10 16:55:36.677  CFY <gcp> [firewall_nssidt] Validating node instance before creation: nothing to do
+2019-08-10 16:55:36.806  CFY <gcp> [subnet_69herk] Validating node instance before creation
+2019-08-10 16:55:36.886  CFY <gcp> [firewall_nssidt] Precreating node instance: nothing to do
+2019-08-10 16:55:37.131  CFY <gcp> [subnet_69herk.create] Sending task 'cloudify_gcp.compute.subnetwork.creation_validation'
+2019-08-10 16:55:37.281  CFY <gcp> [firewall_nssidt] Creating node instance
+2019-08-10 16:55:38.199  CFY <gcp> [firewall_nssidt.create] Sending task 'cloudify_gcp.compute.firewall.create'
+2019-08-10 16:55:41.594  CFY <gcp> [subnet_69herk.create] Task succeeded 'cloudify_gcp.compute.subnetwork.creation_validation'
+2019-08-10 16:55:41.725  CFY <gcp> [subnet_69herk] Node instance validated before creation
+2019-08-10 16:55:41.909  CFY <gcp> [subnet_69herk] Precreating node instance: nothing to do
+2019-08-10 16:55:42.129  CFY <gcp> [subnet_69herk] Creating node instance
+2019-08-10 16:55:43.107  CFY <gcp> [subnet_69herk.create] Sending task 'cloudify_gcp.compute.subnetwork.create'
+2019-08-10 16:55:43.107  CFY <gcp> [subnet_69herk.create] Sending task 'cloudify_gcp.compute.subnetwork.create'
+2019-08-10 16:55:45.792  CFY <gcp> [firewall_nssidt.create] Task succeeded 'cloudify_gcp.compute.firewall.create'
+2019-08-10 16:55:46.245  CFY <gcp> [firewall_nssidt] Node instance created
+2019-08-10 16:55:46.467  CFY <gcp> [firewall_nssidt] Configuring node instance: nothing to do
+2019-08-10 16:55:46.785  CFY <gcp> [firewall_nssidt] Starting node instance: nothing to do
+2019-08-10 16:55:47.080  CFY <gcp> [firewall_nssidt] Poststarting node instance: nothing to do
+2019-08-10 16:55:47.080  CFY <gcp> [firewall_nssidt] Poststarting node instance: nothing to do
+2019-08-10 16:55:47.288  CFY <gcp> [firewall_nssidt] Node instance started
+2019-08-10 16:55:50.953  CFY <gcp> [subnet_69herk.create] Task rescheduled 'cloudify_gcp.compute.subnetwork.create' -> Operation started
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation started
+
+2019-08-10 16:56:06.086  CFY <gcp> [subnet_69herk.create] Sending task 'cloudify_gcp.compute.subnetwork.create' [retry 1/60]
+2019-08-10 16:56:09.854  LOG <gcp> [subnet_69herk.create] INFO: Get subnetwork subnet-69herk details
+2019-08-10 16:56:11.969  CFY <gcp> [subnet_69herk.create] Task succeeded 'cloudify_gcp.compute.subnetwork.create' [retry 1/60]
+2019-08-10 16:56:12.314  CFY <gcp> [subnet_69herk] Node instance created
+2019-08-10 16:56:12.506  CFY <gcp> [subnet_69herk] Configuring node instance: nothing to do
+2019-08-10 16:56:12.713  CFY <gcp> [subnet_69herk] Starting node instance: nothing to do
+2019-08-10 16:56:12.905  CFY <gcp> [subnet_69herk] Poststarting node instance: nothing to do
+2019-08-10 16:56:12.994  CFY <gcp> [subnet_69herk] Node instance started
+2019-08-10 16:56:14.313  CFY <gcp> [vm-database_ilb40p] Validating node instance before creation: nothing to do
+2019-08-10 16:56:14.484  CFY <gcp> [vm-database_ilb40p] Precreating node instance: nothing to do
+2019-08-10 16:56:14.792  CFY <gcp> [vm-database_ilb40p] Creating node instance
+2019-08-10 16:56:14.977  CFY <gcp> [vm-database_ilb40p.create] Sending task 'script_runner.tasks.run'
+2019-08-10 16:56:17.423  LOG <gcp> [vm-database_ilb40p.create] INFO: Downloaded scripts/gcp/key.py to /tmp/R7Q0M/key.py
+2019-08-10 16:56:18.669  CFY <gcp> [vm-database_ilb40p.create] Task succeeded 'script_runner.tasks.run'
+2019-08-10 16:56:18.962  CFY <gcp> [vm-database_ilb40p] Node instance created
+2019-08-10 16:56:19.481  CFY <gcp> [vm-database_ilb40p] Configuring node instance
+2019-08-10 16:56:19.773  CFY <gcp> [vm-database_ilb40p.configure] Sending task 'cloudify_gcp.compute.instance.create'
+2019-08-10 16:56:22.846  LOG <gcp> [vm-database_ilb40p.configure] INFO: The script is 
+2019-08-10 16:56:23.462  LOG <gcp> [vm-database_ilb40p.configure] INFO: Adding bucket to metadata
+2019-08-10 16:56:23.462  LOG <gcp> [vm-database_ilb40p.configure] INFO: Adding sshKeys to metadata
+2019-08-10 16:56:26.761  CFY <gcp> [vm-database_ilb40p.configure] Task rescheduled 'cloudify_gcp.compute.instance.create' -> Operation started
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation started
+
+2019-08-10 16:56:42.021  CFY <gcp> [vm-database_ilb40p.configure] Sending task 'cloudify_gcp.compute.instance.create' [retry 1/60]
+2019-08-10 16:56:45.245  LOG <gcp> [vm-database_ilb40p.configure] INFO: The script is 
+2019-08-10 16:56:46.940  LOG <gcp> [vm-database_ilb40p.configure] ERROR: Response with error {u'errors': [{u'message': u"The resource '482761649285-compute@developer.gserviceaccount.com' of type 'serviceAccount' was not found.", u'code': u'EXTERNAL_RESOURCE_NOT_FOUND'}]}
+2019-08-10 16:56:46.940  LOG <gcp> [vm-database_ilb40p.configure] ERROR: Error Message {u'errors': [{u'message': u"The resource '482761649285-compute@developer.gserviceaccount.com' of type 'serviceAccount' was not found.", u'code': u'EXTERNAL_RESOURCE_NOT_FOUND'}]}
+2019-08-10 16:56:47.680  CFY <gcp> [vm-database_ilb40p.configure] Task failed 'cloudify_gcp.compute.instance.create' -> {u'errors': [{u'message': u"The resource '482761649285-compute@developer.gserviceaccount.com' of type 'serviceAccount' was not found.", u'code': u'EXTERNAL_RESOURCE_NOT_FOUND'}]} [retry 1/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-gcp-plugin-1.4.4/lib/python2.7/site-packages/cloudify_gcp/utils.py", line 267, in _decorator
+    raise NonRecoverableError(e.message)
+NonRecoverableError: {u'errors': [{u'message': u"The resource '482761649285-compute@developer.gserviceaccount.com' of type 'serviceAccount' was not found.", u'code': u'EXTERNAL_RESOURCE_NOT_FOUND'}]}
+
+2019-08-10 16:56:48.145  CFY <gcp> 'install' workflow execution failed: RuntimeError: Workflow failed: Task failed 'cloudify_gcp.compute.instance.create' -> {u'errors': [{u'message': u"The resource '482761649285-compute@developer.gserviceaccount.com' of type 'serviceAccount' was not found.", u'code': u'EXTERNAL_RESOURCE_NOT_FOUND'}]}
+Execution of workflow install for deployment gcp failed. [error=Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 664, in _remote_workflow_child_thread
+    workflow_result = self._execute_workflow_function()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 693, in _execute_workflow_function
+    result = self.func(*self.args, **self.kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/plugins/workflows.py", line 31, in install
+    node_instances=set(ctx.node_instances))
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/plugins/lifecycle.py", line 29, in install_node_instances
+    processor.install()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/plugins/lifecycle.py", line 102, in install
+    graph.execute()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/workflows/tasks_graph.py", line 237, in execute
+    raise self._error
+RuntimeError: Workflow failed: Task failed 'cloudify_gcp.compute.instance.create' -> {u'errors': [{u'message': u"The resource '482761649285-compute@developer.gserviceaccount.com' of type 'serviceAccount' was not found.", u'code': u'EXTERNAL_RESOURCE_NOT_FOUND'}]}
+]
+* Run 'cfy events list 1244a288-72b0-42d2-b9c7-a3c19a755e44' to retrieve the execution's events/logs
