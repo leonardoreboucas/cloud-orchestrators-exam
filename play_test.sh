@@ -9,7 +9,7 @@ list_providers='aws gcp azure'
 ############ Regions ############
 # Virginia / London / São Paulo
 list_aws_region='us-east-1 eu-west-2 sa-east-1'
-list_gcp_region='us-east-4 europe-west-2 southamerica-east-1'
+list_gcp_region='us-east4 europe-west2 southamerica-east1'
 list_azure_region="'East US' 'UK South' 'Brazil South'"
 
 ########## Executions ##########
@@ -70,13 +70,13 @@ while [ $execution -le $test_executions ]; do
           zone=-a
           ;;
           ##Azure
-          us-east4)
+          'East US')
           zone=-a
           ;;
-          europe-west2)
+          'UK South')
           zone=-a
           ;;
-          southamerica-east1)
+          'Brazil South')
           zone=-a
           ;;
         case $orchestrator in
