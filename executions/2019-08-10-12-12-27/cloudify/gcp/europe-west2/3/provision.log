@@ -71,3 +71,5 @@ Traceback (most recent call last):
     raise ctx.operation._operation_retry
 OperationRetry: Operation started
 
+2019-08-10 17:24:50.895  CFY <gcp> [subnet_qa5819.create] Sending task 'cloudify_gcp.compute.subnetwork.create' [retry 1/60]
+2019-08-10 17:24:54.429  LOG <gcp> [subnet_qa5819.create] INFO: Get subnetwork subnet-qa5819 details
