@@ -1,4 +1,0 @@
-date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net,duration
-BEGIN PROVISION,terraform,gcp,us-east4,1,1565458537
-END PROVISION,terraform,gcp,us-east4,1,1565458537
-2019-08-10-13-01-37,provision,terraform,gcp,us-east4,1,1565458539,15.77,980778.41,0.00,2.68,0.03
