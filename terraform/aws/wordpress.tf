@@ -16,10 +16,12 @@ variable "aws_secret_key" {
 
 variable "region_name" {
   type    = string
+  default = ""
 }
 
 variable "availability_zone" {
   type    = string
+  default = ""
 }
 
 variable "db_name" {

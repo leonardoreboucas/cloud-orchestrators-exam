@@ -24,10 +24,12 @@ variable "azure_client_secret" {
 
 variable "region_name" {
     type    = string
+    default = ""
 }
 
 variable "availability_zone" {
     type    = string
+    default = ""
 }
 
 variable "admin_username" {
