@@ -4,10 +4,10 @@ echo -e "--------------------------------------------------------------"
 LOCAL=$DIR/executions/${EXEC_DATE}/${orchestrator}/${provider}/${region}/${execution}
 mkdir -p $LOCAL
 ### provision - begin
-PROVISION_SUCCESS=false
+PROVISION_RUN=true
 CONT=0
 RETRY=2
-while [ !$PROVISION_SUCCESS ] && [ $CONT -le $RETRY ]; do
+while [ $PROVISION_RUN ] && [ $CONT -le $RETRY ]; do
   echo "Starting provisioning process" > $LOCAL/provision.log
   test_monitor.sh ${RESULTS} ${EXEC_DATE} provision ${orchestrator} ${provider} ${region} ${execution} &
   monitor_pid=$!
@@ -23,12 +23,13 @@ while [ !$PROVISION_SUCCESS ] && [ $CONT -le $RETRY ]; do
     else
       echo "Retrying..."
     fi
+    CONT=$((CONT + 1))
     echo "failed" >> $RESULTS
     source test/cleanup.sh
   else
     echo "Provision successfully"
     echo "success" >> $RESULTS
-    PROVISION_SUCCESS=true
+    PROVISION_RUN=false
   fi
 done
 
