@@ -40,6 +40,6 @@ done
 echo "Cleaning up..."
 for orchestrator in $list_orchestrators; do
   source orchestrator/test/cleanup.sh
-do
+done
 rm -rf /tmp/temp*
 echo "Tests finished"
