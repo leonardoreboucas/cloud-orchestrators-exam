@@ -41,5 +41,4 @@ echo "Cleaning up..."
 for orchestrator in $list_orchestrators; do
   source orchestrator/test/cleanup.sh
 done
-rm -rf /tmp/temp*
 echo "Tests finished"
