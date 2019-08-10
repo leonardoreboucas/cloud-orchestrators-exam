@@ -4,7 +4,7 @@ source common/.set_credentials.sh
 list_orchestrators='terraform'
 
 ######### Providers ##########
-list_providers='aws'
+list_providers='gcp'
 
 ############ Regions ############
 # Virginia / London / São Paulo
