@@ -16,18 +16,18 @@ variable "project" {
 # Variables
 ###################
 
-variable "region" {
+variable "region_name" {
   type    = string
   default = "us-central1"
 }
 
-variable "zone" {
+variable "availability_zone" {
   type    = string
   default = "us-central1-a"
 }
 
 variable "admin_username" {
-    default = "manager"
+    default = "ubuntu"
 }
 
 variable "vm_image" {
@@ -62,12 +62,49 @@ variable "public_key" {
 provider "google" {
   credentials = "${file("${var.json_file}")}"
   project     = "${var.project}"
-  region      = "${var.region}"
+  region      = "${var.region_name}"
   zone        = "${var.zone}"
 }
 
 resource "random_id" "bp_suffix" {
   byte_length = 4
+}
+
+###################
+# Network layer
+###################
+
+resource "google_compute_network" "wordpress-network" {
+  name = "wordpress-network"
+  auto_create_subnetworks = false
+}
+
+resource "google_compute_subnetwork" "wordpress-subnetwork" {
+  name          = "wordpress-subnetwork"
+  ip_cidr_range = "10.2.0.0/16"
+  region        = "${var.region_name}"
+  network       = "${google_compute_network.wordpress-network.self_link}"
+}
+
+resource "google_compute_firewall" "default-in" {
+  name    = "wordpress-app-in"
+  network       = "${google_compute_network.wordpress-network.self_link}"
+  allow {
+    protocol = "tcp"
+    ports    = ["80","3306","22"]
+  }
+  target_tags = ["wordpress"]
+}
+
+resource "google_compute_firewall" "default-out" {
+  name      = "wordpress-app-out"
+  network       = "${google_compute_network.wordpress-network.self_link}"
+  direction = "EGRESS"
+  allow {
+    protocol = "tcp"
+    ports    = ["3306"]
+  }
+  target_tags = ["wordpress"]
 }
 
 ###################
@@ -94,7 +131,8 @@ resource "google_compute_instance" "wordpress-database" {
     }
     allow_stopping_for_update = true
     network_interface {
-      network = "default"
+      network     = "${google_compute_network.wordpress-network.self_link}"
+      subnetwork  = "${google_compute_subnetwork.wordpress-subnetwork.self_link}"
       access_config {}
     }
     metadata = {
@@ -149,7 +187,8 @@ resource "google_compute_instance" "wordpress-app1" {
     }
     allow_stopping_for_update = true
     network_interface {
-      network = "default"
+      network     = "${google_compute_network.wordpress-network.self_link}"
+      subnetwork  = "${google_compute_subnetwork.wordpress-subnetwork.self_link}"
       access_config {}
     }
     metadata = {
@@ -190,7 +229,8 @@ resource "google_compute_instance" "wordpress-app2" {
     }
     allow_stopping_for_update = true
     network_interface {
-      network = "default"
+      network     = "${google_compute_network.wordpress-network.self_link}"
+      subnetwork  = "${google_compute_subnetwork.wordpress-subnetwork.self_link}"
       access_config {}
     }
     metadata = {
@@ -221,66 +261,41 @@ resource "google_compute_instance" "wordpress-app2" {
 }
 
 ###################
-# Network layer
-###################
-
-resource "google_compute_firewall" "default-in" {
-  name    = "wordpress-app-in"
-  network = "default"
-  allow {
-    protocol = "tcp"
-    ports    = ["80","3306"]
-  }
-  target_tags = ["wordpress"]
-}
-
-resource "google_compute_firewall" "default-out" {
-  name      = "wordpress-app-out"
-  network   = "default"
-  direction = "EGRESS"
-  allow {
-    protocol = "tcp"
-    ports    = ["3306"]
-  }
-  target_tags = ["wordpress"]
-}
-
-###################
 # LoadBalance layer
 ###################
 
-resource "google_compute_target_pool" "default" {
-  name = "wordpress-instance-pool"
-  instances = [
-    "${google_compute_instance.wordpress-app1.self_link}",
-    "${google_compute_instance.wordpress-app2.self_link}",
-  ]
-  health_checks = [
-    "${google_compute_http_health_check.default.name}",
-  ]
-}
-
-resource "google_compute_http_health_check" "default" {
-  name               = "default"
-  request_path       = "/"
-  check_interval_sec = 1
-  timeout_sec        = 1
-}
-
-resource "google_compute_forwarding_rule" "wordpress-lb-frontend" {
-  name       = "wordpress-lb-frontend"
-  target     = "${google_compute_target_pool.default.self_link}"
-  port_range = "80"
-  load_balancing_scheme = "EXTERNAL"
-}
+# resource "google_compute_target_pool" "default" {
+#   name = "wordpress-instance-pool"
+#   instances = [
+#     "${google_compute_instance.wordpress-app1.self_link}",
+#     "${google_compute_instance.wordpress-app2.self_link}",
+#   ]
+#   health_checks = [
+#     "${google_compute_http_health_check.default.name}",
+#   ]
+# }
+#
+# resource "google_compute_http_health_check" "default" {
+#   name               = "default"
+#   request_path       = "/"
+#   check_interval_sec = 1
+#   timeout_sec        = 1
+# }
+#
+# resource "google_compute_forwarding_rule" "wordpress-lb-frontend" {
+#   name       = "wordpress-lb-frontend"
+#   target     = "${google_compute_target_pool.default.self_link}"
+#   port_range = "80"
+#   load_balancing_scheme = "EXTERNAL"
+# }
 
 ###################
 # Outputs
 ###################
 
-output "URL" {
-  value = "http://${google_compute_forwarding_rule.wordpress-lb-frontend.ip_address}"
-}
+# output "URL" {
+#   value = "http://${google_compute_forwarding_rule.wordpress-lb-frontend.ip_address}"
+# }
 
 output "App1-addres" {
   value = "${google_compute_instance.wordpress-app1.network_interface.0.access_config.0.nat_ip}"

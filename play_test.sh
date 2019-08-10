@@ -1,5 +1,5 @@
 #!/bin/bash
-
+source common/.set_credentials.sh
 ############# Orchestrator ############
 #list_orchestrators='terraform cloudify'
 list_orchestrators='terraform'
@@ -78,12 +78,12 @@ while [ $execution -le $test_executions ]; do
         touch $LOCAL/unprovision.log
         test_monitor.sh ${EXEC_DATE} provision ${orchestrator} ${provider} ${region} ${execution} &
         monitor_pid=$!
-        $cmd_provision >> $LOCAL/provision.log
+        $cmd_provision  2>&1 | tee -a $LOCAL/provision.log
         kill -9 $monitor_pid &> /dev/null
         sleep 30
         test_monitor.sh ${EXEC_DATE} unprovision ${orchestrator} ${provider} ${region} ${execution} &
         monitor_pid=$!
-        $cmd_unprovision >> $LOCAL/unprovision.log
+        $cmd_unprovision  2>&1 | tee -a $LOCAL/unprovision.log
         kill -9 $monitor_pid &> /dev/null
       done
       cd ../..

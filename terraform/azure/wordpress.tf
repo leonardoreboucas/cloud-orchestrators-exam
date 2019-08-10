@@ -22,7 +22,7 @@ variable "azure_client_secret" {
 # Variables
 ###################
 
-variable "location" {
+variable "region_name" {
     type    = string
     default = "East US"
 }
@@ -64,6 +64,18 @@ provider "azurerm" {
 
 resource "random_id" "bp_suffix" {
   byte_length = 4
+}
+
+resource "azurerm_availability_set" "wordpress-availability" {
+  name                = "wordpress-availability-${random_id.bp_suffix.hex}"
+  location            = "${azurerm_resource_group.main.location}"
+  resource_group_name = "${azurerm_resource_group.main.name}"
+  managed             = true
+}
+
+resource "azurerm_resource_group" "main" {
+  name     = "wordpress-${random_id.bp_suffix.hex}"
+  location = "${var.region_name}"
 }
 
 ###################
@@ -157,18 +169,6 @@ SETTINGS
 ###################
 # Apps layer
 ###################
-
-resource "azurerm_availability_set" "wordpress-availability" {
-  name                = "wordpress-availability-${random_id.bp_suffix.hex}"
-  location            = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
-  managed             = true
-}
-
-resource "azurerm_resource_group" "main" {
-  name     = "wordpress-${random_id.bp_suffix.hex}"
-  location = "${var.location}"
-}
 
 data "template_file" "config" {
   template = "${file("${path.module}/../config.tpl")}"
@@ -353,13 +353,6 @@ resource "azurerm_public_ip" "static-ip-database" {
   allocation_method   = "Static"
 }
 
-resource "azurerm_public_ip" "static-ip-lb" {
-  name                = "wordpress-static-ip-lb-${random_id.bp_suffix.hex}"
-  location            = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
-  allocation_method   = "Static"
-}
-
 resource "azurerm_virtual_network" "main" {
   name                = "wordpress-network-${random_id.bp_suffix.hex}"
   address_space       = ["10.0.0.0/16"]
@@ -414,63 +407,8 @@ resource "azurerm_network_interface" "database" {
 }
 
 ###################
-# LoadBalance layer
-###################
-
-resource "azurerm_lb" "wordpress-lb" {
-  name                = "wordpress-load-balancer-${random_id.bp_suffix.hex}"
-  location            = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
-  frontend_ip_configuration {
-    name                 = "wordpress-lb-ip-config-${random_id.bp_suffix.hex}"
-    public_ip_address_id = "${azurerm_public_ip.static-ip-lb.id}"
-  }
-}
-
-resource "azurerm_lb_rule" "wordpress-lb-rule" {
-  resource_group_name            = "${azurerm_resource_group.main.name}"
-  loadbalancer_id                = "${azurerm_lb.wordpress-lb.id}"
-  name                           = "wordpress-load-balancer-rule-${random_id.bp_suffix.hex}"
-  protocol                       = "Tcp"
-  frontend_port                  = 80
-  backend_port                   = 80
-  frontend_ip_configuration_name = "wordpress-lb-ip-config-${random_id.bp_suffix.hex}"
-  backend_address_pool_id        = "${azurerm_lb_backend_address_pool.wordpress-lb-pool.id}"
-  probe_id                       = "${azurerm_lb_probe.wordpress-lb-probe.id}"
-}
-
-resource "azurerm_lb_backend_address_pool" "wordpress-lb-pool" {
-  resource_group_name = "${azurerm_resource_group.main.name}"
-  loadbalancer_id     = "${azurerm_lb.wordpress-lb.id}"
-  name                = "wordpress-load-balancer-pool-${random_id.bp_suffix.hex}"
-}
-
-resource "azurerm_lb_probe" "wordpress-lb-probe" {
-  resource_group_name = "${azurerm_resource_group.main.name}"
-  loadbalancer_id     = "${azurerm_lb.wordpress-lb.id}"
-  name                = "wordpress-load-balancer-probe-${random_id.bp_suffix.hex}"
-  port                = 80
-}
-
-resource "azurerm_network_interface_backend_address_pool_association" "lb-app1" {
-  network_interface_id    = "${azurerm_network_interface.app1.id}"
-  ip_configuration_name   = "wordpress-ip1-config-${random_id.bp_suffix.hex}"
-  backend_address_pool_id = "${azurerm_lb_backend_address_pool.wordpress-lb-pool.id}"
-}
-
-resource "azurerm_network_interface_backend_address_pool_association" "lb-app2" {
-  network_interface_id    = "${azurerm_network_interface.app2.id}"
-  ip_configuration_name   = "wordpress-ip2-config-${random_id.bp_suffix.hex}"
-  backend_address_pool_id = "${azurerm_lb_backend_address_pool.wordpress-lb-pool.id}"
-}
-
-###################
 # Outputs
 ###################
-
-output "URL" {
-  value = "http://${azurerm_public_ip.static-ip-lb.ip_address}"
-}
 
 output "App1-addres" {
   value = "${azurerm_public_ip.static-ip1.ip_address}"

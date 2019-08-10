@@ -2,13 +2,13 @@
 # Credentials
 ###################
 
-# variable "aws_access_key" {
-#   type    = string
-# }
-#
-# variable "aws_secret_key" {
-#   type    = string
-# }
+variable "aws_access_key" {
+  type    = string
+}
+
+variable "aws_secret_key" {
+  type    = string
+}
 
 ###################
 # Variables
@@ -16,12 +16,12 @@
 
 variable "region_name" {
   type    = string
-  default = "us-west-2"
+  default = "us-east-1"
 }
 
 variable "availability_zone" {
   type    = string
-  default = "us-west-2a"
+  default = "us-east-1a"
 }
 
 variable "db_name" {
@@ -57,8 +57,8 @@ variable "instance_type" {
 provider "aws" {
   region     = "${var.region_name}"
   shared_credentials_file = "/root/.aws/credentiais"
-  #access_key = "${var.access_key}"
-  #secret_key = "${var.secret_key}"
+  access_key = "${var.aws_access_key}"
+  secret_key = "${var.aws_secret_key}"
 }
 
 data "aws_ami" "ubuntu" {
@@ -83,7 +83,6 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_vpc" "default" {
   cidr_block       = "10.0.0.0/16"
-  #instance_tenancy = "dedicated"
 
   tags = {
     Name = "wordpress"
@@ -94,6 +93,7 @@ resource "aws_subnet" "default" {
   vpc_id             = "${aws_vpc.default.id}"
   cidr_block         = "10.0.1.0/24"
   availability_zone  = "${var.availability_zone}"
+  map_public_ip_on_launch = true
   tags = {
     Name = "wordpress"
   }
@@ -101,7 +101,6 @@ resource "aws_subnet" "default" {
 
 resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = "${aws_vpc.default.id}"
-
   tags = {
     Name = "wordpress"
   }
@@ -109,40 +108,18 @@ resource "aws_internet_gateway" "internet_gateway" {
 
 resource "aws_route_table" "internet_route" {
   vpc_id = "${aws_vpc.default.id}"
-
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = "${aws_internet_gateway.internet_gateway.id}"
   }
-
   tags = {
     Name = "wordpress"
   }
 }
 
-
-resource "aws_eip" "public-ip-database" {
-  vpc                       = true
-  network_interface         = "${aws_network_interface.wordpress-database-network_interface.id}"
-  tags = {
-    name = "wordpress-database"
-  }
-}
-
-resource "aws_eip" "public-ip-app1" {
-  vpc                       = true
-  network_interface         = "${aws_network_interface.wordpress-1-network_interface.id}"
-  tags = {
-    name = "wordpress-1"
-  }
-}
-
-resource "aws_eip" "public-ip-app2" {
-  vpc                       = true
-  network_interface         = "${aws_network_interface.wordpress-2-network_interface.id}"
-  tags = {
-    name = "wordpress-2"
-  }
+resource "aws_main_route_table_association" "a" {
+   vpc_id         = "${aws_vpc.default.id}"
+   route_table_id = "${aws_route_table.internet_route.id}"
 }
 
 resource "aws_network_interface" "wordpress-database-network_interface" {
@@ -203,39 +180,9 @@ resource "aws_security_group" "wordpress-security-group" {
   }
 }
 
-# resource "aws_security_group" "wordpress-db-security-group" {
-#   name        = "wordpress-db-security-group-"
-#   description = "wordpress-db-security-group"
-#   vpc_id      = "${data.aws_vpc.default.id}"
-#
-#   ingress {
-#     from_port   = 3306
-#     to_port     = 3306
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-# }
-
-
 ###################
 # Database layer
 ###################
-
-# resource "aws_db_instance" "wordpress-db" {
-#   allocated_storage         = 20
-#   storage_type              = "gp2"
-#   engine                    = "mysql"
-#   engine_version            = "5.7"
-#   instance_class            = "db.t2.micro"
-#   name                      = "${var.db_name}"
-#   username                  = "${var.db_user}"
-#   password                  = "${var.db_pass}"
-#   parameter_group_name      = "default.mysql5.7"
-#   vpc_security_group_ids    = ["${aws_security_group.wordpress-db-security-group.id}"]
-#   availability_zone         = "${var.availability_zone}"
-#   skip_final_snapshot       = true
-#   apply_immediately         = true
-# }
 
 data "template_file" "config_database" {
   template = "${file("${path.module}/../config_database.tpl")}"
@@ -263,9 +210,9 @@ resource "aws_instance" "wordpress-database" {
   }
   provisioner "file" {
     connection {
-      host        = "${aws_eip.public-ip-database.public_ip}"
+      host        = "${aws_instance.wordpress-database.public_ip}"#${aws_eip.public-ip-database.public_ip}"
       type        = "ssh"
-      user        = "admin"
+      user        = "ubuntu"
       private_key = file("${path.module}/../../common/wordpress.pem")
     }
     content     = "${data.template_file.config_database.rendered}"
@@ -273,9 +220,9 @@ resource "aws_instance" "wordpress-database" {
   }
   provisioner "remote-exec" {
     connection {
-      host        = "${aws_eip.public-ip-database.public_ip}"
+      host        = "${aws_instance.wordpress-database.public_ip}"#${aws_eip.public-ip-database.public_ip}"
       type        = "ssh"
-      user        = "admin"
+      user        = "ubuntu"
       private_key = file("${path.module}/../../common/wordpress.pem")
     }
     inline = [
@@ -292,7 +239,7 @@ resource "aws_instance" "wordpress-database" {
 data "template_file" "config" {
   template = "${file("${path.module}/../config.tpl")}"
   vars = {
-    db_host     = "${aws_eip.public-ip-database.public_ip}"
+    db_host     = "${aws_instance.wordpress-database.public_ip}"
     db_name     = "${var.db_name}"
     db_user     = "${var.db_user}"
     db_password = "${var.db_pass}"
@@ -321,9 +268,9 @@ resource "aws_instance" "wordpress-app1" {
   }
   provisioner "file" {
     connection {
-      host        = "${aws_eip.public-ip-app1.public_ip}"
+      host        = "${aws_instance.wordpress-app1.public_ip}"#${aws_eip.public-ip-app1.public_ip}"
       type        = "ssh"
-      user        = "admin"
+      user        = "ubuntu"
       private_key = file("${path.module}/../../common/wordpress.pem")
     }
     content     = "${data.template_file.config.rendered}"
@@ -331,9 +278,9 @@ resource "aws_instance" "wordpress-app1" {
   }
   provisioner "remote-exec" {
     connection {
-      host        = "${aws_eip.public-ip-app1.public_ip}"
+      host        = "${aws_instance.wordpress-app1.public_ip}"#${aws_eip.public-ip-app1.public_ip}"
       type        = "ssh"
-      user        = "admin"
+      user        = "ubuntu"
       private_key = file("${path.module}/../../common/wordpress.pem")
     }
     inline = [
@@ -360,9 +307,9 @@ resource "aws_instance" "wordpress-app2" {
   }
   provisioner "file" {
     connection {
-      host        = "${aws_eip.public-ip-app2.public_ip}"
+      host        = "${aws_instance.wordpress-app2.public_ip}"#${aws_eip.public-ip-app2.public_ip}"
       type        = "ssh"
-      user        = "admin"
+      user        = "ubuntu"
       private_key = file("${path.module}/../../common/wordpress.pem")
     }
     content     = "${data.template_file.config.rendered}"
@@ -370,9 +317,9 @@ resource "aws_instance" "wordpress-app2" {
   }
   provisioner "remote-exec" {
     connection {
-      host        = "${aws_eip.public-ip-app2.public_ip}"
+      host        = "${aws_instance.wordpress-app2.public_ip}"#${aws_eip.public-ip-app2.public_ip}"
       type        = "ssh"
-      user        = "admin"
+      user        = "ubuntu"
       private_key = file("${path.module}/../../common/wordpress.pem")
     }
     inline = [
@@ -387,13 +334,13 @@ resource "aws_instance" "wordpress-app2" {
 ###################
 
 output "App1-address" {
-  value = "${aws_eip.public-ip-app1.public_ip}"
+  value = "${aws_instance.wordpress-app1.public_ip}"
 }
 
 output "App2-address" {
-  value = "${aws_eip.public-ip-app2.public_ip}"
+  value = "${aws_instance.wordpress-app2.public_ip}"
 }
 
 output "Database-address" {
-  value = "${aws_eip.public-ip-database.public_ip}"
+  value = "${aws_instance.wordpress-database.public_ip}"
 }
