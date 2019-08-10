@@ -1,16 +1,16 @@
 #!/bin/bash
 source common/.set_credentials.sh
 ############# Orchestrator ############
-list_orchestrators='terraform cloudify'
+list_orchestrators='terraform'
 
 ######### Providers ##########
-list_providers='aws gcp azure'
+list_providers='aws'
 
 ############ Regions ############
 # Virginia / London / São Paulo
 list_aws_region='us-east-1 eu-west-2 sa-east-1'
-list_gcp_region='us-east-4 europe-west-2 southamerica-east-1'
-list_azure_region="'East US' 'UK South' 'Brazil South'"
+list_gcp_region='us-east4 europe-west2 southamerica-east1'
+list_azure_region='EastUS UKSouth BrazilSouth'
 
 ########## Executions ##########
 test_executions=3
@@ -79,6 +79,8 @@ while [ $execution -le $test_executions ]; do
           southamerica-east1)
           zone=-a
           ;;
+	*)
+	esac
         case $orchestrator in
           cloudify)
             echo "Cleaning Cloudify Managers..."
@@ -95,8 +97,8 @@ while [ $execution -le $test_executions ]; do
             cmd_unprovision2="sleep 0"
 	          ;;
           terraform)
-            region='$(echo $region | sed -e 's/_/ /g')'
-            cmd_provision="terraform apply --var region_name='${region}' --var availability_zone=${region}${zone} --auto-approve"
+            region=$(echo $region | sed -e 's/_/ /g')
+            cmd_provision="terraform apply --var region_name=${region} --var availability_zone=${region}${zone} --auto-approve"
             cmd_unprovision='terraform destroy --auto-approve'
             ;;
           *)
