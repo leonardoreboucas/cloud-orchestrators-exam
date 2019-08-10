@@ -1,18 +1,16 @@
 #!/bin/bash
 source common/.set_credentials.sh
 ############# Orchestrator ############
-#list_orchestrators='terraform cloudify'
-list_orchestrators='terraform'
+list_orchestrators='terraform cloudify'
 
 ######### Providers ##########
-#list_providers='aws gcp azure'
-list_providers='azure'
+list_providers='aws gcp azure'
 
 ############ Regions ############
 # Virginia / London / São Paulo
 list_aws_region='us-east-1 eu-west-2 sa-east-1'
 list_gcp_region='us-east-4 europe-west-2 southamerica-east-1'
-list_azure_region='EastUS UK_South Brazil_South'
+list_azure_region='EastUS UKSouth BrazilSouth'
 
 ########## Executions ##########
 test_executions=3
