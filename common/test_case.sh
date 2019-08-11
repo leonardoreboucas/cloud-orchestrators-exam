@@ -15,7 +15,7 @@ while [ $PROVISION_RUN ] && [ $CONT -le $RETRY ]; do
   $cmd_provision  2>&1 >> $LOCAL/provision.log
   kill -9 $monitor_pid &> /dev/null
   if [ "${orchestrator}" == "cloudify" ]; then
-    cfy deployments outputs gcp cloudify-${BPID}-wp-${provider} >> $LOCAL/provision.log
+    cfy deployments outputs cloudify-${BPID}-wp-${provider} >> $LOCAL/provision.log
   fi
   echo "validating provisioning process..."
   if [ "$(cat $LOCAL/provision.log | grep apply-finished-wp)" == "" ]; then
