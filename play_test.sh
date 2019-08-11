@@ -5,7 +5,7 @@ DIR=$(pwd)
 list_orchestrators='cloudify'
 
 ######### Providers ##########
-list_providers='gcp'
+list_providers='aws'
 
 ############ Regions ############
 # Virginia / London / São Paulo
@@ -14,7 +14,7 @@ list_gcp_region='us-east4 europe-west2 southamerica-east1'
 list_azure_region='EastUS UKSouth BrazilSouth'
 
 ########## Executions ##########
-test_executions=1
+test_executions=2
 
 echo "Starting tests..."
 EXEC_DATE=$(date +%Y-%m-%d-%H-%M-%S)
