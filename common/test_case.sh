@@ -12,7 +12,7 @@ while [ $PROVISION_RUN ] && [ $CONT -le $RETRY ]; do
   echo "Starting provisioning process" > $LOCAL/provision.log
   test_monitor.sh ${RESULTS} ${EXEC_DATE} provision ${orchestrator} ${provider} ${region} ${execution} &
   monitor_pid=$!
-  $cmd_provision  2>&1 > $LOCAL/provision.log
+  $cmd_provision  2>&1 >> $LOCAL/provision.log
   kill -9 $monitor_pid &> /dev/null
   if [ "${orchestrator}" == "cloudify" ]; then
     cfy deployments outputs gcp cloudify-${BPID}-wp-${provider} >> $LOCAL/provision.log
