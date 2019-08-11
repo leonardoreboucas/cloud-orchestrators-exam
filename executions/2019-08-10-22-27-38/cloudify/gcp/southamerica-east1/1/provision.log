@@ -1,3 +1,0 @@
-Uploading blueprint /root/cloud-orchestrators-exam/cloudify/gcp.yaml...
- gcp.yaml |############################################################| 100.0%
-An error occurred on the server: 409: <Blueprint id=`cloudify-1565490729-wp-gcp` tenant=`default_tenant`> already exists on <Tenant name=`default_tenant`> or with global visibility

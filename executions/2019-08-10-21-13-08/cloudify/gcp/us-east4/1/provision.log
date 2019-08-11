@@ -1,3 +1,0 @@
-Uploading blueprint /root/cloud-orchestrators-exam/cloudify/gcp.yaml...
- gcp.yaml |############################################################| 100.0%
-An error occurred on the server: 400: The `blueprint_id` argument must begin with a letter

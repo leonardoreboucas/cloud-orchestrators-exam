@@ -1,6 +1,0 @@
-date,process,orchestrator,provider,region,execution,timestamp,cpu,mem,io,net,duration
-failed
-failed
-2019-08-10-21-18-41,provision,cloudify,gcp,us-east4,1,1565486327,10.74,820641.02,0.00,9.29,0.03
-2019-08-10-21-18-41,provision,cloudify,gcp,us-east4,1,1565486327,10.74,820641.02,0.00,16.92,0.03
-2019-08-10-21-18-41,provision,cloudify,gcp,us-east4,1,1565486327,10.74,820641.02,0.00,16.92,0.03
