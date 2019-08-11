@@ -2,10 +2,10 @@
 source common/.set_credentials.sh
 DIR=$(pwd)
 ############# Orchestrator ############
-list_orchestrators='cloudify'
+list_orchestrators='cloudify terraform'
 
 ######### Providers ##########
-list_providers='aws'
+list_providers='azure gcp aws'
 
 ############ Regions ############
 # Virginia / London / São Paulo
@@ -14,7 +14,7 @@ list_gcp_region='us-east4 europe-west2 southamerica-east1'
 list_azure_region='EastUS UKSouth BrazilSouth'
 
 ########## Executions ##########
-test_executions=2
+test_executions=3
 
 echo "Starting tests..."
 EXEC_DATE=$(date +%Y-%m-%d-%H-%M-%S)
@@ -36,9 +36,8 @@ while [ $execution -le $test_executions ]; do
   done
   execution=$((execution + 1))
 done
-
 echo "Cleaning up..."
 for orchestrator in $list_orchestrators; do
-  source orchestrator/test/cleanup.sh
+  source ${DIR}/${orchestrator}/test/cleanup.sh
 done
 echo "Tests finished"
