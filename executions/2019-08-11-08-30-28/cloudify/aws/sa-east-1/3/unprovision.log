@@ -1,0 +1,338 @@
+Executing workflow `uninstall` on deployment `aws` [timeout=900 seconds]
+2019-08-11 20:33:53.438  CFY <aws> Starting 'uninstall' workflow execution
+2019-08-11 20:33:56.159  CFY <aws> [ip1_my0rmh] Stopping node instance
+2019-08-11 20:33:56.262  CFY <aws> [route_public_subnet_internet_gateway_2inii2] Stopping node instance
+2019-08-11 20:33:57.261  CFY <aws> [config-wordpress2_f5m9jp] Stopping node instance
+2019-08-11 20:33:57.319  CFY <aws> [security_group_rules_v0wp1v] Stopping node instance
+2019-08-11 20:33:57.658  CFY <aws> [config-database_a0k51j] Stopping node instance
+2019-08-11 20:33:57.986  CFY <aws> [ipdb_yi3oe8] Stopping node instance
+2019-08-11 20:33:58.034  CFY <aws> [config-wordpress1_5uf7wh] Stopping node instance
+2019-08-11 20:33:58.087  CFY <aws> [ip2_usni90] Stopping node instance
+2019-08-11 20:33:58.132  CFY <aws> [security_group_rules_v0wp1v] Validating node instance after deletion: nothing to do
+2019-08-11 20:33:58.185  CFY <aws> [config-wordpress2_f5m9jp] Validating node instance after deletion: nothing to do
+2019-08-11 20:33:58.267  CFY <aws> [route_public_subnet_internet_gateway_2inii2] Validating node instance after deletion: nothing to do
+2019-08-11 20:33:58.319  CFY <aws> [config-database_a0k51j] Validating node instance after deletion: nothing to do
+2019-08-11 20:33:58.352  CFY <aws> [security_group_rules_v0wp1v.stop] Sending task 'cloudify_aws.ec2.resources.securitygroup.revoke_ingress_rules'
+2019-08-11 20:33:58.383  CFY <aws> [ip1_my0rmh] Validating node instance after deletion: nothing to do
+2019-08-11 20:33:58.485  CFY <aws> [ipdb_yi3oe8] Validating node instance after deletion: nothing to do
+2019-08-11 20:33:58.568  CFY <aws> [config-wordpress1_5uf7wh] Validating node instance after deletion: nothing to do
+2019-08-11 20:33:59.198  CFY <aws> [ip2_usni90] Validating node instance after deletion: nothing to do
+2019-08-11 20:33:59.385  CFY <aws> [config-database_a0k51j] Stopped node instance: nothing to do
+2019-08-11 20:33:59.468  CFY <aws> [ipdb_yi3oe8.stop] Sending task 'cloudify_aws.ec2.resources.elasticip.detach'
+2019-08-11 20:33:59.583  CFY <aws> [config-wordpress1_5uf7wh] Stopped node instance: nothing to do
+2019-08-11 20:34:00.522  CFY <aws> [config-wordpress2_f5m9jp] Stopped node instance: nothing to do
+2019-08-11 20:34:00.671  CFY <aws> [route_public_subnet_internet_gateway_2inii2] Stopped node instance: nothing to do
+2019-08-11 20:34:00.772  CFY <aws> [ip1_my0rmh.stop] Sending task 'cloudify_aws.ec2.resources.elasticip.detach'
+2019-08-11 20:34:02.007  CFY <aws> [ip2_usni90.stop] Sending task 'cloudify_aws.ec2.resources.elasticip.detach'
+2019-08-11 20:34:03.755  CFY <aws> [security_group_rules_v0wp1v.stop] Task succeeded 'cloudify_aws.ec2.resources.securitygroup.revoke_ingress_rules'
+2019-08-11 20:34:05.097  CFY <aws> [security_group_rules_v0wp1v] Stopped node instance
+2019-08-11 20:34:05.292  CFY <aws> [route_public_subnet_internet_gateway_2inii2] Unlinking relationships
+2019-08-11 20:34:05.396  CFY <aws> [config-database_a0k51j] Unlinking relationships
+2019-08-11 20:34:05.528  CFY <aws> [config-wordpress2_f5m9jp] Unlinking relationships
+2019-08-11 20:34:05.681  CFY <aws> [config-wordpress1_5uf7wh] Unlinking relationships
+2019-08-11 20:34:06.218  CFY <aws> [config-database_a0k51j->vm-database_f1kxfm|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 20:34:06.400  CFY <aws> [route_public_subnet_internet_gateway_2inii2] Relationships unlinked
+2019-08-11 20:34:06.820  CFY <aws> [ipdb_yi3oe8.stop] Task succeeded 'cloudify_aws.ec2.resources.elasticip.detach'
+2019-08-11 20:34:07.420  CFY <aws> [config-wordpress2_f5m9jp->vm-app2_7nnejm|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 20:34:08.206  CFY <aws> [ip1_my0rmh.stop] Task succeeded 'cloudify_aws.ec2.resources.elasticip.detach'
+2019-08-11 20:34:08.999  CFY <aws> [config-wordpress1_5uf7wh->vm-app1_xb1n39|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 20:34:09.511  CFY <aws> [ip2_usni90.stop] Task succeeded 'cloudify_aws.ec2.resources.elasticip.detach'
+2019-08-11 20:34:09.915  CFY <aws> [ip1_my0rmh] Stopped node instance
+2019-08-11 20:34:10.124  CFY <aws> [ipdb_yi3oe8] Stopped node instance
+2019-08-11 20:34:10.253  CFY <aws> [security_group_rules_v0wp1v] Unlinking relationships
+2019-08-11 20:34:10.755  CFY <aws> [config-database_a0k51j->vm-database_f1kxfm|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 20:34:10.904  CFY <aws> [route_public_subnet_internet_gateway_2inii2] Deleting node instance
+2019-08-11 20:34:11.300  CFY <aws> [route_public_subnet_internet_gateway_2inii2.delete] Sending task 'cloudify_aws.ec2.resources.route.delete'
+2019-08-11 20:34:11.694  CFY <aws> [ip2_usni90] Stopped node instance
+2019-08-11 20:34:12.220  CFY <aws> [security_group_rules_v0wp1v] Relationships unlinked
+2019-08-11 20:34:12.525  CFY <aws> [ipdb_yi3oe8] Unlinking relationships
+2019-08-11 20:34:13.015  CFY <aws> [config-wordpress2_f5m9jp->vm-app2_7nnejm|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 20:34:13.201  CFY <aws> [config-database_a0k51j] Relationships unlinked
+2019-08-11 20:34:13.362  CFY <aws> [security_group_rules_v0wp1v] Deleting node instance: nothing to do
+2019-08-11 20:34:13.477  CFY <aws> [ip1_my0rmh] Unlinking relationships
+2019-08-11 20:34:13.560  CFY <aws> [ipdb_yi3oe8] Relationships unlinked
+2019-08-11 20:34:13.718  CFY <aws> [config-wordpress2_f5m9jp] Relationships unlinked
+2019-08-11 20:34:13.907  CFY <aws> [ip2_usni90] Unlinking relationships
+2019-08-11 20:34:14.061  CFY <aws> [config-database_a0k51j] Deleting node instance: nothing to do
+2019-08-11 20:34:14.236  CFY <aws> [security_group_rules_v0wp1v] Deleted node instance
+2019-08-11 20:34:15.082  CFY <aws> [ipdb_yi3oe8] Deleting node instance
+2019-08-11 20:34:15.118  CFY <aws> [config-wordpress1_5uf7wh->vm-app1_xb1n39|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 20:34:16.151  CFY <aws> [ip1_my0rmh] Relationships unlinked
+2019-08-11 20:34:16.304  CFY <aws> [config-wordpress2_f5m9jp] Deleting node instance: nothing to do
+2019-08-11 20:34:16.353  CFY <aws> [ipdb_yi3oe8.delete] Sending task 'cloudify_aws.ec2.resources.elasticip.delete'
+2019-08-11 20:34:16.701  CFY <aws> [ip2_usni90] Relationships unlinked
+2019-08-11 20:34:16.814  CFY <aws> [config-database_a0k51j] Deleted node instance
+2019-08-11 20:34:16.917  CFY <aws> [config-wordpress1_5uf7wh] Relationships unlinked
+2019-08-11 20:34:17.454  CFY <aws> [ip2_usni90] Deleting node instance
+2019-08-11 20:34:17.614  CFY <aws> [ip1_my0rmh] Deleting node instance
+2019-08-11 20:34:18.078  CFY <aws> [config-wordpress1_5uf7wh] Deleting node instance: nothing to do
+2019-08-11 20:34:18.158  CFY <aws> [config-wordpress2_f5m9jp] Deleted node instance
+2019-08-11 20:34:18.378  CFY <aws> [ip1_my0rmh.delete] Sending task 'cloudify_aws.ec2.resources.elasticip.delete'
+2019-08-11 20:34:19.344  CFY <aws> [route_public_subnet_internet_gateway_2inii2.delete] Task succeeded 'cloudify_aws.ec2.resources.route.delete'
+2019-08-11 20:34:19.766  CFY <aws> [vm-database_f1kxfm] Stopping node instance
+2019-08-11 20:34:19.948  CFY <aws> [ip2_usni90.delete] Sending task 'cloudify_aws.ec2.resources.elasticip.delete'
+2019-08-11 20:34:20.261  CFY <aws> [config-wordpress1_5uf7wh] Deleted node instance
+2019-08-11 20:34:20.785  CFY <aws> [route_public_subnet_internet_gateway_2inii2] Deleted node instance
+2019-08-11 20:34:21.411  CFY <aws> [vm-app2_7nnejm] Stopping node instance
+2019-08-11 20:34:22.239  CFY <aws> [vm-database_f1kxfm] Validating node instance after deletion: nothing to do
+2019-08-11 20:34:22.395  CFY <aws> [routetable_igcfnt] Stopping node instance
+2019-08-11 20:34:22.788  CFY <aws> [vm-database_f1kxfm.stop] Sending task 'cloudify_aws.ec2.resources.instances.stop'
+2019-08-11 20:34:23.407  CFY <aws> [internet_gateway_tzgqvr] Stopping node instance
+2019-08-11 20:34:23.907  CFY <aws> [ipdb_yi3oe8.delete] Task succeeded 'cloudify_aws.ec2.resources.elasticip.delete'
+2019-08-11 20:34:24.020  CFY <aws> [vm-app1_xb1n39] Stopping node instance
+2019-08-11 20:34:24.746  CFY <aws> [vm-app2_7nnejm] Validating node instance after deletion: nothing to do
+2019-08-11 20:34:25.345  CFY <aws> [vm-app2_7nnejm.stop] Sending task 'cloudify_aws.ec2.resources.instances.stop'
+2019-08-11 20:34:25.603  CFY <aws> [routetable_igcfnt] Validating node instance after deletion: nothing to do
+2019-08-11 20:34:25.781  CFY <aws> [ipdb_yi3oe8] Deleted node instance
+2019-08-11 20:34:25.925  CFY <aws> [vm-app1_xb1n39] Validating node instance after deletion: nothing to do
+2019-08-11 20:34:26.056  CFY <aws> [internet_gateway_tzgqvr] Validating node instance after deletion: nothing to do
+2019-08-11 20:34:26.455  CFY <aws> [ip1_my0rmh.delete] Task succeeded 'cloudify_aws.ec2.resources.elasticip.delete'
+2019-08-11 20:34:26.858  CFY <aws> [routetable_igcfnt.stop] Sending task 'cloudify_aws.ec2.resources.routetable.detach'
+2019-08-11 20:34:28.226  CFY <aws> [ip2_usni90.delete] Task succeeded 'cloudify_aws.ec2.resources.elasticip.delete'
+2019-08-11 20:34:28.244  CFY <aws> [internet_gateway_tzgqvr.stop] Sending task 'cloudify_aws.ec2.resources.internet_gateway.detach'
+2019-08-11 20:34:29.120  CFY <aws> [ip1_my0rmh] Deleted node instance
+2019-08-11 20:34:29.578  CFY <aws> [vm-app1_xb1n39.stop] Sending task 'cloudify_aws.ec2.resources.instances.stop'
+2019-08-11 20:34:29.885  CFY <aws> [ip2_usni90] Deleted node instance
+2019-08-11 20:34:31.481  CFY <aws> [vm-database_f1kxfm.stop] Task rescheduled 'cloudify_aws.ec2.resources.instances.stop' -> EC2 Instances ID# "i-07303f57645b1c1d2" is still in a pending state.
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-aws-plugin-2.3.0/lib/python2.7/site-packages/cloudify_aws/common/decorators.py", line 303, in wrapper_inner
+    result = function(**kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-aws-plugin-2.3.0/lib/python2.7/site-packages/cloudify_aws/common/decorators.py", line 330, in wrapper_inner
+    fail_on_missing)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-aws-plugin-2.3.0/lib/python2.7/site-packages/cloudify_aws/common/decorators.py", line 76, in _wait_for_status
+    % (resource_type, iface.resource_id))
+OperationRetry: EC2 Instances ID# "i-07303f57645b1c1d2" is still in a pending state.
+
+2019-08-11 20:34:33.958  CFY <aws> [vm-app2_7nnejm.stop] Task rescheduled 'cloudify_aws.ec2.resources.instances.stop' -> EC2 Instances ID# "i-044db407f20250231" is still in a pending state.
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-aws-plugin-2.3.0/lib/python2.7/site-packages/cloudify_aws/common/decorators.py", line 303, in wrapper_inner
+    result = function(**kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-aws-plugin-2.3.0/lib/python2.7/site-packages/cloudify_aws/common/decorators.py", line 330, in wrapper_inner
+    fail_on_missing)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-aws-plugin-2.3.0/lib/python2.7/site-packages/cloudify_aws/common/decorators.py", line 76, in _wait_for_status
+    % (resource_type, iface.resource_id))
+OperationRetry: EC2 Instances ID# "i-044db407f20250231" is still in a pending state.
+
+2019-08-11 20:34:34.914  CFY <aws> [routetable_igcfnt.stop] Task succeeded 'cloudify_aws.ec2.resources.routetable.detach'
+2019-08-11 20:34:35.024  CFY <aws> [routetable_igcfnt] Stopped node instance
+2019-08-11 20:34:35.682  CFY <aws> [routetable_igcfnt] Unlinking relationships
+2019-08-11 20:34:36.147  CFY <aws> [routetable_igcfnt] Relationships unlinked
+2019-08-11 20:34:36.381  CFY <aws> [internet_gateway_tzgqvr.stop] Task succeeded 'cloudify_aws.ec2.resources.internet_gateway.detach'
+2019-08-11 20:34:36.483  CFY <aws> [routetable_igcfnt] Deleting node instance
+2019-08-11 20:34:36.537  CFY <aws> [internet_gateway_tzgqvr] Stopped node instance
+2019-08-11 20:34:36.849  CFY <aws> [vm-app1_xb1n39.stop] Task rescheduled 'cloudify_aws.ec2.resources.instances.stop' -> EC2 Instances ID# "i-0324b936471e3bbd5" is still in a pending state.
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-aws-plugin-2.3.0/lib/python2.7/site-packages/cloudify_aws/common/decorators.py", line 303, in wrapper_inner
+    result = function(**kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-aws-plugin-2.3.0/lib/python2.7/site-packages/cloudify_aws/common/decorators.py", line 330, in wrapper_inner
+    fail_on_missing)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-aws-plugin-2.3.0/lib/python2.7/site-packages/cloudify_aws/common/decorators.py", line 76, in _wait_for_status
+    % (resource_type, iface.resource_id))
+OperationRetry: EC2 Instances ID# "i-0324b936471e3bbd5" is still in a pending state.
+
+2019-08-11 20:34:37.079  CFY <aws> [routetable_igcfnt.delete] Sending task 'cloudify_aws.ec2.resources.routetable.delete'
+2019-08-11 20:34:38.019  CFY <aws> [internet_gateway_tzgqvr] Unlinking relationships
+2019-08-11 20:34:38.353  CFY <aws> [internet_gateway_tzgqvr] Relationships unlinked
+2019-08-11 20:34:38.443  CFY <aws> [internet_gateway_tzgqvr] Deleting node instance
+2019-08-11 20:34:39.102  CFY <aws> [internet_gateway_tzgqvr.delete] Sending task 'cloudify_aws.ec2.resources.internet_gateway.delete'
+2019-08-11 20:34:40.756  CFY <aws> [routetable_igcfnt.delete] Task succeeded 'cloudify_aws.ec2.resources.routetable.delete'
+2019-08-11 20:34:40.823  CFY <aws> [routetable_igcfnt] Deleted node instance
+2019-08-11 20:34:42.587  CFY <aws> [internet_gateway_tzgqvr.delete] Task succeeded 'cloudify_aws.ec2.resources.internet_gateway.delete'
+2019-08-11 20:34:42.646  CFY <aws> [internet_gateway_tzgqvr] Deleted node instance
+2019-08-11 20:34:46.615  CFY <aws> [vm-database_f1kxfm.stop] Sending task 'cloudify_aws.ec2.resources.instances.stop' [retry 1/60]
+2019-08-11 20:34:49.080  CFY <aws> [vm-app2_7nnejm.stop] Sending task 'cloudify_aws.ec2.resources.instances.stop' [retry 1/60]
+2019-08-11 20:34:49.462  CFY <aws> [vm-database_f1kxfm.stop] Task succeeded 'cloudify_aws.ec2.resources.instances.stop' [retry 1/60]
+2019-08-11 20:34:50.018  CFY <aws> [vm-database_f1kxfm] Stopped node instance
+2019-08-11 20:34:50.461  CFY <aws> [vm-database_f1kxfm] Unlinking relationships
+2019-08-11 20:34:50.876  CFY <aws> [vm-database_f1kxfm] Relationships unlinked
+2019-08-11 20:34:50.949  CFY <aws> [vm-database_f1kxfm] Deleting node instance
+2019-08-11 20:34:51.492  CFY <aws> [vm-database_f1kxfm.delete] Sending task 'cloudify_aws.ec2.resources.instances.delete'
+2019-08-11 20:34:52.560  CFY <aws> [vm-app1_xb1n39.stop] Sending task 'cloudify_aws.ec2.resources.instances.stop' [retry 1/60]
+2019-08-11 20:34:52.783  CFY <aws> [vm-app2_7nnejm.stop] Task succeeded 'cloudify_aws.ec2.resources.instances.stop' [retry 1/60]
+2019-08-11 20:34:53.608  CFY <aws> [vm-app2_7nnejm] Stopped node instance
+2019-08-11 20:34:54.207  CFY <aws> [vm-app2_7nnejm] Unlinking relationships
+2019-08-11 20:34:54.729  CFY <aws> [vm-app2_7nnejm] Relationships unlinked
+2019-08-11 20:34:55.279  CFY <aws> [vm-app2_7nnejm] Deleting node instance
+2019-08-11 20:34:55.645  CFY <aws> [vm-app2_7nnejm.delete] Sending task 'cloudify_aws.ec2.resources.instances.delete'
+2019-08-11 20:34:56.604  CFY <aws> [vm-database_f1kxfm.delete] Task rescheduled 'cloudify_aws.ec2.resources.instances.delete' -> EC2 Instances ID# "i-07303f57645b1c1d2" is still in a pending state.
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-aws-plugin-2.3.0/lib/python2.7/site-packages/cloudify_aws/common/decorators.py", line 303, in wrapper_inner
+    result = function(**kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-aws-plugin-2.3.0/lib/python2.7/site-packages/cloudify_aws/common/decorators.py", line 382, in wrapper_inner
+    % (resource_type, iface.resource_id))
+OperationRetry: EC2 Instances ID# "i-07303f57645b1c1d2" is still in a pending state.
+
+2019-08-11 20:34:57.310  CFY <aws> [vm-app1_xb1n39.stop] Task succeeded 'cloudify_aws.ec2.resources.instances.stop' [retry 1/60]
+2019-08-11 20:34:57.363  CFY <aws> [vm-app1_xb1n39] Stopped node instance
+2019-08-11 20:34:58.026  CFY <aws> [vm-app1_xb1n39] Unlinking relationships
+2019-08-11 20:34:58.420  CFY <aws> [vm-app1_xb1n39] Relationships unlinked
+2019-08-11 20:34:58.495  CFY <aws> [vm-app1_xb1n39] Deleting node instance
+2019-08-11 20:34:59.083  CFY <aws> [vm-app1_xb1n39.delete] Sending task 'cloudify_aws.ec2.resources.instances.delete'
+2019-08-11 20:35:00.015  CFY <aws> [vm-app2_7nnejm.delete] Task rescheduled 'cloudify_aws.ec2.resources.instances.delete' -> EC2 Instances ID# "i-044db407f20250231" is still in a pending state.
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-aws-plugin-2.3.0/lib/python2.7/site-packages/cloudify_aws/common/decorators.py", line 303, in wrapper_inner
+    result = function(**kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-aws-plugin-2.3.0/lib/python2.7/site-packages/cloudify_aws/common/decorators.py", line 382, in wrapper_inner
+    % (resource_type, iface.resource_id))
+OperationRetry: EC2 Instances ID# "i-044db407f20250231" is still in a pending state.
+
+2019-08-11 20:35:02.597  CFY <aws> [vm-app1_xb1n39.delete] Task rescheduled 'cloudify_aws.ec2.resources.instances.delete' -> EC2 Instances ID# "i-0324b936471e3bbd5" is still in a pending state.
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 461, in handle
+    result = self._run_operation_func(ctx, kwargs)
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 519, in _run_operation_func
+    return self.func(*self.args, **kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-aws-plugin-2.3.0/lib/python2.7/site-packages/cloudify_aws/common/decorators.py", line 303, in wrapper_inner
+    result = function(**kwargs)
+  File "/opt/mgmtworker/env/plugins/default_tenant/cloudify-aws-plugin-2.3.0/lib/python2.7/site-packages/cloudify_aws/common/decorators.py", line 382, in wrapper_inner
+    % (resource_type, iface.resource_id))
+OperationRetry: EC2 Instances ID# "i-0324b936471e3bbd5" is still in a pending state.
+
+2019-08-11 20:35:11.666  CFY <aws> [vm-database_f1kxfm.delete] Sending task 'cloudify_aws.ec2.resources.instances.delete' [retry 1/60]
+2019-08-11 20:35:14.535  CFY <aws> [vm-database_f1kxfm.delete] Task succeeded 'cloudify_aws.ec2.resources.instances.delete' [retry 1/60]
+2019-08-11 20:35:14.614  CFY <aws> [vm-database_f1kxfm] Deleted node instance
+2019-08-11 20:35:14.987  CFY <aws> [nicdb_rypekj] Stopping node instance
+2019-08-11 20:35:15.427  CFY <aws> [vm-app2_7nnejm.delete] Sending task 'cloudify_aws.ec2.resources.instances.delete' [retry 1/60]
+2019-08-11 20:35:15.655  CFY <aws> [cloud_initdb_ifamwi] Stopping node instance
+2019-08-11 20:35:16.392  CFY <aws> [cloud_initdb_ifamwi] Validating node instance after deletion: nothing to do
+2019-08-11 20:35:16.483  CFY <aws> [nicdb_rypekj] Validating node instance after deletion: nothing to do
+2019-08-11 20:35:16.699  CFY <aws> [cloud_initdb_ifamwi.stop] Sending task 'cloudify_cloudinit.tasks.update'
+2019-08-11 20:35:17.797  CFY <aws> [vm-app1_xb1n39.delete] Sending task 'cloudify_aws.ec2.resources.instances.delete' [retry 1/60]
+2019-08-11 20:35:19.117  CFY <aws> [nicdb_rypekj.stop] Sending task 'cloudify_aws.ec2.resources.eni.detach'
+2019-08-11 20:35:19.561  CFY <aws> [vm-app2_7nnejm.delete] Task succeeded 'cloudify_aws.ec2.resources.instances.delete' [retry 1/60]
+2019-08-11 20:35:20.268  CFY <aws> [vm-app2_7nnejm] Deleted node instance
+2019-08-11 20:35:20.375  CFY <aws> [cloud_initdb_ifamwi.stop] Task succeeded 'cloudify_cloudinit.tasks.update'
+2019-08-11 20:35:20.715  CFY <aws> [cloud_initdb_ifamwi] Stopped node instance
+2019-08-11 20:35:21.513  CFY <aws> [cloud_init2_kvp3h6] Stopping node instance
+2019-08-11 20:35:22.322  CFY <aws> [nic2_0go79k] Stopping node instance
+2019-08-11 20:35:22.457  CFY <aws> [cloud_initdb_ifamwi] Unlinking relationships
+2019-08-11 20:35:22.578  CFY <aws> [cloud_init2_kvp3h6] Validating node instance after deletion: nothing to do
+2019-08-11 20:35:22.692  CFY <aws> [nic2_0go79k] Validating node instance after deletion: nothing to do
+2019-08-11 20:35:22.979  CFY <aws> [cloud_initdb_ifamwi] Relationships unlinked
+2019-08-11 20:35:23.160  CFY <aws> [cloud_init2_kvp3h6.stop] Sending task 'cloudify_cloudinit.tasks.update'
+2019-08-11 20:35:23.666  CFY <aws> [vm-app1_xb1n39.delete] Task succeeded 'cloudify_aws.ec2.resources.instances.delete' [retry 1/60]
+2019-08-11 20:35:24.165  CFY <aws> [nic2_0go79k.stop] Sending task 'cloudify_aws.ec2.resources.eni.detach'
+2019-08-11 20:35:24.679  CFY <aws> [nicdb_rypekj.stop] Task succeeded 'cloudify_aws.ec2.resources.eni.detach'
+2019-08-11 20:35:25.154  CFY <aws> [vm-app1_xb1n39] Deleted node instance
+2019-08-11 20:35:25.288  CFY <aws> [cloud_initdb_ifamwi] Deleting node instance
+2019-08-11 20:35:25.421  CFY <aws> [nicdb_rypekj] Stopped node instance
+2019-08-11 20:35:25.856  CFY <aws> [cloud_init2_kvp3h6.stop] Task succeeded 'cloudify_cloudinit.tasks.update'
+2019-08-11 20:35:26.173  CFY <aws> [cloud_initdb_ifamwi.delete] Sending task 'cloudify_cloudinit.tasks.update'
+2019-08-11 20:35:26.759  CFY <aws> [cloud_init2_kvp3h6] Stopped node instance
+2019-08-11 20:35:27.969  CFY <aws> [ami_qn2l4e] Stopping node instance
+2019-08-11 20:35:28.118  CFY <aws> [nicdb_rypekj] Unlinking relationships
+2019-08-11 20:35:28.261  CFY <aws> [nic1_v89kzt] Stopping node instance
+2019-08-11 20:35:28.737  CFY <aws> [cloud_init_h7y7lh] Stopping node instance
+2019-08-11 20:35:29.475  CFY <aws> [nic1_v89kzt] Validating node instance after deletion: nothing to do
+2019-08-11 20:35:29.556  CFY <aws> [nicdb_rypekj] Relationships unlinked
+2019-08-11 20:35:29.681  CFY <aws> [cloud_init2_kvp3h6] Unlinking relationships
+2019-08-11 20:35:29.790  CFY <aws> [cloud_init_h7y7lh] Validating node instance after deletion: nothing to do
+2019-08-11 20:35:29.808  CFY <aws> [nic1_v89kzt.stop] Sending task 'cloudify_aws.ec2.resources.eni.detach'
+2019-08-11 20:35:30.023  CFY <aws> [ami_qn2l4e] Validating node instance after deletion: nothing to do
+2019-08-11 20:35:30.322  CFY <aws> [nic2_0go79k.stop] Task succeeded 'cloudify_aws.ec2.resources.eni.detach'
+2019-08-11 20:35:30.827  CFY <aws> [cloud_initdb_ifamwi.delete] Task succeeded 'cloudify_cloudinit.tasks.update'
+2019-08-11 20:35:31.057  CFY <aws> [cloud_init_h7y7lh.stop] Sending task 'cloudify_cloudinit.tasks.update'
+2019-08-11 20:35:32.326  CFY <aws> [nic2_0go79k] Stopped node instance
+2019-08-11 20:35:32.430  CFY <aws> [cloud_initdb_ifamwi] Deleted node instance
+2019-08-11 20:35:32.933  CFY <aws> [nicdb_rypekj] Deleting node instance
+2019-08-11 20:35:33.042  CFY <aws> [ami_qn2l4e] Stopped node instance: nothing to do
+2019-08-11 20:35:33.180  CFY <aws> [cloud_init2_kvp3h6] Relationships unlinked
+2019-08-11 20:35:33.337  CFY <aws> [nicdb_rypekj.delete] Sending task 'cloudify_aws.ec2.resources.eni.delete'
+2019-08-11 20:35:33.916  CFY <aws> [nic1_v89kzt.stop] Task succeeded 'cloudify_aws.ec2.resources.eni.detach'
+2019-08-11 20:35:34.268  CFY <aws> [cloud_init2_kvp3h6] Deleting node instance
+2019-08-11 20:35:35.214  CFY <aws> [cloud_init_h7y7lh.stop] Task succeeded 'cloudify_cloudinit.tasks.update'
+2019-08-11 20:35:35.673  CFY <aws> [nic1_v89kzt] Stopped node instance
+2019-08-11 20:35:35.829  CFY <aws> [nic2_0go79k] Unlinking relationships
+2019-08-11 20:35:35.923  CFY <aws> [cloud_init2_kvp3h6.delete] Sending task 'cloudify_cloudinit.tasks.update'
+2019-08-11 20:35:35.978  CFY <aws> [cloud_init_h7y7lh] Stopped node instance
+2019-08-11 20:35:36.071  CFY <aws> [ami_qn2l4e] Unlinking relationships
+2019-08-11 20:35:37.948  CFY <aws> [ami_qn2l4e] Relationships unlinked
+2019-08-11 20:35:38.102  CFY <aws> [nic2_0go79k] Relationships unlinked
+2019-08-11 20:35:38.222  CFY <aws> [cloud_init_h7y7lh] Unlinking relationships
+2019-08-11 20:35:38.323  CFY <aws> [nic1_v89kzt] Unlinking relationships
+2019-08-11 20:35:38.507  CFY <aws> [ami_qn2l4e] Deleting node instance: nothing to do
+2019-08-11 20:35:38.935  CFY <aws> [nic2_0go79k] Deleting node instance
+2019-08-11 20:35:39.031  CFY <aws> [cloud_init_h7y7lh] Relationships unlinked
+2019-08-11 20:35:39.126  CFY <aws> [ami_qn2l4e] Deleted node instance
+2019-08-11 20:35:39.315  CFY <aws> [nic2_0go79k.delete] Sending task 'cloudify_aws.ec2.resources.eni.delete'
+2019-08-11 20:35:39.599  CFY <aws> [nic1_v89kzt] Relationships unlinked
+2019-08-11 20:35:40.021  CFY <aws> [nicdb_rypekj.delete] Task succeeded 'cloudify_aws.ec2.resources.eni.delete'
+2019-08-11 20:35:40.239  CFY <aws> [cloud_init2_kvp3h6.delete] Task succeeded 'cloudify_cloudinit.tasks.update'
+2019-08-11 20:35:41.511  CFY <aws> [nicdb_rypekj] Deleted node instance
+2019-08-11 20:35:41.615  CFY <aws> [nic1_v89kzt] Deleting node instance
+2019-08-11 20:35:41.759  CFY <aws> [cloud_init_h7y7lh] Deleting node instance
+2019-08-11 20:35:42.098  CFY <aws> [cloud_init_h7y7lh.delete] Sending task 'cloudify_cloudinit.tasks.update'
+2019-08-11 20:35:42.172  CFY <aws> [cloud_init2_kvp3h6] Deleted node instance
+2019-08-11 20:35:43.268  CFY <aws> [nic1_v89kzt.delete] Sending task 'cloudify_aws.ec2.resources.eni.delete'
+2019-08-11 20:35:44.299  CFY <aws> [nic2_0go79k.delete] Task succeeded 'cloudify_aws.ec2.resources.eni.delete'
+2019-08-11 20:35:44.806  CFY <aws> [nic2_0go79k] Deleted node instance
+2019-08-11 20:35:45.536  CFY <aws> [cloud_init_h7y7lh.delete] Task succeeded 'cloudify_cloudinit.tasks.update'
+2019-08-11 20:35:45.847  CFY <aws> [cloud_init_h7y7lh] Deleted node instance
+2019-08-11 20:35:47.388  CFY <aws> [nic1_v89kzt.delete] Task succeeded 'cloudify_aws.ec2.resources.eni.delete'
+2019-08-11 20:35:47.470  CFY <aws> [nic1_v89kzt] Deleted node instance
+2019-08-11 20:35:48.032  CFY <aws> [subnet_514u5p] Stopping node instance
+2019-08-11 20:35:48.083  CFY <aws> [security_group_evcdhw] Stopping node instance
+2019-08-11 20:35:48.288  CFY <aws> [security_group_evcdhw] Validating node instance after deletion: nothing to do
+2019-08-11 20:35:48.373  CFY <aws> [subnet_514u5p] Validating node instance after deletion: nothing to do
+2019-08-11 20:35:48.470  CFY <aws> [subnet_514u5p] Stopped node instance: nothing to do
+2019-08-11 20:35:48.570  CFY <aws> [security_group_evcdhw] Stopped node instance: nothing to do
+2019-08-11 20:35:48.980  CFY <aws> [subnet_514u5p] Unlinking relationships
+2019-08-11 20:35:49.030  CFY <aws> [security_group_evcdhw] Unlinking relationships
+2019-08-11 20:35:49.302  CFY <aws> [security_group_evcdhw] Relationships unlinked
+2019-08-11 20:35:49.360  CFY <aws> [subnet_514u5p] Relationships unlinked
+2019-08-11 20:35:49.565  CFY <aws> [security_group_evcdhw] Deleting node instance
+2019-08-11 20:35:49.795  CFY <aws> [subnet_514u5p] Deleting node instance
+2019-08-11 20:35:49.808  CFY <aws> [security_group_evcdhw.delete] Sending task 'cloudify_aws.ec2.resources.securitygroup.delete'
+2019-08-11 20:35:50.838  CFY <aws> [subnet_514u5p.delete] Sending task 'cloudify_aws.ec2.resources.subnet.delete'
+2019-08-11 20:35:53.338  CFY <aws> [security_group_evcdhw.delete] Task succeeded 'cloudify_aws.ec2.resources.securitygroup.delete'
+2019-08-11 20:35:53.438  CFY <aws> [security_group_evcdhw] Deleted node instance
+2019-08-11 20:35:55.166  CFY <aws> [subnet_514u5p.delete] Task succeeded 'cloudify_aws.ec2.resources.subnet.delete'
+2019-08-11 20:35:55.214  CFY <aws> [subnet_514u5p] Deleted node instance
+2019-08-11 20:35:55.808  CFY <aws> [vpc_ir1vcj] Stopping node instance
+2019-08-11 20:35:56.115  CFY <aws> [vpc_ir1vcj] Validating node instance after deletion: nothing to do
+2019-08-11 20:35:56.184  CFY <aws> [vpc_ir1vcj] Stopped node instance: nothing to do
+2019-08-11 20:35:56.518  CFY <aws> [vpc_ir1vcj] Unlinking relationships
+2019-08-11 20:35:56.789  CFY <aws> [vpc_ir1vcj] Relationships unlinked
+2019-08-11 20:35:56.966  CFY <aws> [vpc_ir1vcj] Deleting node instance
+2019-08-11 20:35:57.286  CFY <aws> [vpc_ir1vcj.delete] Sending task 'cloudify_aws.ec2.resources.vpc.delete'
+2019-08-11 20:36:00.541  CFY <aws> [vpc_ir1vcj.delete] Task succeeded 'cloudify_aws.ec2.resources.vpc.delete'
+2019-08-11 20:36:00.773  CFY <aws> [vpc_ir1vcj] Deleted node instance
+2019-08-11 20:36:01.186  CFY <aws> 'uninstall' workflow execution succeeded
+Finished executing workflow uninstall on deployment aws
+* Run 'cfy events list 620964cc-5c1b-4e27-8757-f69b33f7b052' to retrieve the execution's events/logs
+Trying to delete deployment aws...
+Deployment deleted
+Deleting blueprint cloudify-1565555070-wp-aws...
+Blueprint deleted

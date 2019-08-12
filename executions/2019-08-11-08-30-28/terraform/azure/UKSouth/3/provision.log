@@ -1,0 +1,14 @@
+Starting provisioning process
+[0m[1mrandom_id.bp_suffix: Refreshing state... [id=wt40cg][0m
+[0m[1mdata.template_file.config_database: Refreshing state...[0m
+[0m[1mazurerm_resource_group.main: Refreshing state... [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-c2de3472][0m
+[0m[1mazurerm_virtual_network.main: Refreshing state... [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-c2de3472/providers/Microsoft.Network/virtualNetworks/wordpress-network-c2de3472][0m
+[0m[1mazurerm_public_ip.static-ip2: Refreshing state... [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-c2de3472/providers/Microsoft.Network/publicIPAddresses/wordpress-static-ip2-c2de3472][0m
+[0m[1mazurerm_public_ip.static-ip-database: Refreshing state... [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-c2de3472/providers/Microsoft.Network/publicIPAddresses/wordpress-static-ipdatabase-c2de3472][0m
+[0m[1mazurerm_public_ip.static-ip1: Refreshing state... [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-c2de3472/providers/Microsoft.Network/publicIPAddresses/wordpress-static-ip1-c2de3472][0m
+[0m[1mazurerm_subnet.internal: Refreshing state... [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-c2de3472/providers/Microsoft.Network/virtualNetworks/wordpress-network-c2de3472/subnets/wordpress-subnet-c2de3472][0m
+[0m[1mdata.template_file.config: Refreshing state...[0m
+[0m[1mazurerm_network_interface.app1: Refreshing state... [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-c2de3472/providers/Microsoft.Network/networkInterfaces/wordpress-app1-nic-c2de3472][0m
+[0m[1mazurerm_network_interface.database: Refreshing state... [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-c2de3472/providers/Microsoft.Network/networkInterfaces/wordpress-database-nic-c2de3472][0m
+[0m[1mazurerm_network_interface.app2: Refreshing state... [id=/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/wordpress-c2de3472/providers/Microsoft.Network/networkInterfaces/wordpress-app2-nic-c2de3472][0m
+[0m[1mazurerm_availability_set.wordpress-availability: Creating...[0m[0m

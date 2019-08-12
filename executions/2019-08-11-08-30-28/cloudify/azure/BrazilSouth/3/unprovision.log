@@ -1,0 +1,76 @@
+Executing workflow `uninstall` on deployment `azure` [timeout=900 seconds]
+2019-08-11 19:18:12.156  CFY <azure> Starting 'uninstall' workflow execution
+2019-08-11 19:18:13.677  CFY <azure> [config-database_yxmrrb] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:13.707  CFY <azure> [config-database_yxmrrb->vm-database_bzqxb2|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 19:18:14.597  CFY <azure> [config-wordpress_okpv0j] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:15.368  CFY <azure> [config-wordpress_okpv0j->vm-app2_gb5rnj|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 19:18:16.355  CFY <azure> [config-wordpress_okpv0j] Stop: instance already deleted
+2019-08-11 19:18:16.493  CFY <azure> [config-database_yxmrrb] Stop: instance already deleted
+2019-08-11 19:18:16.622  CFY <azure> [config-wordpress_okpv0j] Delete: instance already deleted
+2019-08-11 19:18:16.828  CFY <azure> [config-database_yxmrrb] Delete: instance already deleted
+2019-08-11 19:18:17.466  CFY <azure> [config-database_yxmrrb->vm-database_bzqxb2|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 19:18:17.823  CFY <azure> [vm-database_bzqxb2] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:18.070  CFY <azure> [vm-database_bzqxb2] Stop: instance already deleted
+2019-08-11 19:18:18.354  CFY <azure> [vm-database_bzqxb2] Delete: instance already deleted
+2019-08-11 19:18:19.063  CFY <azure> [nic-db_4bukiy] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:19.358  CFY <azure> [nic-db_4bukiy] Stop: instance already deleted
+2019-08-11 19:18:19.464  CFY <azure> [nic-db_4bukiy] Delete: instance already deleted
+2019-08-11 19:18:19.736  CFY <azure> [ip_config-db_6okgnu] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:19.939  CFY <azure> [config-wordpress_okpv0j->vm-app2_gb5rnj|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 19:18:20.143  CFY <azure> [ip_config-db_6okgnu] Stop: instance already deleted
+2019-08-11 19:18:20.274  CFY <azure> [config-wordpress_okpv0j->vm-app1_x8wsft|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 19:18:21.183  CFY <azure> [ip_config-db_6okgnu] Delete: instance already deleted
+2019-08-11 19:18:21.423  CFY <azure> [ip-db_t2z22s] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:21.707  CFY <azure> [ip-db_t2z22s] Stop: instance already deleted
+2019-08-11 19:18:21.895  CFY <azure> [ip-db_t2z22s] Delete: instance already deleted
+2019-08-11 19:18:23.508  CFY <azure> [config-wordpress_okpv0j->vm-app1_x8wsft|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 19:18:23.798  CFY <azure> [vm-app2_gb5rnj] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:23.916  CFY <azure> [vm-app1_x8wsft] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:24.184  CFY <azure> [vm-app1_x8wsft] Stop: instance already deleted
+2019-08-11 19:18:24.259  CFY <azure> [vm-app2_gb5rnj] Stop: instance already deleted
+2019-08-11 19:18:24.309  CFY <azure> [vm-app1_x8wsft] Delete: instance already deleted
+2019-08-11 19:18:24.479  CFY <azure> [nic1_2wpq9v] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:24.643  CFY <azure> [vm-app2_gb5rnj] Delete: instance already deleted
+2019-08-11 19:18:24.926  CFY <azure> [storage_account_zo6jss] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:25.119  CFY <azure> [nic1_2wpq9v] Stop: instance already deleted
+2019-08-11 19:18:25.203  CFY <azure> [nic2_52ad2e] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:25.339  CFY <azure> [availability_set_opeu43] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:25.456  CFY <azure> [storage_account_zo6jss] Stop: instance already deleted
+2019-08-11 19:18:25.531  CFY <azure> [nic2_52ad2e] Stop: instance already deleted
+2019-08-11 19:18:25.689  CFY <azure> [nic1_2wpq9v] Delete: instance already deleted
+2019-08-11 19:18:25.868  CFY <azure> [availability_set_opeu43] Stop: instance already deleted
+2019-08-11 19:18:26.021  CFY <azure> [storage_account_zo6jss] Delete: instance already deleted
+2019-08-11 19:18:26.195  CFY <azure> [nic2_52ad2e] Delete: instance already deleted
+2019-08-11 19:18:26.308  CFY <azure> [availability_set_opeu43] Delete: instance already deleted
+2019-08-11 19:18:26.387  CFY <azure> [ip_config1_uxgdnt] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:26.733  CFY <azure> [ip_config1_uxgdnt] Stop: instance already deleted
+2019-08-11 19:18:26.797  CFY <azure> [ip_config1_uxgdnt] Delete: instance already deleted
+2019-08-11 19:18:26.960  CFY <azure> [ip_config2_8ygpfe] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:27.067  CFY <azure> [network_security_group_yb09do] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:27.413  CFY <azure> [network_security_group_yb09do] Stop: instance already deleted
+2019-08-11 19:18:27.541  CFY <azure> [ip1_jqsz9a] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:27.686  CFY <azure> [ip_config2_8ygpfe] Stop: instance already deleted
+2019-08-11 19:18:27.807  CFY <azure> [ip1_jqsz9a] Stop: instance already deleted
+2019-08-11 19:18:27.921  CFY <azure> [network_security_group_yb09do] Delete: instance already deleted
+2019-08-11 19:18:28.069  CFY <azure> [ip_config2_8ygpfe] Delete: instance already deleted
+2019-08-11 19:18:28.191  CFY <azure> [ip1_jqsz9a] Delete: instance already deleted
+2019-08-11 19:18:28.841  CFY <azure> [ip2_m9jnwz] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:28.988  CFY <azure> [subnet_uljpbw] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:29.110  CFY <azure> [ip2_m9jnwz] Stop: instance already deleted
+2019-08-11 19:18:29.213  CFY <azure> [subnet_uljpbw] Stop: instance already deleted
+2019-08-11 19:18:29.363  CFY <azure> [ip2_m9jnwz] Delete: instance already deleted
+2019-08-11 19:18:29.469  CFY <azure> [subnet_uljpbw] Delete: instance already deleted
+2019-08-11 19:18:29.773  CFY <azure> [network_mhlj35] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:29.978  CFY <azure> [network_mhlj35] Stop: instance already deleted
+2019-08-11 19:18:30.096  CFY <azure> [network_mhlj35] Delete: instance already deleted
+2019-08-11 19:18:30.384  CFY <azure> [resource_group_ebfnco] Validating node instance after deletion: nothing to do
+2019-08-11 19:18:30.683  CFY <azure> [resource_group_ebfnco] Stop: instance already deleted
+Execution ended, waiting 3 seconds for additional log messages
+2019-08-11 19:18:30.864  CFY <azure> [resource_group_ebfnco] Delete: instance already deleted
+2019-08-11 19:18:31.324  CFY <azure> 'uninstall' workflow execution succeeded
+Finished executing workflow uninstall on deployment azure
+* Run 'cfy events list d30d3a0f-8a55-4eb8-b084-c65385354d92' to retrieve the execution's events/logs
+Trying to delete deployment azure...
+Deployment deleted
+Deleting blueprint cloudify-1565549168-wp-azure...
+Blueprint deleted

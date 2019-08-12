@@ -1,0 +1,518 @@
+Executing workflow `uninstall` on deployment `azure` [timeout=900 seconds]
+2019-08-11 13:10:39.847  CFY <azure> Starting 'uninstall' workflow execution
+2019-08-11 13:10:41.839  CFY <azure> [config-wordpress_w86n0a] Stopping node instance
+2019-08-11 13:10:42.043  CFY <azure> [config-database_8wh03i] Stopping node instance
+2019-08-11 13:10:42.124  CFY <azure> [config-wordpress_w86n0a] Validating node instance after deletion: nothing to do
+2019-08-11 13:10:42.201  CFY <azure> [config-database_8wh03i] Validating node instance after deletion: nothing to do
+2019-08-11 13:10:42.309  CFY <azure> [config-wordpress_w86n0a] Stopped node instance: nothing to do
+2019-08-11 13:10:42.425  CFY <azure> [config-database_8wh03i] Stopped node instance: nothing to do
+2019-08-11 13:10:42.919  CFY <azure> [config-wordpress_w86n0a] Unlinking relationships
+2019-08-11 13:10:42.967  CFY <azure> [config-database_8wh03i] Unlinking relationships
+2019-08-11 13:10:43.109  CFY <azure> [config-database_8wh03i->vm-database_4oy17q|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 13:10:44.143  CFY <azure> [config-wordpress_w86n0a->vm-app2_hi8ujm|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 13:10:46.026  CFY <azure> [config-database_8wh03i->vm-database_4oy17q|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 13:10:46.288  CFY <azure> [config-database_8wh03i] Relationships unlinked
+2019-08-11 13:10:46.595  CFY <azure> [config-database_8wh03i] Deleting node instance: nothing to do
+2019-08-11 13:10:46.791  CFY <azure> [config-database_8wh03i] Deleted node instance
+2019-08-11 13:10:47.712  CFY <azure> [vm-database_4oy17q] Stopping node instance
+2019-08-11 13:10:47.946  CFY <azure> [vm-database_4oy17q] Validating node instance after deletion: nothing to do
+2019-08-11 13:10:48.232  CFY <azure> [vm-database_4oy17q] Stopped node instance: nothing to do
+2019-08-11 13:10:48.264  CFY <azure> [config-wordpress_w86n0a->vm-app2_hi8ujm|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 13:10:48.486  CFY <azure> [config-wordpress_w86n0a->vm-app1_pow2an|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 13:10:49.413  CFY <azure> [vm-database_4oy17q] Unlinking relationships
+2019-08-11 13:10:49.868  CFY <azure> [vm-database_4oy17q] Relationships unlinked
+2019-08-11 13:10:50.066  CFY <azure> [vm-database_4oy17q] Deleting node instance
+2019-08-11 13:10:50.754  CFY <azure> [vm-database_4oy17q.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete'
+2019-08-11 13:10:51.286  CFY <azure> [config-wordpress_w86n0a->vm-app1_pow2an|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 13:10:51.865  CFY <azure> [config-wordpress_w86n0a] Relationships unlinked
+2019-08-11 13:10:51.967  CFY <azure> [config-wordpress_w86n0a] Deleting node instance: nothing to do
+2019-08-11 13:10:52.386  CFY <azure> [config-wordpress_w86n0a] Deleted node instance
+2019-08-11 13:10:52.803  CFY <azure> [vm-app2_hi8ujm] Stopping node instance
+2019-08-11 13:10:53.165  CFY <azure> [vm-app1_pow2an] Stopping node instance
+2019-08-11 13:10:53.723  CFY <azure> [vm-app2_hi8ujm] Validating node instance after deletion: nothing to do
+2019-08-11 13:10:53.868  CFY <azure> [vm-app1_pow2an] Validating node instance after deletion: nothing to do
+2019-08-11 13:10:54.166  CFY <azure> [vm-app2_hi8ujm] Stopped node instance: nothing to do
+2019-08-11 13:10:54.272  CFY <azure> [vm-app1_pow2an] Stopped node instance: nothing to do
+2019-08-11 13:10:54.611  LOG <azure> [vm-database_4oy17q.delete] INFO: Deleting Virtual Machine "05wpdatabase"
+2019-08-11 13:10:54.611  LOG <azure> [vm-database_4oy17q.delete] INFO: Checking Virtual Machine "05wpdatabase"
+2019-08-11 13:10:54.611  LOG <azure> [vm-database_4oy17q.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Compute/virtualMachines/05wpdatabase', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 13:10:54.685  CFY <azure> [vm-app2_hi8ujm] Unlinking relationships
+2019-08-11 13:10:54.873  CFY <azure> [vm-app1_pow2an] Unlinking relationships
+2019-08-11 13:10:54.904  LOG <azure> [vm-database_4oy17q.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Compute/virtualMachines/05wpdatabase', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 13:10:55.053  CFY <azure> [vm-app2_hi8ujm] Relationships unlinked
+2019-08-11 13:10:55.372  CFY <azure> [vm-app1_pow2an] Relationships unlinked
+2019-08-11 13:10:55.482  CFY <azure> [vm-app2_hi8ujm] Deleting node instance
+2019-08-11 13:10:55.554  CFY <azure> [vm-app1_pow2an] Deleting node instance
+2019-08-11 13:10:55.823  CFY <azure> [vm-app2_hi8ujm.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete'
+2019-08-11 13:10:56.812  CFY <azure> [vm-database_4oy17q.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "3ed9eb6b-2f05-48cc-ab98-3d39e40598e1" started [retry_after=60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "3ed9eb6b-2f05-48cc-ab98-3d39e40598e1" started [retry_after=60]
+
+2019-08-11 13:10:57.205  CFY <azure> [vm-app1_pow2an.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete'
+2019-08-11 13:11:00.079  LOG <azure> [vm-app2_hi8ujm.delete] INFO: Deleting Virtual Machine "15wpapp2"
+2019-08-11 13:11:00.079  LOG <azure> [vm-app2_hi8ujm.delete] INFO: Checking Virtual Machine "15wpapp2"
+2019-08-11 13:11:00.079  LOG <azure> [vm-app2_hi8ujm.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Compute/virtualMachines/15wpapp2', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 13:11:00.382  LOG <azure> [vm-app2_hi8ujm.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Compute/virtualMachines/15wpapp2', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 13:11:01.471  CFY <azure> [vm-app2_hi8ujm.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "28fb3c22-8d28-485c-9cba-991b3c9f7072" started [retry_after=60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "28fb3c22-8d28-485c-9cba-991b3c9f7072" started [retry_after=60]
+
+2019-08-11 13:11:01.778  LOG <azure> [vm-app1_pow2an.delete] INFO: Deleting Virtual Machine "11wpapp1"
+2019-08-11 13:11:01.778  LOG <azure> [vm-app1_pow2an.delete] INFO: Checking Virtual Machine "11wpapp1"
+2019-08-11 13:11:01.778  LOG <azure> [vm-app1_pow2an.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Compute/virtualMachines/11wpapp1', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 13:11:02.184  LOG <azure> [vm-app1_pow2an.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Compute/virtualMachines/11wpapp1', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 13:11:03.061  CFY <azure> [vm-app1_pow2an.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "8d75fa92-3828-4bd4-a59b-5331d06d41fc" started [retry_after=60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "8d75fa92-3828-4bd4-a59b-5331d06d41fc" started [retry_after=60]
+
+2019-08-11 13:11:56.882  CFY <azure> [vm-database_4oy17q.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 1/60]
+2019-08-11 13:12:01.422  LOG <azure> [vm-database_4oy17q.delete] INFO: Checking status of operation "3ed9eb6b-2f05-48cc-ab98-3d39e40598e1"
+2019-08-11 13:12:01.423  LOG <azure> [vm-database_4oy17q.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/3ed9eb6b-2f05-48cc-ab98-3d39e40598e1?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:12:01.712  CFY <azure> [vm-app2_hi8ujm.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 1/60]
+2019-08-11 13:12:02.698  CFY <azure> [vm-database_4oy17q.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "d67fa6dd-591f-4ec7-95b2-7e1c05bea26b" still pending [retry_after=60] [retry 1/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "d67fa6dd-591f-4ec7-95b2-7e1c05bea26b" still pending [retry_after=60]
+
+2019-08-11 13:12:03.270  CFY <azure> [vm-app1_pow2an.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 1/60]
+2019-08-11 13:12:04.775  LOG <azure> [vm-app2_hi8ujm.delete] INFO: Checking status of operation "28fb3c22-8d28-485c-9cba-991b3c9f7072"
+2019-08-11 13:12:04.776  LOG <azure> [vm-app2_hi8ujm.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/28fb3c22-8d28-485c-9cba-991b3c9f7072?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:12:05.773  CFY <azure> [vm-app2_hi8ujm.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "40dd6821-5da3-46cb-a284-d9bd36c49f1e" still pending [retry_after=60] [retry 1/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "40dd6821-5da3-46cb-a284-d9bd36c49f1e" still pending [retry_after=60]
+
+2019-08-11 13:12:06.089  LOG <azure> [vm-app1_pow2an.delete] INFO: Checking status of operation "8d75fa92-3828-4bd4-a59b-5331d06d41fc"
+2019-08-11 13:12:06.089  LOG <azure> [vm-app1_pow2an.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/8d75fa92-3828-4bd4-a59b-5331d06d41fc?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:12:06.853  CFY <azure> [vm-app1_pow2an.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "629414ac-9a74-4e45-82d3-edd65c83df64" still pending [retry_after=60] [retry 1/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "629414ac-9a74-4e45-82d3-edd65c83df64" still pending [retry_after=60]
+
+2019-08-11 13:13:02.761  CFY <azure> [vm-database_4oy17q.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 2/60]
+2019-08-11 13:13:05.688  LOG <azure> [vm-database_4oy17q.delete] INFO: Checking status of operation "d67fa6dd-591f-4ec7-95b2-7e1c05bea26b"
+2019-08-11 13:13:05.688  LOG <azure> [vm-database_4oy17q.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/3ed9eb6b-2f05-48cc-ab98-3d39e40598e1?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:13:05.924  CFY <azure> [vm-app2_hi8ujm.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 2/60]
+2019-08-11 13:13:06.873  CFY <azure> [vm-database_4oy17q.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "d4f5cfed-d5e9-4086-80db-08f24908639d" still pending [retry_after=60] [retry 2/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "d4f5cfed-d5e9-4086-80db-08f24908639d" still pending [retry_after=60]
+
+2019-08-11 13:13:07.083  CFY <azure> [vm-app1_pow2an.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 2/60]
+2019-08-11 13:13:09.180  LOG <azure> [vm-app2_hi8ujm.delete] INFO: Checking status of operation "40dd6821-5da3-46cb-a284-d9bd36c49f1e"
+2019-08-11 13:13:09.180  LOG <azure> [vm-app2_hi8ujm.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/28fb3c22-8d28-485c-9cba-991b3c9f7072?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:13:10.256  CFY <azure> [vm-app2_hi8ujm.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "2dacaaa3-f463-413f-9ff1-d463095a6e9e" still pending [retry_after=60] [retry 2/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "2dacaaa3-f463-413f-9ff1-d463095a6e9e" still pending [retry_after=60]
+
+2019-08-11 13:13:10.457  LOG <azure> [vm-app1_pow2an.delete] INFO: Checking status of operation "629414ac-9a74-4e45-82d3-edd65c83df64"
+2019-08-11 13:13:10.457  LOG <azure> [vm-app1_pow2an.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/8d75fa92-3828-4bd4-a59b-5331d06d41fc?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:13:11.450  CFY <azure> [vm-app1_pow2an.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "2c5257e6-3d61-466a-a73a-ce90407708e4" still pending [retry_after=60] [retry 2/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "2c5257e6-3d61-466a-a73a-ce90407708e4" still pending [retry_after=60]
+
+2019-08-11 13:14:07.020  CFY <azure> [vm-database_4oy17q.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 3/60]
+2019-08-11 13:14:09.586  LOG <azure> [vm-database_4oy17q.delete] INFO: Checking status of operation "d4f5cfed-d5e9-4086-80db-08f24908639d"
+2019-08-11 13:14:09.586  LOG <azure> [vm-database_4oy17q.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/3ed9eb6b-2f05-48cc-ab98-3d39e40598e1?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:14:10.413  CFY <azure> [vm-app2_hi8ujm.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 3/60]
+2019-08-11 13:14:11.336  CFY <azure> [vm-database_4oy17q.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "01f4be13-1461-4715-850d-df348603cf97" still pending [retry_after=60] [retry 3/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "01f4be13-1461-4715-850d-df348603cf97" still pending [retry_after=60]
+
+2019-08-11 13:14:11.611  CFY <azure> [vm-app1_pow2an.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 3/60]
+2019-08-11 13:14:13.284  LOG <azure> [vm-app2_hi8ujm.delete] INFO: Checking status of operation "2dacaaa3-f463-413f-9ff1-d463095a6e9e"
+2019-08-11 13:14:13.284  LOG <azure> [vm-app2_hi8ujm.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/28fb3c22-8d28-485c-9cba-991b3c9f7072?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:14:14.366  CFY <azure> [vm-app2_hi8ujm.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "f208fcbe-020f-4669-b78a-e44c9041b194" still pending [retry_after=60] [retry 3/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "f208fcbe-020f-4669-b78a-e44c9041b194" still pending [retry_after=60]
+
+2019-08-11 13:14:15.629  LOG <azure> [vm-app1_pow2an.delete] INFO: Checking status of operation "2c5257e6-3d61-466a-a73a-ce90407708e4"
+2019-08-11 13:14:15.629  LOG <azure> [vm-app1_pow2an.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/8d75fa92-3828-4bd4-a59b-5331d06d41fc?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:14:16.443  CFY <azure> [vm-app1_pow2an.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "aedba893-cbc8-44f2-863d-12de3b884304" still pending [retry_after=60] [retry 3/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "aedba893-cbc8-44f2-863d-12de3b884304" still pending [retry_after=60]
+
+2019-08-11 13:15:11.429  CFY <azure> [vm-database_4oy17q.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 4/60]
+2019-08-11 13:15:14.543  CFY <azure> [vm-app2_hi8ujm.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 4/60]
+2019-08-11 13:15:14.658  LOG <azure> [vm-database_4oy17q.delete] INFO: Checking status of operation "01f4be13-1461-4715-850d-df348603cf97"
+2019-08-11 13:15:14.658  LOG <azure> [vm-database_4oy17q.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/3ed9eb6b-2f05-48cc-ab98-3d39e40598e1?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:15:15.566  CFY <azure> [vm-database_4oy17q.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "5353230d-807b-45e4-9830-3ba835d80197" still pending [retry_after=60] [retry 4/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "5353230d-807b-45e4-9830-3ba835d80197" still pending [retry_after=60]
+
+2019-08-11 13:15:16.603  CFY <azure> [vm-app1_pow2an.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 4/60]
+2019-08-11 13:15:17.784  LOG <azure> [vm-app2_hi8ujm.delete] INFO: Checking status of operation "f208fcbe-020f-4669-b78a-e44c9041b194"
+2019-08-11 13:15:17.813  LOG <azure> [vm-app2_hi8ujm.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/28fb3c22-8d28-485c-9cba-991b3c9f7072?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:15:19.275  CFY <azure> [vm-app2_hi8ujm.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "b8da28ce-6e01-41a4-a00b-755ddc009914" still pending [retry_after=60] [retry 4/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "b8da28ce-6e01-41a4-a00b-755ddc009914" still pending [retry_after=60]
+
+2019-08-11 13:15:20.855  LOG <azure> [vm-app1_pow2an.delete] INFO: Checking status of operation "aedba893-cbc8-44f2-863d-12de3b884304"
+2019-08-11 13:15:20.856  LOG <azure> [vm-app1_pow2an.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/8d75fa92-3828-4bd4-a59b-5331d06d41fc?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:15:21.915  CFY <azure> [vm-app1_pow2an.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "1ede87ac-fe98-4eb6-b6ee-b9de0d9dccf8" still pending [retry_after=60] [retry 4/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "1ede87ac-fe98-4eb6-b6ee-b9de0d9dccf8" still pending [retry_after=60]
+
+2019-08-11 13:16:15.660  CFY <azure> [vm-database_4oy17q.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 5/60]
+2019-08-11 13:16:18.820  LOG <azure> [vm-database_4oy17q.delete] INFO: Checking status of operation "5353230d-807b-45e4-9830-3ba835d80197"
+2019-08-11 13:16:18.821  LOG <azure> [vm-database_4oy17q.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/3ed9eb6b-2f05-48cc-ab98-3d39e40598e1?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:16:19.364  CFY <azure> [vm-app2_hi8ujm.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 5/60]
+2019-08-11 13:16:20.350  CFY <azure> [vm-database_4oy17q.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "70ef2d39-0491-432b-bc58-22241a366bda" still pending [retry_after=60] [retry 5/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "70ef2d39-0491-432b-bc58-22241a366bda" still pending [retry_after=60]
+
+2019-08-11 13:16:22.135  CFY <azure> [vm-app1_pow2an.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 5/60]
+2019-08-11 13:16:22.904  LOG <azure> [vm-app2_hi8ujm.delete] INFO: Checking status of operation "b8da28ce-6e01-41a4-a00b-755ddc009914"
+2019-08-11 13:16:22.904  LOG <azure> [vm-app2_hi8ujm.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/28fb3c22-8d28-485c-9cba-991b3c9f7072?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:16:24.179  CFY <azure> [vm-app2_hi8ujm.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "580c87c4-2443-4f0a-b9dc-2e8e8d1b1e8f" still pending [retry_after=60] [retry 5/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "580c87c4-2443-4f0a-b9dc-2e8e8d1b1e8f" still pending [retry_after=60]
+
+2019-08-11 13:16:25.886  LOG <azure> [vm-app1_pow2an.delete] INFO: Checking status of operation "1ede87ac-fe98-4eb6-b6ee-b9de0d9dccf8"
+2019-08-11 13:16:25.887  LOG <azure> [vm-app1_pow2an.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/8d75fa92-3828-4bd4-a59b-5331d06d41fc?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:16:26.894  CFY <azure> [vm-app1_pow2an.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "f78b5eda-b151-4d6d-8414-f120438bfa16" still pending [retry_after=60] [retry 5/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "f78b5eda-b151-4d6d-8414-f120438bfa16" still pending [retry_after=60]
+
+2019-08-11 13:17:20.431  CFY <azure> [vm-database_4oy17q.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 6/60]
+2019-08-11 13:17:23.747  LOG <azure> [vm-database_4oy17q.delete] INFO: Checking status of operation "70ef2d39-0491-432b-bc58-22241a366bda"
+2019-08-11 13:17:23.748  LOG <azure> [vm-database_4oy17q.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/3ed9eb6b-2f05-48cc-ab98-3d39e40598e1?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:17:24.336  CFY <azure> [vm-app2_hi8ujm.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 6/60]
+2019-08-11 13:17:25.288  CFY <azure> [vm-database_4oy17q.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "30ba4ce3-0816-4351-9a13-5ca97d70eb2c" still pending [retry_after=60] [retry 6/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "30ba4ce3-0816-4351-9a13-5ca97d70eb2c" still pending [retry_after=60]
+
+2019-08-11 13:17:27.028  CFY <azure> [vm-app1_pow2an.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 6/60]
+2019-08-11 13:17:27.341  LOG <azure> [vm-app2_hi8ujm.delete] INFO: Checking status of operation "580c87c4-2443-4f0a-b9dc-2e8e8d1b1e8f"
+2019-08-11 13:17:27.342  LOG <azure> [vm-app2_hi8ujm.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/28fb3c22-8d28-485c-9cba-991b3c9f7072?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:17:28.321  CFY <azure> [vm-app2_hi8ujm.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "aad0645b-de59-4ffe-b1a3-1804c084e5a6" still pending [retry_after=60] [retry 6/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "aad0645b-de59-4ffe-b1a3-1804c084e5a6" still pending [retry_after=60]
+
+2019-08-11 13:17:29.898  LOG <azure> [vm-app1_pow2an.delete] INFO: Checking status of operation "f78b5eda-b151-4d6d-8414-f120438bfa16"
+2019-08-11 13:17:29.898  LOG <azure> [vm-app1_pow2an.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/8d75fa92-3828-4bd4-a59b-5331d06d41fc?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:17:30.854  CFY <azure> [vm-app1_pow2an.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "a7d75c0d-3adb-4181-b1db-6e3b2cb44e04" still pending [retry_after=60] [retry 6/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "a7d75c0d-3adb-4181-b1db-6e3b2cb44e04" still pending [retry_after=60]
+
+2019-08-11 13:18:25.414  CFY <azure> [vm-database_4oy17q.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 7/60]
+2019-08-11 13:18:28.059  LOG <azure> [vm-database_4oy17q.delete] INFO: Checking status of operation "30ba4ce3-0816-4351-9a13-5ca97d70eb2c"
+2019-08-11 13:18:28.059  LOG <azure> [vm-database_4oy17q.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/3ed9eb6b-2f05-48cc-ab98-3d39e40598e1?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:18:28.528  CFY <azure> [vm-app2_hi8ujm.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 7/60]
+2019-08-11 13:18:29.498  CFY <azure> [vm-database_4oy17q.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "a10ace41-5041-4ed9-976c-3ee5dc2c44b1" still pending [retry_after=60] [retry 7/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "a10ace41-5041-4ed9-976c-3ee5dc2c44b1" still pending [retry_after=60]
+
+2019-08-11 13:18:31.112  CFY <azure> [vm-app1_pow2an.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 7/60]
+2019-08-11 13:18:31.238  LOG <azure> [vm-app2_hi8ujm.delete] INFO: Checking status of operation "aad0645b-de59-4ffe-b1a3-1804c084e5a6"
+2019-08-11 13:18:31.239  LOG <azure> [vm-app2_hi8ujm.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/28fb3c22-8d28-485c-9cba-991b3c9f7072?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:18:32.182  CFY <azure> [vm-app2_hi8ujm.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "fc9a362f-e558-4561-9108-b9d9696a657c" still pending [retry_after=60] [retry 7/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "fc9a362f-e558-4561-9108-b9d9696a657c" still pending [retry_after=60]
+
+2019-08-11 13:18:34.403  LOG <azure> [vm-app1_pow2an.delete] INFO: Checking status of operation "a7d75c0d-3adb-4181-b1db-6e3b2cb44e04"
+2019-08-11 13:18:34.404  LOG <azure> [vm-app1_pow2an.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/8d75fa92-3828-4bd4-a59b-5331d06d41fc?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:18:35.543  CFY <azure> [vm-app1_pow2an.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "1705c8e1-91a4-45bf-8e55-be6e89fa69c0" still pending [retry_after=60] [retry 7/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "1705c8e1-91a4-45bf-8e55-be6e89fa69c0" still pending [retry_after=60]
+
+2019-08-11 13:19:29.573  CFY <azure> [vm-database_4oy17q.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 8/60]
+2019-08-11 13:19:32.254  CFY <azure> [vm-app2_hi8ujm.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 8/60]
+2019-08-11 13:19:32.326  LOG <azure> [vm-database_4oy17q.delete] INFO: Checking status of operation "a10ace41-5041-4ed9-976c-3ee5dc2c44b1"
+2019-08-11 13:19:32.326  LOG <azure> [vm-database_4oy17q.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/3ed9eb6b-2f05-48cc-ab98-3d39e40598e1?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:19:33.192  CFY <azure> [vm-database_4oy17q.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "7ba24338-de2b-4ec6-a5d8-a08a4bcd957b" still pending [retry_after=60] [retry 8/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "7ba24338-de2b-4ec6-a5d8-a08a4bcd957b" still pending [retry_after=60]
+
+2019-08-11 13:19:35.642  LOG <azure> [vm-app2_hi8ujm.delete] INFO: Checking status of operation "fc9a362f-e558-4561-9108-b9d9696a657c"
+2019-08-11 13:19:35.643  LOG <azure> [vm-app2_hi8ujm.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/28fb3c22-8d28-485c-9cba-991b3c9f7072?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:19:35.687  CFY <azure> [vm-app1_pow2an.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 8/60]
+2019-08-11 13:19:38.431  CFY <azure> [vm-app2_hi8ujm.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "8fa0c473-fa36-42d8-b52d-85da28e8739c" still pending [retry_after=60] [retry 8/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "8fa0c473-fa36-42d8-b52d-85da28e8739c" still pending [retry_after=60]
+
+2019-08-11 13:19:38.610  LOG <azure> [vm-app1_pow2an.delete] INFO: Checking status of operation "1705c8e1-91a4-45bf-8e55-be6e89fa69c0"
+2019-08-11 13:19:38.611  LOG <azure> [vm-app1_pow2an.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/8d75fa92-3828-4bd4-a59b-5331d06d41fc?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:19:39.637  CFY <azure> [vm-app1_pow2an.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "fe2561a4-dfe2-42ae-a2bf-b80d5b61c64b" still pending [retry_after=60] [retry 8/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "fe2561a4-dfe2-42ae-a2bf-b80d5b61c64b" still pending [retry_after=60]
+
+2019-08-11 13:20:33.330  CFY <azure> [vm-database_4oy17q.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 9/60]
+2019-08-11 13:20:36.403  LOG <azure> [vm-database_4oy17q.delete] INFO: Checking status of operation "7ba24338-de2b-4ec6-a5d8-a08a4bcd957b"
+2019-08-11 13:20:36.403  LOG <azure> [vm-database_4oy17q.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/3ed9eb6b-2f05-48cc-ab98-3d39e40598e1?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:20:37.179  CFY <azure> [vm-database_4oy17q.delete] Task succeeded 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 9/60]
+2019-08-11 13:20:37.272  CFY <azure> [vm-database_4oy17q] Deleted node instance
+2019-08-11 13:20:37.803  CFY <azure> [nic-db_n67pk1] Stopping node instance
+2019-08-11 13:20:38.055  CFY <azure> [nic-db_n67pk1] Validating node instance after deletion: nothing to do
+2019-08-11 13:20:38.182  CFY <azure> [nic-db_n67pk1] Stopped node instance: nothing to do
+2019-08-11 13:20:38.609  CFY <azure> [vm-app2_hi8ujm.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 9/60]
+2019-08-11 13:20:39.557  CFY <azure> [nic-db_n67pk1] Unlinking relationships
+2019-08-11 13:20:39.999  CFY <azure> [vm-app1_pow2an.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 9/60]
+2019-08-11 13:20:40.963  CFY <azure> [nic-db_n67pk1] Relationships unlinked
+2019-08-11 13:20:41.293  CFY <azure> [nic-db_n67pk1] Deleting node instance
+2019-08-11 13:20:41.588  LOG <azure> [vm-app2_hi8ujm.delete] INFO: Checking status of operation "8fa0c473-fa36-42d8-b52d-85da28e8739c"
+2019-08-11 13:20:41.589  LOG <azure> [vm-app2_hi8ujm.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/28fb3c22-8d28-485c-9cba-991b3c9f7072?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:20:41.673  CFY <azure> [nic-db_n67pk1.delete] Sending task 'cloudify_azure.resources.network.networkinterfacecard.delete'
+2019-08-11 13:20:42.736  CFY <azure> [vm-app2_hi8ujm.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "4e14b274-8f9a-4d37-80aa-cc9844be043b" still pending [retry_after=60] [retry 9/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "4e14b274-8f9a-4d37-80aa-cc9844be043b" still pending [retry_after=60]
+
+2019-08-11 13:20:44.006  LOG <azure> [vm-app1_pow2an.delete] INFO: Checking status of operation "fe2561a4-dfe2-42ae-a2bf-b80d5b61c64b"
+2019-08-11 13:20:44.007  LOG <azure> [vm-app1_pow2an.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/8d75fa92-3828-4bd4-a59b-5331d06d41fc?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:20:44.807  CFY <azure> [vm-app1_pow2an.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "3c9ba590-b101-4d94-acdf-a31c341278d8" still pending [retry_after=60] [retry 9/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "3c9ba590-b101-4d94-acdf-a31c341278d8" still pending [retry_after=60]
+
+2019-08-11 13:20:45.174  LOG <azure> [nic-db_n67pk1.delete] INFO: Deleting Network Interface Card "06wpnicdb"
+2019-08-11 13:20:45.174  LOG <azure> [nic-db_n67pk1.delete] INFO: Checking Network Interface Card "06wpnicdb"
+2019-08-11 13:20:45.175  LOG <azure> [nic-db_n67pk1.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/networkInterfaces/06wpnicdb', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 13:20:45.474  LOG <azure> [nic-db_n67pk1.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/networkInterfaces/06wpnicdb', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 13:20:46.217  CFY <azure> [nic-db_n67pk1.delete] Task rescheduled 'cloudify_azure.resources.network.networkinterfacecard.delete' -> Operation: "3c6ba003-8804-44b8-a69e-8337dce8f5ef" started [retry_after=60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "3c6ba003-8804-44b8-a69e-8337dce8f5ef" started [retry_after=60]
+
+2019-08-11 13:21:42.799  CFY <azure> [vm-app2_hi8ujm.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 10/60]
+2019-08-11 13:21:45.004  CFY <azure> [vm-app1_pow2an.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 10/60]
+2019-08-11 13:21:46.113  LOG <azure> [vm-app2_hi8ujm.delete] INFO: Checking status of operation "4e14b274-8f9a-4d37-80aa-cc9844be043b"
+2019-08-11 13:21:46.114  LOG <azure> [vm-app2_hi8ujm.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/28fb3c22-8d28-485c-9cba-991b3c9f7072?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:21:46.354  CFY <azure> [nic-db_n67pk1.delete] Sending task 'cloudify_azure.resources.network.networkinterfacecard.delete' [retry 1/60]
+2019-08-11 13:21:47.341  CFY <azure> [vm-app2_hi8ujm.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "e0f1b824-c669-4251-a0d2-4ae406401ce3" still pending [retry_after=60] [retry 10/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "e0f1b824-c669-4251-a0d2-4ae406401ce3" still pending [retry_after=60]
+
+2019-08-11 13:21:48.638  LOG <azure> [vm-app1_pow2an.delete] INFO: Checking status of operation "3c9ba590-b101-4d94-acdf-a31c341278d8"
+2019-08-11 13:21:48.639  LOG <azure> [vm-app1_pow2an.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/8d75fa92-3828-4bd4-a59b-5331d06d41fc?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:21:49.748  CFY <azure> [vm-app1_pow2an.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "f61bc125-f1f5-4e8b-9340-0500d6cc628d" still pending [retry_after=60] [retry 10/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "f61bc125-f1f5-4e8b-9340-0500d6cc628d" still pending [retry_after=60]
+
+2019-08-11 13:21:50.095  LOG <azure> [nic-db_n67pk1.delete] INFO: Checking status of operation "3c6ba003-8804-44b8-a69e-8337dce8f5ef"
+2019-08-11 13:21:50.095  LOG <azure> [nic-db_n67pk1.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Network/locations/brazilsouth/operationResults/3c6ba003-8804-44b8-a69e-8337dce8f5ef?api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:21:50.902  CFY <azure> [nic-db_n67pk1.delete] Task succeeded 'cloudify_azure.resources.network.networkinterfacecard.delete' [retry 1/60]
+2019-08-11 13:21:50.973  CFY <azure> [nic-db_n67pk1] Deleted node instance
+2019-08-11 13:21:51.899  CFY <azure> [ip_config-db_s3b3q5] Stopping node instance
+2019-08-11 13:21:52.063  CFY <azure> [ip_config-db_s3b3q5] Validating node instance after deletion: nothing to do
+2019-08-11 13:21:52.117  CFY <azure> [ip_config-db_s3b3q5] Stopped node instance: nothing to do
+2019-08-11 13:21:52.556  CFY <azure> [ip_config-db_s3b3q5] Unlinking relationships
+2019-08-11 13:21:52.831  CFY <azure> [ip_config-db_s3b3q5] Relationships unlinked
+2019-08-11 13:21:53.041  CFY <azure> [ip_config-db_s3b3q5] Deleting node instance: nothing to do
+2019-08-11 13:21:53.117  CFY <azure> [ip_config-db_s3b3q5] Deleted node instance
+2019-08-11 13:21:53.664  CFY <azure> [ip-db_21hd64] Stopping node instance
+2019-08-11 13:21:53.886  CFY <azure> [ip-db_21hd64] Validating node instance after deletion: nothing to do
+2019-08-11 13:21:54.006  CFY <azure> [ip-db_21hd64] Stopped node instance: nothing to do
+2019-08-11 13:21:54.320  CFY <azure> [ip-db_21hd64] Unlinking relationships
+2019-08-11 13:21:54.544  CFY <azure> [ip-db_21hd64] Relationships unlinked
+2019-08-11 13:21:54.802  CFY <azure> [ip-db_21hd64] Deleting node instance
+2019-08-11 13:21:55.120  CFY <azure> [ip-db_21hd64.delete] Sending task 'cloudify_azure.resources.network.publicipaddress.delete'
+2019-08-11 13:21:57.675  LOG <azure> [ip-db_21hd64.delete] INFO: Deleting Public IP Address "08wpipdatabase"
+2019-08-11 13:21:57.675  LOG <azure> [ip-db_21hd64.delete] INFO: Checking Public IP Address "08wpipdatabase"
+2019-08-11 13:21:57.675  LOG <azure> [ip-db_21hd64.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/publicIPAddresses/08wpipdatabase', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 13:21:57.981  LOG <azure> [ip-db_21hd64.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/publicIPAddresses/08wpipdatabase', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 13:21:58.818  CFY <azure> [ip-db_21hd64.delete] Task rescheduled 'cloudify_azure.resources.network.publicipaddress.delete' -> Operation: "e7a360da-6160-4622-ae46-a388b08ac938" started [retry_after=60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "e7a360da-6160-4622-ae46-a388b08ac938" started [retry_after=60]
+
+2019-08-11 13:22:47.470  CFY <azure> [vm-app2_hi8ujm.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 11/60]
+2019-08-11 13:22:49.805  CFY <azure> [vm-app1_pow2an.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 11/60]
+2019-08-11 13:22:49.889  LOG <azure> [vm-app2_hi8ujm.delete] INFO: Checking status of operation "e0f1b824-c669-4251-a0d2-4ae406401ce3"
+2019-08-11 13:22:49.890  LOG <azure> [vm-app2_hi8ujm.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/28fb3c22-8d28-485c-9cba-991b3c9f7072?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:22:50.753  CFY <azure> [vm-app2_hi8ujm.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "40599d69-3b6d-4f94-83b8-c3280fddbd7e" still pending [retry_after=60] [retry 11/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "40599d69-3b6d-4f94-83b8-c3280fddbd7e" still pending [retry_after=60]
+
+2019-08-11 13:22:52.358  LOG <azure> [vm-app1_pow2an.delete] INFO: Checking status of operation "f61bc125-f1f5-4e8b-9340-0500d6cc628d"
+2019-08-11 13:22:52.358  LOG <azure> [vm-app1_pow2an.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/8d75fa92-3828-4bd4-a59b-5331d06d41fc?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:22:53.346  CFY <azure> [vm-app1_pow2an.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "7cfbbe28-e1fb-4fed-b1b8-2422b300c503" still pending [retry_after=60] [retry 11/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "7cfbbe28-e1fb-4fed-b1b8-2422b300c503" still pending [retry_after=60]
+
+2019-08-11 13:22:58.953  CFY <azure> [ip-db_21hd64.delete] Sending task 'cloudify_azure.resources.network.publicipaddress.delete' [retry 1/60]
+2019-08-11 13:23:01.476  LOG <azure> [ip-db_21hd64.delete] INFO: Checking status of operation "e7a360da-6160-4622-ae46-a388b08ac938"
+2019-08-11 13:23:01.477  LOG <azure> [ip-db_21hd64.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Network/locations/brazilsouth/operationResults/e7a360da-6160-4622-ae46-a388b08ac938?api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:23:02.220  CFY <azure> [ip-db_21hd64.delete] Task succeeded 'cloudify_azure.resources.network.publicipaddress.delete' [retry 1/60]
+2019-08-11 13:23:02.499  CFY <azure> [ip-db_21hd64] Deleted node instance
+2019-08-11 13:23:50.924  CFY <azure> [vm-app2_hi8ujm.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 12/60]
+2019-08-11 13:23:53.327  LOG <azure> [vm-app2_hi8ujm.delete] INFO: Checking status of operation "40599d69-3b6d-4f94-83b8-c3280fddbd7e"
+2019-08-11 13:23:53.327  LOG <azure> [vm-app2_hi8ujm.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/28fb3c22-8d28-485c-9cba-991b3c9f7072?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:23:53.451  CFY <azure> [vm-app1_pow2an.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 12/60]
+2019-08-11 13:23:54.408  CFY <azure> [vm-app2_hi8ujm.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "9ab3ed11-f432-4ee5-93b0-a82997edfda4" still pending [retry_after=60] [retry 12/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "9ab3ed11-f432-4ee5-93b0-a82997edfda4" still pending [retry_after=60]
+
+2019-08-11 13:23:56.448  LOG <azure> [vm-app1_pow2an.delete] INFO: Checking status of operation "7cfbbe28-e1fb-4fed-b1b8-2422b300c503"
+2019-08-11 13:23:56.449  LOG <azure> [vm-app1_pow2an.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/8d75fa92-3828-4bd4-a59b-5331d06d41fc?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:23:57.199  CFY <azure> [vm-app1_pow2an.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "dfbda42c-ca05-4b22-9ef1-35426fed3b1c" still pending [retry_after=60] [retry 12/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "dfbda42c-ca05-4b22-9ef1-35426fed3b1c" still pending [retry_after=60]
+
+2019-08-11 13:24:54.559  CFY <azure> [vm-app2_hi8ujm.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 13/60]
+2019-08-11 13:24:57.159  LOG <azure> [vm-app2_hi8ujm.delete] INFO: Checking status of operation "9ab3ed11-f432-4ee5-93b0-a82997edfda4"
+2019-08-11 13:24:57.159  LOG <azure> [vm-app2_hi8ujm.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/28fb3c22-8d28-485c-9cba-991b3c9f7072?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:24:57.321  CFY <azure> [vm-app1_pow2an.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 13/60]
+2019-08-11 13:24:58.266  CFY <azure> [vm-app2_hi8ujm.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "0e58309a-9694-4b31-9282-9e4a94d9ebaa" still pending [retry_after=60] [retry 13/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "0e58309a-9694-4b31-9282-9e4a94d9ebaa" still pending [retry_after=60]
+
+2019-08-11 13:25:00.268  LOG <azure> [vm-app1_pow2an.delete] INFO: Checking status of operation "dfbda42c-ca05-4b22-9ef1-35426fed3b1c"
+2019-08-11 13:25:00.268  LOG <azure> [vm-app1_pow2an.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/8d75fa92-3828-4bd4-a59b-5331d06d41fc?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 13:25:01.039  CFY <azure> [vm-app1_pow2an.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "9ec28293-1df4-409f-9cec-29705e10c7a1" still pending [retry_after=60] [retry 13/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "9ec28293-1df4-409f-9cec-29705e10c7a1" still pending [retry_after=60]
+
+Timed out waiting for workflow 'uninstall' of deployment 'azure' to end. The execution may still be running properly; however, the command-line utility was instructed to wait up to 900 seconds for its completion.
+
+* Run 'cfy executions list' to determine the execution's status.
+* Run 'cfy executions cancel ccfa6523-d442-413c-aef0-8fba8e323054' to cancel the running workflow.
+* Run 'cfy events list --tail ccfa6523-d442-413c-aef0-8fba8e323054' to retrieve the execution's events/logs

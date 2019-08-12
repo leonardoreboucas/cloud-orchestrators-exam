@@ -1,0 +1,586 @@
+Executing workflow `uninstall` on deployment `azure` [timeout=900 seconds]
+2019-08-11 16:27:14.332  CFY <azure> Starting 'uninstall' workflow execution
+2019-08-11 16:27:16.194  CFY <azure> [config-wordpress_fc4v2w] Stopping node instance
+2019-08-11 16:27:16.501  CFY <azure> [config-database_ycrhta] Stopping node instance
+2019-08-11 16:27:16.911  CFY <azure> [config-wordpress_fc4v2w] Validating node instance after deletion: nothing to do
+2019-08-11 16:27:16.964  CFY <azure> [config-database_ycrhta] Validating node instance after deletion: nothing to do
+2019-08-11 16:27:17.020  CFY <azure> [config-wordpress_fc4v2w] Stopped node instance: nothing to do
+2019-08-11 16:27:17.280  CFY <azure> [config-database_ycrhta] Stopped node instance: nothing to do
+2019-08-11 16:27:17.344  CFY <azure> [config-wordpress_fc4v2w] Unlinking relationships
+2019-08-11 16:27:17.559  CFY <azure> [config-wordpress_fc4v2w->vm-app2_hsa3rw|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 16:27:18.712  CFY <azure> [config-database_ycrhta] Unlinking relationships
+2019-08-11 16:27:19.092  CFY <azure> [config-database_ycrhta->vm-database_6quf2k|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 16:27:20.173  CFY <azure> [config-wordpress_fc4v2w->vm-app2_hsa3rw|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 16:27:20.321  CFY <azure> [config-wordpress_fc4v2w->vm-app1_40i0l2|unlink] Sending task 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 16:27:22.263  CFY <azure> [config-database_ycrhta->vm-database_6quf2k|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 16:27:22.544  CFY <azure> [config-database_ycrhta] Relationships unlinked
+2019-08-11 16:27:22.751  CFY <azure> [config-database_ycrhta] Deleting node instance: nothing to do
+2019-08-11 16:27:23.068  CFY <azure> [config-database_ycrhta] Deleted node instance
+2019-08-11 16:27:23.091  CFY <azure> [config-wordpress_fc4v2w->vm-app1_40i0l2|unlink] Task succeeded 'cloudify_ansible.tasks.ansible_remove_host'
+2019-08-11 16:27:23.394  CFY <azure> [config-wordpress_fc4v2w] Relationships unlinked
+2019-08-11 16:27:23.781  CFY <azure> [vm-database_6quf2k] Stopping node instance
+2019-08-11 16:27:23.868  CFY <azure> [config-wordpress_fc4v2w] Deleting node instance: nothing to do
+2019-08-11 16:27:23.959  CFY <azure> [vm-database_6quf2k] Validating node instance after deletion: nothing to do
+2019-08-11 16:27:24.173  CFY <azure> [config-wordpress_fc4v2w] Deleted node instance
+2019-08-11 16:27:24.350  CFY <azure> [vm-app1_40i0l2] Stopping node instance
+2019-08-11 16:27:24.798  CFY <azure> [vm-app2_hsa3rw] Stopping node instance
+2019-08-11 16:27:24.846  CFY <azure> [vm-database_6quf2k] Stopped node instance: nothing to do
+2019-08-11 16:27:24.899  CFY <azure> [vm-app1_40i0l2] Validating node instance after deletion: nothing to do
+2019-08-11 16:27:24.952  CFY <azure> [vm-app2_hsa3rw] Validating node instance after deletion: nothing to do
+2019-08-11 16:27:25.275  CFY <azure> [vm-app1_40i0l2] Stopped node instance: nothing to do
+2019-08-11 16:27:25.328  CFY <azure> [vm-database_6quf2k] Unlinking relationships
+2019-08-11 16:27:25.385  CFY <azure> [vm-app2_hsa3rw] Stopped node instance: nothing to do
+2019-08-11 16:27:25.796  CFY <azure> [vm-database_6quf2k] Relationships unlinked
+2019-08-11 16:27:25.846  CFY <azure> [vm-app1_40i0l2] Unlinking relationships
+2019-08-11 16:27:25.896  CFY <azure> [vm-database_6quf2k] Deleting node instance
+2019-08-11 16:27:25.940  CFY <azure> [vm-app2_hsa3rw] Unlinking relationships
+2019-08-11 16:27:26.257  CFY <azure> [vm-database_6quf2k.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete'
+2019-08-11 16:27:27.132  CFY <azure> [vm-app1_40i0l2] Relationships unlinked
+2019-08-11 16:27:27.364  CFY <azure> [vm-app2_hsa3rw] Relationships unlinked
+2019-08-11 16:27:27.544  CFY <azure> [vm-app1_40i0l2] Deleting node instance
+2019-08-11 16:27:27.937  CFY <azure> [vm-app2_hsa3rw] Deleting node instance
+2019-08-11 16:27:28.259  CFY <azure> [vm-app1_40i0l2.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete'
+2019-08-11 16:27:29.576  CFY <azure> [vm-app2_hsa3rw.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete'
+2019-08-11 16:27:30.196  LOG <azure> [vm-database_6quf2k.delete] INFO: Deleting Virtual Machine "05wpdatabase"
+2019-08-11 16:27:30.197  LOG <azure> [vm-database_6quf2k.delete] INFO: Checking Virtual Machine "05wpdatabase"
+2019-08-11 16:27:30.197  LOG <azure> [vm-database_6quf2k.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Compute/virtualMachines/05wpdatabase', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 16:27:30.675  LOG <azure> [vm-database_6quf2k.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Compute/virtualMachines/05wpdatabase', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 16:27:31.937  LOG <azure> [vm-app1_40i0l2.delete] INFO: Deleting Virtual Machine "11wpapp1"
+2019-08-11 16:27:31.937  LOG <azure> [vm-app1_40i0l2.delete] INFO: Checking Virtual Machine "11wpapp1"
+2019-08-11 16:27:31.937  LOG <azure> [vm-app1_40i0l2.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Compute/virtualMachines/11wpapp1', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 16:27:31.973  CFY <azure> [vm-database_6quf2k.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "4c3fa130-00af-4d1b-bf55-78002730bb54" started [retry_after=60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "4c3fa130-00af-4d1b-bf55-78002730bb54" started [retry_after=60]
+
+2019-08-11 16:27:32.263  LOG <azure> [vm-app1_40i0l2.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Compute/virtualMachines/11wpapp1', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 16:27:32.921  CFY <azure> [vm-app1_40i0l2.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "39492951-d1d0-43e6-833c-cebe9ca546fe" started [retry_after=60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "39492951-d1d0-43e6-833c-cebe9ca546fe" started [retry_after=60]
+
+2019-08-11 16:27:33.258  LOG <azure> [vm-app2_hsa3rw.delete] INFO: Deleting Virtual Machine "15wpapp2"
+2019-08-11 16:27:33.258  LOG <azure> [vm-app2_hsa3rw.delete] INFO: Checking Virtual Machine "15wpapp2"
+2019-08-11 16:27:33.258  LOG <azure> [vm-app2_hsa3rw.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Compute/virtualMachines/15wpapp2', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 16:27:33.532  LOG <azure> [vm-app2_hsa3rw.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Compute/virtualMachines/15wpapp2', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 16:27:34.230  CFY <azure> [vm-app2_hsa3rw.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "7ac0c293-d075-46d6-aa86-49914e93262b" started [retry_after=60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "7ac0c293-d075-46d6-aa86-49914e93262b" started [retry_after=60]
+
+2019-08-11 16:28:32.122  CFY <azure> [vm-database_6quf2k.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 1/60]
+2019-08-11 16:28:33.175  CFY <azure> [vm-app1_40i0l2.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 1/60]
+2019-08-11 16:28:34.452  CFY <azure> [vm-app2_hsa3rw.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 1/60]
+2019-08-11 16:28:35.017  LOG <azure> [vm-database_6quf2k.delete] INFO: Checking status of operation "4c3fa130-00af-4d1b-bf55-78002730bb54"
+2019-08-11 16:28:35.018  LOG <azure> [vm-database_6quf2k.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/4c3fa130-00af-4d1b-bf55-78002730bb54?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:28:36.599  CFY <azure> [vm-database_6quf2k.delete] Task succeeded 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 1/60]
+2019-08-11 16:28:36.834  LOG <azure> [vm-app1_40i0l2.delete] INFO: Checking status of operation "39492951-d1d0-43e6-833c-cebe9ca546fe"
+2019-08-11 16:28:36.834  LOG <azure> [vm-app1_40i0l2.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/39492951-d1d0-43e6-833c-cebe9ca546fe?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:28:36.943  CFY <azure> [vm-database_6quf2k] Deleted node instance
+2019-08-11 16:28:37.368  CFY <azure> [nic-db_asknmx] Stopping node instance
+2019-08-11 16:28:37.893  CFY <azure> [nic-db_asknmx] Validating node instance after deletion: nothing to do
+2019-08-11 16:28:38.007  CFY <azure> [nic-db_asknmx] Stopped node instance: nothing to do
+2019-08-11 16:28:38.299  CFY <azure> [vm-app1_40i0l2.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "e0050cfc-ca16-46e6-a61c-4d07669b70bd" still pending [retry_after=60] [retry 1/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "e0050cfc-ca16-46e6-a61c-4d07669b70bd" still pending [retry_after=60]
+
+2019-08-11 16:28:38.479  LOG <azure> [vm-app2_hsa3rw.delete] INFO: Checking status of operation "7ac0c293-d075-46d6-aa86-49914e93262b"
+2019-08-11 16:28:38.480  LOG <azure> [vm-app2_hsa3rw.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/7ac0c293-d075-46d6-aa86-49914e93262b?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:28:38.582  CFY <azure> [nic-db_asknmx] Unlinking relationships
+2019-08-11 16:28:38.830  CFY <azure> [nic-db_asknmx] Relationships unlinked
+2019-08-11 16:28:39.505  CFY <azure> [nic-db_asknmx] Deleting node instance
+2019-08-11 16:28:39.770  CFY <azure> [vm-app2_hsa3rw.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "b5442fee-248a-412e-a15b-2cf0a2fd0c4a" still pending [retry_after=60] [retry 1/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "b5442fee-248a-412e-a15b-2cf0a2fd0c4a" still pending [retry_after=60]
+
+2019-08-11 16:28:40.013  CFY <azure> [nic-db_asknmx.delete] Sending task 'cloudify_azure.resources.network.networkinterfacecard.delete'
+2019-08-11 16:28:43.015  LOG <azure> [nic-db_asknmx.delete] INFO: Deleting Network Interface Card "06wpnicdb"
+2019-08-11 16:28:43.015  LOG <azure> [nic-db_asknmx.delete] INFO: Checking Network Interface Card "06wpnicdb"
+2019-08-11 16:28:43.018  LOG <azure> [nic-db_asknmx.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/networkInterfaces/06wpnicdb', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 16:28:43.308  LOG <azure> [nic-db_asknmx.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/networkInterfaces/06wpnicdb', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 16:28:44.092  CFY <azure> [nic-db_asknmx.delete] Task rescheduled 'cloudify_azure.resources.network.networkinterfacecard.delete' -> Operation: "e6a3874a-b654-4bbf-8add-30fc2c6cbe3a" started [retry_after=60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "e6a3874a-b654-4bbf-8add-30fc2c6cbe3a" started [retry_after=60]
+
+2019-08-11 16:29:38.572  CFY <azure> [vm-app1_40i0l2.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 2/60]
+2019-08-11 16:29:39.897  CFY <azure> [vm-app2_hsa3rw.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 2/60]
+2019-08-11 16:29:41.167  LOG <azure> [vm-app1_40i0l2.delete] INFO: Checking status of operation "e0050cfc-ca16-46e6-a61c-4d07669b70bd"
+2019-08-11 16:29:41.167  LOG <azure> [vm-app1_40i0l2.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/39492951-d1d0-43e6-833c-cebe9ca546fe?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:29:42.400  CFY <azure> [vm-app1_40i0l2.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "409c3b18-1738-428e-94c4-bf0e4be3a5f5" still pending [retry_after=60] [retry 2/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "409c3b18-1738-428e-94c4-bf0e4be3a5f5" still pending [retry_after=60]
+
+2019-08-11 16:29:43.256  LOG <azure> [vm-app2_hsa3rw.delete] INFO: Checking status of operation "b5442fee-248a-412e-a15b-2cf0a2fd0c4a"
+2019-08-11 16:29:43.256  LOG <azure> [vm-app2_hsa3rw.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/7ac0c293-d075-46d6-aa86-49914e93262b?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:29:44.095  CFY <azure> [vm-app2_hsa3rw.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "81108bfb-448f-492a-a5da-9e8065dcdf52" still pending [retry_after=60] [retry 2/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "81108bfb-448f-492a-a5da-9e8065dcdf52" still pending [retry_after=60]
+
+2019-08-11 16:29:44.224  CFY <azure> [nic-db_asknmx.delete] Sending task 'cloudify_azure.resources.network.networkinterfacecard.delete' [retry 1/60]
+2019-08-11 16:29:46.998  LOG <azure> [nic-db_asknmx.delete] INFO: Checking status of operation "e6a3874a-b654-4bbf-8add-30fc2c6cbe3a"
+2019-08-11 16:29:46.999  LOG <azure> [nic-db_asknmx.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Network/locations/brazilsouth/operationResults/e6a3874a-b654-4bbf-8add-30fc2c6cbe3a?api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:29:47.866  CFY <azure> [nic-db_asknmx.delete] Task succeeded 'cloudify_azure.resources.network.networkinterfacecard.delete' [retry 1/60]
+2019-08-11 16:29:47.951  CFY <azure> [nic-db_asknmx] Deleted node instance
+2019-08-11 16:29:48.639  CFY <azure> [ip_config-db_um53n4] Stopping node instance
+2019-08-11 16:29:48.704  CFY <azure> [ip_config-db_um53n4] Validating node instance after deletion: nothing to do
+2019-08-11 16:29:48.825  CFY <azure> [ip_config-db_um53n4] Stopped node instance: nothing to do
+2019-08-11 16:29:49.228  CFY <azure> [ip_config-db_um53n4] Unlinking relationships
+2019-08-11 16:29:49.506  CFY <azure> [ip_config-db_um53n4] Relationships unlinked
+2019-08-11 16:29:49.598  CFY <azure> [ip_config-db_um53n4] Deleting node instance: nothing to do
+2019-08-11 16:29:49.849  CFY <azure> [ip_config-db_um53n4] Deleted node instance
+2019-08-11 16:29:50.182  CFY <azure> [ip-db_axllae] Stopping node instance
+2019-08-11 16:29:50.637  CFY <azure> [ip-db_axllae] Validating node instance after deletion: nothing to do
+2019-08-11 16:29:50.742  CFY <azure> [ip-db_axllae] Stopped node instance: nothing to do
+2019-08-11 16:29:51.051  CFY <azure> [ip-db_axllae] Unlinking relationships
+2019-08-11 16:29:51.378  CFY <azure> [ip-db_axllae] Relationships unlinked
+2019-08-11 16:29:51.614  CFY <azure> [ip-db_axllae] Deleting node instance
+2019-08-11 16:29:51.734  CFY <azure> [ip-db_axllae.delete] Sending task 'cloudify_azure.resources.network.publicipaddress.delete'
+2019-08-11 16:29:54.269  LOG <azure> [ip-db_axllae.delete] INFO: Deleting Public IP Address "08wpipdatabase"
+2019-08-11 16:29:54.269  LOG <azure> [ip-db_axllae.delete] INFO: Checking Public IP Address "08wpipdatabase"
+2019-08-11 16:29:54.269  LOG <azure> [ip-db_axllae.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/publicIPAddresses/08wpipdatabase', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 16:29:54.676  LOG <azure> [ip-db_axllae.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/publicIPAddresses/08wpipdatabase', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 16:29:55.647  CFY <azure> [ip-db_axllae.delete] Task rescheduled 'cloudify_azure.resources.network.publicipaddress.delete' -> Operation: "948b4269-7eb8-4dac-bb20-0f8fcd051ce1" started [retry_after=60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "948b4269-7eb8-4dac-bb20-0f8fcd051ce1" started [retry_after=60]
+
+2019-08-11 16:30:42.503  CFY <azure> [vm-app1_40i0l2.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 3/60]
+2019-08-11 16:30:44.404  CFY <azure> [vm-app2_hsa3rw.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 3/60]
+2019-08-11 16:30:45.319  LOG <azure> [vm-app1_40i0l2.delete] INFO: Checking status of operation "409c3b18-1738-428e-94c4-bf0e4be3a5f5"
+2019-08-11 16:30:45.320  LOG <azure> [vm-app1_40i0l2.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/39492951-d1d0-43e6-833c-cebe9ca546fe?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:30:46.463  CFY <azure> [vm-app1_40i0l2.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "c8fa00c3-a611-45c2-9231-3303282886b9" still pending [retry_after=60] [retry 3/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "c8fa00c3-a611-45c2-9231-3303282886b9" still pending [retry_after=60]
+
+2019-08-11 16:30:47.314  LOG <azure> [vm-app2_hsa3rw.delete] INFO: Checking status of operation "81108bfb-448f-492a-a5da-9e8065dcdf52"
+2019-08-11 16:30:47.314  LOG <azure> [vm-app2_hsa3rw.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/7ac0c293-d075-46d6-aa86-49914e93262b?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:30:48.254  CFY <azure> [vm-app2_hsa3rw.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "b57730af-379c-4f3b-bef7-bad0450c0cfe" still pending [retry_after=60] [retry 3/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "b57730af-379c-4f3b-bef7-bad0450c0cfe" still pending [retry_after=60]
+
+2019-08-11 16:30:55.715  CFY <azure> [ip-db_axllae.delete] Sending task 'cloudify_azure.resources.network.publicipaddress.delete' [retry 1/60]
+2019-08-11 16:30:58.460  LOG <azure> [ip-db_axllae.delete] INFO: Checking status of operation "948b4269-7eb8-4dac-bb20-0f8fcd051ce1"
+2019-08-11 16:30:58.461  LOG <azure> [ip-db_axllae.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Network/locations/brazilsouth/operationResults/948b4269-7eb8-4dac-bb20-0f8fcd051ce1?api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:30:59.170  CFY <azure> [ip-db_axllae.delete] Task succeeded 'cloudify_azure.resources.network.publicipaddress.delete' [retry 1/60]
+2019-08-11 16:30:59.224  CFY <azure> [ip-db_axllae] Deleted node instance
+2019-08-11 16:31:46.581  CFY <azure> [vm-app1_40i0l2.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 4/60]
+2019-08-11 16:31:48.371  CFY <azure> [vm-app2_hsa3rw.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 4/60]
+2019-08-11 16:31:49.343  LOG <azure> [vm-app1_40i0l2.delete] INFO: Checking status of operation "c8fa00c3-a611-45c2-9231-3303282886b9"
+2019-08-11 16:31:49.344  LOG <azure> [vm-app1_40i0l2.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/39492951-d1d0-43e6-833c-cebe9ca546fe?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:31:50.274  CFY <azure> [vm-app1_40i0l2.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "4e45db32-0a34-4eb6-b3a2-7b82b5c0dd38" still pending [retry_after=60] [retry 4/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "4e45db32-0a34-4eb6-b3a2-7b82b5c0dd38" still pending [retry_after=60]
+
+2019-08-11 16:31:51.128  LOG <azure> [vm-app2_hsa3rw.delete] INFO: Checking status of operation "b57730af-379c-4f3b-bef7-bad0450c0cfe"
+2019-08-11 16:31:51.129  LOG <azure> [vm-app2_hsa3rw.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/7ac0c293-d075-46d6-aa86-49914e93262b?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:31:52.156  CFY <azure> [vm-app2_hsa3rw.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "e47c7955-f555-42e0-aef5-3038552031ec" still pending [retry_after=60] [retry 4/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "e47c7955-f555-42e0-aef5-3038552031ec" still pending [retry_after=60]
+
+2019-08-11 16:32:50.383  CFY <azure> [vm-app1_40i0l2.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 5/60]
+2019-08-11 16:32:52.344  CFY <azure> [vm-app2_hsa3rw.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 5/60]
+2019-08-11 16:32:53.066  LOG <azure> [vm-app1_40i0l2.delete] INFO: Checking status of operation "4e45db32-0a34-4eb6-b3a2-7b82b5c0dd38"
+2019-08-11 16:32:53.066  LOG <azure> [vm-app1_40i0l2.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/39492951-d1d0-43e6-833c-cebe9ca546fe?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:32:54.202  CFY <azure> [vm-app1_40i0l2.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "cd3a5ee0-3dd8-4f82-ab54-e4b67bb1d6f9" still pending [retry_after=60] [retry 5/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "cd3a5ee0-3dd8-4f82-ab54-e4b67bb1d6f9" still pending [retry_after=60]
+
+2019-08-11 16:32:55.811  LOG <azure> [vm-app2_hsa3rw.delete] INFO: Checking status of operation "e47c7955-f555-42e0-aef5-3038552031ec"
+2019-08-11 16:32:55.811  LOG <azure> [vm-app2_hsa3rw.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/7ac0c293-d075-46d6-aa86-49914e93262b?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:32:56.855  CFY <azure> [vm-app2_hsa3rw.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "852295f3-a44e-463f-9a49-491b697b6bb3" still pending [retry_after=60] [retry 5/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "852295f3-a44e-463f-9a49-491b697b6bb3" still pending [retry_after=60]
+
+2019-08-11 16:33:54.299  CFY <azure> [vm-app1_40i0l2.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 6/60]
+2019-08-11 16:33:56.979  CFY <azure> [vm-app2_hsa3rw.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 6/60]
+2019-08-11 16:33:57.116  LOG <azure> [vm-app1_40i0l2.delete] INFO: Checking status of operation "cd3a5ee0-3dd8-4f82-ab54-e4b67bb1d6f9"
+2019-08-11 16:33:57.117  LOG <azure> [vm-app1_40i0l2.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/39492951-d1d0-43e6-833c-cebe9ca546fe?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:33:58.258  CFY <azure> [vm-app1_40i0l2.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "37bbd55d-5871-458e-a870-6b270bdd6ef0" still pending [retry_after=60] [retry 6/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "37bbd55d-5871-458e-a870-6b270bdd6ef0" still pending [retry_after=60]
+
+2019-08-11 16:33:59.627  LOG <azure> [vm-app2_hsa3rw.delete] INFO: Checking status of operation "852295f3-a44e-463f-9a49-491b697b6bb3"
+2019-08-11 16:33:59.628  LOG <azure> [vm-app2_hsa3rw.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/7ac0c293-d075-46d6-aa86-49914e93262b?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:34:00.561  CFY <azure> [vm-app2_hsa3rw.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "c4b36cb5-435d-481d-acdc-503efc874a97" still pending [retry_after=60] [retry 6/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "c4b36cb5-435d-481d-acdc-503efc874a97" still pending [retry_after=60]
+
+2019-08-11 16:34:58.373  CFY <azure> [vm-app1_40i0l2.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 7/60]
+2019-08-11 16:35:00.745  CFY <azure> [vm-app2_hsa3rw.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 7/60]
+2019-08-11 16:35:00.905  LOG <azure> [vm-app1_40i0l2.delete] INFO: Checking status of operation "37bbd55d-5871-458e-a870-6b270bdd6ef0"
+2019-08-11 16:35:00.905  LOG <azure> [vm-app1_40i0l2.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/39492951-d1d0-43e6-833c-cebe9ca546fe?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:35:01.909  CFY <azure> [vm-app1_40i0l2.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "ea95bb2f-be4a-41ed-926f-17f3d0d7d7c7" still pending [retry_after=60] [retry 7/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "ea95bb2f-be4a-41ed-926f-17f3d0d7d7c7" still pending [retry_after=60]
+
+2019-08-11 16:35:03.528  LOG <azure> [vm-app2_hsa3rw.delete] INFO: Checking status of operation "c4b36cb5-435d-481d-acdc-503efc874a97"
+2019-08-11 16:35:03.529  LOG <azure> [vm-app2_hsa3rw.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/7ac0c293-d075-46d6-aa86-49914e93262b?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:35:04.507  CFY <azure> [vm-app2_hsa3rw.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "236cf452-ecd6-4ec0-9d30-c9be651af76c" still pending [retry_after=60] [retry 7/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "236cf452-ecd6-4ec0-9d30-c9be651af76c" still pending [retry_after=60]
+
+2019-08-11 16:36:02.126  CFY <azure> [vm-app1_40i0l2.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 8/60]
+2019-08-11 16:36:04.653  CFY <azure> [vm-app2_hsa3rw.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 8/60]
+2019-08-11 16:36:04.736  LOG <azure> [vm-app1_40i0l2.delete] INFO: Checking status of operation "ea95bb2f-be4a-41ed-926f-17f3d0d7d7c7"
+2019-08-11 16:36:04.737  LOG <azure> [vm-app1_40i0l2.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/39492951-d1d0-43e6-833c-cebe9ca546fe?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:36:05.722  CFY <azure> [vm-app1_40i0l2.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "9e7ac5ae-7674-433c-b003-bb53631e244b" still pending [retry_after=60] [retry 8/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "9e7ac5ae-7674-433c-b003-bb53631e244b" still pending [retry_after=60]
+
+2019-08-11 16:36:07.326  LOG <azure> [vm-app2_hsa3rw.delete] INFO: Checking status of operation "236cf452-ecd6-4ec0-9d30-c9be651af76c"
+2019-08-11 16:36:07.326  LOG <azure> [vm-app2_hsa3rw.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/7ac0c293-d075-46d6-aa86-49914e93262b?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:36:08.433  CFY <azure> [vm-app2_hsa3rw.delete] Task rescheduled 'cloudify_azure.resources.compute.virtualmachine.delete' -> Operation: "229b4601-4407-4ea9-8b22-567456777bcd" still pending [retry_after=60] [retry 8/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "229b4601-4407-4ea9-8b22-567456777bcd" still pending [retry_after=60]
+
+2019-08-11 16:37:05.775  CFY <azure> [vm-app1_40i0l2.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 9/60]
+2019-08-11 16:37:08.460  LOG <azure> [vm-app1_40i0l2.delete] INFO: Checking status of operation "9e7ac5ae-7674-433c-b003-bb53631e244b"
+2019-08-11 16:37:08.460  LOG <azure> [vm-app1_40i0l2.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/39492951-d1d0-43e6-833c-cebe9ca546fe?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:37:08.589  CFY <azure> [vm-app2_hsa3rw.delete] Sending task 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 9/60]
+2019-08-11 16:37:09.410  CFY <azure> [vm-app1_40i0l2.delete] Task succeeded 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 9/60]
+2019-08-11 16:37:09.779  CFY <azure> [vm-app1_40i0l2] Deleted node instance
+2019-08-11 16:37:10.183  CFY <azure> [nic1_2eiluj] Stopping node instance
+2019-08-11 16:37:10.692  CFY <azure> [nic1_2eiluj] Validating node instance after deletion: nothing to do
+2019-08-11 16:37:10.891  CFY <azure> [nic1_2eiluj] Stopped node instance: nothing to do
+2019-08-11 16:37:11.515  CFY <azure> [nic1_2eiluj] Unlinking relationships
+2019-08-11 16:37:11.914  CFY <azure> [nic1_2eiluj] Relationships unlinked
+2019-08-11 16:37:12.207  CFY <azure> [nic1_2eiluj] Deleting node instance
+2019-08-11 16:37:12.249  LOG <azure> [vm-app2_hsa3rw.delete] INFO: Checking status of operation "229b4601-4407-4ea9-8b22-567456777bcd"
+2019-08-11 16:37:12.250  LOG <azure> [vm-app2_hsa3rw.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Compute/locations/brazilsouth/operations/7ac0c293-d075-46d6-aa86-49914e93262b?monitor=true&api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:37:12.366  CFY <azure> [nic1_2eiluj.delete] Sending task 'cloudify_azure.resources.network.networkinterfacecard.delete'
+2019-08-11 16:37:13.192  CFY <azure> [vm-app2_hsa3rw.delete] Task succeeded 'cloudify_azure.resources.compute.virtualmachine.delete' [retry 9/60]
+2019-08-11 16:37:13.302  CFY <azure> [vm-app2_hsa3rw] Deleted node instance
+2019-08-11 16:37:13.934  CFY <azure> [storage_account_7jz1zg] Stopping node instance
+2019-08-11 16:37:14.078  CFY <azure> [nic2_2h8fu2] Stopping node instance
+2019-08-11 16:37:14.656  CFY <azure> [availability_set_trcdhe] Stopping node instance
+2019-08-11 16:37:15.287  CFY <azure> [storage_account_7jz1zg] Validating node instance after deletion: nothing to do
+2019-08-11 16:37:15.372  CFY <azure> [nic2_2h8fu2] Validating node instance after deletion: nothing to do
+2019-08-11 16:37:15.471  CFY <azure> [availability_set_trcdhe] Validating node instance after deletion: nothing to do
+2019-08-11 16:37:15.585  CFY <azure> [storage_account_7jz1zg] Stopped node instance: nothing to do
+2019-08-11 16:37:15.666  CFY <azure> [nic2_2h8fu2] Stopped node instance: nothing to do
+2019-08-11 16:37:15.711  CFY <azure> [availability_set_trcdhe] Stopped node instance: nothing to do
+2019-08-11 16:37:16.243  LOG <azure> [nic1_2eiluj.delete] INFO: Deleting Network Interface Card "12wpapp1nic"
+2019-08-11 16:37:16.243  LOG <azure> [nic1_2eiluj.delete] INFO: Checking Network Interface Card "12wpapp1nic"
+2019-08-11 16:37:16.243  LOG <azure> [nic1_2eiluj.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/networkInterfaces/12wpapp1nic', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 16:37:16.283  CFY <azure> [storage_account_7jz1zg] Unlinking relationships
+2019-08-11 16:37:16.345  CFY <azure> [nic2_2h8fu2] Unlinking relationships
+2019-08-11 16:37:16.475  CFY <azure> [availability_set_trcdhe] Unlinking relationships
+2019-08-11 16:37:16.516  LOG <azure> [nic1_2eiluj.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/networkInterfaces/12wpapp1nic', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 16:37:16.652  CFY <azure> [storage_account_7jz1zg] Relationships unlinked
+2019-08-11 16:37:16.874  CFY <azure> [availability_set_trcdhe] Relationships unlinked
+2019-08-11 16:37:17.133  CFY <azure> [nic2_2h8fu2] Relationships unlinked
+2019-08-11 16:37:17.186  CFY <azure> [storage_account_7jz1zg] Deleting node instance
+2019-08-11 16:37:17.232  CFY <azure> [availability_set_trcdhe] Deleting node instance
+2019-08-11 16:37:17.363  CFY <azure> [storage_account_7jz1zg.delete] Sending task 'cloudify_azure.resources.storage.storageaccount.delete'
+2019-08-11 16:37:17.714  CFY <azure> [nic2_2h8fu2] Deleting node instance
+2019-08-11 16:37:18.298  CFY <azure> [nic1_2eiluj.delete] Task rescheduled 'cloudify_azure.resources.network.networkinterfacecard.delete' -> Operation: "053bda44-3d8d-48a8-b9aa-c605278de56b" started [retry_after=60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "053bda44-3d8d-48a8-b9aa-c605278de56b" started [retry_after=60]
+
+2019-08-11 16:37:18.607  CFY <azure> [nic2_2h8fu2.delete] Sending task 'cloudify_azure.resources.network.networkinterfacecard.delete'
+2019-08-11 16:37:19.632  CFY <azure> [availability_set_trcdhe.delete] Sending task 'cloudify_azure.resources.compute.availabilityset.delete'
+2019-08-11 16:37:23.038  LOG <azure> [storage_account_7jz1zg.delete] INFO: Deleting Storage Account "10wpstorageaccount"
+2019-08-11 16:37:23.039  LOG <azure> [storage_account_7jz1zg.delete] INFO: Checking Storage Account "10wpstorageaccount"
+2019-08-11 16:37:23.039  LOG <azure> [storage_account_7jz1zg.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Storage/storageAccounts/10wpstorageaccount', 'verify': True, 'params': {'api-version': u'2015-06-15'}, 'method': 'get'})
+2019-08-11 16:37:23.453  LOG <azure> [storage_account_7jz1zg.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Storage/storageAccounts/10wpstorageaccount', 'verify': True, 'params': {'api-version': u'2015-06-15'}, 'method': 'delete'})
+2019-08-11 16:37:24.356  LOG <azure> [nic2_2h8fu2.delete] INFO: Deleting Network Interface Card "16wpapp2nic"
+2019-08-11 16:37:24.356  LOG <azure> [nic2_2h8fu2.delete] INFO: Checking Network Interface Card "16wpapp2nic"
+2019-08-11 16:37:24.356  LOG <azure> [nic2_2h8fu2.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/networkInterfaces/16wpapp2nic', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 16:37:24.666  LOG <azure> [nic2_2h8fu2.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/networkInterfaces/16wpapp2nic', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 16:37:24.864  LOG <azure> [availability_set_trcdhe.delete] INFO: Deleting Availability Set "09wpavailabilityset"
+2019-08-11 16:37:24.864  LOG <azure> [availability_set_trcdhe.delete] INFO: Checking Availability Set "09wpavailabilityset"
+2019-08-11 16:37:24.865  LOG <azure> [availability_set_trcdhe.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Compute/availabilitySets/09wpavailabilityset', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 16:37:25.154  LOG <azure> [availability_set_trcdhe.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Compute/availabilitySets/09wpavailabilityset', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 16:37:25.586  CFY <azure> [nic2_2h8fu2.delete] Task rescheduled 'cloudify_azure.resources.network.networkinterfacecard.delete' -> Operation: "0bfa9ea2-729a-4135-b845-ccc41c7a44f5" started [retry_after=60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "0bfa9ea2-729a-4135-b845-ccc41c7a44f5" started [retry_after=60]
+
+2019-08-11 16:37:26.183  CFY <azure> [storage_account_7jz1zg.delete] Task succeeded 'cloudify_azure.resources.storage.storageaccount.delete'
+2019-08-11 16:37:26.288  CFY <azure> [storage_account_7jz1zg] Deleted node instance
+2019-08-11 16:37:26.432  CFY <azure> [availability_set_trcdhe.delete] Task succeeded 'cloudify_azure.resources.compute.availabilityset.delete'
+2019-08-11 16:37:26.674  CFY <azure> [availability_set_trcdhe] Deleted node instance
+2019-08-11 16:38:18.365  CFY <azure> [nic1_2eiluj.delete] Sending task 'cloudify_azure.resources.network.networkinterfacecard.delete' [retry 1/60]
+2019-08-11 16:38:21.579  LOG <azure> [nic1_2eiluj.delete] INFO: Checking status of operation "053bda44-3d8d-48a8-b9aa-c605278de56b"
+2019-08-11 16:38:21.580  LOG <azure> [nic1_2eiluj.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Network/locations/brazilsouth/operationResults/053bda44-3d8d-48a8-b9aa-c605278de56b?api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:38:22.463  CFY <azure> [nic1_2eiluj.delete] Task succeeded 'cloudify_azure.resources.network.networkinterfacecard.delete' [retry 1/60]
+2019-08-11 16:38:22.822  CFY <azure> [nic1_2eiluj] Deleted node instance
+2019-08-11 16:38:23.171  CFY <azure> [ip_config1_bpbs68] Stopping node instance
+2019-08-11 16:38:23.495  CFY <azure> [ip_config1_bpbs68] Validating node instance after deletion: nothing to do
+2019-08-11 16:38:23.563  CFY <azure> [ip_config1_bpbs68] Stopped node instance: nothing to do
+2019-08-11 16:38:23.878  CFY <azure> [ip_config1_bpbs68] Unlinking relationships
+2019-08-11 16:38:24.214  CFY <azure> [ip_config1_bpbs68] Relationships unlinked
+2019-08-11 16:38:24.299  CFY <azure> [ip_config1_bpbs68] Deleting node instance: nothing to do
+2019-08-11 16:38:24.424  CFY <azure> [ip_config1_bpbs68] Deleted node instance
+2019-08-11 16:38:24.945  CFY <azure> [ip1_h4lvps] Stopping node instance
+2019-08-11 16:38:25.208  CFY <azure> [ip1_h4lvps] Validating node instance after deletion: nothing to do
+2019-08-11 16:38:25.341  CFY <azure> [ip1_h4lvps] Stopped node instance: nothing to do
+2019-08-11 16:38:25.685  CFY <azure> [nic2_2h8fu2.delete] Sending task 'cloudify_azure.resources.network.networkinterfacecard.delete' [retry 1/60]
+2019-08-11 16:38:26.643  CFY <azure> [ip1_h4lvps] Unlinking relationships
+2019-08-11 16:38:27.057  CFY <azure> [ip1_h4lvps] Relationships unlinked
+2019-08-11 16:38:27.213  CFY <azure> [ip1_h4lvps] Deleting node instance
+2019-08-11 16:38:27.900  CFY <azure> [ip1_h4lvps.delete] Sending task 'cloudify_azure.resources.network.publicipaddress.delete'
+2019-08-11 16:38:29.059  LOG <azure> [nic2_2h8fu2.delete] INFO: Checking status of operation "0bfa9ea2-729a-4135-b845-ccc41c7a44f5"
+2019-08-11 16:38:29.060  LOG <azure> [nic2_2h8fu2.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Network/locations/brazilsouth/operationResults/0bfa9ea2-729a-4135-b845-ccc41c7a44f5?api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:38:30.310  CFY <azure> [nic2_2h8fu2.delete] Task succeeded 'cloudify_azure.resources.network.networkinterfacecard.delete' [retry 1/60]
+2019-08-11 16:38:30.672  CFY <azure> [nic2_2h8fu2] Deleted node instance
+2019-08-11 16:38:30.693  LOG <azure> [ip1_h4lvps.delete] INFO: Deleting Public IP Address "14wpapp1ip"
+2019-08-11 16:38:30.693  LOG <azure> [ip1_h4lvps.delete] INFO: Checking Public IP Address "14wpapp1ip"
+2019-08-11 16:38:30.694  LOG <azure> [ip1_h4lvps.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/publicIPAddresses/14wpapp1ip', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 16:38:31.024  LOG <azure> [ip1_h4lvps.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/publicIPAddresses/14wpapp1ip', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 16:38:31.466  CFY <azure> [network_security_group_kq4syu] Stopping node instance
+2019-08-11 16:38:32.185  CFY <azure> [ip1_h4lvps.delete] Task rescheduled 'cloudify_azure.resources.network.publicipaddress.delete' -> Operation: "a68f1360-f3e5-46bb-80ab-2dfe976a3276" started [retry_after=60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "a68f1360-f3e5-46bb-80ab-2dfe976a3276" started [retry_after=60]
+
+2019-08-11 16:38:32.411  CFY <azure> [ip_config2_uvui8f] Stopping node instance
+2019-08-11 16:38:32.476  CFY <azure> [network_security_group_kq4syu] Validating node instance after deletion: nothing to do
+2019-08-11 16:38:32.544  CFY <azure> [network_security_group_kq4syu] Stopped node instance: nothing to do
+2019-08-11 16:38:32.604  CFY <azure> [ip_config2_uvui8f] Validating node instance after deletion: nothing to do
+2019-08-11 16:38:32.961  CFY <azure> [ip_config2_uvui8f] Stopped node instance: nothing to do
+2019-08-11 16:38:33.017  CFY <azure> [network_security_group_kq4syu] Unlinking relationships
+2019-08-11 16:38:33.292  CFY <azure> [network_security_group_kq4syu] Relationships unlinked
+2019-08-11 16:38:33.336  CFY <azure> [ip_config2_uvui8f] Unlinking relationships
+2019-08-11 16:38:33.394  CFY <azure> [network_security_group_kq4syu] Deleting node instance
+2019-08-11 16:38:33.635  CFY <azure> [ip_config2_uvui8f] Relationships unlinked
+2019-08-11 16:38:33.763  CFY <azure> [network_security_group_kq4syu.delete] Sending task 'cloudify_azure.resources.network.networksecuritygroup.delete'
+2019-08-11 16:38:34.591  CFY <azure> [ip_config2_uvui8f] Deleting node instance: nothing to do
+2019-08-11 16:38:34.973  CFY <azure> [ip_config2_uvui8f] Deleted node instance
+2019-08-11 16:38:35.257  CFY <azure> [subnet_cqaki5] Stopping node instance
+2019-08-11 16:38:35.389  CFY <azure> [ip2_jh7xdh] Stopping node instance
+2019-08-11 16:38:36.002  CFY <azure> [subnet_cqaki5] Validating node instance after deletion: nothing to do
+2019-08-11 16:38:36.094  CFY <azure> [ip2_jh7xdh] Validating node instance after deletion: nothing to do
+2019-08-11 16:38:36.164  CFY <azure> [subnet_cqaki5] Stopped node instance: nothing to do
+2019-08-11 16:38:36.243  CFY <azure> [ip2_jh7xdh] Stopped node instance: nothing to do
+2019-08-11 16:38:36.867  CFY <azure> [ip2_jh7xdh] Unlinking relationships
+2019-08-11 16:38:36.986  CFY <azure> [subnet_cqaki5] Unlinking relationships
+2019-08-11 16:38:37.328  CFY <azure> [subnet_cqaki5] Relationships unlinked
+2019-08-11 16:38:37.424  CFY <azure> [ip2_jh7xdh] Relationships unlinked
+2019-08-11 16:38:37.548  CFY <azure> [subnet_cqaki5] Deleting node instance
+2019-08-11 16:38:37.653  LOG <azure> [network_security_group_kq4syu.delete] INFO: Deleting Network Security Group "04wpnsg"
+2019-08-11 16:38:37.653  LOG <azure> [network_security_group_kq4syu.delete] INFO: Checking Network Security Group "04wpnsg"
+2019-08-11 16:38:37.653  LOG <azure> [network_security_group_kq4syu.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/networkSecurityGroups/04wpnsg', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 16:38:37.922  CFY <azure> [ip2_jh7xdh] Deleting node instance
+2019-08-11 16:38:37.977  LOG <azure> [network_security_group_kq4syu.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/networkSecurityGroups/04wpnsg', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 16:38:38.178  CFY <azure> [subnet_cqaki5.delete] Sending task 'cloudify_azure.resources.network.subnet.delete'
+2019-08-11 16:38:39.098  CFY <azure> [network_security_group_kq4syu.delete] Task rescheduled 'cloudify_azure.resources.network.networksecuritygroup.delete' -> Operation: "b1893c0e-9ad0-4fba-bae1-d82e6bf1dd02" started [retry_after=60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "b1893c0e-9ad0-4fba-bae1-d82e6bf1dd02" started [retry_after=60]
+
+2019-08-11 16:38:39.353  CFY <azure> [ip2_jh7xdh.delete] Sending task 'cloudify_azure.resources.network.publicipaddress.delete'
+2019-08-11 16:38:41.072  LOG <azure> [subnet_cqaki5.delete] INFO: Deleting Subnet "03wordpress"
+2019-08-11 16:38:41.072  LOG <azure> [subnet_cqaki5.delete] INFO: Checking Subnet "03wordpress"
+2019-08-11 16:38:41.073  LOG <azure> [subnet_cqaki5.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/virtualNetworks/02wordpress/subnets/03wordpress', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 16:38:41.406  LOG <azure> [subnet_cqaki5.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/virtualNetworks/02wordpress/subnets/03wordpress', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 16:38:42.257  CFY <azure> [subnet_cqaki5.delete] Task rescheduled 'cloudify_azure.resources.network.subnet.delete' -> Operation: "8cf21a7e-20b1-431e-a245-82761ac284ff" started [retry_after=10]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "8cf21a7e-20b1-431e-a245-82761ac284ff" started [retry_after=10]
+
+2019-08-11 16:38:42.476  LOG <azure> [ip2_jh7xdh.delete] INFO: Deleting Public IP Address "18wpapp2ip"
+2019-08-11 16:38:42.476  LOG <azure> [ip2_jh7xdh.delete] INFO: Checking Public IP Address "18wpapp2ip"
+2019-08-11 16:38:42.477  LOG <azure> [ip2_jh7xdh.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/publicIPAddresses/18wpapp2ip', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 16:38:42.776  LOG <azure> [ip2_jh7xdh.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/publicIPAddresses/18wpapp2ip', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 16:38:43.434  CFY <azure> [ip2_jh7xdh.delete] Task rescheduled 'cloudify_azure.resources.network.publicipaddress.delete' -> Operation: "636275f1-7609-44db-bf11-ffd9be5eaa66" started [retry_after=60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "636275f1-7609-44db-bf11-ffd9be5eaa66" started [retry_after=60]
+
+2019-08-11 16:38:52.395  CFY <azure> [subnet_cqaki5.delete] Sending task 'cloudify_azure.resources.network.subnet.delete' [retry 1/60]
+2019-08-11 16:38:55.480  LOG <azure> [subnet_cqaki5.delete] INFO: Checking status of operation "8cf21a7e-20b1-431e-a245-82761ac284ff"
+2019-08-11 16:38:55.481  LOG <azure> [subnet_cqaki5.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Network/locations/brazilsouth/operationResults/8cf21a7e-20b1-431e-a245-82761ac284ff?api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:38:57.048  CFY <azure> [subnet_cqaki5.delete] Task succeeded 'cloudify_azure.resources.network.subnet.delete' [retry 1/60]
+2019-08-11 16:38:57.357  CFY <azure> [subnet_cqaki5] Deleted node instance
+2019-08-11 16:38:57.763  CFY <azure> [network_qzpoyb] Stopping node instance
+2019-08-11 16:38:58.237  CFY <azure> [network_qzpoyb] Validating node instance after deletion: nothing to do
+2019-08-11 16:38:58.361  CFY <azure> [network_qzpoyb] Stopped node instance: nothing to do
+2019-08-11 16:38:58.743  CFY <azure> [network_qzpoyb] Unlinking relationships
+2019-08-11 16:38:59.015  CFY <azure> [network_qzpoyb] Relationships unlinked
+2019-08-11 16:38:59.265  CFY <azure> [network_qzpoyb] Deleting node instance
+2019-08-11 16:38:59.458  CFY <azure> [network_qzpoyb.delete] Sending task 'cloudify_azure.resources.network.virtualnetwork.delete'
+2019-08-11 16:39:02.358  LOG <azure> [network_qzpoyb.delete] INFO: Deleting Virtual Network "02wordpress"
+2019-08-11 16:39:02.358  LOG <azure> [network_qzpoyb.delete] INFO: Checking Virtual Network "02wordpress"
+2019-08-11 16:39:02.359  LOG <azure> [network_qzpoyb.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/virtualNetworks/02wordpress', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'get'})
+2019-08-11 16:39:03.071  LOG <azure> [network_qzpoyb.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress/providers/Microsoft.Network/virtualNetworks/02wordpress', 'verify': True, 'params': {'api-version': u'2016-03-30'}, 'method': 'delete'})
+2019-08-11 16:39:04.126  CFY <azure> [network_qzpoyb.delete] Task rescheduled 'cloudify_azure.resources.network.virtualnetwork.delete' -> Operation: "dd16b271-4e95-4495-aae9-29e7f267d755" started [retry_after=10]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "dd16b271-4e95-4495-aae9-29e7f267d755" started [retry_after=10]
+
+2019-08-11 16:39:14.270  CFY <azure> [network_qzpoyb.delete] Sending task 'cloudify_azure.resources.network.virtualnetwork.delete' [retry 1/60]
+2019-08-11 16:39:17.044  LOG <azure> [network_qzpoyb.delete] INFO: Checking status of operation "dd16b271-4e95-4495-aae9-29e7f267d755"
+2019-08-11 16:39:17.045  LOG <azure> [network_qzpoyb.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Network/locations/brazilsouth/operationResults/dd16b271-4e95-4495-aae9-29e7f267d755?api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:39:17.936  CFY <azure> [network_qzpoyb.delete] Task succeeded 'cloudify_azure.resources.network.virtualnetwork.delete' [retry 1/60]
+2019-08-11 16:39:17.990  CFY <azure> [network_qzpoyb] Deleted node instance
+2019-08-11 16:39:32.355  CFY <azure> [ip1_h4lvps.delete] Sending task 'cloudify_azure.resources.network.publicipaddress.delete' [retry 1/60]
+2019-08-11 16:39:34.792  LOG <azure> [ip1_h4lvps.delete] INFO: Checking status of operation "a68f1360-f3e5-46bb-80ab-2dfe976a3276"
+2019-08-11 16:39:34.793  LOG <azure> [ip1_h4lvps.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Network/locations/brazilsouth/operationResults/a68f1360-f3e5-46bb-80ab-2dfe976a3276?api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:39:35.632  CFY <azure> [ip1_h4lvps.delete] Task succeeded 'cloudify_azure.resources.network.publicipaddress.delete' [retry 1/60]
+2019-08-11 16:39:35.861  CFY <azure> [ip1_h4lvps] Deleted node instance
+2019-08-11 16:39:39.264  CFY <azure> [network_security_group_kq4syu.delete] Sending task 'cloudify_azure.resources.network.networksecuritygroup.delete' [retry 1/60]
+2019-08-11 16:39:41.860  LOG <azure> [network_security_group_kq4syu.delete] INFO: Checking status of operation "b1893c0e-9ad0-4fba-bae1-d82e6bf1dd02"
+2019-08-11 16:39:41.861  LOG <azure> [network_security_group_kq4syu.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Network/locations/brazilsouth/operationResults/b1893c0e-9ad0-4fba-bae1-d82e6bf1dd02?api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:39:42.722  CFY <azure> [network_security_group_kq4syu.delete] Task succeeded 'cloudify_azure.resources.network.networksecuritygroup.delete' [retry 1/60]
+2019-08-11 16:39:43.014  CFY <azure> [network_security_group_kq4syu] Deleted node instance
+2019-08-11 16:39:43.551  CFY <azure> [ip2_jh7xdh.delete] Sending task 'cloudify_azure.resources.network.publicipaddress.delete' [retry 1/60]
+2019-08-11 16:39:46.159  LOG <azure> [ip2_jh7xdh.delete] INFO: Checking status of operation "636275f1-7609-44db-bf11-ffd9be5eaa66"
+2019-08-11 16:39:46.160  LOG <azure> [ip2_jh7xdh.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/providers/Microsoft.Network/locations/brazilsouth/operationResults/636275f1-7609-44db-bf11-ffd9be5eaa66?api-version=2016-03-30', 'verify': True, 'method': 'get'})
+2019-08-11 16:39:46.783  CFY <azure> [ip2_jh7xdh.delete] Task succeeded 'cloudify_azure.resources.network.publicipaddress.delete' [retry 1/60]
+2019-08-11 16:39:46.824  CFY <azure> [ip2_jh7xdh] Deleted node instance
+2019-08-11 16:39:47.323  CFY <azure> [resource_group_ptgfau] Stopping node instance
+2019-08-11 16:39:47.920  CFY <azure> [resource_group_ptgfau] Validating node instance after deletion: nothing to do
+2019-08-11 16:39:48.155  CFY <azure> [resource_group_ptgfau] Stopped node instance: nothing to do
+2019-08-11 16:39:48.430  CFY <azure> [resource_group_ptgfau] Unlinking relationships
+2019-08-11 16:39:48.766  CFY <azure> [resource_group_ptgfau] Relationships unlinked
+2019-08-11 16:39:48.963  CFY <azure> [resource_group_ptgfau] Deleting node instance
+2019-08-11 16:39:49.284  CFY <azure> [resource_group_ptgfau.delete] Sending task 'cloudify_azure.resources.resourcegroup.delete'
+2019-08-11 16:39:51.957  LOG <azure> [resource_group_ptgfau.delete] INFO: Deleting Resource Group "01wordpress"
+2019-08-11 16:39:51.957  LOG <azure> [resource_group_ptgfau.delete] INFO: Checking Resource Group "01wordpress"
+2019-08-11 16:39:51.958  LOG <azure> [resource_group_ptgfau.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'params': {'api-version': u'2017-05-10'}, 'method': 'get'})
+2019-08-11 16:39:52.223  LOG <azure> [resource_group_ptgfau.delete] INFO: request({'url': 'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/resourceGroups/01wordpress', 'verify': True, 'params': {'api-version': u'2017-05-10'}, 'method': 'delete'})
+2019-08-11 16:39:53.590  CFY <azure> [resource_group_ptgfau.delete] Task rescheduled 'cloudify_azure.resources.resourcegroup.delete' -> Operation: "50cf6eef-410c-467d-a2c8-be4126157481" started [retry_after=15]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "50cf6eef-410c-467d-a2c8-be4126157481" started [retry_after=15]
+
+2019-08-11 16:40:08.709  CFY <azure> [resource_group_ptgfau.delete] Sending task 'cloudify_azure.resources.resourcegroup.delete' [retry 1/60]
+2019-08-11 16:40:11.625  LOG <azure> [resource_group_ptgfau.delete] INFO: Checking status of operation "50cf6eef-410c-467d-a2c8-be4126157481"
+2019-08-11 16:40:11.626  LOG <azure> [resource_group_ptgfau.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/operationresults/eyJqb2JJZCI6IlJFU09VUkNFR1JPVVBERUxFVElPTkpPQi0wMVdPUkRQUkVTUy1CUkFaSUxTT1VUSCIsImpvYkxvY2F0aW9uIjoiYnJhemlsc291dGgifQ?api-version=2017-05-10', 'verify': True, 'method': 'get'})
+2019-08-11 16:40:12.636  CFY <azure> [resource_group_ptgfau.delete] Task rescheduled 'cloudify_azure.resources.resourcegroup.delete' -> Operation: "b683614b-8843-49b8-a8b0-6753aeb98ddc" still pending [retry_after=15] [retry 1/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "b683614b-8843-49b8-a8b0-6753aeb98ddc" still pending [retry_after=15]
+
+2019-08-11 16:40:27.796  CFY <azure> [resource_group_ptgfau.delete] Sending task 'cloudify_azure.resources.resourcegroup.delete' [retry 2/60]
+2019-08-11 16:40:30.633  LOG <azure> [resource_group_ptgfau.delete] INFO: Checking status of operation "b683614b-8843-49b8-a8b0-6753aeb98ddc"
+2019-08-11 16:40:30.633  LOG <azure> [resource_group_ptgfau.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/operationresults/eyJqb2JJZCI6IlJFU09VUkNFR1JPVVBERUxFVElPTkpPQi0wMVdPUkRQUkVTUy1CUkFaSUxTT1VUSCIsImpvYkxvY2F0aW9uIjoiYnJhemlsc291dGgifQ?api-version=2017-05-10', 'verify': True, 'method': 'get'})
+2019-08-11 16:40:31.481  CFY <azure> [resource_group_ptgfau.delete] Task rescheduled 'cloudify_azure.resources.resourcegroup.delete' -> Operation: "ea985166-7956-4038-9ed3-a2f70ded6493" still pending [retry_after=15] [retry 2/60]
+Traceback (most recent call last):
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 813, in main
+    payload = handler.handle()
+  File "/opt/mgmtworker/env/lib/python2.7/site-packages/cloudify/dispatch.py", line 464, in handle
+    raise ctx.operation._operation_retry
+OperationRetry: Operation: "ea985166-7956-4038-9ed3-a2f70ded6493" still pending [retry_after=15]
+
+2019-08-11 16:40:46.625  CFY <azure> [resource_group_ptgfau.delete] Sending task 'cloudify_azure.resources.resourcegroup.delete' [retry 3/60]
+2019-08-11 16:40:49.292  LOG <azure> [resource_group_ptgfau.delete] INFO: Checking status of operation "ea985166-7956-4038-9ed3-a2f70ded6493"
+2019-08-11 16:40:49.292  LOG <azure> [resource_group_ptgfau.delete] INFO: request({'url': u'https://management.azure.com/subscriptions/9cf8b4c4-cd80-43a7-bab0-9a6bf01d3b25/operationresults/eyJqb2JJZCI6IlJFU09VUkNFR1JPVVBERUxFVElPTkpPQi0wMVdPUkRQUkVTUy1CUkFaSUxTT1VUSCIsImpvYkxvY2F0aW9uIjoiYnJhemlsc291dGgifQ?api-version=2017-05-10', 'verify': True, 'method': 'get'})
+2019-08-11 16:40:50.099  CFY <azure> [resource_group_ptgfau.delete] Task succeeded 'cloudify_azure.resources.resourcegroup.delete' [retry 3/60]
+2019-08-11 16:40:50.158  CFY <azure> [resource_group_ptgfau] Deleted node instance
+2019-08-11 16:40:50.711  CFY <azure> 'uninstall' workflow execution succeeded
+Finished executing workflow uninstall on deployment azure
+* Run 'cfy events list f4c366a2-df10-44f0-b0c4-fe3d7ac4b643' to retrieve the execution's events/logs
+Trying to delete deployment azure...
+Deployment deleted
+Deleting blueprint cloudify-1565540119-wp-azure...
+Blueprint deleted

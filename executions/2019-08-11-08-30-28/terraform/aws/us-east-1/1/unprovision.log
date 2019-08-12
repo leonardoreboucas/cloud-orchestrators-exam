@@ -1,0 +1,57 @@
+[0m[1mdata.template_file.config_database: Refreshing state...[0m
+[0m[1maws_key_pair.wordpress: Refreshing state... [id=wordpress][0m
+[0m[1mdata.aws_ami.ubuntu: Refreshing state...[0m
+[0m[1maws_vpc.default: Refreshing state... [id=vpc-0ecd3d8e91fab14a7][0m
+[0m[1maws_subnet.default: Refreshing state... [id=subnet-01a24a8138865d05d][0m
+[0m[1maws_internet_gateway.internet_gateway: Refreshing state... [id=igw-0cb68fc731c0a4ac7][0m
+[0m[1maws_security_group.wordpress-security-group: Refreshing state... [id=sg-0d3c1d203459acec2][0m
+[0m[1maws_route_table.internet_route: Refreshing state... [id=rtb-09d135caa85e41486][0m
+[0m[1maws_network_interface.wordpress-2-network_interface: Refreshing state... [id=eni-0beea74f69f6ea2d9][0m
+[0m[1maws_network_interface.wordpress-database-network_interface: Refreshing state... [id=eni-0f11e0e291f93bfea][0m
+[0m[1maws_network_interface.wordpress-1-network_interface: Refreshing state... [id=eni-0fdce34fc324fde83][0m
+[0m[1maws_main_route_table_association.a: Refreshing state... [id=rtbassoc-0e51fab8d371b4690][0m
+[0m[1maws_instance.wordpress-database: Refreshing state... [id=i-0f250df5c5fdda2bd][0m
+[0m[1mdata.template_file.config: Refreshing state...[0m
+[0m[1maws_instance.wordpress-app2: Refreshing state... [id=i-0c60c062a96cb4966][0m
+[0m[1maws_instance.wordpress-app1: Refreshing state... [id=i-037a5eb55f41a03cc][0m
+[0m[1maws_instance.wordpress-app2: Destroying... [id=i-0c60c062a96cb4966][0m[0m
+[0m[1maws_main_route_table_association.a: Destroying... [id=rtbassoc-0e51fab8d371b4690][0m[0m
+[0m[1maws_key_pair.wordpress: Destroying... [id=wordpress][0m[0m
+[0m[1maws_instance.wordpress-app1: Destroying... [id=i-037a5eb55f41a03cc][0m[0m
+[0m[1maws_main_route_table_association.a: Destruction complete after 1s[0m[0m
+[0m[1maws_key_pair.wordpress: Destruction complete after 1s[0m[0m
+[0m[1maws_route_table.internet_route: Destroying... [id=rtb-09d135caa85e41486][0m[0m
+[0m[1maws_route_table.internet_route: Destruction complete after 3s[0m[0m
+[0m[1maws_internet_gateway.internet_gateway: Destroying... [id=igw-0cb68fc731c0a4ac7][0m[0m
+[0m[1maws_instance.wordpress-app2: Still destroying... [id=i-0c60c062a96cb4966, 10s elapsed][0m[0m
+[0m[1maws_instance.wordpress-app1: Still destroying... [id=i-037a5eb55f41a03cc, 10s elapsed][0m[0m
+[0m[1maws_internet_gateway.internet_gateway: Still destroying... [id=igw-0cb68fc731c0a4ac7, 10s elapsed][0m[0m
+[0m[1maws_instance.wordpress-app1: Still destroying... [id=i-037a5eb55f41a03cc, 20s elapsed][0m[0m
+[0m[1maws_instance.wordpress-app2: Still destroying... [id=i-0c60c062a96cb4966, 20s elapsed][0m[0m
+[0m[1maws_instance.wordpress-app2: Destruction complete after 23s[0m[0m
+[0m[1maws_network_interface.wordpress-2-network_interface: Destroying... [id=eni-0beea74f69f6ea2d9][0m[0m
+[0m[1maws_internet_gateway.internet_gateway: Still destroying... [id=igw-0cb68fc731c0a4ac7, 20s elapsed][0m[0m
+[0m[1maws_network_interface.wordpress-2-network_interface: Destruction complete after 3s[0m[0m
+[0m[1maws_instance.wordpress-app1: Still destroying... [id=i-037a5eb55f41a03cc, 30s elapsed][0m[0m
+[0m[1maws_internet_gateway.internet_gateway: Still destroying... [id=igw-0cb68fc731c0a4ac7, 30s elapsed][0m[0m
+[0m[1maws_instance.wordpress-app1: Destruction complete after 34s[0m[0m
+[0m[1maws_network_interface.wordpress-1-network_interface: Destroying... [id=eni-0fdce34fc324fde83][0m[0m
+[0m[1maws_instance.wordpress-database: Destroying... [id=i-0f250df5c5fdda2bd][0m[0m
+[0m[1maws_network_interface.wordpress-1-network_interface: Destruction complete after 2s[0m[0m
+[0m[1maws_internet_gateway.internet_gateway: Still destroying... [id=igw-0cb68fc731c0a4ac7, 40s elapsed][0m[0m
+[0m[1maws_instance.wordpress-database: Still destroying... [id=i-0f250df5c5fdda2bd, 10s elapsed][0m[0m
+[0m[1maws_internet_gateway.internet_gateway: Still destroying... [id=igw-0cb68fc731c0a4ac7, 50s elapsed][0m[0m
+[0m[1maws_instance.wordpress-database: Still destroying... [id=i-0f250df5c5fdda2bd, 20s elapsed][0m[0m
+[0m[1maws_internet_gateway.internet_gateway: Destruction complete after 57s[0m[0m
+[0m[1maws_instance.wordpress-database: Still destroying... [id=i-0f250df5c5fdda2bd, 30s elapsed][0m[0m
+[0m[1maws_instance.wordpress-database: Destruction complete after 33s[0m[0m
+[0m[1maws_network_interface.wordpress-database-network_interface: Destroying... [id=eni-0f11e0e291f93bfea][0m[0m
+[0m[1maws_network_interface.wordpress-database-network_interface: Destruction complete after 2s[0m[0m
+[0m[1maws_subnet.default: Destroying... [id=subnet-01a24a8138865d05d][0m[0m
+[0m[1maws_security_group.wordpress-security-group: Destroying... [id=sg-0d3c1d203459acec2][0m[0m
+[0m[1maws_security_group.wordpress-security-group: Destruction complete after 2s[0m[0m
+[0m[1maws_subnet.default: Destruction complete after 2s[0m[0m
+[0m[1maws_vpc.default: Destroying... [id=vpc-0ecd3d8e91fab14a7][0m[0m
+[0m[1maws_vpc.default: Destruction complete after 1s[0m[0m
+[0m[1m[32m
+Destroy complete! Resources: 13 destroyed.[0m

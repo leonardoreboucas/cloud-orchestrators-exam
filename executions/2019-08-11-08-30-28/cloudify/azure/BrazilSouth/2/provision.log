@@ -1,0 +1,6 @@
+Starting provisioning process
+Uploading blueprint /root/cloud-orchestrators-exam/cloudify/azure.yaml...
+ azure.yaml |##########################################################| 100.0%
+An error occurred on the server: 409: <Blueprint id=`cloudify-1565540119-wp-azure` tenant=`default_tenant`> already exists on <Tenant name=`default_tenant`> or with global visibility
+Retrieving outputs for deployment cloudify-1565540119-wp-azure...
+An error occurred on the server: 404: Requested `Deployment` with ID `cloudify-1565540119-wp-azure` was not found
