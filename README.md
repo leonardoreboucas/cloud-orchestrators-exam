@@ -101,7 +101,7 @@ export TF_VAR_azure_client_secret=$azure_client_secret
 ### Configure Orchestrators
 For use terraform, just [download](https://www.terraform.io/downloads.html) it's binary and ensure it´s in your PATH and is possible to execute terraform command everywhere in your environment.
 
-For use Cloudify, just follow [provider's instructions](https://cloudify.co/getting-started/) in order to install a Cloudify environment on your environment. This could be by docker images or install process. The CLI is required too. Your have to create secrets for each providers parameters. The GCP parameter gcp_private_key should be setted as a plan text, so convert the command inside JSON to a plain text and use it to fill the secret on Cloudify.
+For use Cloudify, just follow [provider's instructions](https://cloudify.co/getting-started/) in order to install a Cloudify environment on your environment. This could be by docker images or install process. The CLI is required too. Your have to create secrets for each provider's parameters. The GCP parameter gcp_private_key should be setted as a plain text, so convert the string inside JSON to a plain text and use it to fill the respective secret on your Cloudify environment.
 
 ## Execution
 
