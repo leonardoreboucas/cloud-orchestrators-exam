@@ -2,19 +2,26 @@
 
 ## Description
 
-This project intend to be a practical test over **Cloudify** an **Terraform** using a simple Wordpress blueprint showed in the Figure below.
+This project intend to be a practical test over AWS, Azure and GCP using **Cloudify** an **Terraform** as cloud orchestrators for a simple Wordpress blueprint.
+
+### Wordpress Architecture
 
 <img src="https://github.com/leonardoreboucas/cloud-orchestrators-exam/blob/master/images/arch_wordpress_eng.png"
      alt="Wordpress Architecture"
      style="display: block; margin-left: auto;  margin-right: auto; width: 50%;" />
-
-The tests can be made on AWS, Azure and GCP:
+     
+### Exam Architecture
 
 <img src="https://github.com/leonardoreboucas/cloud-orchestrators-exam/blob/master/images/arch_test.png"
      alt="Test Architecture"
      style="float: left; margin-left: 49%;" />
 
-This project contains:
+### Exam Parameters
+<img src="https://github.com/leonardoreboucas/cloud-orchestrators-exam/blob/master/images/params.png"
+     alt="Test Parameters"
+     style="float: left; margin-left: 49%;" />
+     
+### This project content:
 * 6 blueprints definitions
   * Wordpress for AWS via Terraform
   * Wordpress for Azure via Terraform
@@ -27,12 +34,6 @@ This project contains:
   * Memory average usage
   * I/O amount
   * Network transfer amount
-
-Tests Parameters
-
-<img src="https://github.com/leonardoreboucas/cloud-orchestrators-exam/blob/master/images/params.png"
-     alt="Test Parameters"
-     style="float: left; margin-left: 49%;" />
 
 ## Prerequisites
 
