@@ -6,7 +6,7 @@ This project intend to be a practical test over **Cloudify** an **Terraform** us
 
 <img src="https://github.com/leonardoreboucas/cloud-orchestrators-exam/blob/master/images/arch_wordpress_eng.png"
      alt="Wordpress Architecture"
-     style="float: left; margin-left: 49%;" />
+     style="display: block; margin-left: auto;  margin-right: auto; width: 50%;" />
 
 The tests can be made on AWS, Azure and GCP:
 
@@ -28,7 +28,8 @@ This project contains:
   * I/O amount
   * Network transfer amount
 
-Tests Parameters*
+Tests Parameters
+
 <img src="https://github.com/leonardoreboucas/cloud-orchestrators-exam/blob/master/images/params.png"
      alt="Test Parameters"
      style="float: left; margin-left: 49%;" />
