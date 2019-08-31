@@ -4,7 +4,7 @@ This project intend to be a practical test over Cloudify an Terraform using a si
 
 <img src="https://github.com/leonardoreboucas/cloud-orchestrators-exam/blob/master/images/arch_wordpress.png"
      alt="Wordpress Architecture"
-     style="float: left; margin-right: 0px;" />
+     style="float: left; margin-left: 49%;" />
 
 # Prerequisites
 
