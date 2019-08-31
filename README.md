@@ -2,10 +2,9 @@
 
 This project intend to be a practical test over Cloudify an Terraform using a simple Wordpress blueprint showed in the Figure below.
 
-[[https://github.com/leonardoreboucas/cloud-orchestrators-exam/blob/master/images/arch_wordpress.png|alt=arch_wordpress.png]]
-
-
-
+<img src="https://github.com/leonardoreboucas/cloud-orchestrators-exam/blob/master/images/arch_wordpress.png"
+     alt="Wordpress Architecture"
+     style="float: left; margin-right: 0px;" />
 
 # Prerequisites
 
