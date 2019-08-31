@@ -94,8 +94,22 @@ export TF_VAR_azure_subscription_id=$azure_subscription_id
 export TF_VAR_azure_tenant_id=$azure_tenant_id
 export TF_VAR_azure_client_id=$azure_client_id
 export TF_VAR_azure_client_secret=$azure_client_secret
+```
 
 ### Configure Orchestrators
 For use terraform, just [download](https://www.terraform.io/downloads.html) it's binary and ensure it´s in your PATH and is possible to execute terraform command everywhere in your environment.
 
 For use Cloudify, just follow [provider's instructions](https://cloudify.co/getting-started/) in order to install a Cloudify environment on your environment. This could be by docker images or install process. The CLI is required too.
+
+## Execution
+
+* Clone this project:
+  ``` git clone https://github.com/leonardoreboucas/cloud-orchestrators-exam.git ```
+* Enter directory
+  ``` cd cloud-orchestrators-exam ```
+* Play Tests
+  ``` ./play_test.sh ```
+* Follow test execution on directoy executions
+
+
+
