@@ -1,6 +1,8 @@
-# cloud-orchestrators-exam
+# Cloud Orchestrators Exam
 
-This project intend to be a practical test over Cloudify an Terraform using a simple Wordpress blueprint showed in the Figure below.
+## Description
+
+This project intend to be a practical test over **Cloudify** an **Terraform** using a simple Wordpress blueprint showed in the Figure below.
 
 <img src="https://github.com/leonardoreboucas/cloud-orchestrators-exam/blob/master/images/arch_wordpress_eng.png"
      alt="Wordpress Architecture"
@@ -24,9 +26,14 @@ This project contains:
   * CPU average usage
   * Memory average usage
   * I/O amount
-  * Network transfoer amount
+  * Network transfer amount
 
-# Prerequisites
+Tests Parameters*
+<img src="https://github.com/leonardoreboucas/cloud-orchestrators-exam/blob/master/images/params.png"
+     alt="Test Parameters"
+     style="float: left; margin-left: 49%;" />
+
+## Prerequisites
 
 ### Get credentials parameters on AWS
 * Log in to your AWS Management Console.
@@ -35,6 +42,6 @@ This project contains:
 * Find the Access Credentials section, and copy the latest Access Key ID.
 * Click on the Show link in the same row, and copy the Secret Access Key.
 
-You should obtain e parameters:
+You should obtain this parameters:
 * aws_access_key_id
 * aws_secret_access_key
