@@ -59,6 +59,8 @@ You should obtain this parameters:
 
 ### Get credentials parameters on GCP
 
+* Create a service account and set permissions to operate the Compute Engine and VPC Networks.
+
 You should obtain a JSON file with this parameters:
 * client_x509_cert_url
 * client_email
@@ -109,7 +111,4 @@ For use Cloudify, just follow [provider's instructions](https://cloudify.co/gett
   ``` cd cloud-orchestrators-exam ```
 * Play Tests
   ``` ./play_test.sh ```
-* Follow test execution on directoy executions
-
-
-
+* Follow test execution on directory executions
