@@ -1,5 +1,10 @@
 # cloud-orchestrators-exam
-Provisioning test on some Multi Cloud Orchestrators
+
+This project intend to be a practical test over Cloudify an Terraform using a simple Wordpress blueprint showed in the Figure below.
+
+[[https://github.com/leonardoreboucas/cloud-orchestrators-exam/blob/master/images/arch_wordpress.png|alt=arch_wordpress.png]]
+
+
 
 
 # Prerequisites
