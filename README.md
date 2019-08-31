@@ -51,7 +51,7 @@ You should obtain this parameters:
 
 ### Get credentials parameters on Azure
 
-You should obtain a JSON file with this parameters:
+You should obtain this parameters:
 * subscription_id
 * azure_tenant_id
 * azure_client_id
@@ -67,7 +67,7 @@ You should obtain a JSON file with this parameters:
 * private_key_id
 * zone
 
-Ensure this JSON is put on file: common/account.json
+Ensure this JSON is put on file: common/account.json.
 
 ### Set credentials on your local environment
 
