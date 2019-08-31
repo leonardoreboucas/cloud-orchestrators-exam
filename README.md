@@ -67,9 +67,11 @@ You should obtain a JSON file with this parameters:
 * private_key_id
 * zone
 
-### Set credentials & parameters on your local environment
+Ensure this JSON is put on file: common/account.json
 
-Execute the commands below to set all credentials values obtained and other parameters. Please, take care to change values.
+### Set credentials on your local environment
+
+Execute the commands below to export all credentials values obtained. Take care to change values.
 ```
 #AWS
 export aws_access_key_id=[PUT YOUR VALUE HERE]
