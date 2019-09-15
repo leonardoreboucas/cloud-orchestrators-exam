@@ -57,6 +57,8 @@ You should obtain this parameters:
 * azure_client_id
 * azure_client_secret
 
+Follow this instructions: [click](https://www.inkoop.io/blog/how-to-get-azure-api-credentials/)
+
 ### Get credentials parameters on GCP
 
 * Create a service account and set permissions to operate the Compute Engine and VPC Networks.
